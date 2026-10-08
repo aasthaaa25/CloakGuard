@@ -1,0 +1,10 @@
+{
+  "url": "https://www.petsonline.nl/nl/hond/honden-trainingsspullen/",
+  "url_id": "774444bc406c",
+  "human_status": 200,
+  "bot_status": 403,
+  "human_html_len": 204027,
+  "bot_html_len": 5824,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

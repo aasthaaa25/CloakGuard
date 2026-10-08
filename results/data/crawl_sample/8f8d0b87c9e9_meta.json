@@ -1,0 +1,10 @@
+{
+  "url": "https://www.publicfinance.co.uk",
+  "url_id": "8f8d0b87c9e9",
+  "human_status": 403,
+  "bot_status": 403,
+  "human_html_len": 5776,
+  "bot_html_len": 5691,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

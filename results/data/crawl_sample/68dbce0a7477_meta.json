@@ -1,0 +1,10 @@
+{
+  "url": "https://www.strap-seal-machine.com",
+  "url_id": "68dbce0a7477",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 55376,
+  "bot_html_len": 55376,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

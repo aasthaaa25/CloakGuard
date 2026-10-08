@@ -1,0 +1,10 @@
+{
+  "url": "https://www.mienfermeraperu.com",
+  "url_id": "f156b28e1eab",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 74424,
+  "bot_html_len": 74424,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

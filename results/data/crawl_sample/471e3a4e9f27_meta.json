@@ -1,0 +1,10 @@
+{
+  "url": "https://www.miurausa.com/miurausa?em=ardanbera@ardanbera.com",
+  "url_id": "471e3a4e9f27",
+  "human_status": 403,
+  "bot_status": 200,
+  "human_html_len": 75193,
+  "bot_html_len": 2432,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

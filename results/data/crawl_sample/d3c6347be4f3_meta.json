@@ -1,0 +1,10 @@
+{
+  "url": "https://www.charlottecatholic.org",
+  "url_id": "d3c6347be4f3",
+  "human_status": 200,
+  "bot_status": 403,
+  "human_html_len": 96090,
+  "bot_html_len": 5967,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

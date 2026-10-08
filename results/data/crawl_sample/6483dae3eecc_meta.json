@@ -1,0 +1,10 @@
+{
+  "url": "https://www.caseme.com.br",
+  "url_id": "6483dae3eecc",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 181626,
+  "bot_html_len": 181626,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

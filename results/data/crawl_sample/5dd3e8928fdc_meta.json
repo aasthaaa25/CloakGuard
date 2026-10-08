@@ -1,0 +1,10 @@
+{
+  "url": "https://www.marlborough.govt.nz",
+  "url_id": "5dd3e8928fdc",
+  "human_status": 202,
+  "bot_status": 202,
+  "human_html_len": 2004,
+  "bot_html_len": 2004,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

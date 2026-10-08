@@ -1,0 +1,10 @@
+{
+  "url": "https://www.kitchenadore.com/post/sour-cream-and-chives-rolls",
+  "url_id": "cd42e720b1a9",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 1211812,
+  "bot_html_len": 651091,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

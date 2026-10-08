@@ -1,0 +1,10 @@
+{
+  "url": "https://www.telectronika.com",
+  "url_id": "a8315bb59cc5",
+  "human_status": 403,
+  "bot_status": 200,
+  "human_html_len": 75193,
+  "bot_html_len": 299393,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

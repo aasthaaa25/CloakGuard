@@ -1,0 +1,29 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-type" content="text/html; charset=UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="stylesheet" href="/_autoindex/assets/css/autoindex.css" /><script src="/_autoindex/assets/js/tablesort.js"></script><script src="/_autoindex/assets/js/tablesort.number.js"></script><title>Index of /</title><style>@media (prefers-color-scheme:dark){body{background-color:#000!important}}</style></head><body><div class="content"><h1 style="color: #555;">Index of /</h1>
+<div id="table-filter"><input type="text" name="keyword" id="filter-keyword" placeholder="Filter Name"></div>
+<div id="table-list"><table id="table-content"><thead class="t-header"><tr><th class="colname" aria-sort="ascending"><a class="name" href="?ND"  onclick="return false"">Name</a></th><th class="colname" data-sort-method="number"><a href="?MA"  onclick="return false"">Last Modified</a></th><th class="colname" data-sort-method="number"><a href="?SA"  onclick="return false"">Size</a></th></tr></thead>
+<tr><td data-sort="*cgi-bin"><a href="/cgi-bin/"><img class="icon" src="/_autoindex/assets/icons/folder-fill.svg" alt="Directory">cgi-bin</a></td><td data-sort="79569747">2022-06-27 22:42</td><td data-sort="-1">-</td></tr>
+<tr><td data-sort="*home"><a href="/home/"><img class="icon" src="/_autoindex/assets/icons/folder-fill.svg" alt="Directory">home</a></td><td data-sort="42324323">2021-04-22 20:45</td><td data-sort="-1">-</td></tr>
+<tr><td data-sort="*vendor"><a href="/vendor/"><img class="icon" src="/_autoindex/assets/icons/folder-fill.svg" alt="Directory">vendor</a></td><td data-sort="31732868">2020-12-21 06:41</td><td data-sort="-1">-</td></tr>
+<tr><td data-sort="*wp2"><a href="/wp2/"><img class="icon" src="/_autoindex/assets/icons/folder-fill.svg" alt="Directory">wp2</a></td><td data-sort="205408290">2026-06-23 09:51</td><td data-sort="-1">-</td></tr>
+<tr><td data-sort="googlebac2bbe17c399bac.html"><a href="/googlebac2bbe17c399bac.html"><img class="icon" src="/_autoindex/assets/icons/file-text.svg" alt="[TXT]">googlebac2bbe17c399bac.html</a></td><td data-sort="1603264941">2020-10-21 07:22</td><td data-sort="53">      1k</td></tr>
+<tr><td data-sort="iso.tar.gz.2"><a href="/iso.tar.gz.2"><img class="icon" src="/_autoindex/assets/icons/file.svg" alt="File">iso.tar.gz.2</a></td><td data-sort="1607418541">2020-12-08 09:09</td><td data-sort="3613392">   3529k</td></tr>
+<tr><td data-sort="kk.tar.gz.2"><a href="/kk.tar.gz.2"><img class="icon" src="/_autoindex/assets/icons/file.svg" alt="File">kk.tar.gz.2</a></td><td data-sort="1607332478">2020-12-07 09:14</td><td data-sort="2244763">   2193k</td></tr>
+</table></div>
+<address>Proudly Served by LiteSpeed Web Server at www.norailya.com Port 80</address></div><script>
+	new Tablesort(document.getElementById("table-content"));
+	var keywordInput = document.getElementById('filter-keyword');
+	document.addEventListener('keyup', filterTable);
+
+	function filterTable(e) {
+		if (e.target.id != 'filter-keyword') return;
+
+		var cols = document.querySelectorAll('tbody td:first-child');
+		var keyword = keywordInput.value.toLowerCase();
+		for (i = 0; i < cols.length; i++) {
+			var text = cols[i].textContent.toLowerCase();
+			if (text != 'parent directory') {
+				cols[i].parentNode.style.display = text.indexOf(keyword) === -1 ? 'none' : 'table-row';
+			}
+		}
+	}
+</script></body></html>

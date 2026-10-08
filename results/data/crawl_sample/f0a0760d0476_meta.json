@@ -1,0 +1,10 @@
+{
+  "url": "https://www.jotravelguide.com",
+  "url_id": "f0a0760d0476",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 45898,
+  "bot_html_len": 45898,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

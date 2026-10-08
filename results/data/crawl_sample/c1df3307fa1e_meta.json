@@ -1,0 +1,10 @@
+{
+  "url": "http://www.layingjlandandcattle.com/Default.aspx?AnimalID=16961&Name=WSSUNRISE",
+  "url_id": "c1df3307fa1e",
+  "human_status": 403,
+  "bot_status": 0,
+  "human_html_len": 5693,
+  "bot_html_len": 0,
+  "human_method": "httpx",
+  "bot_method": "httpx_fail"
+}

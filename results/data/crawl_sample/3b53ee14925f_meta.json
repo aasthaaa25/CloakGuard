@@ -1,0 +1,10 @@
+{
+  "url": "https://desq.dict.cc/?s=Afghanistan",
+  "url_id": "3b53ee14925f",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 47349,
+  "bot_html_len": 47572,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

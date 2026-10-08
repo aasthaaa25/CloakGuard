@@ -1,0 +1,10 @@
+{
+  "url": "https://www.commandocomics.com",
+  "url_id": "a096fa09e86c",
+  "human_status": 403,
+  "bot_status": 403,
+  "human_html_len": 5711,
+  "bot_html_len": 5648,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

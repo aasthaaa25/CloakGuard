@@ -1,0 +1,10 @@
+{
+  "url": "https://www.komei.or.jp",
+  "url_id": "0d4ca5c51ea1",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 46352,
+  "bot_html_len": 46352,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

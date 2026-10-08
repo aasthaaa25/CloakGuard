@@ -1,0 +1,10 @@
+{
+  "url": "http://www.ivy.it",
+  "url_id": "c85256537ff9",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 60113,
+  "bot_html_len": 60113,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

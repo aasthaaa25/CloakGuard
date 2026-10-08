@@ -1,0 +1,10 @@
+{
+  "url": "https://www.pcdvd.com.tw/forumdisplay.php?s=90f4f48358425979697dc6f732d0f2dd&f=27&daysprune=-1&order=asc&sort=lastpost&pp=18&page=1",
+  "url_id": "73ea2ef52300",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 62518,
+  "bot_html_len": 54062,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

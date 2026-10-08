@@ -1,0 +1,24 @@
+[Unit]
+Description=Cloaking-Aware Defacement Defense Middleware
+After=network.target
+
+[Service]
+Type=simple
+User=defaceguard
+WorkingDirectory=/opt/defacement_defense_system
+Environment="ORIGIN_SERVER_URL=http://127.0.0.1:8000"
+ExecStart=/opt/defacement_defense_system/venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8443
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+
+# Install as a systemd service:
+# sudo useradd -r -s /bin/false defaceguard
+# sudo cp -r . /opt/defacement_defense_system
+# sudo chown -R defaceguard:defaceguard /opt/defacement_defense_system
+# sudo cp deploy/defacement-defense.service /etc/systemd/system/
+# sudo systemctl daemon-reload
+# sudo systemctl enable --now defacement-defense
+# sudo systemctl status defacement-defense

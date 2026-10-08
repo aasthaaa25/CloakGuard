@@ -1,0 +1,10 @@
+{
+  "url": "https://www.firsttracksonline.com",
+  "url_id": "996e95602862",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 119159,
+  "bot_html_len": 119159,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

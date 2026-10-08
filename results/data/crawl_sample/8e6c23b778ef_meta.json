@@ -1,0 +1,10 @@
+{
+  "url": "http://www.letspogoyork.com",
+  "url_id": "8e6c23b778ef",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 111871,
+  "bot_html_len": 111871,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

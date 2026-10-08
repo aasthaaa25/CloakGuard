@@ -1,0 +1,10 @@
+{
+  "url": "https://www.tomforshreveport.com/media/",
+  "url_id": "82aec19b93a0",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 143571,
+  "bot_html_len": 143559,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

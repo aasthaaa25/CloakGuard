@@ -1,0 +1,10 @@
+{
+  "url": "https://www.theday.com",
+  "url_id": "a5f975439376",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 323468,
+  "bot_html_len": 323468,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

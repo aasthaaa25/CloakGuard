@@ -1,0 +1,10 @@
+{
+  "url": "https://www.world-tourism.org/from-tignale-lake-garda-beginner-friendly-canyoning-tour/",
+  "url_id": "1292c76d0637",
+  "human_status": 403,
+  "bot_status": 200,
+  "human_html_len": 5945,
+  "bot_html_len": 256356,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

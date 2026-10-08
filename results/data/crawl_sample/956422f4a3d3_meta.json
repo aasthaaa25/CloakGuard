@@ -1,0 +1,10 @@
+{
+  "url": "https://www.evasartistry.com/sketchbook",
+  "url_id": "956422f4a3d3",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 634860,
+  "bot_html_len": 575295,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

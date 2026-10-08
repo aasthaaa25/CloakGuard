@@ -1,0 +1,10 @@
+{
+  "url": "https://www.toki.gov.tr/satis/tr/duyurular?type=teslim&SortType=desc&SortColumn=CountOfSectionOnPresented&Page=2",
+  "url_id": "228725bb95eb",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 73095,
+  "bot_html_len": 73095,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

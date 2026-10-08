@@ -1,0 +1,10 @@
+{
+  "url": "https://ca.trip.com/hotels/swimming-pool/city/jp/atami.html",
+  "url_id": "8f342ed3e288",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 345858,
+  "bot_html_len": 351743,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

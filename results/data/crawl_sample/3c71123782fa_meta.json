@@ -1,0 +1,10 @@
+{
+  "url": "https://www.musicaloud.com",
+  "url_id": "3c71123782fa",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 78788,
+  "bot_html_len": 78789,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

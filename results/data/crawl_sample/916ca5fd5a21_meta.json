@@ -1,0 +1,10 @@
+{
+  "url": "https://www.zerodayinitiative.com",
+  "url_id": "916ca5fd5a21",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 59451,
+  "bot_html_len": 59451,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

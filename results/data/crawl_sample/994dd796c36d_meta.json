@@ -1,0 +1,10 @@
+{
+  "url": "https://comnieuthienly.com/blogs/local-food",
+  "url_id": "994dd796c36d",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 215727,
+  "bot_html_len": 214776,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

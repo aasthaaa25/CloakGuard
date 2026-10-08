@@ -1,0 +1,10 @@
+{
+  "url": "http://www.daxberger.at",
+  "url_id": "0cd9f910a3ed",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 31298,
+  "bot_html_len": 29644,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

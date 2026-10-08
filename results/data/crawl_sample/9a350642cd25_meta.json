@@ -1,0 +1,10 @@
+{
+  "url": "https://www.wpdiamonds.com",
+  "url_id": "9a350642cd25",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 707653,
+  "bot_html_len": 707653,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

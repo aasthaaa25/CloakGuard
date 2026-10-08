@@ -1,0 +1,10 @@
+{
+  "url": "https://www.fandango.com/oceans-eleven-dlp-40033/movie-overview",
+  "url_id": "0fd1e5e1acdd",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 116026,
+  "bot_html_len": 116026,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

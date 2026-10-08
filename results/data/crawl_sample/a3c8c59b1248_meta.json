@@ -1,0 +1,10 @@
+{
+  "url": "https://www.legendarywhitetails.com",
+  "url_id": "a3c8c59b1248",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 321887,
+  "bot_html_len": 321893,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

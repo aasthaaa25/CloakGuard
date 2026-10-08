@@ -1,0 +1,10 @@
+{
+  "url": "https://www.thetubechallenge.com",
+  "url_id": "f87c7ed22fde",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 44198,
+  "bot_html_len": 44198,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

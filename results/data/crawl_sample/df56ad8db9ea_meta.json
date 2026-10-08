@@ -1,0 +1,10 @@
+{
+  "url": "https://ethplorer.io/address/0xb19dd661f076998e3b0456935092a233e12c2280",
+  "url_id": "df56ad8db9ea",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 169884,
+  "bot_html_len": 162077,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

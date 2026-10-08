@@ -1,0 +1,10 @@
+{
+  "url": "https://www.resinboundgravel.org.uk",
+  "url_id": "eb1c5cc0fdd0",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 47524,
+  "bot_html_len": 47534,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

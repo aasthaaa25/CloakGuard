@@ -1,0 +1,10 @@
+{
+  "url": "https://www.tablein.com",
+  "url_id": "4bb8b10cdf47",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 391139,
+  "bot_html_len": 391139,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

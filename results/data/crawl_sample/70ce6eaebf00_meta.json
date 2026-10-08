@@ -1,0 +1,10 @@
+{
+  "url": "https://mihara-caf.jp/?p=4200",
+  "url_id": "70ce6eaebf00",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 95727,
+  "bot_html_len": 95726,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

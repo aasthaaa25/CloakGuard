@@ -1,0 +1,10 @@
+{
+  "url": "https://www.closeup.org",
+  "url_id": "130490da75de",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 181411,
+  "bot_html_len": 181378,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

@@ -1,0 +1,10 @@
+{
+  "url": "https://www.kinoglaz.fr/index.php?lang=ru_la&page=fiche_film&num=13506",
+  "url_id": "73a23a14c7a7",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 12007,
+  "bot_html_len": 12007,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

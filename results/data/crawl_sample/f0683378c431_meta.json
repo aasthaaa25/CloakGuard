@@ -1,0 +1,10 @@
+{
+  "url": "https://www.maschinenbau-industrie.de/Karte",
+  "url_id": "f0683378c431",
+  "human_status": 403,
+  "bot_status": 200,
+  "human_html_len": 561,
+  "bot_html_len": 236495,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

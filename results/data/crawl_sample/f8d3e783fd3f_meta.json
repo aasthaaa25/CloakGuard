@@ -1,0 +1,10 @@
+{
+  "url": "https://www.chrissandersart.com",
+  "url_id": "f8d3e783fd3f",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 55691,
+  "bot_html_len": 55684,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

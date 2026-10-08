@@ -1,0 +1,10 @@
+{
+  "url": "https://www.vancouverpolicefoundation.org",
+  "url_id": "a0fa5af26a89",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 209332,
+  "bot_html_len": 209333,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

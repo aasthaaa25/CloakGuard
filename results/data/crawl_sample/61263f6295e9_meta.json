@@ -1,0 +1,10 @@
+{
+  "url": "https://www.nutboltgames.com",
+  "url_id": "61263f6295e9",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 13514,
+  "bot_html_len": 13514,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

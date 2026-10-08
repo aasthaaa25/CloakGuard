@@ -1,0 +1,580 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
+<title>Byte4Byte Software</title>
+<link id="theme" href="/css/b4b_default.css.php" rel="stylesheet" type="text/css" />
+<link href="/css/common.css.php" rel="stylesheet" type="text/css" />
+<link href="/css/dock.css" rel="stylesheet" type="text/css" />
+<link href="/css/font-flake.css" rel="stylesheet" type="text/css" />
+<noscript>
+	<link href="/css/noscript.css" rel="stylesheet" type="text/css" />
+</noscript>
+	
+	<link href="/css/mobile.css.php" rel="stylesheet" type="text/css" />
+<!--[if lt IE 9]>
+<script>
+  var e = ("abbr,article,aside,audio,canvas,datalist,details," +
+    "figure,footer,header,hgroup,mark,menu,meter,nav,output," +
+    "progress,section,time,video").split(',');
+  for (var i = 0; i < e.length; i++) {
+    document.createElement(e[i]);
+  }
+</script>
+<![endif]-->
+<script language="javascript" type="text/javascript" src="/js/jquery-1.10.2.min.js"></script>
+<script language="javascript" type="text/javascript" src="/js/jquery.jqdock.js"></script>
+<script language="javascript" type="text/javascript" src="/js/font-flake.js"></script>
+<script language="javascript" type="text/javascript">
+	$(window).scroll(function() {
+		if ($(window).scrollTop() == 0) {
+			$("#header_bar").removeClass("ontop");
+		}
+		else {
+			$("#header_bar").addClass("ontop");
+		}
+	});
+	$(document).ready(function () {
+		$("#header_bar").css("marginTop", "0px").show();
+		$('header').show();
+		$("#pageContent").css("opacity", "1").show();
+		$("#b4b_logo").css('marginLeft', '0px').css("opacity", "1").show();
+		$("#page").css("opacity", "1").show();
+		$("footer").show();
+		$("#point_to_products").show();
+		//$('#mobile-menu').fadeIn();
+		$("#bg, #bg2").show();
+					etx.init();
+			});
+
+$(document).ready(function() {
+	var $oldAjax = $.ajax; // save reference to the "real" ajax method
+	var proxied = window.XMLHttpRequest.prototype.open;
+
+	// override the method with a wrapper
+	$.ajax = function(){
+		var url = arguments[0].url;
+		if (url) {
+			//alert(url);
+			if (url.indexOf('?') == -1) {
+				url += '?ajax=1';
+			}
+			else {
+				url += '&ajax=1';
+			}
+			arguments[0].url = url;
+			//alert(arguments[0].url);
+		}
+		return $oldAjax.apply($oldAjax, arguments);
+	}
+
+	
+    window.XMLHttpRequest.prototype.open = function() {
+		var url = arguments[1];
+		if (url) {
+			//alert(url);
+			if (url.indexOf('?') == -1) {
+				url += '?ajax=1';
+			}
+			else {
+				url += '&ajax=1';
+			}
+			arguments[1] = url;
+			//alert(arguments[0].url);
+		}
+
+        return proxied.apply(this, [].slice.call(arguments));
+    };
+});
+
+var theme = 0;
+var dir = 0;
+var glow = 2;
+var glowdir = 0;
+
+$(document).ready(function(){
+			$("#product_dock #menu").css("margin-top", "5px");
+		$("#baseCentre, #baseLeft, #baseRight").css("margin-top", "0px");
+		var dockOptions = { align: 'bottom', // horizontal menu, with expansion UP from a fixed BOTTOM edge
+   				 flow: false,
+	 			sizeMax: 125,
+	 			fadeIn:500,
+    				onReady: function(){ $('.jqDockWrap', this).append($('.greyBase')); }
+				};
+				if (typeof $('#product_dock #menu').jqDock == 'function') $('#product_dock #menu').jqDock(dockOptions);
+	
+	
+	/*setInterval(function() {
+		var margin = parseInt($("#point_to_products").css("margin-right"));
+		switch(dir) {
+			case 0: // right
+				margin-=10;
+				break;
+			case 1: //left
+				margin+=10;
+				break;
+		}
+		if (margin <= 40) {
+			dir = 1;
+		}
+		else if (margin >=65) {
+			dir = 0;
+		}
+		$("#point_to_products").css("margin-right", ((margin) + "px"));
+	}, 1500);*/
+		/*setInterval(function() {
+			if (glowdir == 0) {
+				glow++;
+				if (glow >= 3) {
+					glowdir = 1;
+				}	
+			}
+			else if (glowdir == 1) {
+				glow--;
+				if (glow <= 1) {
+					glowdir = 0;
+				}
+			}
+
+			//$("div.jqDockWrap").removeClass("glow_white1").removeClass("glow_white2").removeClass("glow_white3").addClass("glow_white" + glow);
+			$("#page_body").removeClass("glow1").removeClass("glow2").removeClass("glow3").addClass("glow" + glow);
+			//$("#header_bar").removeClass("glow_header1").removeClass("glow_header2").removeClass("glow_header3").addClass("glow_header" + glow);
+
+		}, 350);*/
+		$("#page_body").removeClass("glow1").removeClass("glow2").removeClass("glow3").addClass("glow1");
+});
+
+var $jq = $;
+
+$.fn.resizeiframe=function(){
+    $jq(this).load(function() {
+        $jq(this).height( $jq(this).contents().find("body").height() + 30);
+					$jq(this).attr('verticalscrolling', 'no').attr('scrolling', 'no').css("overflow", "hidden").css("scroll-y", "hidden");
+		    });
+    $jq(this).click(function() {
+        $jq(this).height( $jq(this).contents().find("body").height() + 30 );
+    });
+
+}
+
+$(document).ready(function() {
+		$jq(".icon.fa-power-off.fa-fw").parent().unbind('click').bind('click', function(e) {
+			e.preventDefault();
+			$jq('#loginlogoutlink')[0].click();
+		});
+		$jq('iframe').resizeiframe();
+	});
+
+
+function setCookie(c_name,value,exdays)
+{
+	var exdate=new Date();
+	exdate.setDate(exdate.getDate() + exdays);
+	var c_value=escape(value) + ((exdays==null) ? "" : "; expires="+exdate.toUTCString());
+	c_value += "; path=/";
+	document.cookie=c_name + "=" + c_value;
+}
+
+</script>
+</head>
+<body class="support ">
+<div id="bgcolor"></div>
+<div id="bg"></div>
+<div id="bg2"></div>
+<div id="content">
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$("a#page_options").click(function(e) {
+			e.preventDefault();
+			if (! $("#page_options_menu").is(":visible")) {
+				$("#page_options_menu").css('opacity', 0).slideDown('slow').animate(
+																		{ opacity: 1 },
+																		{ queue: false, duration: 'slow' }
+																	  );
+			}
+		});
+		$("#def_theme").unbind('click').click(function(e) {
+			e.preventDefault();
+			$("#theme").attr('href', '/css/b4b_default.css.php');
+			$("#bg, #bg2").css('display', 'block');
+			setCookie("theme", 'b4b_default.css.php', 60);
+			$("#page_options_menu").slideUp('slow').animate(
+																		{ opacity: 0 },
+																		{ queue: false, duration: 'slow' }
+																	  , function() { $(this).hide() });
+		});
+		$("#light_theme").unbind('click').click(function(e) {
+			e.preventDefault();
+			$("#theme").attr('href', '/css/white.css.php');
+			$("#bg, #bg2").css('display', 'none');
+			setCookie("theme", 'white.css.php', 60);
+			$("#page_options_menu").slideUp('slow').animate(
+																		{ opacity: 0 },
+																		{ queue: false, duration: 'slow' }
+																	  , function() { $(this).hide() });
+		});
+		$(window).mousedown(function(e) {
+			if ($(e.target).is("#page_options_menu") || $("#page_options_menu").find(e.target).length) return;
+			if ($("#page_options_menu").is(":visible")) {
+				$("#page_options_menu").slideUp('slow').animate(
+																		{ opacity: 0 },
+																		{ queue: false, duration: 'slow' }
+																	  , function() { $(this).hide() });
+			}
+		});
+	});
+</script>
+<nav id="header_bar">
+	<a id="loginlogoutlink" href="/view/signin?&back_url=%2Fsupport%2Fsearch.php%3Fsid%3D4433b87251ab744551ebd132c10b56af&back_title=Back">Sign In</a>|
+		<a href="/view/myaccount?&back_url=%2Fsupport%2Fsearch.php%3Fsid%3D4433b87251ab744551ebd132c10b56af&back_title=Back">My Account</a><!--|
+		<a href="http://retrogaming.shop">Shop</a>-->
+		<a href="#" id="page_options">Page Options</a>
+	</nav>
+<div id="page_options_menu" class="triangle-isosceles top">
+<ul>
+<li><a href="#" id="def_theme">Default Theme</a></li>
+<li><a href="#" id="light_theme">Light Theme</a></li>
+</ul>
+</div>
+<header>
+	<section class="page_width centered" style="position: relative;">
+		<a href="/"><img src="/images/byte4byte-software-left-light-medium7.png" height="68" id="b4b_logo" style="margin-bottom:12px;" /><img src="/images/software-small.png" id="b4b_soft" style="margin-bottom:6px; display:none;" /></a>&nbsp;<span id="software" style="display:none;" >Software</span>			</section>
+</header>
+<section id="pageContent" class="page_width centered">
+	<div>
+		<nav id="page_nav_bar">
+			<a href="/">Home</a>|
+			<a href="/view/products">Products</a>|
+			<a href="/view/downloads">Downloads</a>
+			<span><div><a href="/support">Support</a></div></span>
+		</nav>	</div>
+	<div>
+		<section id="page_body">
+<!DOCTYPE html>
+<html dir="ltr" lang="en-gb">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>Byte4Byte Software Support - Search</title>
+
+	<link rel="alternate" type="application/atom+xml" title="Feed - Byte4Byte Software Support" href="/support/app.php/feed?sid=42c0e74f03b0ddd634dc539ee11e9ba8">			<link rel="alternate" type="application/atom+xml" title="Feed - New Topics" href="/support/app.php/feed/topics?sid=42c0e74f03b0ddd634dc539ee11e9ba8">				
+
+<!--
+	phpBB style name: prosilver
+	Based on style:   prosilver (this is the default phpBB3 style)
+	Original author:  Tom Beddard ( http://www.subBlue.com/ )
+	Modified by:
+-->
+
+<link href="./assets/css/font-awesome.min.css?assets_version=23" rel="stylesheet">
+<link href="./styles/prosilver/theme/stylesheet.css?assets_version=23" rel="stylesheet">
+<link href="./styles/prosilver/theme/en/stylesheet.css?assets_version=23" rel="stylesheet">
+
+
+
+
+<!--[if lte IE 9]>
+	<link href="./styles/prosilver/theme/tweaks.css?assets_version=23" rel="stylesheet">
+<![endif]-->
+
+
+
+
+
+</head>
+<body id="phpbb" class="nojs notouch section-search ltr ">
+
+
+<div id="wrap" class="wrap">
+	<a id="top" class="top-anchor" accesskey="t"></a>
+	<div id="page-header">
+		<div class="headerbar" role="banner">
+					<div class="inner">
+
+			<div id="site-description" class="site-description">
+		<a id="logo" class="logo" href="./index.php?sid=42c0e74f03b0ddd634dc539ee11e9ba8" title="Board index">
+					<span class="site_logo"></span>
+				</a>
+				<h1>Byte4Byte Software Support</h1>
+				<p>Computer Science at its finest!</p>
+				<p class="skiplink"><a href="#start_here">Skip to content</a></p>
+			</div>
+
+									
+			</div>
+					</div>
+				<div class="navbar" role="navigation">
+	<div class="inner">
+
+	<ul id="nav-main" class="nav-main linklist" role="menubar">
+
+		<li id="quick-links" class="quick-links dropdown-container responsive-menu" data-skip-responsive="true">
+			<a href="#" class="dropdown-trigger">
+				<i class="icon fa-bars fa-fw" aria-hidden="true"></i><span>Quick links</span>
+			</a>
+			<div class="dropdown">
+				<div class="pointer"><div class="pointer-inner"></div></div>
+				<ul class="dropdown-contents" role="menu">
+					
+											<li class="separator"></li>
+																									<li>
+								<a href="./search.php?search_id=unanswered&amp;sid=42c0e74f03b0ddd634dc539ee11e9ba8" role="menuitem">
+									<i class="icon fa-file-o fa-fw icon-gray" aria-hidden="true"></i><span>Unanswered topics</span>
+								</a>
+							</li>
+							<li>
+								<a href="./search.php?search_id=active_topics&amp;sid=42c0e74f03b0ddd634dc539ee11e9ba8" role="menuitem">
+									<i class="icon fa-file-o fa-fw icon-blue" aria-hidden="true"></i><span>Active topics</span>
+								</a>
+							</li>
+							<li class="separator"></li>
+							<li>
+								<a href="./search.php?sid=42c0e74f03b0ddd634dc539ee11e9ba8" role="menuitem">
+									<i class="icon fa-search fa-fw" aria-hidden="true"></i><span>Search</span>
+								</a>
+							</li>
+					
+										<li class="separator"></li>
+
+									</ul>
+			</div>
+		</li>
+
+				<li data-skip-responsive="true">
+			<a href="/support/app.php/help/faq?sid=42c0e74f03b0ddd634dc539ee11e9ba8" rel="help" title="Frequently Asked Questions" role="menuitem">
+				<i class="icon fa-question-circle fa-fw" aria-hidden="true"></i><span>FAQ</span>
+			</a>
+		</li>
+						
+			<li class="rightside"  data-skip-responsive="true">
+			<a href="./ucp.php?mode=login&amp;redirect=search.php%3Ffilename%3Dsearch.php%26loc%3Dsupport&amp;sid=42c0e74f03b0ddd634dc539ee11e9ba8" title="Login" accesskey="x" role="menuitem">
+				<i class="icon fa-power-off fa-fw" aria-hidden="true"></i><span>Login</span>
+			</a>
+		</li>
+						</ul>
+
+	<ul id="nav-breadcrumbs" class="nav-breadcrumbs linklist navlinks" role="menubar">
+				
+		
+		<li class="breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">
+
+			
+							<span class="crumb" itemtype="https://schema.org/ListItem" itemprop="itemListElement" itemscope><a itemprop="item" href="./index.php?sid=42c0e74f03b0ddd634dc539ee11e9ba8" accesskey="h" data-navbar-reference="index"><i class="icon fa-home fa-fw"></i><span itemprop="name">Board index</span></a><meta itemprop="position" content="1" /></span>
+
+											
+								<span class="crumb" itemtype="https://schema.org/ListItem" itemprop="itemListElement" itemscope><a itemprop="item" href="./search.php?sid=42c0e74f03b0ddd634dc539ee11e9ba8"><span itemprop="name">Search</span></a><meta itemprop="position" content="2" /></span>
+							
+					</li>
+
+		
+			</ul>
+
+	</div>
+</div>
+	</div>
+
+	
+	<a id="start_here" class="anchor"></a>
+	<div id="page-body" class="page-body" role="main">
+		
+		
+<h2 class="solo">Search</h2>
+
+<form method="get" action="./search.php" data-focus="keywords">
+
+<div class="panel">
+	<div class="inner">
+	<h3>Search query</h3>
+
+		<fieldset>
+		<dl>
+		<dt><label for="keywords">Search for keywords:</label><br /><span>Place <strong>+</strong> in front of a word which must be found and <strong>-</strong> in front of a word which must not be found. Put a list of words separated by <strong>|</strong> into brackets if only one of the words must be found. Use * as a wildcard for partial matches.</span></dt>
+		<dd><input type="search" class="inputbox" name="keywords" id="keywords" size="40" title="Search for keywords" /></dd>
+		<dd><label for="terms1"><input type="radio" name="terms" id="terms1" value="all" checked="checked" /> Search for all terms or use query as entered</label></dd>
+		<dd><label for="terms2"><input type="radio" name="terms" id="terms2" value="any" /> Search for any terms</label></dd>
+	</dl>
+	<dl>
+		<dt><label for="author">Search for author:</label><br /><span>Use * as a wildcard for partial matches.</span></dt>
+		<dd><input type="search" class="inputbox" name="author" id="author" size="40" title="Search for author" /></dd>
+	</dl>
+		</fieldset>
+	
+	</div>
+</div>
+
+<div class="panel bg2">
+	<div class="inner">
+
+	<h3>Search options</h3>
+
+		<fieldset>
+		<dl>
+		<dt><label for="search_forum">Search in forums:</label><br /><span>Select the forum or forums you wish to search in. Subforums are searched automatically if you do not disable “search subforums“ below.</span></dt>
+		<dd><select name="fid[]" id="search_forum" multiple="multiple" size="8" title="Search in forums"><option value="1">General Support</option><option value="3">Fit-Stepper Support</option><option value="4">Cloud Retro Support</option><option value="5">My Password Pro Support</option><option value="6">Play Games Cafe Support</option><option value="7">WebChars Support</option></select></dd>
+	</dl>
+	<dl>
+		<dt><label for="search_child1">Search subforums:</label></dt>
+		<dd>
+			<label for="search_child1"><input type="radio" name="sc" id="search_child1" value="1" checked="checked" /> Yes</label>
+			<label for="search_child2"><input type="radio" name="sc" id="search_child2" value="0" /> No</label>
+		</dd>
+	</dl>
+	<dl>
+		<dt><label for="sf1">Search within:</label></dt>
+		<dd><label for="sf1"><input type="radio" name="sf" id="sf1" value="all" checked="checked" /> Post subjects and message text</label></dd>
+		<dd><label for="sf2"><input type="radio" name="sf" id="sf2" value="msgonly" /> Message text only</label></dd>
+		<dd><label for="sf3"><input type="radio" name="sf" id="sf3" value="titleonly" /> Topic titles only</label></dd>
+		<dd><label for="sf4"><input type="radio" name="sf" id="sf4" value="firstpost" /> First post of topics only</label></dd>
+	</dl>
+	
+	<hr class="dashed" />
+
+		<dl>
+		<dt><label for="show_results1">Display results as:</label></dt>
+		<dd>
+			<label for="show_results1"><input type="radio" name="sr" id="show_results1" value="posts" checked="checked" /> Posts</label>
+			<label for="show_results2"><input type="radio" name="sr" id="show_results2" value="topics" /> Topics</label>
+		</dd>
+	</dl>
+	<dl>
+		<dt><label for="sd">Sort results by:</label></dt>
+		<dd><select name="sk" id="sk"><option value="a">Author</option><option value="t" selected="selected">Post time</option><option value="f">Forum</option><option value="i">Topic title</option><option value="s">Post subject</option></select>&nbsp;
+			<label for="sa"><input type="radio" name="sd" id="sa" value="a" /> Ascending</label>
+			<label for="sd"><input type="radio" name="sd" id="sd" value="d" checked="checked" /> Descending</label>
+		</dd>
+	</dl>
+	<dl>
+		<dt><label>Limit results to previous:</label></dt>
+		<dd><select name="st" id="st"><option value="0" selected="selected">All results</option><option value="1">1 day</option><option value="7">7 days</option><option value="14">2 weeks</option><option value="30">1 month</option><option value="90">3 months</option><option value="180">6 months</option><option value="365">1 year</option></select></dd>
+	</dl>
+	<dl>
+		<dt>
+			<label for="ch">Return first:</label>
+			<br><span>Set to 0 to display the entire post.</span>
+		</dt>
+		<dd><input id="ch" name="ch" type="number" value="300" min="0" max="9999" title="Return first"> characters of posts</dd>
+	</dl>
+		</fieldset>
+	
+	</div>
+</div>
+
+<div class="panel bg3">
+	<div class="inner">
+
+	<fieldset class="submit-buttons">
+		<input type="hidden" name="t" value="0" />
+<input type="hidden" name="sid" value="42c0e74f03b0ddd634dc539ee11e9ba8" />
+
+		<input type="submit" name="submit" value="Search" class="button1" />
+	</fieldset>
+
+	</div>
+</div>
+
+</form>
+
+
+			</div>
+
+
+<div id="page-footer" class="page-footer" role="contentinfo">
+	<div class="navbar" role="navigation">
+	<div class="inner">
+
+	<ul id="nav-footer" class="nav-footer linklist" role="menubar">
+		<li class="breadcrumbs">
+									<span class="crumb"><a href="./index.php?sid=42c0e74f03b0ddd634dc539ee11e9ba8" data-navbar-reference="index"><i class="icon fa-home fa-fw" aria-hidden="true"></i><span>Board index</span></a></span>					</li>
+		
+				<li class="rightside">All times are <span title="UTC">UTC</span></li>
+							<li class="rightside">
+				<a href="./ucp.php?mode=delete_cookies&amp;sid=42c0e74f03b0ddd634dc539ee11e9ba8" data-ajax="true" data-refresh="true" role="menuitem">
+					<i class="icon fa-trash fa-fw" aria-hidden="true"></i><span>Delete cookies</span>
+				</a>
+			</li>
+														</ul>
+
+	</div>
+</div>
+
+	<div class="copyright">
+				<p class="footer-row">
+			<span class="footer-copyright">Powered by <a href="https://www.phpbb.com/">phpBB</a>&reg; Forum Software &copy; phpBB Limited</span>
+		</p>
+						<p class="footer-row" role="menu">
+			<a class="footer-link" href="./ucp.php?mode=privacy&amp;sid=42c0e74f03b0ddd634dc539ee11e9ba8" title="Privacy" role="menuitem">
+				<span class="footer-link-text">Privacy</span>
+			</a>
+			|
+			<a class="footer-link" href="./ucp.php?mode=terms&amp;sid=42c0e74f03b0ddd634dc539ee11e9ba8" title="Terms" role="menuitem">
+				<span class="footer-link-text">Terms</span>
+			</a>
+		</p>
+					</div>
+
+	<div id="darkenwrapper" class="darkenwrapper" data-ajax-error-title="AJAX error" data-ajax-error-text="Something went wrong when processing your request." data-ajax-error-text-abort="User aborted request." data-ajax-error-text-timeout="Your request timed out; please try again." data-ajax-error-text-parsererror="Something went wrong with the request and the server returned an invalid reply.">
+		<div id="darken" class="darken">&nbsp;</div>
+	</div>
+
+	<div id="phpbb_alert" class="phpbb_alert" data-l-err="Error" data-l-timeout-processing-req="Request timed out.">
+		<a href="#" class="alert_close">
+			<i class="icon fa-times-circle fa-fw" aria-hidden="true"></i>
+		</a>
+		<h3 class="alert_title">&nbsp;</h3><p class="alert_text"></p>
+	</div>
+	<div id="phpbb_confirm" class="phpbb_alert">
+		<a href="#" class="alert_close">
+			<i class="icon fa-times-circle fa-fw" aria-hidden="true"></i>
+		</a>
+		<div class="alert_text"></div>
+	</div>
+</div>
+
+</div>
+
+<div>
+	<a id="bottom" class="anchor" accesskey="z"></a>
+	</div>
+
+<script src="./assets/javascript/jquery-3.6.0.min.js?assets_version=23"></script>
+<script src="./assets/javascript/core.js?assets_version=23"></script>
+
+
+
+<script src="./styles/prosilver/template/forum_fn.js?assets_version=23"></script>
+<script src="./styles/prosilver/template/ajax.js?assets_version=23"></script>
+
+
+
+</body>
+</html>
+			
+	
+		</section>
+	</div>
+	<footer>
+		<!--<a href="#" class="minor">About Us</a><span class="separator"> | </span><a href="#" class="minor">Contact Us</a><br />248089506a3b9ccbddf549.67068459-->
+	</footer>
+	</section>
+</div>
+<!-- Piwik -->
+<!--
+<script type="text/javascript">
+  var _paq = _paq || [];
+  _paq.push(["trackPageView"]);
+  _paq.push(["enableLinkTracking"]);
+
+  (function() {
+    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://byte4byte.com/piwik/";
+    _paq.push(["setTrackerUrl", u+"piwik.php"]);
+    _paq.push(["setSiteId", "3"]);
+    var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
+    g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
+  })();
+</script>-->
+<!-- End Piwik Code -->
+</body></html>

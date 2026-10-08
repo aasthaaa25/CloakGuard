@@ -1,0 +1,10 @@
+{
+  "url": "https://lavauk.co.uk/ob-t/authentication.php",
+  "url_id": "3c198447602d",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 10,
+  "bot_html_len": 10,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

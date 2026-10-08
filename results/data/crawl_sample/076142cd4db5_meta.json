@@ -1,0 +1,10 @@
+{
+  "url": "https://www.structbio.vanderbilt.edu",
+  "url_id": "076142cd4db5",
+  "human_status": 404,
+  "bot_status": 404,
+  "human_html_len": 19,
+  "bot_html_len": 19,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

@@ -1,0 +1,10 @@
+{
+  "url": "https://www.msmhs.com/student-life/community-service",
+  "url_id": "add51e266b1d",
+  "human_status": 200,
+  "bot_status": 403,
+  "human_html_len": 39486,
+  "bot_html_len": 5967,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

@@ -1,0 +1,10 @@
+{
+  "url": "https://www.kuwait-chat.com/es/search?pays=TH&province=Loei",
+  "url_id": "1815ede83264",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 44155,
+  "bot_html_len": 44173,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

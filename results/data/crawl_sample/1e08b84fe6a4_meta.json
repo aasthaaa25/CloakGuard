@@ -1,0 +1,10 @@
+{
+  "url": "https://hercarresf.firebaseapp.com/",
+  "url_id": "1e08b84fe6a4",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 416,
+  "bot_html_len": 416,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

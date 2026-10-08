@@ -1,0 +1,10 @@
+{
+  "url": "https://www.mercer.edu",
+  "url_id": "666ab16a5284",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 280906,
+  "bot_html_len": 280906,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

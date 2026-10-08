@@ -1,0 +1,2649 @@
+
+
+
+<!DOCTYPE html>
+<html lang="fr">
+  <head>           
+  
+        
+        
+                                                                                                    
+                                                                                                                                                                  
+    <script src="https://assets.canalblog.com/c/blog/v2026.07.01/runtime.09193a82.js"></script><script src="https://assets.canalblog.com/c/blog/v2026.07.01/ads.930ed0c8.js"></script>
+  <script>
+      dataLayer = [{
+        'source'   : 'OVERBLOG',
+        'theme'    : '1',
+        'adUnitID' : '/6783/BLOGS_FR_WEB/fr',
+        'group'    : 'Blog-Cuisine',
+        'category' : 'Food & Drink',
+        'rating'   : 'BS',
+        'unused'   : 'No',
+        'adult'    : 'No',
+        'pda'      : 'No',
+        'hasAds'   : 'No',
+        'lang'     : 'fr',
+        'adblock'  : '__ads_loaded__' in window ? 'No' : 'Yes',
+        'blog_id'  : '1371499',
+        'blog_name': "Evaliya cuisine",
+        'premium'  : 'Yes',
+        'slots'    : {},
+              }];
+  </script>
+          <!-- DIDOMI CPM TAG STARTS -->
+<script type="text/javascript">window.gdprAppliesGlobally=true;(function(){function a(e){if(!window.frames[e]){if(document.body&&document.body.firstChild){var t=document.body;var n=document.createElement("iframe");n.style.display="none";n.name=e;n.title=e;t.insertBefore(n,t.firstChild)}
+    else{setTimeout(function(){a(e)},5)}}}function e(n,r,o,c,s){function e(e,t,n,a){if(typeof n!=="function"){return}if(!window[r]){window[r]=[]}var i=false;if(s){i=s(e,t,n)}if(!i){window[r].push({command:e,parameter:t,callback:n,version:a})}}e.stub=true;function t(a){if(!window[n]||window[n].stub!==true){return}if(!a.data){return}
+        var i=typeof a.data==="string";var e;try{e=i?JSON.parse(a.data):a.data}catch(t){return}if(e[o]){var r=e[o];window[n](r.command,r.parameter,function(e,t){var n={};n[c]={returnValue:e,success:t,callId:r.callId};a.source.postMessage(i?JSON.stringify(n):n,"*")},r.version)}}
+        if(typeof window[n]!=="function"){window[n]=e;if(window.addEventListener){window.addEventListener("message",t,false)}else{window.attachEvent("onmessage",t)}}}e("__tcfapi","__tcfapiBuffer","__tcfapiCall","__tcfapiReturn");a("__tcfapiLocator");(function(e,tgt){
+        var t=document.createElement("script");t.id="spcloader";t.type="text/javascript";t.async=true;t.src="https://sdk.privacy-center.org/"+e+"/loader.js?target_type=notice&target="+tgt;t.charset="utf-8";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n)})("e23a01f6-a508-4e71-8f50-c1a9cae7c0d0", "fBVP2nLa")})();</script>
+<!-- DIDOMI CPM TAG ENDS -->
+
+    <script type="text/javascript">
+        window.didomiConfig = {
+            "app": {
+                "name": "CanalBlog",
+                "logoUrl": "https://static.canalblog.com/sharedDocs/images/frontend/logo_cb_hp.png",
+                "privacyPolicyURL": "https://www.canalblog.com/cf/privacy.cfm"
+            },
+            theme: {
+                color: "#043D76",
+                linkColor: "#000000"
+            }
+        }
+    </script>
+
+<script>
+    // Paywall Bounce Rate pixel
+    function sendCustomPixel(method, consent, tcfStatus) {
+        var pixelUrl = "https://bpt.webedia-group.com/pixel.png?/domain=overblog.com&referrer=" + document.referrer + "&site_route=" + dataLayer[0].blog_name + "_" + (typeof jad !== "undefined") + "&event=tcfapi&method=" + method + "&consent=" + consent + "&tcfStatus=" + tcfStatus
+        var img = document.createElement('img');
+        img.style = "display: none;"
+        img.src = pixelUrl;
+        document.body.appendChild(img);
+    }
+
+    function triggerOnReadyOrTimeout(action, tcfStatus) {
+
+        var done = false;
+
+        function doItIfNotDone(method, consent, tcfStatus) {
+            if (!done) {
+                action(method, consent, tcfStatus);
+                done = true;
+            }
+        }
+
+        window.didomiOnReady = window.didomiOnReady || [];
+        window.didomiOnReady.push(function (Didomi) {
+            var consent = Didomi.isConsentRequired() ? Didomi.getUserConsentStatusForVendor("c:googleana-XMqagawa") && Didomi.getUserConsentStatusForVendor("google") : true;
+            var consentToString = consent == undefined ? "undefined" : consent;
+            doItIfNotDone("didomiOnReady", consentToString, tcfStatus);
+        });
+
+        setTimeout(function() {doItIfNotDone("timeout", "false", tcfStatus)}, 1000);
+    }
+
+    var tcfok = false;
+
+    var tryTcfApiTimer = 0;
+
+    var tryToReachTcfApi = setInterval(function() {
+        if (typeof __tcfapi !== "undefined") {
+            clearInterval(tryToReachTcfApi);
+            launchTcfApi()
+        } else if (tryTcfApiTimer > 3000) {
+            clearInterval(tryToReachTcfApi);
+            triggerOnReadyOrTimeout(sendCustomPixel, "tcfnotloaded")
+        }
+        tryTcfApiTimer += 200;
+    }, 200)
+
+    function launchTcfApi() {
+        __tcfapi('addEventListener', 2, function(tcData, success) {
+            if (success) {
+                try{
+                    switch (tcData.eventStatus) {
+                        case "useractioncomplete":
+                            triggerOnReadyOrTimeout(sendCustomPixel, tcData.eventStatus);
+                            __tcfapi('removeEventListener', 2, function(){}, tcData.listenerId)
+                            break;
+                        case "cmpuishown":
+                            triggerOnReadyOrTimeout(sendCustomPixel, tcData.eventStatus);
+                            break;
+                        case "tcloaded":
+                            triggerOnReadyOrTimeout(sendCustomPixel, tcData.eventStatus);
+                            __tcfapi('removeEventListener', 2, function(){}, tcData.listenerId)
+                            break;
+                        default:
+                            triggerOnReadyOrTimeout(sendCustomPixel, tcData.eventStatus);
+                    }
+                } catch (error) {
+                    triggerOnReadyOrTimeout(sendCustomPixel, tcData.eventStatus);
+                }
+                tcfok = true;
+            }
+        });
+
+        setTimeout(function() {
+            if (!tcfok) {
+                triggerOnReadyOrTimeout(sendCustomPixel, "tcfnotloaded")
+            }
+        }, 2000);
+    }
+</script>  <style>
+    [class^=app_gdpr] a {
+        color: white !important;
+    }
+    [class^=app_gdpr] a[href], [class^=app_gdpr] [class^=banner_message] a:not([class^=banner_continue]) {
+        text-decoration: underline;
+    }
+    [class^=app_gdpr] a svg {
+        fill: white !important;
+    }
+    [class^=app_gdpr] [class^=banner_banner], [class^=app_gdpr] [class^=popup_popup]{
+        z-index: 2147483647 !important;
+    }
+</style>
+    <script>
+    if (window.parent !== window) {
+      if (typeof btoa !== "function") {
+        window.btoa = function (input) {
+          var str = String(input);
+          for (var block, charCode, idx = 0, map = chars, output = ''; str.charAt(idx | 0) || (map = '=', idx % 1); output += map.charAt(63 & block >> 8 - idx % 1 * 8)) {
+            charCode = str.charCodeAt(idx += 3/4)
+            block = block << 8 | charCode
+          }
+          return output
+        }
+      }
+      var re = /^(?:https?:)?(?:\/\/)?([^\/\?]+)/i
+      var res = re.exec(document.referrer)
+      var domain = res[1]
+      var forbidden = ["aGVsbG8ubGFuZA==","Y3Vpc2luZS5sYW5k","cmVjZXR0ZS5sYW5k","cmVjZXR0ZXMubGFuZA==",]
+      if (forbidden.indexOf(btoa(domain)) > -1) {
+        document.location = document.location.origin + "/system/noframed"
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="https://assets.canalblog.com/c/blog/v2026.07.01/canalblog-main.073bf90a.css">
+          <!-- Basic theme id 1 [canalblog] - last modified : 2025-06-27T14:59:18+02:00 -->
+             
+
+
+                    
+
+        <!-- Title -->
+        <title>Evaliya cuisine</title>
+    <!-- Metas -->
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <meta name="author" content="evaliya cuisine" />
+  
+        <link rel="canonical" href="https://www.evaliyacuisine.com/archive/2017-07/" />
+
+        <meta property="og:site_name" content="Evaliya cuisine" />
+        <meta property="og:title" content="Evaliya cuisine" />
+        <meta name="twitter:title" content="Evaliya cuisine" />
+        <meta name="description" content="Blog culinaire d&#039;une passionn&amp;eacute;e de cuisine" />
+        <meta property="og:description" content="Blog culinaire d&#039;une passionn&amp;eacute;e de cuisine" />
+        <meta name="twitter:description" content="Blog culinaire d&#039;une passionn&amp;eacute;e de cuisine" />
+        <meta property="og:locale" content="fr_FR" />
+        <meta name="keywords" content="" />
+
+        <meta property="og:image" content="https://profilepics.canalblog.com/profilepics/1/3/1303807.jpg" />
+        <meta name="twitter:image:src" content="https://profilepics.canalblog.com/profilepics/1/3/1303807.jpg" />
+        <meta property="og:type" content="blog" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@overblog" />
+        <meta property="fb:app_id" content="116867175007475" />
+
+    
+                
+
+        <!-- Robots -->
+        <meta name="robots" content="noindex,follow" />
+
+        <!-- RSS -->
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="/rss" />
+
+
+<!-- Analytics -->
+<meta name="google-site-verification" content="po1907hiaN136M8voBeG9Mh9SbTOyTRWkXzSHfiP5UE" />    <!-- Metas -->
+    <link rel="icon" type="image/png" href="https://profilepics.canalblog.com/profilepics/1/3/1303807.jpg" />
+    <!-- DEFINITIONS -->
+    <!-- LAYOUT -->
+
+<!-- GENERAL -->
+ <!-- PAGE -->
+
+  <!-- CONTENT ZONE -->
+
+  <!-- LEFT ZONE -->
+
+  <!-- RIGHT ZONE -->
+
+  <!-- LINKS -->
+
+<!-- PAGINATION -->
+
+
+<!-- POST -->
+ <!-- DATE -->
+
+ <!-- POST TITLE -->
+
+  <!-- POST SECONDARY TITLE -->
+
+  <!-- POST BODY -->
+
+ <!-- POST FOOTER -->
+
+ <!-- COLUMN -->
+  <!-- COLUMN TITLE -->
+
+  <!-- COLUMN LIST -->
+
+  <!-- COLUMN IMAGE -->
+
+<!-- COLUMN COLOR -->
+
+<!-- BLOG TITLE -->
+
+<!-- MENU -->
+
+<!-- MENU SEPARATION -->
+
+<!-- MENU HOVER -->
+
+<!-- MENU CHILD WIDTH -->
+
+<!-- ALBUM -->
+  <!-- ALBUM TITLE -->
+
+<!-- ALBUM BODY -->
+
+  <!-- ALBUM IMAGES -->
+
+<!-- WIDGET -->
+<!-- ALBUMS WIDGET -->
+
+<!-- ABOUT WIDGET -->
+
+<!-- ARCHIVES WIDGET -->
+
+<!-- OWNER AVATAR -->
+
+<!-- MAIN TAGS WIDGET -->
+
+<!-- CONTACT OWNER WIDGET -->
+
+<!-- LAST COMMENTS WIDGET -->
+
+<!-- LAST POSTS WIDGET -->
+
+<!-- FACEBOOK WIDGET -->
+
+<!-- RSS WIDGET -->
+
+<!-- INSTAGRAM WIDGET -->
+
+<!-- FREE MODULE 1 -->
+
+<!-- FREE MODULE 2 -->
+
+<!-- FREE MODULE 3 -->
+
+<!-- FREE MODULE 4 -->
+
+<!-- FREE MODULE 5 -->
+
+<!-- NAVIGATION -->
+
+<!-- CLOUD TAGS WIDGET -->
+
+<!-- PAGES WIDGET -->
+
+<!-- PINTEREST WIDGET -->
+
+<!-- SEARCH WIDGET -->
+
+<!-- SUBSCRIBE WIDGET -->
+
+<!-- STATS -->
+
+<!-- FOLLOW WIDGET -->
+
+<!-- TAGS WIDGET -->
+
+<!-- TWITTER WIDGET -->
+
+
+    <!-- TEMPLATE -->
+    <!-- GENERAL -->
+  <!-- PAGE -->
+
+
+  <!-- CONTENT ZONE -->
+
+  <!-- LEFT ZONE -->
+
+  <!-- RIGHT ZONE -->
+
+  <!-- LINKS -->
+
+  <!-- PAGINATION -->
+
+<!-- POST -->
+ <!-- DATE -->
+
+  <!-- POST TITLE -->
+
+  <!-- POST SECONDARY TITLE -->
+
+  <!-- POST BODY -->
+
+  <!-- POST FOOTER -->
+
+<!-- COLUMN -->
+  <!-- COLUMN TITLE -->
+
+  <!-- COLUMN LIST -->
+
+  <!-- COLUMN IMAGE -->
+
+<!-- COLUMN COLOR -->
+
+<!-- BLOG_TITLE -->
+
+<!-- MENU -->
+
+<!-- MENU SEPARATION -->
+  
+<!-- MENU HOVER -->
+
+<!-- MENU CHILD WIDTH -->
+
+<!-- ALBUM -->
+  <!-- ALBUM TITLE -->
+
+  <!-- ALBUM BODY -->
+
+  <!-- ALBUM IMAGES -->
+
+<!-- LAYOUT -->
+  
+  
+
+<!-- ADS -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link href="https://fonts.over-blog.com/?family=Marvel:100,200,300,400,500,600,700,800,900" rel='stylesheet' type='text/css' /><link href="https://fonts.over-blog.com/?family=Coming+Soon:100,200,300,400,500,600,700,800,900" rel='stylesheet' type='text/css' /><link href="https://fonts.over-blog.com/?family=Coming+Soon:100,200,300,400,500,600,700,800,900" rel='stylesheet' type='text/css' /><link href="https://fonts.over-blog.com/?family=Coming+Soon:100,200,300,400,500,600,700,800,900" rel='stylesheet' type='text/css' /><link href="https://fonts.over-blog.com/?family=Arial,sans-serif:100,200,300,400,500,600,700,800,900" rel='stylesheet' type='text/css' /><link href="https://fonts.over-blog.com/?family=Arial,sans-serif:100,200,300,400,500,600,700,800,900" rel='stylesheet' type='text/css' /><link href="https://fonts.over-blog.com/?family=Coming+Soon:100,200,300,400,500,600,700,800,900" rel='stylesheet' type='text/css' /><link href="https://fonts.over-blog.com/?family=Coming+Soon:100,200,300,400,500,600,700,800,900" rel='stylesheet' type='text/css' /><link href="https://fonts.over-blog.com/?family=Coming+Soon:100,200,300,400,500,600,700,800,900" rel='stylesheet' type='text/css' />
+
+    <style>
+      *, ::after, ::before {
+  box-sizing: border-box; }
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  vertical-align: baseline; }
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after, q:before, q:after {
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+a, a:visited, a:hover {
+  text-decoration: none;
+  color: inherit; }
+
+html {
+  background-color: #DEDEDE;
+  background-image: url("");
+  background-position: top left;
+  background-attachment: fixed;
+  background-repeat: repeat-x; }
+
+body.withsharebar .menu-main {
+  top: 40px; }
+
+body .flex {
+  display: flex; }
+  body .header {
+    font-family: Coming Soon;
+    color: #CC0000;
+    font-size: 60px;
+    font-weight:       700
+  ;
+    font-style: normal;
+    text-align: center;
+    background-color: #DEDEDE;
+    border-width: 2px;
+    border-color: #DEDEDE;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-left-style: none;
+    margin-top: 60px;
+    border-radius: 10px 10px 0 0; }
+    body .header h1, body .header .ob-h1 {
+      display: flex;
+      justify-content: center; }
+      body .header h1 span, body .header .ob-h1 span {
+        width: 100%; }
+    body .header_link {
+      display: block;
+      width: 100%;
+      overflow: hidden; }
+    body .header_title {
+      padding: 20px;
+      display: block; }
+    body .header img {
+      display: block; }
+  body .listing-content {
+    display: flex;
+    flex-direction: column;
+    gap: 50px; }
+    body .listing-content .article:hover .article_footer {
+      opacity: 1;
+      transition: opacity 0.3s ease-in-out; }
+      body .listing-content .article_link {
+        color: inherit;
+        text-decoration: none; }
+        body .listing-content .article_link:visited {
+          color: inherit;
+          text-decoration: none; }
+        body .listing-content .article_link:active {
+          color: inherit;
+          text-decoration: none; }
+        body .listing-content .article_link:hover {
+          color: inherit;
+          text-decoration: none; }
+      body .listing-content .article_content {
+        display: flex;
+        margin-bottom: 10px;
+        gap: 10px; }
+      body .listing-content .article_snippet {
+        word-break: break-all;
+        flex: 1; }
+      body .listing-content .article_footer {
+        opacity: 0.4;
+        transition: opacity 0.3s ease-in-out; }
+      body .listing-content .article_cover-wrapper {
+        order: 0; }
+      body .listing-content .article_title {
+        margin-bottom: 10px; }
+  body .article_footer {
+    border-width: 1px;
+    border-color: #;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-left-style: none;
+    font-family: Arial,sans-serif;
+    color: #1F1F1F;
+    font-size: 13px;
+    font-weight:       400
+  ;
+    font-style: normal;
+    text-transform: none;
+    text-align: left; }
+    body .article_footer .ob-Shares-title {
+      display: none; }
+    body .article_footer .ob-Shares--right {
+      line-height: initial; }
+    body .article_footer .rating-wrapper {
+      margin-top: 10px; }
+  body .ob-widgets {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; }
+    body .ob-widgets img {
+      max-width: 100%; }
+  body .ob-widget {
+    color: #1F1F1F;
+    font-family: Arial,sans-serif; }
+    body .ob-widget_title {
+      border-width: 1px;
+      border-color: #e7e2dc;
+      border-top-style: none;
+      border-right-style: none;
+      border-bottom-style: dotted;
+      border-left-style: none;
+      font-family: Coming Soon;
+      color: #2E2E2E;
+      font-size: 13px;
+      font-weight:       700
+  ;
+      font-style: normal;
+      text-transform: none;
+      text-align: left; }
+    body .ob-widget li {
+      font-family: Coming Soon;
+      color: #2E2E2E;
+      font-size: 13px;
+      font-weight:       400
+  ;
+      font-style: normal;
+      text-align: left;
+      line-height: 150%; }
+    body .ob-widget img {
+      border-width: 1px;
+      border-color: #;
+      border-top-style: none;
+      border-right-style: none;
+      border-bottom-style: none;
+      border-left-style: none;
+      border-radius: 0px; }
+    body .ob-widget_stats_title svg {
+      fill: #2E2E2E; }
+    body .ob-widget_cloud-tags_list {
+      row-gap: 0px; }
+      body .ob-widget_cloud-tags li {
+        display: flex;
+        align-items: center;
+        line-height: 1; }
+    body .ob-widget_search input[type=submit], body .ob-widget_subscribe input[type=submit] {
+      background-color: #2E2E2E; }
+    body .ob-widget_rss_link {
+      background-color: #2E2E2E; }
+    body .ob-widget_follow_element {
+      border: 1px solid #2E2E2E; }
+      body .ob-widget_follow_element i {
+        color: #2E2E2E; }
+      body .ob-widget_follow_element:hover {
+        background-color: #2E2E2E; }
+    body .ob-widget_about_avatar, body .ob-widget_ownerAvatar, body .ob-widget_albums li {
+      text-align: center; }
+    body .ob-widget_freeModule_content p {
+      margin: 1em 0; }
+      body .ob-widget_freeModule_content img {
+        display: block;
+        width: 100%; }
+    body .ob-widget_archives_trigger {
+      border-color: #2E2E2E; }
+    body .ob-widget_last-comments ul {
+      display: flex;
+      flex-direction: column;
+      gap: 10px; }
+      body .ob-widget_last-comments ul li {
+        display: flex;
+        flex-wrap: wrap;
+        column-gap: 10px; }
+        body .ob-widget_last-comments ul li a {
+          overflow: hidden;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 2;
+          display: -webkit-box; }
+    body .ob-widget_about_description {
+      text-align: left; }
+    body .ob-widget_subscribe_count {
+      font-size: 12px; }
+  body .not-found_content {
+    padding: 10px; }
+  body .ads-container, body .ads .inread_ads.inread1, body .ads .inread_ads.inread_added {
+    max-width: 100%;
+    position: relative; }
+    body .ads-container.super_leaderboard, body .ads-container.full_width {
+      width: 1000px;
+      height: 250px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 10px auto;
+      overflow: auto; }
+    body .ads-container.medium_rectangle {
+      width: 300px;
+      height: 250px;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
+    body .ads-container.half_page {
+      width: 320px;
+      height: 600px; }
+      body .ads-container.half_page div:last-of-type {
+        position: sticky;
+        top: 0;
+        display: flex;
+        justify-content: center; }
+    body .ads-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      position: absolute;
+      gap: 10px;
+      color: #9f9f9f; }
+    body .ads-placeholder > * + * {
+      margin-top: 10px; }
+    body .ads-placeholder + div {
+      isolation: isolate; }
+    body .ads_end-post {
+      display: flex;
+      flex-direction: row;
+      justify-content: center; }
+    body .ads_container-atf {
+      display: flex;
+      justify-content: space-around; }
+  body .side-zone, body .ob-widgets {
+    height: 100%; }
+    body .side-zone .ads-container.half_page.last-widget_ads, body .ob-widgets .ads-container.half_page.last-widget_ads {
+      position: sticky;
+      top: 30px; }
+  body .menu-main {
+    background-color: #CC0000;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    border-top-style: none;
+    border-bottom-style: none;
+    border-top-width: 1px;
+    border-top-color: #DEDEDE;
+    border-bottom-width: 1px;
+    border-bottom-color: #DEDEDE; }
+    body .menu-main li {
+      height: 30px;
+      background-color: #CC0000;
+      font-family: Coming Soon;
+      color: #FFFFFF;
+      font-size: 16px;
+      font-weight:       700
+  ;
+      font-style: normal;
+      line-height: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-right-style: none;
+      border-right-width: 1px;
+      border-right-color: #DEDEDE; }
+      body .menu-main li:hover {
+        background-color: #7A7A7A; }
+    body .menu-main a, body .menu-main span {
+      padding: 0; }
+    body .menu-main .trigger {
+      margin-left: 10px;
+      margin-bottom: 2px;
+      height: 8px;
+      width: 8px !important;
+      border: solid #FFFFFF;
+      border-width: 0 2px 2px 0;
+      display: inline-block;
+      transform: rotate(45deg);
+      transition: transform 0.2s ease-in-out; }
+    body .menu-main > ul {
+      height: 100%; }
+      body .menu-main > ul > li {
+        flex: 1;
+        max-width: 250px;
+        padding: 0 10px; }
+      body .menu-main > ul > li:nth-last-child(1) {
+        border-right-style: none; }
+      body .menu-main > ul > li a {
+        height: initial;
+        line-height: 1; }
+      body .menu-main > ul > li ul {
+        top: 100%;
+        width: 160px; }
+        body .menu-main > ul > li ul li {
+          max-width: initial;
+          border-bottom: 1px dotted #fefefa;
+          border-left: 1px dotted #fefefa; }
+          body .menu-main > ul > li ul li .trigger {
+            width: 8px !important;
+            transform: rotate(-45deg);
+            margin-bottom: 0; }
+          body .menu-main > ul > li ul li ul {
+            left: calc(100% + 0px);
+            width: 160px;
+            min-width: initial; }
+    body .menu-main a:not(.trigger), body .menu-main span:not(.trigger) {
+      text-overflow: ellipsis;
+      text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      display: block;
+      width: initial;
+      max-width: 90%; }
+    body .menu-main .home-link {
+      position: relative;
+      flex: 0; }
+      body .menu-main .home-link:after {
+        content: "";
+        position: absolute;
+        left: 1px;
+        right: 1px;
+        top: 20%;
+        bottom: 20%;
+        -webkit-mask-image: url("https://assets.canalblog.com/c/blog/v2026.07.01/images/logo-home.svg");
+        mask-image: url("https://assets.canalblog.com/c/blog/v2026.07.01/images/logo-home.svg");
+        mask-position: center;
+        -webkit-mask-position: center;
+        mask-repeat: no-repeat;
+        -webkit-mask-repeat: no-repeat;
+        background-color: #FFFFFF;
+        -webkit-mask-size: contain; }
+      body .menu-main .home-link a {
+        z-index: 11;
+        width: 100%;
+        height: 100%;
+        display: block;
+        color: transparent; }
+      body .menu-main .home-link:hover {
+        cursor: pointer; }
+  body .breadcrumb {
+    padding-left: 0;
+    margin-bottom: 10px; }
+    body .breadcrumb ul {
+      gap: 2px;
+      font-size: 12px;
+      text-transform: uppercase; }
+  body .container {
+    background-color: #DEDEDE;
+    min-height: 100vh;
+    margin: auto;
+    width: 1020px;
+    border-radius: 10px 10px 0 0;
+    border-width: 1px;
+    border-color: #;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-left-style: none; }
+  body .content-wrapper {
+    display: flex;
+    line-height: 150%; }
+    body .content-wrapper a {
+      color: #CC0000;
+      text-decoration:       none
+  ; }
+      body .content-wrapper a:visited {
+        color: #CC0000;
+        text-decoration:       none
+  ; }
+      body .content-wrapper a:active {
+        color: #CC0000;
+        text-decoration:       none
+  ; }
+      body .content-wrapper a:hover {
+        color: #CC0000;
+        text-decoration:       underline
+  ; }
+  body .right-zone {
+    width: 340px;
+    background-color: #DEDEDE;
+    border-width: 1px;
+    border-color: #;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-left-style: none; }
+    body .right-zone img {
+      max-width: 100%; }
+  body .left-zone {
+    width: 340px;
+    background-color: #ffffff;
+    border-width: 1px;
+    border-color: #;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-left-style: none; }
+    body .left-zone img {
+      max-width: 100%; }
+  body .content {
+    width: 680px;
+    background-color: #DEDEDE;
+    border-width: 1px;
+    border-color: #DEDEDE;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-left-style: none;
+    font-family: Arial,sans-serif;
+    color: #1F1F1F;
+    font-size: 16px;
+    font-weight:       400
+  ;
+    font-style: normal;
+    text-transform: none;
+    text-align: left;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    line-height: 150%; }
+    body .content img {
+      max-width: 100%; }
+    body .content .title {
+      font-family: Coming Soon;
+      color: #CC0000;
+      font-size: 18px;
+      font-weight:       700
+  ;
+      font-style: normal;
+      text-transform: none;
+      text-align: left;
+      border-width: 1px;
+      border-color: #e7e2dc;
+      border-top-style: none;
+      border-right-style: none;
+      border-bottom-style: dotted;
+      border-left-style: none;
+      line-height: 1; }
+    body .content h3, body .content .ob-h3 {
+      font-family: Coming Soon;
+      color: #CC0000;
+      font-size: 18px;
+      font-weight:       700
+  ;
+      font-style: normal;
+      text-transform: none;
+      text-align: left;
+      border-width: 1px;
+      border-color: #e7e2dc;
+      border-top-style: none;
+      border-right-style: none;
+      border-bottom-style: dotted;
+      border-left-style: none;
+      line-height: 1; }
+  body .date-header {
+    font-family: Coming Soon;
+    color: #CC0000;
+    font-size: 16px;
+    font-weight:       700
+  ;
+    font-style: normal;
+    text-transform: none;
+    text-align: left;
+    border-width: 1px;
+    border-color: #;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-left-style: none;
+    margin-bottom: 10px; }
+  body .side-zone {
+    padding: 10px; }
+  body .ob-footer {
+    padding-top: 40px;
+    padding-bottom: 10px; }
+  body .ob-PostNavigation {
+    margin-top: 30px;
+    margin-bottom: 20px; }
+  body .post-comments_title {
+    font-family: ;
+    color: ;
+    font-weight: ;
+    font-size: ;
+    border-bottom-style: dotted;
+    border-width: 1px;
+    margin-bottom: 10px;
+    padding: 3px;
+    font-size: 16px; }
+  body .ob-Shares a {
+    color: inherit;
+    text-decoration: none; }
+    body .ob-Shares a:visited {
+      color: inherit;
+      text-decoration: none; }
+    body .ob-Shares a:active {
+      color: inherit;
+      text-decoration: none; }
+    body .ob-Shares a:hover {
+      color: inherit;
+      text-decoration: none; }
+  body .ob-pagination {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    font-family: Marvel;
+    color: #CC0000;
+    font-size: 16px;
+    font-weight:       400
+  ;
+    font-style: normal; }
+    body .ob-pagination a {
+      font-family: Marvel;
+      color: #CC0000;
+      font-size: 16px;
+      font-weight:       400
+  ;
+      font-style: normal; }
+    body .ob-pagination a:visited {
+      color: #CC0000; }
+    body .ob-pagination a:active {
+      color: #CC0000; }
+    body .ob-pagination a:hover {
+      color: #CC0000; }
+  body .ob-Related {
+    margin-bottom: 30px; }
+    body .ob-Related-post {
+      max-width: 200px; }
+  body .ob-Related-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #616161; }
+  body .carousel_large {
+    margin-bottom: 10px;
+    background-color: #DEDEDE; }
+    body .carousel_large .ob-section-tags-img {
+      margin: auto;
+      max-height: 340px; }
+    body .carousel_normal {
+      margin-bottom: 10px;
+      background-color: #DEDEDE; }
+    body .carousel_normal .ob-section-tags-img {
+      margin: auto;
+      max-height: 340px; }
+  body .ob-subscription {
+    flex: 1; }
+  body .ob-contact {
+    flex: 1; }
+  body .ob-posts-carousel-wrapper {
+    margin-bottom: 0; }
+  body .single-content_title {
+    margin-bottom: 10px; }
+  body .ob-section-html ol {
+    list-style: decimal; }
+    body .ob-section-html ul {
+      list-style: initial; }
+    body .ob-section-html ol, body .ob-section-html ul {
+      padding-left: 15px; }
+  body .content .album-title {
+    font-family: Arial,sans-serif;
+    color: #616161;
+    font-size: 13px;
+    font-weight:       700
+  ;
+    font-style: normal;
+    text-transform: none;
+    text-align: left;
+    border-width: 1px;
+    border-color: #;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-left-style: none;
+    line-height: 1; }
+    body .content .album-desc {
+      margin: 10px 0; }
+    body .content .album-desc, body .content .album-tags, body .content .album-taken_at, body .content .album-author {
+      font-family: Arial,sans-serif;
+      color: #616161;
+      font-size: 13px;
+      font-weight:       400
+  ;
+      font-style: normal;
+      text-transform: none;
+      text-align: left;
+      line-height: 150%; }
+    body .content .album .ob-Shares-title {
+      margin-bottom: 20px; }
+    body .content .album-image img, body .content .image-container .ob-slideshow-line-item img, body .content .album .cover img, body .content .fresque .vignette {
+      border-width: 1px;
+      border-color: #;
+      border-top-style: none;
+      border-right-style: none;
+      border-bottom-style: none;
+      border-left-style: none; }
+
+    </style>
+       <script>
+  function loadGA() {
+    window.dataLayer = window.dataLayer || []
+    var s = document.createElement("script")
+    s.async = true
+    s.src = "https://cdn.lib.getjan.io/library/overblog.js"
+    s.setAttribute("importance", "high")
+    var g = document.getElementsByTagName("head")[0]
+    g.parentNode.insertBefore(s, g)
+    window.jan = window.jan || {}
+    jan.cmd = jan.cmd || []
+    jancmd = function(){jan.cmd.push(arguments);}
+
+    // TODO: Now, The wrapper handle didomi consent for us so we don't need anymore to wait didomi consent to load GA. The dimension23 is for didomi consent but it will be handle directly by the wrapper. We remove it from the code below.
+    var dimensions = {
+      dimension1: '__ads_loaded__' in window ? '0' : '1',
+      dimension2: 'fr',
+      dimension3: 'BS',
+      dimension4: 'food-drink',
+      dimension5: '0',
+      dimension6: '0',
+      dimension7: '0',
+      dimension10: '1371499',
+      dimension11: '1',
+      dimension12: '2',
+      dimension13: '0',
+      dimension14: '__ads_loaded__' in window ? '1' : '0',
+      dimension15: '__ads_loaded__' in window ? '0' : '1',
+      dimension16: '1371499',
+      dimension17: "Evaliya cuisine",
+            dimension24: '20150105',
+      dimension25: 'canalblog',
+    }
+
+    if (location) {
+      dimensions.dimension22 = '' + location.hostname
+    }
+
+    jancmd("setConfig", {
+      metadata: dimensions,
+    });
+
+    jancmd("sendEvent", "pageview");
+  }
+
+  loadGA()
+</script>
+  
+<script>
+  function isConnected(connected, connected_owner, timestamp, user_id) {
+    if (connected) {
+      document.querySelector('html').classList.add('ob-connected')
+    }
+    if (connected_owner) {
+      document.querySelector('html').classList.add('ob-connected-blog')
+    }
+  }
+</script>
+<script src="//connect.canalblog.com/ping/1371499/isConnected" async></script>
+
+<script src="https://assets.canalblog.com/c/blog/v2026.07.01/canalblog-main.495edf92.js"></script>
+
+
+  
+  
+ </head>
+  <body> 
+            
+          
+                  
+  <div class="ob-ShareBar ob-ShareBar--desktop ob-ShareBar--light js-ob-ShareBar">
+    <div class="ob-ShareBar-container ob-ShareBar-container--left">
+                                  
+                                                                
+      <img class="ob-ShareBar-brandingImg" src="https://assets.canalblog.com/c/blog/v2026.07.01/images/shareicon-branding-750g--light.png" alt="750 grammes">
+      <a class="ob-ShareBar-portalLink" href="https://www.canalblog.com" rel="noopener,noreferrer">
+        <span class="ob-ShareBar--mobile_text">Tous les blogs</span>
+      </a>
+              <a class="ob-ShareBar-portalLink" href="https://www.canalblog.com/blogs/categorie-6">
+          <span class="ob-ShareBar--mobile_text">Top blogs  Cuisine</span>
+        </a>
+                    <a class="ob-ShareBar-portalLink" href="https://www.canalblog.com/mag/cuisine-deco">
+          <span class="ob-ShareBar--mobile_text">Tous les blogs  Cuisine</span>
+        </a>
+          </div>
+
+    <div class="ob-ShareBar-container ob-ShareBar-container--right">
+                        <a class="ob-ShareBar-food" href="https://www.canalblog.com/mag/cuisine-deco" target="_blank">
+              Tous nos blogs cuisine
+          </a>
+                <a href="#" data-href="https://www.facebook.com/sharer/sharer.php?u={referer}" title=" facebook" class="ob-ShareBar-share ob-ShareBar-share--facebook"></a>
+        <a href="#" data-href="https://twitter.com/intent/tweet?url={referer}&amp;text={title}" title="X (Twitter)" class="ob-ShareBar-share ob-ShareBar-share--twitter"></a>
+        <a href="#" data-href="#" title=" pinterest" class="ob-ShareBar-share ob-ShareBar-share--pinterest js-ob-ShareBar-share--pinterest"></a>
+
+        <form action="/search" method="post" accept-charset="utf-8" class="ob-ShareBar-search">
+          <input type="text" name="q" value="" class="ob-ShareBar-input" placeholder="Rechercher">
+          <button class="ob-ShareBar-submit"></button>
+        </form>
+
+        
+                  <a class="js-ob-ShareBar-follow ob-ShareBar--connected ob-ShareBar-follow" href="https://admin.canalblog.com/_follow/1371499" target="_blank" rel="nofollow">
+              Suivre ce blog
+          </a>
+        
+        <a href="https://admin.canalblog.com/" class="ob-ShareBar-admin ob-ShareBar--connected">
+          <img src="https://assets.canalblog.com/c/blog/v2026.07.01/images/lock-alt-light.svg" class="ob-ShareBar-lock">
+          <span class="ob-ShareBar-text">Administration</span>
+        </a>
+      
+      <a href="https://connect.canalblog.com/fr/login" class="ob-ShareBar-login ob-ShareBar--notconnected">
+        <img src="https://assets.canalblog.com/c/blog/v2026.07.01/images/lock-alt-light.svg" class="ob-ShareBar-lock">
+        <span class="ob-ShareBar-text">Connexion</span>
+      </a>
+      <a href="https://www.canalblog.com/creation" class="ob-ShareBar-create ob-ShareBar--notconnected">
+        <span class="ob-ShareBar-plus">+</span>
+        <span class="ob-ShareBar-text">Créer mon blog</span>
+      </a>
+
+          </div>
+  </div>
+
+  
+  <div id="ob-ShareBar--mobile_mask" class="ob-ShareBar--mobile_mask"></div>
+  <div class="ob-ShareBar ob-ShareBar--mobile ob-ShareBar--light js-ob-ShareBar">
+    <img class="ob-ShareBar--mobile_logo" src="https://assets.canalblog.com/c/blog/v2026.07.01/images/shareicon-branding-750g--light.png" width="80" height="21" alt="canalblog"/>
+    <div id="ob-ShareBar--mobile_menu-trigger" class="ob-ShareBar--mobile_menu-trigger">
+      <svg xmlns="http://www.w3.org/2000/svg" height="18px" width="18px" viewbox="0 0 448 512"><path d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"/></svg>
+      <span>MENU</span>
+    </div>
+    <div id="ob-ShareBar--mobile_menu" class="ob-ShareBar--mobile_menu">
+      <div class="ob-ShareBar--mobile_menu-wrapper">
+        <a href="https://www.canalblog.com" rel="noopener,noreferrer">
+          <span class="ob-ShareBar--mobile_text">Tous les blogs</span>
+        </a>
+                  <a href="https://www.canalblog.com/blogs/categorie-6">
+            <span class="ob-ShareBar--mobile_text">Top blogs  Cuisine</span>
+          </a>
+                          <a href="https://www.canalblog.com/mag/cuisine-deco">
+            <span class="ob-ShareBar--mobile_text">Tous les blogs  Cuisine</span>
+          </a>
+                <form method="post" action="/search" accept-charset="utf-8" class="ob-ShareBar--mobile_search">
+          <b>Recherche</b>
+          <div class="ob-ShareBar--mobile_search-wrapper">
+            <div class="ob-ShareBar--mobile_search-input">
+              <input name="q" type="search" placeholder="Tapez un mot clé"/>
+            </div>
+            <button type="submit">Rechercher</button>
+          </div>
+        </form>
+        <a href="https://connect.canalblog.com/fr/login" class="ob-ShareBar--mobile_login ob-ShareBar--notconnected">
+          <img src="https://assets.canalblog.com/c/blog/v2026.07.01/images/lock-alt-light.svg" class="ob-ShareBar-lock">
+          <span class="ob-ShareBar--mobile_text">Connexion</span>
+        </a>
+        <a href="https://www.canalblog.com/creation" class="ob-ShareBar--mobile_create ob-ShareBar--notconnected">
+          <span class="ob-ShareBar-plus">+</span>
+          <span class="ob-ShareBar--mobile_text">Créer mon blog</span>
+        </a>
+                              <a class="ob-ShareBar-food" href="https://www.canalblog.com/mag/cuisine-deco" target="_blank">
+              Tous nos blogs cuisine
+            </a>
+                    
+                      <a class="js-ob-ShareBar-follow ob-ShareBar--connected ob-ShareBar--mobile_follow" href="https://admin.canalblog.com/_follow/1371499" target="_blank" rel="nofollow">
+              <span class="ob-ShareBar--mobile_text">Suivre ce blog</span>
+            </a>
+          
+          <a href="https://admin.canalblog.com/" class="ob-ShareBar--mobile_admin ob-ShareBar--connected">
+            <img src="https://assets.canalblog.com/c/blog/v2026.07.01/images/lock-alt-light.svg" class="ob-ShareBar-lock">
+            <span class="ob-ShareBar--mobile_text">Administration</span>
+          </a>
+        
+        <div class="ob-ShareBar--mobile_share">
+          <b> Partager</b>
+          <div class="ob-ShareBar--mobile_share-wrapper">
+            <div>
+              <a href="#" data-href="https://www.facebook.com/sharer/sharer.php?u={referer}" title=" facebook" class="ob-ShareBar-share ob-ShareBar-share--facebook"></a>
+            </div>
+            <div>
+              <a href="#" data-href="https://twitter.com/intent/tweet?url={referer}&amp;text={title}" title="X (Twitter)" class="ob-ShareBar-share ob-ShareBar-share--twitter"></a>
+            </div>
+            <div>
+              <a href="#" data-href="#" title=" pinterest" class="ob-ShareBar-share ob-ShareBar-share--pinterest js-ob-ShareBar-share--pinterest"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    var trigger = document.getElementById('ob-ShareBar--mobile_menu-trigger');
+    var mask = document.getElementById('ob-ShareBar--mobile_mask');
+    trigger.addEventListener('click', function(){
+      document.scrollingElement.classList.toggle('ob-ShareBar--mobile_menu-opened');
+    });
+    mask.addEventListener('click', function(){
+      document.scrollingElement.classList.toggle('ob-ShareBar--mobile_menu-opened');
+    });
+  </script>
+
+  <script src="https://assets.canalblog.com/c/blog/v2026.07.01/sharebar.682fbc93.js"></script>
+  <script>
+        const postTitle = "Evaliya cuisine"
+        const socialShares = document.querySelectorAll('.ob-ShareBar-share--facebook, .ob-ShareBar-share--twitter')
+
+        socialShares.forEach((socialShareEl) => {
+          socialShare(socialShareEl, postTitle)
+        })
+      </script>       <div class="root">
+      <div class="container">
+        <header class="header">
+      <a class="header_link" href="https://www.evaliyacuisine.com">
+      <div class="ob-h1">
+                  <span class="header_title">Evaliya cuisine</span>
+              </div>
+    </a>
+  </header>
+
+        <nav class="menu menu-main" role="navigation">
+          <ul>
+            
+                <li class="home-link">        <a href="/">Home</a>        
+    </li>
+
+    
+                                    <li class="branch">        <a href="#">Salé</a>                <ul class="menu_level_1">
+            
+                <li>        <a href="/archives/accompagnements_et_legumes/index.html">Accompagnements</a>        
+    </li>
+
+    
+                <li>        <a href="/archives/aperitifs/index.html">Apéritifs</a>        
+    </li>
+
+    
+                <li>        <a href="/archives/plats_complets/index.html">Plats complets</a>        
+    </li>
+
+    
+                <li>        <a href="/archives/poissons/index.html">Poissons</a>        
+    </li>
+
+    
+                <li>        <a href="/archives/soupes/index.html">Soupes</a>        
+    </li>
+
+    
+                <li>        <a href="/archives/viandes/index.html">Viandes</a>        
+    </li>
+
+
+    </ul>
+
+    </li>
+
+    
+                                    <li class="branch">        <a href="#">Sucré</a>                <ul class="menu_level_1">
+            
+                <li>        <a href="/archives/desserts_aux_fruits/index.html">Desserts aux fruits</a>        
+    </li>
+
+    
+                <li>        <a href="/archives/entremets/index.html">Entremets</a>        
+    </li>
+
+    
+                                    <li class="branch">        <a href="#">Gâteaux</a>                <ul class="menu_level_0">
+            
+                <li>        <a href="/archives/gateaux_familiaux/index.html">Gateaux familiaux</a>        
+    </li>
+
+    
+                <li>        <a href="/archives/gateaux_individuels/index.html">Gateaux individuels</a>        
+    </li>
+
+
+    </ul>
+
+    </li>
+
+
+    </ul>
+
+    </li>
+
+    
+                <li>        <a href="/archives/boissons/index.html">Boissons</a>        
+    </li>
+
+    
+                <li>        <a href="/archives/evenements/index.html">Evènements</a>        
+    </li>
+
+    
+                <li>        <a href="/archives/boulange/index.html">Boulange</a>        
+    </li>
+
+    
+                <li class="last">        <a href="/archives/voyages/index.html">Voyages</a>        
+    </li>
+
+
+    </ul>
+
+</nav>
+
+        <!-- HEADER_AD -->
+          
+                  <div class="listing content-wrapper">
+    
+
+  
+
+
+
+
+
+<div class="content">
+      
+<nav class="breadcrumb">
+  <ul style="display: flex">
+    <li><a href="/">Evaliya cuisine</a></li>
+      <span class="breadcrumb-separator"> > </span>
+          <li><a href="/summary">Categories</a></li>
+          <span class="breadcrumb-separator"> > </span>
+    <li>Evaliya cuisine</li>
+  </ul>
+</nav>
+
+      <div class="listing-content">
+                                                                <div class="article article_32911036">
+      <div class="date-header">22 juillet 2017</div>
+
+          <a class="article_link" href="https://www.evaliyacuisine.com/archives/2017/07/22/35496865.html">
+        <h2 class="article_title title">RILLETTES DE THON ET CONCOURS</h2>
+      </a>
+      
+
+
+  <div class="ob-sections">
+      
+    
+     
+  <div
+    class="ob-section ob-section-html "
+      >
+
+<p><a name="IMG_116748628" href="https://storage.canalblog.com/15/92/1327576/116748628_o.jpg" target="_blank"><img src="https://storage.canalblog.com/15/92/1327576/116748628.jpg" border="0" alt="1" class="nonealign width600" /></a></p>
+<p><a name="IMG_116748640" href="https://storage.canalblog.com/02/10/1327576/116748640_o.jpg" target="_blank"><img src="https://storage.canalblog.com/02/10/1327576/116748640.jpg" border="0" alt="LIVRE SANDRINE" class="nonealign width450" /></a></p>
+<p>Aujourd'hui je vous propose une recette idéale pour vos apéros des vacances, simple et rapide vous pourrez la réaliser aussi bien à la maison mais aussi en vancances, à l'hôtel, au camping.... bref la recette parfaite pour changer des chips et des cacahuètes. Cette recette peut se déguster sur des tranches de pains, avec des gressins, des tacos, des blinis, des rondelles de concombre&nbsp; ... Je vous laisse donner libre cours à votre imagination.</p>
+<p>Il y a quelques mois je vous avez parlé de la préparation d'un livre avec mes recettes édité par La villageoise.</p>
+<p>Et bien ça y est, il est là !!!!!! Comme promis dans la semaine je suis heureuse de pouvoir vous faire gagner un tote bag La Villageoise avec un bloc note, une toque, un bon de réduction mais surtout <strong>un livre</strong> <strong>dans lequel vous pourrez retrouver une partie des recettes que j'ai créée pour La Villageoise.</strong></p>
+<p>Pour doubler vos chances vous pouvez jouer sur ma page <a href="https://www.facebook.com/evaliyacuisine/?ref=aymt_homepage_panel" target="_blank">facebook</a> et mon compte <a href="https://www.instagram.com/evaliyacuisine/" target="_blank">instagram</a>, pour participer rien de plus simple :</p>
+<p><span style="text-decoration: underline;"><em>Facebook</em></span></p>
+<p>Liker ma page facebook <a href="https://www.facebook.com/evaliyacuisine/" target="_blank">Evaliya cuisine</a> et celle de <a href="https://www.facebook.com/LaVillageoiseOfficiel/" target="_blank">La villageoise</a></p>
+<p>Liker le post du concours et le partager en mode public</p>
+<p>Mettre un commentaire sur le post du concours et inviter 3 personnes à participer</p>
+<p><span style="text-decoration: underline;"><em>Instagram</em></span></p>
+<p>S'abooner à mon compte <a href="https://www.instagram.com/evaliyacuisine/" target="_blank">evaliya cuisine</a></p>
+<p>Regrammer la photo du concours avec le @evaliyacuisine<a href="https://www.instagram.com/evaliyacuisine/?hl=fr" target="_blank"></a></p>
+<p>Commenter ma photo et inviter 3 personnes à participer</p>
+<p>&nbsp;</p>
+<p><span style="text-decoration: underline;">Fin du concours le 29/08 à minuit</span> </p>
+<p>&nbsp;</p>
+<p><strong>N'oubliez pas de vous abonnez à ma newsletter et de me suivre sur <a href="https://www.facebook.com/evaliyacuisine/?ref=settings" target="_blank">facebook</a>, <a href="https://twitter.com/evaliyacuisine" target="_blank">twitter</a>, <a href="https://www.instagram.com/evaliyacuisine/" target="_blank">instagram </a>et <a href="https://fr.pinterest.com/evaliyacuisine/" target="_blank">pinterest</a>.</strong></p>
+<p>&nbsp;</p>
+<p>Pour 8 personnes – Prép : 5 mn - Petit budget– Facile</p>
+<p><strong><em><span style="text-decoration: underline;">Ingrédients</span></em></strong></p>
+<div>- 150 g de thon en boite</div>
+<div>- 120 g de fromage frais St Moret</div>
+<div>- 2,5 cl de vin blanc La Villageoise (1/2 toque)</div>
+<div>- ½ sachet d’épices pincée aromatique</div>
+<div></div>
+<p><em><span style="text-decoration: underline;"><strong>Recette</strong></span></em></p>
+<div>1) Verser tous les ingrédients dans un mixeur.</div>
+<div></div>
+<div>2) Mixer jusqu’à obtenir un mélange homogène.</div>
+<div></div>
+<div>3) Tartiner sur des tranches de pain.</div>
+<p>&nbsp;</p>
+<p><span style="text-decoration: underline;"><em><strong>Astuce du chef</strong></em></span></p>
+<p>Vous pouvez ajouter du thym, de la ciboulette ou de la coriandre.</p>
+<p>&nbsp;Vous pouvez également tartiner ces rillettes sur des rondelles de concombre pour faire des canapés originaux.</p>    </div>
+
+
+            
+
+  </div>
+  
+          <div class="article_footer">
+    <div class="article_footer_info">
+      Posté par evaliya cuisine à 15:47 - <a href="https://www.evaliyacuisine.com/archives/2017/07/22/35496865.html#ob-comments"><span>Commentaires [<span id="comment-count-32911036">…</span><script>
+  ob.commentCount(document.querySelector("#comment-count-32911036"), {
+    resource: "https://www.evaliyacuisine.com/api/comment-count/32911036",
+    format: (count) => {
+      const string = count === 0
+        ? "0"
+        : count === 1
+          ? "%c"
+          : "%c"
+
+      return string.replace("%c", count)
+    }
+  })
+</script>]</span></a> - Permalien [<a href="https://www.evaliyacuisine.com/archives/2017/07/22/35496865.html">#</a>]
+    </div>
+          <div class="article_footer_tags">
+        Tags:
+                  <a href="/tag/vin%20blanc/"><span class="article_footer_tag">vin blanc</span></a>,&nbsp;                  <a href="/tag/aperitif/"><span class="article_footer_tag">apéritif</span></a>,&nbsp;                  <a href="/tag/la%20villageoise/"><span class="article_footer_tag">la villageoise</span></a>,&nbsp;                  <a href="/tag/thon/"><span class="article_footer_tag">thon</span></a>,&nbsp;                  <a href="/tag/concours/"><span class="article_footer_tag">concours</span></a>              </div>
+                      
+
+
+            
+          <h3 class="ob-Shares-title">Partager cet article</h3>
+          <div class="ob-Shares ob-Shares--right ob-Shares--horizontal ">
+        <div class="ob-Shares-facebookShare">
+        <div class="fb-share-button" data-href="https://www.evaliyacuisine.com/archives/2017/07/22/35496865.html" data-layout="button_count"></div>
+    </div>
+            <div class="ob-Shares-twitter">
+        <a class="twitter-share-button"
+          href="https://twitter.com/share"
+          data-url="https://www.evaliyacuisine.com/archives/2017/07/22/35496865.html"
+                    data-hashtags="vin blanc,apéritif,la villageoise,thon,concours"                      data-text="RILLETTES&#x20;DE&#x20;THON&#x20;ET&#x20;CONCOURS"
+                     data-lang="en"
+          ></a>
+    </div>
+                <div class="ob-Shares-pinterest">
+        <a href="https://pinterest.com/pin/create/button/"
+                        data-pin-count="beside"
+                        data-pin-color="red"
+            data-pin-config="beside"
+                        data-pin-description="RILLETTES&#x20;DE&#x20;THON&#x20;ET&#x20;CONCOURS"
+            data-pin-media="http://storage.canalblog.com/15/92/1327576/116748628_o.jpg"
+                        data-pin-url="https://www.evaliyacuisine.com/archives/2017/07/22/35496865.html"
+            target="_BLANK"
+        >
+            <img src="https://assets.pinterest.com/images/pidgets/pinit_fg_en_rect_red_20.png" />
+        </a>
+    </div>
+          <div class="ob-Shares-mail">
+    <a href="mailto:?subject=RILLETTES%20DE%20THON%20ET%20CONCOURS&body=Voici%20un%20article%20int%C3%A9ressant%20que%20j%27ai%20trouv%C3%A9%20sur%20%3A%20https%3A%2F%2Fwww.evaliyacuisine.com%2Farchives%2F2017%2F07%2F22%2F35496865.html">
+      <img src="https://assets.canalblog.com/c/blog/v2026.07.01/images/shareicon_email.png">
+    </a>
+  </div>
+  <div class="ob-Shares-print ob-Shares-print_32911036">
+      <img src="https://assets.canalblog.com/c/blog/v2026.07.01/images/printer.png">
+  </div>
+</div>
+
+<script>
+  var printElement = document.querySelector(".ob-Shares-print_32911036")
+  printElement.addEventListener("click", function() {
+    ob.printPost("RILLETTES DE THON ET CONCOURS", "\n\n\n  <div class=\"ob-sections\">\n      \n    \n     \n  <div\n    class=\"ob-section ob-section-html \"\n      >\n\n<p><a name=\"IMG_116748628\" href=\"https:\/\/storage.canalblog.com\/15\/92\/1327576\/116748628_o.jpg\" target=\"_blank\"><img src=\"https:\/\/storage.canalblog.com\/15\/92\/1327576\/116748628.jpg\" border=\"0\" alt=\"1\" class=\"nonealign width600\" \/><\/a><\/p>\r\n<p><a name=\"IMG_116748640\" href=\"https:\/\/storage.canalblog.com\/02\/10\/1327576\/116748640_o.jpg\" target=\"_blank\"><img src=\"https:\/\/storage.canalblog.com\/02\/10\/1327576\/116748640.jpg\" border=\"0\" alt=\"LIVRE SANDRINE\" class=\"nonealign width450\" \/><\/a><\/p>\r\n<p>Aujourd'hui je vous propose une recette id\u00e9ale pour vos ap\u00e9ros des vacances, simple et rapide vous pourrez la r\u00e9aliser aussi bien \u00e0 la maison mais aussi en vancances, \u00e0 l'h\u00f4tel, au camping.... bref la recette parfaite pour changer des chips et des cacahu\u00e8tes. Cette recette peut se d\u00e9guster sur des tranches de pains, avec des gressins, des tacos, des blinis, des rondelles de concombre&nbsp; ... Je vous laisse donner libre cours \u00e0 votre imagination.<\/p>\r\n<p>Il y a quelques mois je vous avez parl\u00e9 de la pr\u00e9paration d'un livre avec mes recettes \u00e9dit\u00e9 par La villageoise.<\/p>\r\n<p>Et bien \u00e7a y est, il est l\u00e0 !!!!!! Comme promis dans la semaine je suis heureuse de pouvoir vous faire gagner un tote bag La Villageoise avec un bloc note, une toque, un bon de r\u00e9duction mais surtout <strong>un livre<\/strong> <strong>dans lequel vous pourrez retrouver une partie des recettes que j'ai cr\u00e9\u00e9e pour La Villageoise.<\/strong><\/p>\r\n<p>Pour doubler vos chances vous pouvez jouer sur ma page <a href=\"https:\/\/www.facebook.com\/evaliyacuisine\/?ref=aymt_homepage_panel\" target=\"_blank\">facebook<\/a> et mon compte <a href=\"https:\/\/www.instagram.com\/evaliyacuisine\/\" target=\"_blank\">instagram<\/a>, pour participer rien de plus simple :<\/p>\r\n<p><span style=\"text-decoration: underline;\"><em>Facebook<\/em><\/span><\/p>\r\n<p>Liker ma page facebook <a href=\"https:\/\/www.facebook.com\/evaliyacuisine\/\" target=\"_blank\">Evaliya cuisine<\/a> et celle de <a href=\"https:\/\/www.facebook.com\/LaVillageoiseOfficiel\/\" target=\"_blank\">La villageoise<\/a><\/p>\r\n<p>Liker le post du concours et le partager en mode public<\/p>\r\n<p>Mettre un commentaire sur le post du concours et inviter 3 personnes \u00e0 participer<\/p>\r\n<p><span style=\"text-decoration: underline;\"><em>Instagram<\/em><\/span><\/p>\r\n<p>S'abooner \u00e0 mon compte <a href=\"https:\/\/www.instagram.com\/evaliyacuisine\/\" target=\"_blank\">evaliya cuisine<\/a><\/p>\r\n<p>Regrammer la photo du concours avec le @evaliyacuisine<a href=\"https:\/\/www.instagram.com\/evaliyacuisine\/?hl=fr\" target=\"_blank\"><\/a><\/p>\r\n<p>Commenter ma photo et inviter 3 personnes \u00e0 participer<\/p>\r\n<p>&nbsp;<\/p>\r\n<p><span style=\"text-decoration: underline;\">Fin du concours le 29\/08 \u00e0 minuit<\/span> <\/p>\r\n<p>&nbsp;<\/p>\r\n<p><strong>N'oubliez pas de vous abonnez \u00e0 ma newsletter et de me suivre sur <a href=\"https:\/\/www.facebook.com\/evaliyacuisine\/?ref=settings\" target=\"_blank\">facebook<\/a>, <a href=\"https:\/\/twitter.com\/evaliyacuisine\" target=\"_blank\">twitter<\/a>, <a href=\"https:\/\/www.instagram.com\/evaliyacuisine\/\" target=\"_blank\">instagram <\/a>et <a href=\"https:\/\/fr.pinterest.com\/evaliyacuisine\/\" target=\"_blank\">pinterest<\/a>.<\/strong><\/p>\r\n<p>&nbsp;<\/p>\r\n<p>Pour 8 personnes \u2013 Pr\u00e9p : 5 mn - Petit budget\u2013 Facile<\/p>\r\n<p><strong><em><span style=\"text-decoration: underline;\">Ingr\u00e9dients<\/span><\/em><\/strong><\/p>\r\n<div>- 150 g de thon en boite<\/div>\r\n<div>- 120 g de fromage frais St Moret<\/div>\r\n<div>- 2,5 cl de vin blanc La Villageoise (1\/2 toque)<\/div>\r\n<div>- \u00bd sachet d\u2019\u00e9pices pinc\u00e9e aromatique<\/div>\r\n<div><\/div>\r\n<p><em><span style=\"text-decoration: underline;\"><strong>Recette<\/strong><\/span><\/em><\/p>\r\n<div>1) Verser tous les ingr\u00e9dients dans un mixeur.<\/div>\r\n<div><\/div>\r\n<div>2) Mixer jusqu\u2019\u00e0 obtenir un m\u00e9lange homog\u00e8ne.<\/div>\r\n<div><\/div>\r\n<div>3) Tartiner sur des tranches de pain.<\/div>\r\n<p>&nbsp;<\/p>\r\n<p><span style=\"text-decoration: underline;\"><em><strong>Astuce du chef<\/strong><\/em><\/span><\/p>\r\n<p>Vous pouvez ajouter du thym, de la ciboulette ou de la coriandre.<\/p>\r\n<p>&nbsp;Vous pouvez \u00e9galement tartiner ces rillettes sur des rondelles de concombre pour faire des canap\u00e9s originaux.<\/p>    <\/div>\n\n\n            \n\n  <\/div>\n  ", "canalblog")
+  })
+</script>
+
+
+<script>
+  function isMobile() {
+    return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  }
+  if (isMobile()) {
+    (function() {
+      var fbBtn = document.querySelector('.fb-share-button');
+
+      if (fbBtn) {
+        fbBtn.classList.add("mobile-custom")
+        var shareBtn = document.createElement('a');
+        shareBtn.href = `https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.evaliyacuisine.com%2Farchives%2F2017%2F07%2F22%2F35496865.html&t=RILLETTES DE THON ET CONCOURS`;
+        shareBtn.target = "_blank";
+        shareBtn.rel = "noopener noreferrer";
+
+        shareBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"/></svg>';
+
+        fbBtn.appendChild(shareBtn);
+      }
+    }())
+  } else {
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (!d.getElementById(id)) {
+            js = d.createElement(s);
+            js.type = 'text/javascript';
+            js.async = true;
+            js.defer = true;
+            js.id = id;
+            js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v25.0';
+            fjs.parentNode.insertBefore(js, fjs);
+        }
+    }(document, 'script', 'facebook-jssdk'));
+  }
+</script>
+
+<script>
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (!d.getElementById(id)) {
+            js = d.createElement(s);
+            js.type = 'text/javascript';
+            js.async = true;
+            js.defer = true;
+            js.id = id;
+            js.src = 'https://platform.twitter.com/widgets.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }
+    }(document, 'script', 'twitter-jssdk'));
+</script>
+
+<script>
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (!d.getElementById(id)) {
+            js = d.createElement(s);
+            js.type = 'text/javascript';
+            js.async = true;
+            js.defer = true;
+            js.id = id;
+            js.src = 'https://assets.pinterest.com/js/pinit.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }
+    }(document, 'script', 'pinterest-jssdk'));
+</script>
+
+
+                <div class="rating-wrapper">
+    <div class="rating-wording">Vous aimez ?</div>
+    <svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <defs>
+        <symbol id="icon-star" viewBox="0 0 26 28">
+          <path d="M26 10.109c0 0.281-0.203 0.547-0.406 0.75l-5.672 5.531 1.344 7.812c0.016 0.109 0.016 0.203 0.016 0.313 0 0.406-0.187 0.781-0.641 0.781-0.219 0-0.438-0.078-0.625-0.187l-7.016-3.687-7.016 3.687c-0.203 0.109-0.406 0.187-0.625 0.187-0.453 0-0.656-0.375-0.656-0.781 0-0.109 0.016-0.203 0.031-0.313l1.344-7.812-5.688-5.531c-0.187-0.203-0.391-0.469-0.391-0.75 0-0.469 0.484-0.656 0.875-0.719l7.844-1.141 3.516-7.109c0.141-0.297 0.406-0.641 0.766-0.641s0.625 0.344 0.766 0.641l3.516 7.109 7.844 1.141c0.375 0.063 0.875 0.25 0.875 0.719z"></path>
+        </symbol>
+        <linearGradient id="grad">
+          <stop offset="50%" stop-color="#ffc41f"/>
+          <stop offset="50%" stop-color="#9f9f9f"/>
+        </linearGradient>
+      </defs>
+    </svg>
+    <form class="stars">
+              <input class="stars-input" type="radio" name="rating" value="5" id="rating-5-32911036" >
+        <label class="stars-view stars-view-5-32911036 " for="rating-5-32911036" onclick="handleRate(32911036, 5, 0, 'stars-view-5-32911036', this)">
+          <svg class="icon icon-star">
+            <use xlink:href="#icon-star"></use>
+          </svg>
+        </label>
+              <input class="stars-input" type="radio" name="rating" value="4" id="rating-4-32911036" >
+        <label class="stars-view stars-view-4-32911036 " for="rating-4-32911036" onclick="handleRate(32911036, 4, 0, 'stars-view-4-32911036', this)">
+          <svg class="icon icon-star">
+            <use xlink:href="#icon-star"></use>
+          </svg>
+        </label>
+              <input class="stars-input" type="radio" name="rating" value="3" id="rating-3-32911036" >
+        <label class="stars-view stars-view-3-32911036 " for="rating-3-32911036" onclick="handleRate(32911036, 3, 0, 'stars-view-3-32911036', this)">
+          <svg class="icon icon-star">
+            <use xlink:href="#icon-star"></use>
+          </svg>
+        </label>
+              <input class="stars-input" type="radio" name="rating" value="2" id="rating-2-32911036" >
+        <label class="stars-view stars-view-2-32911036 " for="rating-2-32911036" onclick="handleRate(32911036, 2, 0, 'stars-view-2-32911036', this)">
+          <svg class="icon icon-star">
+            <use xlink:href="#icon-star"></use>
+          </svg>
+        </label>
+              <input class="stars-input" type="radio" name="rating" value="1" id="rating-1-32911036" >
+        <label class="stars-view stars-view-1-32911036 " for="rating-1-32911036" onclick="handleRate(32911036, 1, 0, 'stars-view-1-32911036', this)">
+          <svg class="icon icon-star">
+            <use xlink:href="#icon-star"></use>
+          </svg>
+        </label>
+          </form>
+    <div class="rating-raters-32911036">
+      0 vote
+    </div>
+  </div>
+
+  <script defer async>
+            function setFullStar(halfStarElement) {
+        halfStarElement.classList.add('star-chosen')
+      }
+
+      function setRaters(ratersElement, raters) {
+        ratersElement.textContent = raters > 1 ? `${raters} votes` : `${raters} vote`
+      }
+
+      function createToaster() {
+        const toaster = document.createElement('div')
+        toaster.classList.add('rating-toaster')
+        document.body.appendChild(toaster)
+        return toaster
+      }
+
+      function showToast(message, status) {
+        const toaster = createToaster()
+        toaster.textContent = message
+        toaster.classList.add('show-rating-toaster')
+
+        if (status === "success") {
+          toaster.style.backgroundColor = "#E5F4EF"
+          toaster.style.color = "#1D8C65"
+        } else {
+          toaster.style.backgroundColor = "#FFB5B5"
+          toaster.style.color = "#6F0000"
+        }
+
+        setTimeout(() => {
+          toaster.classList.remove('show-rating-toaster')
+        }, 3000)
+      }
+
+      async function rate(postID, value, halfStarClass, node) {
+        const res = await fetch(`/api/section-container/rate/${postID}/${value}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: 'include',
+        })
+
+        if (res.ok) {
+          const data = await res.json()
+          const ratersNumber = document.querySelector(`.rating-raters-${postID}`)
+          setRaters(ratersNumber, data.raters)
+          showToast("Votre vote est pris en compte","success")
+
+          if (node.classList.contains("half-star")) {
+            const halfStarElement = document.querySelector(`.${halfStarClass}`)
+            setFullStar(halfStarElement)
+          }
+        }
+
+        return res
+      }
+
+      function handleUserLogin() {
+        return window.open(
+          `${window.location.origin}/comments/fr/fetch/user`,
+          "loginob",
+          "width=400,height=450,location=0,menubar=0,resizable=0,scrollbars=0,status=0,toolbar=0,titlebar=0"
+        )
+      }
+
+      async function handleRate(postID, value, halfStar, halfStarClass, node) {
+        const isPreview = /\/preview\/|\.preview\./.test(window.location.href)
+        if (isPreview) {
+          showToast("Vous ne pouvez pas votez sur une preview de votre blog.","error")
+          return
+        }
+        try {
+          const rateResponse = await rate(postID, value, halfStarClass, node)
+          if (rateResponse.status === 401) {
+            const loginWindow = handleUserLogin()
+            const checkWindowClosed = setInterval(() => {
+              if (loginWindow && loginWindow.closed) {
+                clearInterval(checkWindowClosed)
+                const res = rate(postID, value, halfStarClass)
+                if (res.status !== 200) {
+                  showToast("Une erreur est survenue lors du vote","error")
+                }
+              }
+            }, 1000)
+          }
+        } catch (e) {
+          showToast("Une erreur est survenue lors du vote","error")
+        }
+      }
+  </script>
+
+      </div>
+
+  </div>
+
+                        <div class="article article_32910490">
+      <div class="date-header">13 juillet 2017</div>
+
+          <a class="article_link" href="https://www.evaliyacuisine.com/archives/2017/07/13/35472490.html">
+        <h2 class="article_title title">VERRINES TRICOLORES</h2>
+      </a>
+      
+
+
+  <div class="ob-sections">
+      
+    
+     
+  <div
+    class="ob-section ob-section-html "
+      >
+
+<p><a name="IMG_116652343" href="https://storage.canalblog.com/67/30/1327576/116652343_o.jpg" target="_blank"><img src="https://storage.canalblog.com/67/30/1327576/116652343.jpg" border="0" alt="1" class="nonealign width600" /></a></p>
+<p>Demain c'est le 14 juillet et pour cette occasion j'ai créé pour mon partenaire <a href="http://www.la-villageoise.com/" target="_blank">La Villageoise</a> des verrines tricolores.</p>
+<p>L'idée m'est venue en voyant des photos sur pinterest. J'ai donc décidée d'associer les fraises, le vin rouge, la fève tonka, la coco et les myrtilles.</p>
+<p>Et bien je dois dire que l'association fonctionne à merveille, recette testée et validée par ma famille et mes copains.</p>
+<p>Je ne vous dis pas plus et vous laisse tester et apprécier ces délicieuses verrines.</p>
+<p>N'oubliez pas de vous abonnez à ma newsletter et de me suivre sur <a href="https://www.facebook.com/evaliyacuisine/?ref=settings" target="_blank">facebook</a>, <a href="https://twitter.com/evaliyacuisine" target="_blank">twitter</a>, <a href="https://www.instagram.com/evaliyacuisine/" target="_blank">instagram </a>et <a href="https://fr.pinterest.com/evaliyacuisine/" target="_blank">pinterest</a>.</p>
+<p>Pour &nbsp;5 pots – Prép : 15mn – Frigo 4h + 4h – Petit budget – Facile</p>
+<p>Ingrédients :</p>
+<div>- &nbsp;500 g de fraises</div>
+<div>-&nbsp; 15 cl de vin rouge La Villageoise</div>
+<div>-&nbsp; 70 g + 70 g de sucre en poudre</div>
+<div>-&nbsp; 1 fève tonka</div>
+<div>-&nbsp; 4 + 5 feuilles de gélatine</div>
+<div>-&nbsp; 400 ml de lait de coco</div>
+<div>-&nbsp; 200 ml crème liquide entière</div>
+<div>-&nbsp; 100 g de myrtilles</div>
+<div></div>
+<p><span style="text-decoration: underline;"><em>Recette</em></span></p>
+<div>Verser le vin rouge et 70 g de sucre en poudre dans un casserole, faire bouillir pendant 3 mn.</div>
+<div></div>
+<div>Dans un bol d’eau froide mettre les 4 feuilles de gélatine à ramollir.</div>
+<div></div>
+<div>Ajouter les fraises (lavées, équeutées et coupées en deux) et la fève de tonka râpée. Faire cuire pendant 10 mn à feu doux en remuant de temps en temps. Eteindre le feu, ajouter les feuilles de gélatine essorées. Bien mélanger.</div>
+<div></div>
+<div>Dans une boite à œufs poser les pots de façon à ce qu’ils soient penchés.</div>
+<div></div>
+<div>Verser la préparation aux fraises et mettre au frigo pendant 4 heures.</div>
+<div></div>
+<div>Mettre les&nbsp; 5 feuilles de gélatine à ramollir dans un bol d’eau froide.</div>
+<div></div>
+<div>Dans une casserole verser le lait de coco, les 70 g de sucre restant et la crème liquide. Bien mélanger, aux premiers frémissements, éteindre le feu et ajouter les feuilles de gélatine essorées. Bien mélanger et laisser un peu refroidir.</div>
+<div></div>
+<div>Verser&nbsp; le lait de coco sur les fraises gélifiées dans les pots toujours penchés, mettre au frigo et laisser au frais pendant 4 heures.</div>
+<div></div>
+<div>Au moment de servir répartir les myrtilles&nbsp; sur la crème au lait de coco.</div>
+<div></div>
+<p><span style="text-decoration: underline;"><em>Astuce du chef</em></span></p>
+<p>Ce dessert peut être préparé la veille. Vous pouvez remplacer la lait de coco par du lait de vache ou de chèvre et les myrtilles par du cassis.</p>    </div>
+
+
+            
+
+  </div>
+  
+          <div class="article_footer">
+    <div class="article_footer_info">
+      Posté par evaliya cuisine à 06:30 - <a href="https://www.evaliyacuisine.com/archives/2017/07/13/35472490.html#ob-comments"><span>Commentaires [<span id="comment-count-32910490">…</span><script>
+  ob.commentCount(document.querySelector("#comment-count-32910490"), {
+    resource: "https://www.evaliyacuisine.com/api/comment-count/32910490",
+    format: (count) => {
+      const string = count === 0
+        ? "0"
+        : count === 1
+          ? "%c"
+          : "%c"
+
+      return string.replace("%c", count)
+    }
+  })
+</script>]</span></a> - Permalien [<a href="https://www.evaliyacuisine.com/archives/2017/07/13/35472490.html">#</a>]
+    </div>
+          <div class="article_footer_tags">
+        Tags:
+                  <a href="/tag/fraises/"><span class="article_footer_tag">fraises</span></a>,&nbsp;                  <a href="/tag/vin%20rouge/"><span class="article_footer_tag">vin rouge</span></a>,&nbsp;                  <a href="/tag/verrines/"><span class="article_footer_tag">verrines</span></a>,&nbsp;                  <a href="/tag/la%20villageoise/"><span class="article_footer_tag">la villageoise</span></a>,&nbsp;                  <a href="/tag/coco/"><span class="article_footer_tag">coco</span></a>,&nbsp;                  <a href="/tag/myrtilles/"><span class="article_footer_tag">myrtilles</span></a>,&nbsp;                  <a href="/tag/noix%20de%20coco/"><span class="article_footer_tag">noix de coco</span></a>              </div>
+                      
+
+
+            
+          <h3 class="ob-Shares-title">Partager cet article</h3>
+          <div class="ob-Shares ob-Shares--right ob-Shares--horizontal ">
+        <div class="ob-Shares-facebookShare">
+        <div class="fb-share-button" data-href="https://www.evaliyacuisine.com/archives/2017/07/13/35472490.html" data-layout="button_count"></div>
+    </div>
+            <div class="ob-Shares-twitter">
+        <a class="twitter-share-button"
+          href="https://twitter.com/share"
+          data-url="https://www.evaliyacuisine.com/archives/2017/07/13/35472490.html"
+                    data-hashtags="fraises,vin rouge,verrines,la villageoise,coco,myrtilles,noix de coco"                      data-text="VERRINES&#x20;TRICOLORES"
+                     data-lang="en"
+          ></a>
+    </div>
+                <div class="ob-Shares-pinterest">
+        <a href="https://pinterest.com/pin/create/button/"
+                        data-pin-count="beside"
+                        data-pin-color="red"
+            data-pin-config="beside"
+                        data-pin-description="VERRINES&#x20;TRICOLORES"
+            data-pin-media="http://storage.canalblog.com/67/30/1327576/116652343_o.jpg"
+                        data-pin-url="https://www.evaliyacuisine.com/archives/2017/07/13/35472490.html"
+            target="_BLANK"
+        >
+            <img src="https://assets.pinterest.com/images/pidgets/pinit_fg_en_rect_red_20.png" />
+        </a>
+    </div>
+          <div class="ob-Shares-mail">
+    <a href="mailto:?subject=VERRINES%20TRICOLORES&body=Voici%20un%20article%20int%C3%A9ressant%20que%20j%27ai%20trouv%C3%A9%20sur%20%3A%20https%3A%2F%2Fwww.evaliyacuisine.com%2Farchives%2F2017%2F07%2F13%2F35472490.html">
+      <img src="https://assets.canalblog.com/c/blog/v2026.07.01/images/shareicon_email.png">
+    </a>
+  </div>
+  <div class="ob-Shares-print ob-Shares-print_32910490">
+      <img src="https://assets.canalblog.com/c/blog/v2026.07.01/images/printer.png">
+  </div>
+</div>
+
+<script>
+  var printElement = document.querySelector(".ob-Shares-print_32910490")
+  printElement.addEventListener("click", function() {
+    ob.printPost("VERRINES TRICOLORES", "\n\n\n  <div class=\"ob-sections\">\n      \n    \n     \n  <div\n    class=\"ob-section ob-section-html \"\n      >\n\n<p><a name=\"IMG_116652343\" href=\"https:\/\/storage.canalblog.com\/67\/30\/1327576\/116652343_o.jpg\" target=\"_blank\"><img src=\"https:\/\/storage.canalblog.com\/67\/30\/1327576\/116652343.jpg\" border=\"0\" alt=\"1\" class=\"nonealign width600\" \/><\/a><\/p>\r\n<p>Demain c'est le 14 juillet et pour cette occasion j'ai cr\u00e9\u00e9 pour mon partenaire <a href=\"http:\/\/www.la-villageoise.com\/\" target=\"_blank\">La Villageoise<\/a> des verrines tricolores.<\/p>\r\n<p>L'id\u00e9e m'est venue en voyant des photos sur pinterest. J'ai donc d\u00e9cid\u00e9e d'associer les fraises, le vin rouge, la f\u00e8ve tonka, la coco et les myrtilles.<\/p>\r\n<p>Et bien je dois dire que l'association fonctionne \u00e0 merveille, recette test\u00e9e et valid\u00e9e par ma famille et mes copains.<\/p>\r\n<p>Je ne vous dis pas plus et vous laisse tester et appr\u00e9cier ces d\u00e9licieuses verrines.<\/p>\r\n<p>N'oubliez pas de vous abonnez \u00e0 ma newsletter et de me suivre sur <a href=\"https:\/\/www.facebook.com\/evaliyacuisine\/?ref=settings\" target=\"_blank\">facebook<\/a>, <a href=\"https:\/\/twitter.com\/evaliyacuisine\" target=\"_blank\">twitter<\/a>, <a href=\"https:\/\/www.instagram.com\/evaliyacuisine\/\" target=\"_blank\">instagram <\/a>et <a href=\"https:\/\/fr.pinterest.com\/evaliyacuisine\/\" target=\"_blank\">pinterest<\/a>.<\/p>\r\n<p>Pour &nbsp;5 pots \u2013 Pr\u00e9p : 15mn \u2013 Frigo 4h + 4h \u2013 Petit budget \u2013 Facile<\/p>\r\n<p>Ingr\u00e9dients :<\/p>\r\n<div>- &nbsp;500 g de fraises<\/div>\r\n<div>-&nbsp; 15 cl de vin rouge La Villageoise<\/div>\r\n<div>-&nbsp; 70 g + 70 g de sucre en poudre<\/div>\r\n<div>-&nbsp; 1 f\u00e8ve tonka<\/div>\r\n<div>-&nbsp; 4 + 5 feuilles de g\u00e9latine<\/div>\r\n<div>-&nbsp; 400 ml de lait de coco<\/div>\r\n<div>-&nbsp; 200 ml cr\u00e8me liquide enti\u00e8re<\/div>\r\n<div>-&nbsp; 100 g de myrtilles<\/div>\r\n<div><\/div>\r\n<p><span style=\"text-decoration: underline;\"><em>Recette<\/em><\/span><\/p>\r\n<div>Verser le vin rouge et 70 g de sucre en poudre dans un casserole, faire bouillir pendant 3 mn.<\/div>\r\n<div><\/div>\r\n<div>Dans un bol d\u2019eau froide mettre les 4 feuilles de g\u00e9latine \u00e0 ramollir.<\/div>\r\n<div><\/div>\r\n<div>Ajouter les fraises (lav\u00e9es, \u00e9queut\u00e9es et coup\u00e9es en deux) et la f\u00e8ve de tonka r\u00e2p\u00e9e. Faire cuire pendant 10 mn \u00e0 feu doux en remuant de temps en temps. Eteindre le feu, ajouter les feuilles de g\u00e9latine essor\u00e9es. Bien m\u00e9langer.<\/div>\r\n<div><\/div>\r\n<div>Dans une boite \u00e0 \u0153ufs poser les pots de fa\u00e7on \u00e0 ce qu\u2019ils soient pench\u00e9s.<\/div>\r\n<div><\/div>\r\n<div>Verser la pr\u00e9paration aux fraises et mettre au frigo pendant 4 heures.<\/div>\r\n<div><\/div>\r\n<div>Mettre les&nbsp; 5 feuilles de g\u00e9latine \u00e0 ramollir dans un bol d\u2019eau froide.<\/div>\r\n<div><\/div>\r\n<div>Dans une casserole verser le lait de coco, les 70 g de sucre restant et la cr\u00e8me liquide. Bien m\u00e9langer, aux premiers fr\u00e9missements, \u00e9teindre le feu et ajouter les feuilles de g\u00e9latine essor\u00e9es. Bien m\u00e9langer et laisser un peu refroidir.<\/div>\r\n<div><\/div>\r\n<div>Verser&nbsp; le lait de coco sur les fraises g\u00e9lifi\u00e9es dans les pots toujours pench\u00e9s, mettre au frigo et laisser au frais pendant 4 heures.<\/div>\r\n<div><\/div>\r\n<div>Au moment de servir r\u00e9partir les myrtilles&nbsp; sur la cr\u00e8me au lait de coco.<\/div>\r\n<div><\/div>\r\n<p><span style=\"text-decoration: underline;\"><em>Astuce du chef<\/em><\/span><\/p>\r\n<p>Ce dessert peut \u00eatre pr\u00e9par\u00e9 la veille. Vous pouvez remplacer la lait de coco par du lait de vache ou de ch\u00e8vre et les myrtilles par du cassis.<\/p>    <\/div>\n\n\n            \n\n  <\/div>\n  ", "canalblog")
+  })
+</script>
+
+
+<script>
+  function isMobile() {
+    return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  }
+  if (isMobile()) {
+    (function() {
+      var fbBtn = document.querySelector('.fb-share-button');
+
+      if (fbBtn) {
+        fbBtn.classList.add("mobile-custom")
+        var shareBtn = document.createElement('a');
+        shareBtn.href = `https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.evaliyacuisine.com%2Farchives%2F2017%2F07%2F13%2F35472490.html&t=VERRINES TRICOLORES`;
+        shareBtn.target = "_blank";
+        shareBtn.rel = "noopener noreferrer";
+
+        shareBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"/></svg>';
+
+        fbBtn.appendChild(shareBtn);
+      }
+    }())
+  } else {
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (!d.getElementById(id)) {
+            js = d.createElement(s);
+            js.type = 'text/javascript';
+            js.async = true;
+            js.defer = true;
+            js.id = id;
+            js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v25.0';
+            fjs.parentNode.insertBefore(js, fjs);
+        }
+    }(document, 'script', 'facebook-jssdk'));
+  }
+</script>
+
+<script>
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (!d.getElementById(id)) {
+            js = d.createElement(s);
+            js.type = 'text/javascript';
+            js.async = true;
+            js.defer = true;
+            js.id = id;
+            js.src = 'https://platform.twitter.com/widgets.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }
+    }(document, 'script', 'twitter-jssdk'));
+</script>
+
+<script>
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (!d.getElementById(id)) {
+            js = d.createElement(s);
+            js.type = 'text/javascript';
+            js.async = true;
+            js.defer = true;
+            js.id = id;
+            js.src = 'https://assets.pinterest.com/js/pinit.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }
+    }(document, 'script', 'pinterest-jssdk'));
+</script>
+
+
+                <div class="rating-wrapper">
+    <div class="rating-wording">Vous aimez ?</div>
+    <svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <defs>
+        <symbol id="icon-star" viewBox="0 0 26 28">
+          <path d="M26 10.109c0 0.281-0.203 0.547-0.406 0.75l-5.672 5.531 1.344 7.812c0.016 0.109 0.016 0.203 0.016 0.313 0 0.406-0.187 0.781-0.641 0.781-0.219 0-0.438-0.078-0.625-0.187l-7.016-3.687-7.016 3.687c-0.203 0.109-0.406 0.187-0.625 0.187-0.453 0-0.656-0.375-0.656-0.781 0-0.109 0.016-0.203 0.031-0.313l1.344-7.812-5.688-5.531c-0.187-0.203-0.391-0.469-0.391-0.75 0-0.469 0.484-0.656 0.875-0.719l7.844-1.141 3.516-7.109c0.141-0.297 0.406-0.641 0.766-0.641s0.625 0.344 0.766 0.641l3.516 7.109 7.844 1.141c0.375 0.063 0.875 0.25 0.875 0.719z"></path>
+        </symbol>
+        <linearGradient id="grad">
+          <stop offset="50%" stop-color="#ffc41f"/>
+          <stop offset="50%" stop-color="#9f9f9f"/>
+        </linearGradient>
+      </defs>
+    </svg>
+    <form class="stars">
+              <input class="stars-input" type="radio" name="rating" value="5" id="rating-5-32910490" >
+        <label class="stars-view stars-view-5-32910490 " for="rating-5-32910490" onclick="handleRate(32910490, 5, 0, 'stars-view-5-32910490', this)">
+          <svg class="icon icon-star">
+            <use xlink:href="#icon-star"></use>
+          </svg>
+        </label>
+              <input class="stars-input" type="radio" name="rating" value="4" id="rating-4-32910490" >
+        <label class="stars-view stars-view-4-32910490 " for="rating-4-32910490" onclick="handleRate(32910490, 4, 0, 'stars-view-4-32910490', this)">
+          <svg class="icon icon-star">
+            <use xlink:href="#icon-star"></use>
+          </svg>
+        </label>
+              <input class="stars-input" type="radio" name="rating" value="3" id="rating-3-32910490" >
+        <label class="stars-view stars-view-3-32910490 " for="rating-3-32910490" onclick="handleRate(32910490, 3, 0, 'stars-view-3-32910490', this)">
+          <svg class="icon icon-star">
+            <use xlink:href="#icon-star"></use>
+          </svg>
+        </label>
+              <input class="stars-input" type="radio" name="rating" value="2" id="rating-2-32910490" >
+        <label class="stars-view stars-view-2-32910490 " for="rating-2-32910490" onclick="handleRate(32910490, 2, 0, 'stars-view-2-32910490', this)">
+          <svg class="icon icon-star">
+            <use xlink:href="#icon-star"></use>
+          </svg>
+        </label>
+              <input class="stars-input" type="radio" name="rating" value="1" id="rating-1-32910490" >
+        <label class="stars-view stars-view-1-32910490 " for="rating-1-32910490" onclick="handleRate(32910490, 1, 0, 'stars-view-1-32910490', this)">
+          <svg class="icon icon-star">
+            <use xlink:href="#icon-star"></use>
+          </svg>
+        </label>
+          </form>
+    <div class="rating-raters-32910490">
+      0 vote
+    </div>
+  </div>
+
+  <script defer async>
+            function setFullStar(halfStarElement) {
+        halfStarElement.classList.add('star-chosen')
+      }
+
+      function setRaters(ratersElement, raters) {
+        ratersElement.textContent = raters > 1 ? `${raters} votes` : `${raters} vote`
+      }
+
+      function createToaster() {
+        const toaster = document.createElement('div')
+        toaster.classList.add('rating-toaster')
+        document.body.appendChild(toaster)
+        return toaster
+      }
+
+      function showToast(message, status) {
+        const toaster = createToaster()
+        toaster.textContent = message
+        toaster.classList.add('show-rating-toaster')
+
+        if (status === "success") {
+          toaster.style.backgroundColor = "#E5F4EF"
+          toaster.style.color = "#1D8C65"
+        } else {
+          toaster.style.backgroundColor = "#FFB5B5"
+          toaster.style.color = "#6F0000"
+        }
+
+        setTimeout(() => {
+          toaster.classList.remove('show-rating-toaster')
+        }, 3000)
+      }
+
+      async function rate(postID, value, halfStarClass, node) {
+        const res = await fetch(`/api/section-container/rate/${postID}/${value}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: 'include',
+        })
+
+        if (res.ok) {
+          const data = await res.json()
+          const ratersNumber = document.querySelector(`.rating-raters-${postID}`)
+          setRaters(ratersNumber, data.raters)
+          showToast("Votre vote est pris en compte","success")
+
+          if (node.classList.contains("half-star")) {
+            const halfStarElement = document.querySelector(`.${halfStarClass}`)
+            setFullStar(halfStarElement)
+          }
+        }
+
+        return res
+      }
+
+      function handleUserLogin() {
+        return window.open(
+          `${window.location.origin}/comments/fr/fetch/user`,
+          "loginob",
+          "width=400,height=450,location=0,menubar=0,resizable=0,scrollbars=0,status=0,toolbar=0,titlebar=0"
+        )
+      }
+
+      async function handleRate(postID, value, halfStar, halfStarClass, node) {
+        const isPreview = /\/preview\/|\.preview\./.test(window.location.href)
+        if (isPreview) {
+          showToast("Vous ne pouvez pas votez sur une preview de votre blog.","error")
+          return
+        }
+        try {
+          const rateResponse = await rate(postID, value, halfStarClass, node)
+          if (rateResponse.status === 401) {
+            const loginWindow = handleUserLogin()
+            const checkWindowClosed = setInterval(() => {
+              if (loginWindow && loginWindow.closed) {
+                clearInterval(checkWindowClosed)
+                const res = rate(postID, value, halfStarClass)
+                if (res.status !== 200) {
+                  showToast("Une erreur est survenue lors du vote","error")
+                }
+              }
+            }, 1000)
+          }
+        } catch (e) {
+          showToast("Une erreur est survenue lors du vote","error")
+        }
+      }
+  </script>
+
+      </div>
+
+  </div>
+
+              
+            </div>
+</div>
+
+    <div class="right-zone">
+    <div class="side-zone">
+                                                            
+
+<div class="ob-widgets">
+        <div class="ob-widget ob-widget_search" >
+    <div class="ob-h3 ob-widget_search_title ob-widget_title">
+      Recherche
+    </div>
+    <form action="/search" method="post">
+      <input type="text" name="q" placeholder="Recherche..." class="ob-widget_search_input" />
+      <input type="submit" value="Recherche" class="ob-widget_search_submit" />
+    </form>
+  </div>
+
+                        <div class="ob-widget ob-widget_subscribe">
+    <div class="ob-h3 ob-widget_subscribe_title ob-widget_title">
+      Newsletter
+    </div>
+    <div class="ob-widget_subscribe_content">
+      <!-- subscription form -->
+<form action="/mail/subscribe?utm_source=_ob_abo_newsletter&amp;utm_medium=_ob_sidebar" method="post" class="ob-form ob-form-subscription">
+    <div class="ob-form-field">
+        <label class="ob-label required" for="form_email">Email</label>
+        <input type="email" id="form_email" name="email" placeholder="Saisissez votre email ici" required="required" class="ob-input ob-input-email" />
+    </div>
+    <input type="submit" value="S'abonner" class="ob-input ob-input-submit" />
+</form>
+    </div>
+          <div class="ob-widget_subscribe_count">
+          <span class="ob-widget_newsletter-subscribers_subscribers-count">155 abonnés</span>
+      </div>
+      </div>
+
+                        <div class="ob-widget ob-widget_freeModule">
+        <div class="ob-widget_freeModule_content">
+      <p>&nbsp;</p>
+<p><a name="IMG_101411686" href="http://storage.canalblog.com/72/28/1327576/101411686_o.jpg" target="_blank"><img src="http://storage.canalblog.com/72/28/1327576/101411686.to_resize_150x3000.jpg" border="0" alt="Logo_InternetGuyDemarle" class="leftalign width150" /></a></p>
+<p>&nbsp;&nbsp;&nbsp;<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYuPfnSa6zJ99oEBLi7FazbefgtHBC_YPpzsODvy6nvfC-0sPI" border="0" alt="Résultat de recherche d'images pour " class="rg_i" style="width: 280px; height: 157px; margin-top: 0px; margin-right: 0px; margin-left: -14px;" data-src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYuPfnSa6zJ99oEBLi7FazbefgtHBC_YPpzsODvy6nvfC-0sPI" data-sz="f" /><br /><span style="font-size: 14pt;"><span style="font-size: 12pt; font-family: 'trebuchet ms', geneva;"><br />Si vous souhaitez dater un atelier culinaire ou des renseignements sur le <strong>ICOOK'IN</strong> (Robot Culinaire Chauffant Connecté) et les produits <strong>FLEXIPAN</strong> de <strong>GUY DEMARLE</strong>,</span></span><br /><span style="font-family: 'trebuchet ms', geneva;"><span style="font-size: 12pt;">n'hésitez à me contacter.<br /></span><span style="font-size: 12pt;">Pour le site <strong>GOURMANDISES</strong>, renseignez mon code Conseiller : <strong>ORA14569</strong></span></span><br /><br /><br /><br /><a name="IMG_101411686" href="http://storage.canalblog.com/72/28/1327576/101411686_o.jpg" target="_blank"></a></p>
+    </div>
+  </div>
+
+                      <div class="ob-widget ob-widget_navigation">
+  <div class="ob-h3 ob-widget_navigation_title ob-widget_title">
+    Evaliya cuisine
+  </div>
+  <ul>
+          <li>
+        Blog culinaire d'une passionn&eacute;e de cuisine
+      </li>
+        <li>
+      <a href="/">
+        Accueil du blog
+      </a>
+    </li>
+    <li>
+      <a href="https://www.canalblog.com/creation" target="_blank">
+        Créer un blog avec CanalBlog
+      </a>
+    </li>
+  </ul>
+</div>
+
+                        <div class="ob-widget ob-widget_ownerAvatar">
+    <img class="ob-widget_ownerAvatar_img" src="https://image.canalblog.com/1EFwXcyTQpvOUVuJQcoeh9NMvhs=/150x150/smart/filters:no_upscale()/https%3A%2F%2Fprofilepics.canalblog.com%2Fprofilepics%2F1%2F3%2F1303807.jpg" alt="Evaliya cuisine" />
+  </div>
+
+                          <div class="ob-widget ob-widget_pages">
+    <div class="ob-h3 ob-widget_pages_title ob-widget_title">
+              Pages
+          </div>
+    <ul class="ob-widget_pages_content">
+              <li class="ob-widget_pages_item">
+          <a href="https://www.evaliyacuisine.com/pages/biographie/31266093.html">
+            BIOGRAPHIE
+          </a>
+        </li>
+              <li class="ob-widget_pages_item">
+          <a href="https://www.evaliyacuisine.com/pages/partenariats/33536855.html">
+            PARTENARIATS
+          </a>
+        </li>
+          </ul>
+  </div>
+
+                        <div class="ob-widget ob-widget_facebook">
+                  <div class="fb-page" data-href="https://www.facebook.com/evaliyacuisine/" data-tabs="" data-width="" data-height="" data-small-header="1" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="1">
+          <blockquote cite="https://www.facebook.com/evaliyacuisine/" class="fb-xfbml-parse-ignore">
+            <a href="https://www.facebook.com/evaliyacuisine/">https://www.facebook.com/evaliyacuisine/</a>
+          </blockquote>
+        </div>
+        </div>
+
+                        <div class="ob-widget ob-widget_instagram">
+              <div class="ob-widget_instagram_element ob-widget_social-share">
+        <a class="ob-widget_instagram_link" href="https://instagram.com/evaliyacuisine" target="_blank">
+          <i class="fa-brands fa-instagram"></i>
+          <span>Suivre evaliyacuisine</span>
+        </a>
+      </div>
+      </div>
+
+                        <div class="ob-widget ob-widget_twitter">
+              <div class="ob-widget_twitter_element ob-widget_social-share">
+        <a class="ob-widget_twitter_link" href="https://twitter.com/evaliyacuisine" target="_blank">
+          <i class="fa-brands fa-twitter"></i>
+          <span>Suivre @evaliyacuisine</span>
+        </a>
+      </div>
+      </div>
+
+                        <div class="ob-widget ob-widget_pinterest">
+              <div class="ob-widget_pinterest_element ob-widget_social-share">
+        <a class="ob-widget_pinterest_link" href="https://pinterest.com/Evaliyacuisine" target="_blank">
+          <i class="fa-brands fa-pinterest-p"></i>
+          <span>Suivre Evaliyacuisine</span>
+        </a>
+      </div>
+      </div>
+
+                          <div class="ob-widget ob-widget_cloud-tags">
+    <div class="ob-h3 ob-widget_cloud-tags_title ob-widget_title">
+              Catégories
+          </div>
+    <ul class="ob-widget_cloud-tags_list">
+                    <li class="ob-widget_cloud-tags_tag" data-count="50" >
+          <a href="/tag/la%20villageoise/" title="la villageoise (50)" class="ob-widget_cloud-tags_link">
+            la villageoise
+          </a>
+        </li>
+              <li class="ob-widget_cloud-tags_tag" data-count="45" >
+          <a href="/tag/demarle/" title="demarle (45)" class="ob-widget_cloud-tags_link">
+            demarle
+          </a>
+        </li>
+              <li class="ob-widget_cloud-tags_tag" data-count="33" >
+          <a href="/tag/chocolat/" title="chocolat (33)" class="ob-widget_cloud-tags_link">
+            chocolat
+          </a>
+        </li>
+              <li class="ob-widget_cloud-tags_tag" data-count="29" >
+          <a href="/tag/vin%20blanc/" title="vin blanc (29)" class="ob-widget_cloud-tags_link">
+            vin blanc
+          </a>
+        </li>
+              <li class="ob-widget_cloud-tags_tag" data-count="20" >
+          <a href="/tag/vin%20rouge/" title="vin rouge (20)" class="ob-widget_cloud-tags_link">
+            vin rouge
+          </a>
+        </li>
+              <li class="ob-widget_cloud-tags_tag" data-count="11" >
+          <a href="/tag/fraises/" title="fraises (11)" class="ob-widget_cloud-tags_link">
+            fraises
+          </a>
+        </li>
+              <li class="ob-widget_cloud-tags_tag" data-count="10" >
+          <a href="/tag/champignons/" title="champignons (10)" class="ob-widget_cloud-tags_link">
+            champignons
+          </a>
+        </li>
+              <li class="ob-widget_cloud-tags_tag" data-count="9" >
+          <a href="/tag/icookin/" title="icookin (9)" class="ob-widget_cloud-tags_link">
+            icookin
+          </a>
+        </li>
+              <li class="ob-widget_cloud-tags_tag" data-count="9" >
+          <a href="/tag/vanille/" title="vanille (9)" class="ob-widget_cloud-tags_link">
+            vanille
+          </a>
+        </li>
+              <li class="ob-widget_cloud-tags_tag" data-count="8" >
+          <a href="/tag/bacon/" title="bacon (8)" class="ob-widget_cloud-tags_link">
+            bacon
+          </a>
+        </li>
+              <li class="ob-widget_cloud-tags_tag" data-count="7" >
+          <a href="/tag/mousse/" title="mousse (7)" class="ob-widget_cloud-tags_link">
+            mousse
+          </a>
+        </li>
+              <li class="ob-widget_cloud-tags_tag" data-count="7" >
+          <a href="/tag/muffins/" title="muffins (7)" class="ob-widget_cloud-tags_link">
+            muffins
+          </a>
+        </li>
+              <li class="ob-widget_cloud-tags_tag" data-count="7" >
+          <a href="/tag/pommes/" title="pommes (7)" class="ob-widget_cloud-tags_link">
+            pommes
+          </a>
+        </li>
+              <li class="ob-widget_cloud-tags_tag" data-count="7" >
+          <a href="/tag/pralines%20roses/" title="pralines roses (7)" class="ob-widget_cloud-tags_link">
+            pralines roses
+          </a>
+        </li>
+              <li class="ob-widget_cloud-tags_tag" data-count="7" >
+          <a href="/tag/riz/" title="riz (7)" class="ob-widget_cloud-tags_link">
+            riz
+          </a>
+        </li>
+              <li class="ob-widget_cloud-tags_tag" data-count="6" >
+          <a href="/tag/cake/" title="cake (6)" class="ob-widget_cloud-tags_link">
+            cake
+          </a>
+        </li>
+              <li class="ob-widget_cloud-tags_tag" data-count="6" >
+          <a href="/tag/creme/" title="crème (6)" class="ob-widget_cloud-tags_link">
+            crème
+          </a>
+        </li>
+              <li class="ob-widget_cloud-tags_tag" data-count="6" >
+          <a href="/tag/dessert/" title="dessert (6)" class="ob-widget_cloud-tags_link">
+            dessert
+          </a>
+        </li>
+              <li class="ob-widget_cloud-tags_tag" data-count="6" >
+          <a href="/tag/fetes/" title="fetes (6)" class="ob-widget_cloud-tags_link">
+            fetes
+          </a>
+        </li>
+              <li class="ob-widget_cloud-tags_tag" data-count="6" >
+          <a href="/tag/pommes%20de%20terre/" title="pommes de terre (6)" class="ob-widget_cloud-tags_link">
+            pommes de terre
+          </a>
+        </li>
+              <li class="ob-widget_cloud-tags_tag" data-count="6" >
+          <a href="/tag/poulet/" title="poulet (6)" class="ob-widget_cloud-tags_link">
+            poulet
+          </a>
+        </li>
+              <li class="ob-widget_cloud-tags_tag" data-count="5" >
+          <a href="/tag/amandes/" title="amandes (5)" class="ob-widget_cloud-tags_link">
+            amandes
+          </a>
+        </li>
+              <li class="ob-widget_cloud-tags_tag" data-count="5" >
+          <a href="/tag/caramel/" title="caramel (5)" class="ob-widget_cloud-tags_link">
+            caramel
+          </a>
+        </li>
+              <li class="ob-widget_cloud-tags_tag" data-count="5" >
+          <a href="/tag/coco/" title="coco (5)" class="ob-widget_cloud-tags_link">
+            coco
+          </a>
+        </li>
+              <li class="ob-widget_cloud-tags_tag" data-count="5" >
+          <a href="/tag/courgettes/" title="courgettes (5)" class="ob-widget_cloud-tags_link">
+            courgettes
+          </a>
+        </li>
+              <li class="ob-widget_cloud-tags_tag" data-count="5" >
+          <a href="/tag/framboise/" title="framboise (5)" class="ob-widget_cloud-tags_link">
+            framboise
+          </a>
+        </li>
+              <li class="ob-widget_cloud-tags_tag" data-count="5" >
+          <a href="/tag/fromage/" title="fromage (5)" class="ob-widget_cloud-tags_link">
+            fromage
+          </a>
+        </li>
+              <li class="ob-widget_cloud-tags_tag" data-count="5" >
+          <a href="/tag/galette/" title="galette (5)" class="ob-widget_cloud-tags_link">
+            galette
+          </a>
+        </li>
+          </ul>
+  </div>
+
+  <script>
+    var generateFontSize = function({smallestCount, largestCount, smallestFontSize, largestFontSize, currentCount}) {
+      return `${( ((currentCount - smallestCount) * (largestFontSize - smallestFontSize)) / (largestCount - smallestCount) ) + smallestFontSize}px`
+
+    }
+
+    var resizeTags = function(tags) {
+      var smallestCount = tags[tags.length -1].dataset.count
+      var largestCount = tags[0].dataset.count
+      var smallestFontSize = 12
+      var largestFontSize = 50
+
+      tags.forEach(function(tag) {
+        var currentCount = tag.dataset.count
+        tag.style.fontSize = generateFontSize({
+          smallestCount,
+          largestCount,
+          smallestFontSize,
+          largestFontSize,
+          currentCount
+        })
+      })
+    }
+
+    var shuffleNodeList = function(nodeList) {
+      for (var i = nodeList.children.length; i >= 0; i--) {
+        nodeList.appendChild(nodeList.children[Math.random() * i | 0])
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+      var tags = document.querySelectorAll(".ob-widget_cloud-tags_tag")
+      var tagsNodeList = document.querySelector(".ob-widget_cloud-tags_list")
+
+      resizeTags(tags)
+      shuffleNodeList(tagsNodeList)
+    })
+  </script>
+
+                          <div class="ob-widget ob-widget_archives">
+    <div class="ob-widget_archives_title ob-widget_title ob-h3">
+              Archives
+          </div>
+    <ul id="ob-widget_archives_list">
+              <li class="ob-widget_archives_year-list" data-year="2023">
+          <div class="ob-widget_archives_year">2023<span class="ob-widget_archives_trigger"></span></div>
+          <ul class="ob-widget_archives_month-list">
+                                          <li><a href="/archive/2023-11/">Novembre</a> (2)</li>
+                                    </ul>
+        </li>
+              <li class="ob-widget_archives_year-list" data-year="2022">
+          <div class="ob-widget_archives_year">2022<span class="ob-widget_archives_trigger"></span></div>
+          <ul class="ob-widget_archives_month-list">
+                                          <li><a href="/archive/2022-02/">Février</a> (1)</li>
+                                    </ul>
+        </li>
+              <li class="ob-widget_archives_year-list" data-year="2021">
+          <div class="ob-widget_archives_year">2021<span class="ob-widget_archives_trigger"></span></div>
+          <ul class="ob-widget_archives_month-list">
+                                          <li><a href="/archive/2021-12/">Décembre</a> (2)</li>
+                                                        <li><a href="/archive/2021-11/">Novembre</a> (3)</li>
+                                                        <li><a href="/archive/2021-04/">Avril</a> (2)</li>
+                                                        <li><a href="/archive/2021-03/">Mars</a> (1)</li>
+                                    </ul>
+        </li>
+              <li class="ob-widget_archives_year-list" data-year="2020">
+          <div class="ob-widget_archives_year">2020<span class="ob-widget_archives_trigger"></span></div>
+          <ul class="ob-widget_archives_month-list">
+                                          <li><a href="/archive/2020-08/">Août</a> (1)</li>
+                                                        <li><a href="/archive/2020-04/">Avril</a> (1)</li>
+                                                        <li><a href="/archive/2020-03/">Mars</a> (1)</li>
+                                                        <li><a href="/archive/2020-02/">Février</a> (1)</li>
+                                    </ul>
+        </li>
+              <li class="ob-widget_archives_year-list" data-year="2019">
+          <div class="ob-widget_archives_year">2019<span class="ob-widget_archives_trigger"></span></div>
+          <ul class="ob-widget_archives_month-list">
+                                          <li><a href="/archive/2019-09/">Septembre</a> (1)</li>
+                                                        <li><a href="/archive/2019-03/">Mars</a> (1)</li>
+                                                        <li><a href="/archive/2019-01/">Janvier</a> (1)</li>
+                                    </ul>
+        </li>
+              <li class="ob-widget_archives_year-list" data-year="2018">
+          <div class="ob-widget_archives_year">2018<span class="ob-widget_archives_trigger"></span></div>
+          <ul class="ob-widget_archives_month-list">
+                                          <li><a href="/archive/2018-11/">Novembre</a> (3)</li>
+                                                        <li><a href="/archive/2018-09/">Septembre</a> (1)</li>
+                                                        <li><a href="/archive/2018-07/">Juillet</a> (1)</li>
+                                                        <li><a href="/archive/2018-06/">Juin</a> (2)</li>
+                                                        <li><a href="/archive/2018-02/">Février</a> (2)</li>
+                                    </ul>
+        </li>
+              <li class="ob-widget_archives_year-list" data-year="2017">
+          <div class="ob-widget_archives_year">2017<span class="ob-widget_archives_trigger"></span></div>
+          <ul class="ob-widget_archives_month-list">
+                                          <li><a href="/archive/2017-12/">Décembre</a> (1)</li>
+                                                        <li><a href="/archive/2017-08/">Août</a> (1)</li>
+                                                        <li><a href="/archive/2017-07/">Juillet</a> (2)</li>
+                                                        <li><a href="/archive/2017-06/">Juin</a> (3)</li>
+                                                        <li><a href="/archive/2017-05/">Mai</a> (1)</li>
+                                                        <li><a href="/archive/2017-04/">Avril</a> (1)</li>
+                                                        <li><a href="/archive/2017-03/">Mars</a> (3)</li>
+                                                        <li><a href="/archive/2017-02/">Février</a> (2)</li>
+                                                        <li><a href="/archive/2017-01/">Janvier</a> (5)</li>
+                                    </ul>
+        </li>
+              <li class="ob-widget_archives_year-list" data-year="2016">
+          <div class="ob-widget_archives_year">2016<span class="ob-widget_archives_trigger"></span></div>
+          <ul class="ob-widget_archives_month-list">
+                                          <li><a href="/archive/2016-12/">Décembre</a> (5)</li>
+                                                        <li><a href="/archive/2016-11/">Novembre</a> (4)</li>
+                                                        <li><a href="/archive/2016-10/">Octobre</a> (3)</li>
+                                                        <li><a href="/archive/2016-09/">Septembre</a> (7)</li>
+                                                        <li><a href="/archive/2016-06/">Juin</a> (3)</li>
+                                                        <li><a href="/archive/2016-05/">Mai</a> (13)</li>
+                                                        <li><a href="/archive/2016-04/">Avril</a> (6)</li>
+                                                        <li><a href="/archive/2016-03/">Mars</a> (13)</li>
+                                                        <li><a href="/archive/2016-02/">Février</a> (5)</li>
+                                                        <li><a href="/archive/2016-01/">Janvier</a> (10)</li>
+                                    </ul>
+        </li>
+              <li class="ob-widget_archives_year-list" data-year="2015">
+          <div class="ob-widget_archives_year">2015<span class="ob-widget_archives_trigger"></span></div>
+          <ul class="ob-widget_archives_month-list">
+                                          <li><a href="/archive/2015-12/">Décembre</a> (11)</li>
+                                                        <li><a href="/archive/2015-11/">Novembre</a> (7)</li>
+                                                        <li><a href="/archive/2015-10/">Octobre</a> (8)</li>
+                                                        <li><a href="/archive/2015-09/">Septembre</a> (9)</li>
+                                                        <li><a href="/archive/2015-08/">Août</a> (8)</li>
+                                                        <li><a href="/archive/2015-07/">Juillet</a> (3)</li>
+                                                        <li><a href="/archive/2015-06/">Juin</a> (9)</li>
+                                                        <li><a href="/archive/2015-05/">Mai</a> (12)</li>
+                                                        <li><a href="/archive/2015-04/">Avril</a> (4)</li>
+                                                        <li><a href="/archive/2015-03/">Mars</a> (14)</li>
+                                                        <li><a href="/archive/2015-02/">Février</a> (11)</li>
+                                                        <li><a href="/archive/2015-01/">Janvier</a> (12)</li>
+                                    </ul>
+        </li>
+          </ul>
+  </div>
+
+      <script>
+      var years = document.querySelectorAll(".ob-widget_archives_year")
+      var monthList = document.querySelectorAll(".ob-widget_archives_month-list")
+
+      const handleClick = (e) => {
+        var target = e.target.nextElementSibling;
+        if (target) {
+          if (target.classList.contains("ob-archives-hidden")) {
+            target.style.height = target.scrollHeight + "px"
+            target.classList.remove("ob-archives-hidden")
+            e.target.classList.add("ob-widget_archives--open")
+            target.classList.add("ob-archives-visible")
+
+          } else {
+            target.style.height = "0px"
+            target.classList.remove("ob-archives-visible")
+            e.target.classList.remove("ob-widget_archives--open")
+            target.classList.add("ob-archives-hidden")
+          }
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", function() {
+        monthList.forEach(function(month) {
+          month.classList.add("ob-archives-hidden")
+        })
+
+        years.forEach((year) => {
+          year.addEventListener("click", handleClick)
+        })
+      })
+    </script>
+  
+                        <div class="ob-widget ob-widget_last-posts">
+    <div class="ob-h3 ob-widget_last-posts_title ob-widget_title">
+      Articles récents
+    </div>
+    <ul class="ob-widget_last-posts_list">
+              <li class="ob-widget_last-posts_post">
+          <a href="https://www.evaliyacuisine.com/archives/2023/11/05/40093053.html" title="BARRES DE CEREALES AU CHOCOLAT" class="ob-widget_last-posts_link">
+            BARRES DE CEREALES AU CHOCOLAT
+          </a>
+        </li>
+              <li class="ob-widget_last-posts_post">
+          <a href="https://www.evaliyacuisine.com/archives/2023/11/01/40092965.html" title="BOULES D’ENERGIE" class="ob-widget_last-posts_link">
+            BOULES D’ENERGIE
+          </a>
+        </li>
+              <li class="ob-widget_last-posts_post">
+          <a href="https://www.evaliyacuisine.com/archives/2022/02/20/39355399.html" title="GATEAU AUX POMMES ET MIEL" class="ob-widget_last-posts_link">
+            GATEAU AUX POMMES ET MIEL
+          </a>
+        </li>
+              <li class="ob-widget_last-posts_post">
+          <a href="https://www.evaliyacuisine.com/archives/2021/12/11/39257261.html" title="VELOUTE DE CEPES ET GIROLLES" class="ob-widget_last-posts_link">
+            VELOUTE DE CEPES ET GIROLLES
+          </a>
+        </li>
+              <li class="ob-widget_last-posts_post">
+          <a href="https://www.evaliyacuisine.com/archives/2021/12/04/39246571.html" title="POULET KORMA NOIX DE CAJOU" class="ob-widget_last-posts_link">
+            POULET KORMA NOIX DE CAJOU
+          </a>
+        </li>
+              <li class="ob-widget_last-posts_post">
+          <a href="https://www.evaliyacuisine.com/archives/2021/11/28/39238848.html" title="SPAGHETTIS A LA CREME DE CRESSON" class="ob-widget_last-posts_link">
+            SPAGHETTIS A LA CREME DE CRESSON
+          </a>
+        </li>
+              <li class="ob-widget_last-posts_post">
+          <a href="https://www.evaliyacuisine.com/archives/2021/11/23/39230886.html" title="VELOUTE DE CAROTTES CURCUMA ET AMANDES" class="ob-widget_last-posts_link">
+            VELOUTE DE CAROTTES CURCUMA ET AMANDES
+          </a>
+        </li>
+              <li class="ob-widget_last-posts_post">
+          <a href="https://www.evaliyacuisine.com/archives/2021/11/22/39230779.html" title="MOUSSE AU CHOCOLAT" class="ob-widget_last-posts_link">
+            MOUSSE AU CHOCOLAT
+          </a>
+        </li>
+              <li class="ob-widget_last-posts_post">
+          <a href="https://www.evaliyacuisine.com/archives/2021/04/03/38897696.html" title="NIDS DE PAQUES AUX FRAMBOISES ET VIN ROUGE" class="ob-widget_last-posts_link">
+            NIDS DE PAQUES AUX FRAMBOISES ET VIN ROUGE
+          </a>
+        </li>
+              <li class="ob-widget_last-posts_post">
+          <a href="https://www.evaliyacuisine.com/archives/2021/04/02/38897671.html" title="OEUFS A L'ECOSSAISE" class="ob-widget_last-posts_link">
+            OEUFS A L'ECOSSAISE
+          </a>
+        </li>
+          </ul>
+  </div>
+
+                        <div class="ob-widget ob-widget_freeModule">
+        <div class="ob-widget_freeModule_content">
+      
+    </div>
+  </div>
+
+                        <div class="ob-widget ob-widget_rss">
+        <div class="ob-widget_rss_element ob-widget_social-share">
+      <a class="ob-widget_rss_link" href="/rss" target="_blank">
+        <i class="fa-solid fa-rss"></i>
+        <span>Flux RSS</span>
+      </a>
+    </div>
+  </div>
+
+                        <div class="ob-widget ob-widget_contact-owner">
+    <div class="ob-h3 ob-widget_contact-owner_title ob-widget_title">
+      
+    </div>
+    <div class="ob-widget_contact-owner_link">
+      <a href="/contact">Contacter le propriétaire du blog</a>
+    </div>
+  </div>
+
+                  </div>
+    </div>
+  </div>
+
+</div>
+
+              </div>
+          </div>
+      
+    <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    function createDropdownTrigger() {
+      var trigger = document.createElement("span")
+      trigger.classList.add("trigger")
+
+      return trigger
+    }
+
+    function addTriggers() {
+      var elementsToTriggers = document.querySelectorAll(".menu-main .branch > a, .menu-main .branch > span")
+      elementsToTriggers.forEach(function (elementToTrigger) {
+        elementToTrigger.insertAdjacentElement("afterend", createDropdownTrigger())
+      })
+    }
+
+    addTriggers()
+  })
+</script>
+
+     <div class="ob-footer" id="legals" >
+    <ul>
+        <li class="ob-footer-item">Voir le profil de <a href="https://www.canalblog.com/user/1048392.html" target="_blank">evaliya cuisine</a> sur le portail Canalblog</li>
+                <li class="ob-footer-item"><a href="/top">Top articles</a></li>
+        <li class="ob-footer-item"><a href="/contact">Contact</a></li>
+        <li class="ob-footer-item"><a href="https://www.canalblog.com/abuse/1371499"> Signaler un abus </a></li>
+        <li class="ob-footer-item"><a href="https://www.canalblog.com/terms-of-use" target="_blank">C.G.U.</a></li>
+            <li class="ob-footer-item"><a href="https://www.canalblog.com/cookies" target="_blank">Cookies et données personnelles</a></li>
+        <li class="ob-footer-item"><a href="javascript:Didomi.notice.show()">Préférences cookies</a></li>
+    </ul>
+</div>
+
+  
+                            
+  <script defer async>
+    document.addEventListener('DOMContentLoaded', function() {
+      async function syncRating() {
+        const isPreview = /\/preview\/|\.preview\./.test(window.location.href)
+
+        if (isPreview) {
+          return
+        }
+
+        const res = await fetch(`/api/section-container/rates`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            id: [32911036,32910490],
+          })
+        })
+
+        if (res.ok) {
+          const data = await res.json()
+
+          Object.keys(data).forEach(function(key) {
+            const postRate = data[key]
+            const input = document.querySelector(`#rating-${Math.ceil(postRate.rate)}-${key}`)
+
+            input.checked = true
+
+            // check if it's half-star rate
+            if (!Number.isInteger(postRate.rate)) {
+              const label = document.querySelector(`.stars-view-${Math.ceil(postRate.rate)}-${key}`)
+
+              label.classList.add("half-star")
+            }
+
+            const ratersEl = document.querySelector(`.rating-raters-${key}`)
+
+            ratersEl.textContent = postRate.raters > 1 ? `${postRate.raters} votes` : `${postRate.raters} vote`
+          })
+        }
+      }
+
+      syncRating()
+    })
+  </script>
+        <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer', "GTM-WG3SK3P");
+  </script>
+    <script src="https://assets.canalblog.com/c/blog/v2026.07.01/obfuscated_link.4b3f12e9.js"></script>
+ </body>
+</html>

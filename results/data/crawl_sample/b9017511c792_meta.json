@@ -1,0 +1,10 @@
+{
+  "url": "https://www.georgiaentertainmentnews.com",
+  "url_id": "b9017511c792",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 115656,
+  "bot_html_len": 115656,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

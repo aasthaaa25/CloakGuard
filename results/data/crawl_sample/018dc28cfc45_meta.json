@@ -1,0 +1,10 @@
+{
+  "url": "https://www.wineroad.com",
+  "url_id": "018dc28cfc45",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 169939,
+  "bot_html_len": 169939,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

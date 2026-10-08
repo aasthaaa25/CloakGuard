@@ -1,0 +1,10 @@
+{
+  "url": "https://www.recpro.com",
+  "url_id": "c8f63254232d",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 697972,
+  "bot_html_len": 697816,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

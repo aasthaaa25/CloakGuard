@@ -1,0 +1,10 @@
+{
+  "url": "https://nadinekessler.ch/emotionsfluestern/",
+  "url_id": "000404e03596",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 157746,
+  "bot_html_len": 157738,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

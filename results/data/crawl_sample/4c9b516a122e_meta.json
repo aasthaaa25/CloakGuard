@@ -1,0 +1,10 @@
+{
+  "url": "https://www.uchockey.com.au/Club-Awards/umpire-of-the-year---women",
+  "url_id": "4c9b516a122e",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 754212,
+  "bot_html_len": 598633,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

@@ -1,0 +1,10 @@
+{
+  "url": "https://test.tp-link.com/it/support/emulator/?model=SG2210XMP-M2",
+  "url_id": "ad195c14a14f",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 568934,
+  "bot_html_len": 568933,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

@@ -1,0 +1,10 @@
+{
+  "url": "https://www.annalindhfoundation.org",
+  "url_id": "81b497e13076",
+  "human_status": 503,
+  "bot_status": 503,
+  "human_html_len": 3393,
+  "bot_html_len": 3393,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

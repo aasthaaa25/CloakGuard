@@ -1,0 +1,10 @@
+{
+  "url": "https://www.journeytogodly.com",
+  "url_id": "e0362809ae67",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 290937,
+  "bot_html_len": 290937,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

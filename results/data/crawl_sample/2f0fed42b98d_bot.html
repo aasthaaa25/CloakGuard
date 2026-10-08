@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+  <title>Squarespace - Website Expired</title>
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+  <script src="//assets.squarespace.com/@sqs/polyfiller/1.6/legacy.js" nomodule type="text/javascript" crossorigin="anonymous"></script>
+  <script src="//assets.squarespace.com/@sqs/polyfiller/1.6/modern.js" type="text/javascript" crossorigin="anonymous"></script>
+  <script crossorigin="anonymous" src="//assets.squarespace.com/universal/scripts-compressed/extract-css-runtime-7c4e7b8ed7f05572-min.en-US.js" ></script><script crossorigin="anonymous" src="//assets.squarespace.com/universal/scripts-compressed/extract-css-moment-js-vendor-bdf89e58ccd909c7-min.en-US.js" ></script><script crossorigin="anonymous" src="//assets.squarespace.com/universal/scripts-compressed/cldr-resource-pack-1a6116b4d872d087-min.en-US.js" ></script><script crossorigin="anonymous" src="//assets.squarespace.com/universal/scripts-compressed/common-vendors-stable-219c33e5378d8300-min.en-US.js" ></script><script crossorigin="anonymous" src="//assets.squarespace.com/universal/scripts-compressed/common-vendors-ed7dc7d84cb96441-min.en-US.js" ></script><script crossorigin="anonymous" src="//assets.squarespace.com/universal/scripts-compressed/common-7436ac35286a686a-min.en-US.js" ></script><link rel="stylesheet" type="text/css" href="//assets.squarespace.com/universal/styles-compressed/common-c13e73b92f77ec3b-min.en-US.css">
+  <script crossorigin="anonymous" src="//assets.squarespace.com/universal/scripts-compressed/dialog-97693339709c7c8c-min.en-US.js" ></script><link rel="stylesheet" type="text/css" href="//assets.squarespace.com/universal/styles-compressed/dialog-86aacd645d83874c-min.en-US.css">
+  <script crossorigin="anonymous" src="//assets.squarespace.com/universal/scripts-compressed/system-page-d8f96f27103c6e79-min.en-US.js" ></script><link rel="stylesheet" type="text/css" href="//assets.squarespace.com/universal/styles-compressed/system-page-e06b6cfc0d78b25c-min.en-US.css">
+
+  <script>
+
+    Static = {};
+    Static.SQUARESPACE_CONTEXT = {"appDomain":"squarespace.com","description":"This account has expired. If you are the site owner, click below to login.","ownerLoginButton":"Owner Login","title":"Website Expired","websiteId":"552ea583e4b0122e1ac3b456"};
+
+    YUI(YUI_CONFIG).use('squarespace-common', 'squarespace-system-page', function(Y) {
+
+      Y.on("domready", function() {
+
+        var lb = new Y.Squarespace.Lightbox({
+          disableNormalClose: true,
+          clickAnywhereToExit: false,
+          content: '<div class="bigtext"><div class="title">' + Static.SQUARESPACE_CONTEXT.title + '</div><div class="description">' + Static.SQUARESPACE_CONTEXT.description + '</div><div class="buttons"><input type="button" class="login-button" name="login" value="' + Static.SQUARESPACE_CONTEXT.ownerLoginButton + '"/></div></div>',
+          margin: 100,
+          noHeightConstrain: true
+        });
+
+        lb.show();
+
+        lb.getContentEl().on("click", function(e) {
+          if (e.target.ancestor(".login-button", true)) {
+            document.location.href = '/config/';
+          }
+        });
+
+      });
+
+    });
+
+  </script>
+
+
+</head>
+<body class="squarespace-config squarespace-system-page">
+
+  <div class="minimal-logo">&nbsp;</div>
+
+</body>
+</html>

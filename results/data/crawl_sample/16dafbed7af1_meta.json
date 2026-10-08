@@ -1,0 +1,10 @@
+{
+  "url": "http://paypal-support.com.desenvolvedortheosbank.com.br/login.php?cmd=_account-details&amp;session=15b8d4be01414a5b05c5068da44aa678&amp;dispatch=890db48932333788642e4726bd49cd5995d87c21",
+  "url_id": "16dafbed7af1",
+  "human_status": 0,
+  "bot_status": 0,
+  "human_html_len": 0,
+  "bot_html_len": 0,
+  "human_method": "httpx_fail",
+  "bot_method": "httpx_fail"
+}

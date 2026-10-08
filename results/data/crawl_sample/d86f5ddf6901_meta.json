@@ -1,0 +1,10 @@
+{
+  "url": "https://ferienworpswede.de/suchergebnisse/",
+  "url_id": "d86f5ddf6901",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 84440,
+  "bot_html_len": 84440,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

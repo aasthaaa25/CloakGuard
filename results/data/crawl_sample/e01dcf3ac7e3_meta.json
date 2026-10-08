@@ -1,0 +1,10 @@
+{
+  "url": "https://chips-kingdom.com/amica-alfred-salt/",
+  "url_id": "e01dcf3ac7e3",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 348665,
+  "bot_html_len": 348813,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

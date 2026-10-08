@@ -1,0 +1,10 @@
+{
+  "url": "https://www.kirchenzeitung.de",
+  "url_id": "31f532329b87",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 82300,
+  "bot_html_len": 82300,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

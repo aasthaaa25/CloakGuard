@@ -1,0 +1,461 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
+<title>Byte4Byte Software</title>
+<link id="theme" href="/css/b4b_default.css.php" rel="stylesheet" type="text/css" />
+<link href="/css/common.css.php" rel="stylesheet" type="text/css" />
+<link href="/css/dock.css" rel="stylesheet" type="text/css" />
+<link href="/css/font-flake.css" rel="stylesheet" type="text/css" />
+<noscript>
+	<link href="/css/noscript.css" rel="stylesheet" type="text/css" />
+</noscript>
+	
+	<link href="/css/mobile.css.php" rel="stylesheet" type="text/css" />
+<!--[if lt IE 9]>
+<script>
+  var e = ("abbr,article,aside,audio,canvas,datalist,details," +
+    "figure,footer,header,hgroup,mark,menu,meter,nav,output," +
+    "progress,section,time,video").split(',');
+  for (var i = 0; i < e.length; i++) {
+    document.createElement(e[i]);
+  }
+</script>
+<![endif]-->
+<script language="javascript" type="text/javascript" src="/js/jquery-1.10.2.min.js"></script>
+<script language="javascript" type="text/javascript" src="/js/jquery.jqdock.js"></script>
+<script language="javascript" type="text/javascript" src="/js/font-flake.js"></script>
+<script language="javascript" type="text/javascript">
+	$(window).scroll(function() {
+		if ($(window).scrollTop() == 0) {
+			$("#header_bar").removeClass("ontop");
+		}
+		else {
+			$("#header_bar").addClass("ontop");
+		}
+	});
+	$(document).ready(function () {
+		$("#header_bar").css("marginTop", "0px").show();
+		$('header').show();
+		$("#pageContent").css("opacity", "1").show();
+		$("#b4b_logo").css('marginLeft', '0px').css("opacity", "1").show();
+		$("#page").css("opacity", "1").show();
+		$("footer").show();
+		$("#point_to_products").show();
+		//$('#mobile-menu').fadeIn();
+		$("#bg, #bg2").show();
+					etx.init();
+			});
+
+$(document).ready(function() {
+	var $oldAjax = $.ajax; // save reference to the "real" ajax method
+	var proxied = window.XMLHttpRequest.prototype.open;
+
+	// override the method with a wrapper
+	$.ajax = function(){
+		var url = arguments[0].url;
+		if (url) {
+			//alert(url);
+			if (url.indexOf('?') == -1) {
+				url += '?ajax=1';
+			}
+			else {
+				url += '&ajax=1';
+			}
+			arguments[0].url = url;
+			//alert(arguments[0].url);
+		}
+		return $oldAjax.apply($oldAjax, arguments);
+	}
+
+	
+    window.XMLHttpRequest.prototype.open = function() {
+		var url = arguments[1];
+		if (url) {
+			//alert(url);
+			if (url.indexOf('?') == -1) {
+				url += '?ajax=1';
+			}
+			else {
+				url += '&ajax=1';
+			}
+			arguments[1] = url;
+			//alert(arguments[0].url);
+		}
+
+        return proxied.apply(this, [].slice.call(arguments));
+    };
+});
+
+var theme = 0;
+var dir = 0;
+var glow = 2;
+var glowdir = 0;
+
+$(document).ready(function(){
+			$("#product_dock #menu").css("margin-top", "5px");
+		$("#baseCentre, #baseLeft, #baseRight").css("margin-top", "0px");
+		var dockOptions = { align: 'bottom', // horizontal menu, with expansion UP from a fixed BOTTOM edge
+   				 flow: false,
+	 			sizeMax: 125,
+	 			fadeIn:500,
+    				onReady: function(){ $('.jqDockWrap', this).append($('.greyBase')); }
+				};
+				if (typeof $('#product_dock #menu').jqDock == 'function') $('#product_dock #menu').jqDock(dockOptions);
+	
+	
+	/*setInterval(function() {
+		var margin = parseInt($("#point_to_products").css("margin-right"));
+		switch(dir) {
+			case 0: // right
+				margin-=10;
+				break;
+			case 1: //left
+				margin+=10;
+				break;
+		}
+		if (margin <= 40) {
+			dir = 1;
+		}
+		else if (margin >=65) {
+			dir = 0;
+		}
+		$("#point_to_products").css("margin-right", ((margin) + "px"));
+	}, 1500);*/
+		/*setInterval(function() {
+			if (glowdir == 0) {
+				glow++;
+				if (glow >= 3) {
+					glowdir = 1;
+				}	
+			}
+			else if (glowdir == 1) {
+				glow--;
+				if (glow <= 1) {
+					glowdir = 0;
+				}
+			}
+
+			//$("div.jqDockWrap").removeClass("glow_white1").removeClass("glow_white2").removeClass("glow_white3").addClass("glow_white" + glow);
+			$("#page_body").removeClass("glow1").removeClass("glow2").removeClass("glow3").addClass("glow" + glow);
+			//$("#header_bar").removeClass("glow_header1").removeClass("glow_header2").removeClass("glow_header3").addClass("glow_header" + glow);
+
+		}, 350);*/
+		$("#page_body").removeClass("glow1").removeClass("glow2").removeClass("glow3").addClass("glow1");
+});
+
+var $jq = $;
+
+$.fn.resizeiframe=function(){
+    $jq(this).load(function() {
+        $jq(this).height( $jq(this).contents().find("body").height() + 30);
+					$jq(this).attr('verticalscrolling', 'no').attr('scrolling', 'no').css("overflow", "hidden").css("scroll-y", "hidden");
+		    });
+    $jq(this).click(function() {
+        $jq(this).height( $jq(this).contents().find("body").height() + 30 );
+    });
+
+}
+
+$(document).ready(function() {
+		$jq(".icon.fa-power-off.fa-fw").parent().unbind('click').bind('click', function(e) {
+			e.preventDefault();
+			$jq('#loginlogoutlink')[0].click();
+		});
+		$jq('iframe').resizeiframe();
+	});
+
+
+function setCookie(c_name,value,exdays)
+{
+	var exdate=new Date();
+	exdate.setDate(exdate.getDate() + exdays);
+	var c_value=escape(value) + ((exdays==null) ? "" : "; expires="+exdate.toUTCString());
+	c_value += "; path=/";
+	document.cookie=c_name + "=" + c_value;
+}
+
+</script>
+</head>
+<body class="support ">
+<div id="bgcolor"></div>
+<div id="bg"></div>
+<div id="bg2"></div>
+<div id="content">
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$("a#page_options").click(function(e) {
+			e.preventDefault();
+			if (! $("#page_options_menu").is(":visible")) {
+				$("#page_options_menu").css('opacity', 0).slideDown('slow').animate(
+																		{ opacity: 1 },
+																		{ queue: false, duration: 'slow' }
+																	  );
+			}
+		});
+		$("#def_theme").unbind('click').click(function(e) {
+			e.preventDefault();
+			$("#theme").attr('href', '/css/b4b_default.css.php');
+			$("#bg, #bg2").css('display', 'block');
+			setCookie("theme", 'b4b_default.css.php', 60);
+			$("#page_options_menu").slideUp('slow').animate(
+																		{ opacity: 0 },
+																		{ queue: false, duration: 'slow' }
+																	  , function() { $(this).hide() });
+		});
+		$("#light_theme").unbind('click').click(function(e) {
+			e.preventDefault();
+			$("#theme").attr('href', '/css/white.css.php');
+			$("#bg, #bg2").css('display', 'none');
+			setCookie("theme", 'white.css.php', 60);
+			$("#page_options_menu").slideUp('slow').animate(
+																		{ opacity: 0 },
+																		{ queue: false, duration: 'slow' }
+																	  , function() { $(this).hide() });
+		});
+		$(window).mousedown(function(e) {
+			if ($(e.target).is("#page_options_menu") || $("#page_options_menu").find(e.target).length) return;
+			if ($("#page_options_menu").is(":visible")) {
+				$("#page_options_menu").slideUp('slow').animate(
+																		{ opacity: 0 },
+																		{ queue: false, duration: 'slow' }
+																	  , function() { $(this).hide() });
+			}
+		});
+	});
+</script>
+<nav id="header_bar">
+	<a id="loginlogoutlink" href="/view/signin?&back_url=%2Fsupport%2Fsearch.php%3Ffilename%3Dsearch.php%26loc%3Dsupport&back_title=Back">Sign In</a>|
+		<a href="/view/myaccount?&back_url=%2Fsupport%2Fsearch.php%3Ffilename%3Dsearch.php%26loc%3Dsupport&back_title=Back">My Account</a><!--|
+		<a href="http://retrogaming.shop">Shop</a>-->
+		<a href="#" id="page_options">Page Options</a>
+	</nav>
+<div id="page_options_menu" class="triangle-isosceles top">
+<ul>
+<li><a href="#" id="def_theme">Default Theme</a></li>
+<li><a href="#" id="light_theme">Light Theme</a></li>
+</ul>
+</div>
+<header>
+	<section class="page_width centered" style="position: relative;">
+		<a href="/"><img src="/images/byte4byte-software-left-light-medium7.png" height="68" id="b4b_logo" style="margin-bottom:12px;" /><img src="/images/software-small.png" id="b4b_soft" style="margin-bottom:6px; display:none;" /></a>&nbsp;<span id="software" style="display:none;" >Software</span>			</section>
+</header>
+<section id="pageContent" class="page_width centered">
+	<div>
+		<nav id="page_nav_bar">
+			<a href="/">Home</a>|
+			<a href="/view/products">Products</a>|
+			<a href="/view/downloads">Downloads</a>
+			<span><div><a href="/support">Support</a></div></span>
+		</nav>	</div>
+	<div>
+		<section id="page_body">
+	<!DOCTYPE html>
+<html dir="ltr" lang="en-gb">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>Byte4Byte Software Support - Information</title>
+
+	<link rel="alternate" type="application/atom+xml" title="Feed - Byte4Byte Software Support" href="/support/app.php/feed">			<link rel="alternate" type="application/atom+xml" title="Feed - New Topics" href="/support/app.php/feed/topics">				
+
+<!--
+	phpBB style name: prosilver
+	Based on style:   prosilver (this is the default phpBB3 style)
+	Original author:  Tom Beddard ( http://www.subBlue.com/ )
+	Modified by:
+-->
+
+<link href="./assets/css/font-awesome.min.css?assets_version=23" rel="stylesheet">
+<link href="./styles/prosilver/theme/stylesheet.css?assets_version=23" rel="stylesheet">
+<link href="./styles/prosilver/theme/en/stylesheet.css?assets_version=23" rel="stylesheet">
+
+
+
+
+<!--[if lte IE 9]>
+	<link href="./styles/prosilver/theme/tweaks.css?assets_version=23" rel="stylesheet">
+<![endif]-->
+
+
+
+
+
+</head>
+<body id="phpbb" class="nojs notouch section-search ltr ">
+
+
+<div id="wrap" class="wrap">
+	<a id="top" class="top-anchor" accesskey="t"></a>
+	<div id="page-header">
+		<div class="headerbar" role="banner">
+					<div class="inner">
+
+			<div id="site-description" class="site-description">
+		<a id="logo" class="logo" href="./index.php" title="Board index">
+					<span class="site_logo"></span>
+				</a>
+				<h1>Byte4Byte Software Support</h1>
+				<p>Computer Science at its finest!</p>
+				<p class="skiplink"><a href="#start_here">Skip to content</a></p>
+			</div>
+
+									
+			</div>
+					</div>
+				<div class="navbar" role="navigation">
+	<div class="inner">
+
+	<ul id="nav-main" class="nav-main linklist" role="menubar">
+
+		<li id="quick-links" class="quick-links dropdown-container responsive-menu hidden" data-skip-responsive="true">
+			<a href="#" class="dropdown-trigger">
+				<i class="icon fa-bars fa-fw" aria-hidden="true"></i><span>Quick links</span>
+			</a>
+			<div class="dropdown">
+				<div class="pointer"><div class="pointer-inner"></div></div>
+				<ul class="dropdown-contents" role="menu">
+					
+					
+										<li class="separator"></li>
+
+									</ul>
+			</div>
+		</li>
+
+				<li data-last-responsive="true">
+			<a href="/support/app.php/help/faq" rel="help" title="Frequently Asked Questions" role="menuitem">
+				<i class="icon fa-question-circle fa-fw" aria-hidden="true"></i><span>FAQ</span>
+			</a>
+		</li>
+						
+		</ul>
+
+	<ul id="nav-breadcrumbs" class="nav-breadcrumbs linklist navlinks" role="menubar">
+				
+		
+		<li class="breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">
+
+			
+							<span class="crumb" itemtype="https://schema.org/ListItem" itemprop="itemListElement" itemscope><a itemprop="item" href="./index.php" accesskey="h" data-navbar-reference="index"><i class="icon fa-home fa-fw"></i><span itemprop="name">Board index</span></a><meta itemprop="position" content="1" /></span>
+
+			
+					</li>
+
+		
+			</ul>
+
+	</div>
+</div>
+	</div>
+
+	
+	<a id="start_here" class="anchor"></a>
+	<div id="page-body" class="page-body" role="main">
+		
+		
+<div class="panel" id="message">
+	<div class="inner">
+	<h2 class="message-title">Information</h2>
+	<p>Sorry but you are not permitted to use the search system.</p>
+		</div>
+</div>
+
+				</div>
+
+
+<div id="page-footer" class="page-footer" role="contentinfo">
+	<div class="navbar" role="navigation">
+	<div class="inner">
+
+	<ul id="nav-footer" class="nav-footer linklist" role="menubar">
+		<li class="breadcrumbs">
+									<span class="crumb"><a href="./index.php" data-navbar-reference="index"><i class="icon fa-home fa-fw" aria-hidden="true"></i><span>Board index</span></a></span>					</li>
+		
+				<li class="rightside">All times are <span title="UTC">UTC</span></li>
+													</ul>
+
+	</div>
+</div>
+
+	<div class="copyright">
+				<p class="footer-row">
+			<span class="footer-copyright">Powered by <a href="https://www.phpbb.com/">phpBB</a>&reg; Forum Software &copy; phpBB Limited</span>
+		</p>
+						<p class="footer-row" role="menu">
+			<a class="footer-link" href="./ucp.php?mode=privacy" title="Privacy" role="menuitem">
+				<span class="footer-link-text">Privacy</span>
+			</a>
+			|
+			<a class="footer-link" href="./ucp.php?mode=terms" title="Terms" role="menuitem">
+				<span class="footer-link-text">Terms</span>
+			</a>
+		</p>
+					</div>
+
+	<div id="darkenwrapper" class="darkenwrapper" data-ajax-error-title="AJAX error" data-ajax-error-text="Something went wrong when processing your request." data-ajax-error-text-abort="User aborted request." data-ajax-error-text-timeout="Your request timed out; please try again." data-ajax-error-text-parsererror="Something went wrong with the request and the server returned an invalid reply.">
+		<div id="darken" class="darken">&nbsp;</div>
+	</div>
+
+	<div id="phpbb_alert" class="phpbb_alert" data-l-err="Error" data-l-timeout-processing-req="Request timed out.">
+		<a href="#" class="alert_close">
+			<i class="icon fa-times-circle fa-fw" aria-hidden="true"></i>
+		</a>
+		<h3 class="alert_title">&nbsp;</h3><p class="alert_text"></p>
+	</div>
+	<div id="phpbb_confirm" class="phpbb_alert">
+		<a href="#" class="alert_close">
+			<i class="icon fa-times-circle fa-fw" aria-hidden="true"></i>
+		</a>
+		<div class="alert_text"></div>
+	</div>
+</div>
+
+</div>
+
+<div>
+	<a id="bottom" class="anchor" accesskey="z"></a>
+	</div>
+
+<script src="./assets/javascript/jquery-3.6.0.min.js?assets_version=23"></script>
+<script src="./assets/javascript/core.js?assets_version=23"></script>
+
+
+
+<script src="./styles/prosilver/template/forum_fn.js?assets_version=23"></script>
+<script src="./styles/prosilver/template/ajax.js?assets_version=23"></script>
+
+
+
+</body>
+</html>
+			
+	
+		</section>
+	</div>
+	<footer>
+		<!--<a href="#" class="minor">About Us</a><span class="separator"> | </span><a href="#" class="minor">Contact Us</a><br />439429596a3b9ccde38eb9.10271036-->
+	</footer>
+	</section>
+</div>
+<!-- Piwik -->
+<!--
+<script type="text/javascript">
+  var _paq = _paq || [];
+  _paq.push(["trackPageView"]);
+  _paq.push(["enableLinkTracking"]);
+
+  (function() {
+    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://byte4byte.com/piwik/";
+    _paq.push(["setTrackerUrl", u+"piwik.php"]);
+    _paq.push(["setSiteId", "3"]);
+    var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
+    g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
+  })();
+</script>-->
+<!-- End Piwik Code -->
+</body></html>

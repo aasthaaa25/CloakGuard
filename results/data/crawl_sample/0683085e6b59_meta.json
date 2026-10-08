@@ -1,0 +1,10 @@
+{
+  "url": "https://www.ozgrid.com",
+  "url_id": "0683085e6b59",
+  "human_status": 404,
+  "bot_status": 404,
+  "human_html_len": 5098,
+  "bot_html_len": 5098,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

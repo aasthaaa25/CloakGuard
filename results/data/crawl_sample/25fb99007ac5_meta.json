@@ -1,0 +1,10 @@
+{
+  "url": "https://www.madamegateau.it",
+  "url_id": "25fb99007ac5",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 143384,
+  "bot_html_len": 143384,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

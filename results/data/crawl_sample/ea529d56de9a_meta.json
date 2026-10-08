@@ -1,0 +1,10 @@
+{
+  "url": "https://www.royaldutchmint.com",
+  "url_id": "ea529d56de9a",
+  "human_status": 403,
+  "bot_status": 403,
+  "human_html_len": 5719,
+  "bot_html_len": 5634,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

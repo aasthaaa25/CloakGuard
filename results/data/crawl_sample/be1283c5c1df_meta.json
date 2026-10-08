@@ -1,0 +1,10 @@
+{
+  "url": "http://www.thewise.com",
+  "url_id": "be1283c5c1df",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 114,
+  "bot_html_len": 114,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

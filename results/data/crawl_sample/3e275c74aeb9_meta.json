@@ -1,0 +1,10 @@
+{
+  "url": "https://chollorenting.com/moto-peugeot-pulsion-125-evo-urban/",
+  "url_id": "3e275c74aeb9",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 208551,
+  "bot_html_len": 208578,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

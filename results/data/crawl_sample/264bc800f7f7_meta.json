@@ -1,0 +1,10 @@
+{
+  "url": "http://www.norailya.com",
+  "url_id": "264bc800f7f7",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 3413,
+  "bot_html_len": 3413,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

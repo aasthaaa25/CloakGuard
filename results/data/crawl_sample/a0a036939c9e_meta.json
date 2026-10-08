@@ -1,0 +1,10 @@
+{
+  "url": "https://www.vcp.de",
+  "url_id": "a0a036939c9e",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 129967,
+  "bot_html_len": 129967,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

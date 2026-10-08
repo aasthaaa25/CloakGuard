@@ -1,0 +1,10 @@
+{
+  "url": "https://www.cloetta.fi",
+  "url_id": "0fe8ba82053f",
+  "human_status": 200,
+  "bot_status": 202,
+  "human_html_len": 493794,
+  "bot_html_len": 2435,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

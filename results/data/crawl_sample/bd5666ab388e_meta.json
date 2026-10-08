@@ -1,0 +1,10 @@
+{
+  "url": "https://www.thecuriouslycreative.com",
+  "url_id": "bd5666ab388e",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 140764,
+  "bot_html_len": 140764,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

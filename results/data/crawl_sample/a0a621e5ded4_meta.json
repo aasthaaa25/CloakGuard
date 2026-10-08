@@ -1,0 +1,10 @@
+{
+  "url": "http://le-shanghai.net/",
+  "url_id": "a0a621e5ded4",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 31431,
+  "bot_html_len": 31431,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

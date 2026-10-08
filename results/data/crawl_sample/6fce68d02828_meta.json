@@ -1,0 +1,10 @@
+{
+  "url": "https://www.rss4lib.com",
+  "url_id": "6fce68d02828",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 110525,
+  "bot_html_len": 110525,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

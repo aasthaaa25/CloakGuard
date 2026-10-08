@@ -1,0 +1,10 @@
+{
+  "url": "https://www.biblestudy.org",
+  "url_id": "7ea5993d660e",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 31481,
+  "bot_html_len": 31481,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

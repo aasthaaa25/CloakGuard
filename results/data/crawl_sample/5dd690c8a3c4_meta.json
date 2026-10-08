@@ -1,0 +1,10 @@
+{
+  "url": "https://www.figmints.com",
+  "url_id": "5dd690c8a3c4",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 126637,
+  "bot_html_len": 126637,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

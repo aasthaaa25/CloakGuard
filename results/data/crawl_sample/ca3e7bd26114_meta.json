@@ -1,0 +1,10 @@
+{
+  "url": "https://www.criterion.com",
+  "url_id": "ca3e7bd26114",
+  "human_status": 403,
+  "bot_status": 403,
+  "human_html_len": 5664,
+  "bot_html_len": 5600,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

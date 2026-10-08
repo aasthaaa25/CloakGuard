@@ -1,0 +1,10 @@
+{
+  "url": "https://www.luath.co.uk",
+  "url_id": "382fb07b62eb",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 619920,
+  "bot_html_len": 620211,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

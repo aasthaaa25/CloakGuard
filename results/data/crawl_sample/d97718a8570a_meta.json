@@ -1,0 +1,10 @@
+{
+  "url": "https://www.csszengarden.com",
+  "url_id": "d97718a8570a",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 13483,
+  "bot_html_len": 13483,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

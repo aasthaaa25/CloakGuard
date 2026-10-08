@@ -1,0 +1,10 @@
+{
+  "url": "https://www.ipra.org",
+  "url_id": "65639537ff7c",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 47305,
+  "bot_html_len": 47305,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

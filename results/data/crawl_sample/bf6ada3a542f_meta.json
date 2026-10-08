@@ -1,0 +1,10 @@
+{
+  "url": "https://www.amigans.net/modules/myalbum/photo.php?lid=387&cid=5",
+  "url_id": "bf6ada3a542f",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 35594,
+  "bot_html_len": 35636,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

@@ -1,0 +1,10 @@
+{
+  "url": "https://www.toro.it",
+  "url_id": "fa1beebac8d8",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 310703,
+  "bot_html_len": 310730,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

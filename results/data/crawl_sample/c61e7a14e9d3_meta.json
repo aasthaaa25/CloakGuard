@@ -1,0 +1,10 @@
+{
+  "url": "https://www.mmslists.com",
+  "url_id": "c61e7a14e9d3",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 162321,
+  "bot_html_len": 162321,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

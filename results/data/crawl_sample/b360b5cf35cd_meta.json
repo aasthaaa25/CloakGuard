@@ -1,0 +1,10 @@
+{
+  "url": "http://centenerasports.com.ar/posiciones.php?categoria=1028&t=3&fecha=41658&fechaNum=2",
+  "url_id": "b360b5cf35cd",
+  "human_status": 0,
+  "bot_status": 200,
+  "human_html_len": 0,
+  "bot_html_len": 46965,
+  "human_method": "httpx_fail",
+  "bot_method": "httpx"
+}

@@ -1,0 +1,10 @@
+{
+  "url": "https://www.gardening-advice.net",
+  "url_id": "581d4392510a",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 114,
+  "bot_html_len": 114,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

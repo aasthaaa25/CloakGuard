@@ -1,0 +1,10 @@
+{
+  "url": "https://gazeta-savelki.ru/news/moscow/21259/",
+  "url_id": "8061572efed0",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 42312,
+  "bot_html_len": 42312,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

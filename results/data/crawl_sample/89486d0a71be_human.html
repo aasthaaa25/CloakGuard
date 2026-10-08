@@ -1,0 +1,411 @@
+<!-- MHonArc v2.6.19 -->
+<!--X-Subject: libpthread&#45;stubs:   =?UTF&#45;8?B?cmVwbGFjZSBwYWNrYWdlIHdpdGggdGhlIEZETyB2ZXJzaW9u?= -->
+<!--X-From-R13: =?GFT&#45;8?P?HU9vnITmWS55L3Xyot==?= &#60;gaaN@rgPER.bet> -->
+<!--X-Date: Mon, 21 Nov 2016 03:20:27 +0000 (UTC) -->
+<!--X-Message-Id: 20161121032011.A8F17C4C80@wip.pkgsrc.org -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>libpthread-stubs:   replace package with the FDO version</title>
+<link rel="stylesheet" href="/mailindex.css" type="text/css">
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+</head>
+<body>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<address>
+pkgsrc-WIP-changes archive
+</address>
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<hr>
+[<a href="/pkgsrc-wip-changes/2016/11/20/msg005039.html">Date Prev</a>][<a href="/pkgsrc-wip-changes/2016/11/21/msg005041.html">Date Next</a>][<a href="/pkgsrc-wip-changes/2016/11/20/msg005039.html">Thread Prev</a>][<a href="/pkgsrc-wip-changes/2016/11/21/msg005041.html">Thread Next</a>][<a
+href="../../../2016/11/date1.html#005040">Date Index</a>][<a
+href="../../../2016/11/thread1.html#005040">Thread Index</a>][<a
+href="../oindex.html">Old Index</a>]
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>libpthread-stubs:   replace package with the FDO version</h1>
+<hr>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><strong>To</strong>: <strong><a href="mailto:pkgsrc-wip-changes%NetBSD.org@localhost">pkgsrc-wip-changes%NetBSD.org@localhost</a></strong></li>
+<li><strong>Subject</strong>: <strong>libpthread-stubs:   replace package with the FDO version</strong></li>
+<li><strong>From</strong>: <strong>Tobias Nygren &lt;<a href="mailto:tnn%NetBSD.org@localhost">tnn%NetBSD.org@localhost</a>&gt;</strong></li>
+<li>Date: Mon, 21 Nov 2016 03:18:27 +0000</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>Module Name:	pkgsrc-wip
+Committed By:	Tobias Nygren &lt;tnn%NetBSD.org@localhost&gt;
+Pushed By:	tnn
+Date:		Mon Nov 21 04:18:27 2016 +0100
+Changeset:	6844ac07cbc4497aa94f5145717f0f9e24db7217
+
+Modified Files:
+	libpthread-stubs/DESCR
+	libpthread-stubs/Makefile
+	libpthread-stubs/PLIST
+	libpthread-stubs/buildlink3.mk
+Added Files:
+	libpthread-stubs/distinfo
+	libpthread-stubs/patches/patch-stubs.c
+Removed Files:
+	libpthread-stubs/files/Makefile
+	libpthread-stubs/files/pth.sym
+	libpthread-stubs/files/pthread-stubs.c
+	libpthread-stubs/files/pthread-stubs.pc
+
+Log Message:
+libpthread-stubs: replace package with the FDO version
+
+To see a diff of this commit:
+<a  rel="nofollow" href="https://wip.pkgsrc.org/cgi-bin/gitweb.cgi?p=pkgsrc-wip.git;a=commitdiff;h=6844ac07cbc4497aa94f5145717f0f9e24db7217">https://wip.pkgsrc.org/cgi-bin/gitweb.cgi?p=pkgsrc-wip.git;a=commitdiff;h=6844ac07cbc4497aa94f5145717f0f9e24db7217</a>
+
+Please note that diffs are not public domain; they are subject to the
+copyright notices on the relevant files.
+
+diffstat:
+ libpthread-stubs/DESCR                  | 18 ++++-----
+ libpthread-stubs/Makefile               | 33 ++++++----------
+ libpthread-stubs/PLIST                  |  2 +-
+ libpthread-stubs/buildlink3.mk          |  6 +--
+ libpthread-stubs/distinfo               |  7 ++++
+ libpthread-stubs/files/Makefile         | 18 ---------
+ libpthread-stubs/files/pth.sym          | 16 --------
+ libpthread-stubs/files/pthread-stubs.c  | 68 ---------------------------------
+ libpthread-stubs/files/pthread-stubs.pc |  8 ----
+ libpthread-stubs/patches/patch-stubs.c  | 22 +++++++++++
+ 10 files changed, 53 insertions(+), 145 deletions(-)
+
+diffs:
+diff --git a/libpthread-stubs/DESCR b/libpthread-stubs/DESCR
+index 41a2bbd..4e7e85b 100644
+--- a/libpthread-stubs/DESCR
++++ b/libpthread-stubs/DESCR
+@@ -1,9 +1,9 @@
+-Provide dummy implementations of pthread functions like mutex operations
+-to enable libraries to be used in both thread-aware and non-threaded programs.
+-
+-This package is derived from Matthias Drochner's stubs package for older
+-versions of NetBSD.  The intent is to use this with libX11 (or xcb), or perhaps
+-elsewhere in pkgsrc as needed.  Included is a pkg-config file that is
+-identical to the libpthread-stubs package from libxcb.  This library
+-contains more functions and no GNU autoconf cruft.  Great taste, less
+-filling! ;)
++This library provides weak aliases for pthread functions not provided in libc
++or otherwise available by default.  Libraries like libxcb rely on pthread
++stubs to use pthreads optionally, becoming thread-safe when linked to
++libpthread, while avoiding any performance hit when running single-threaded.
++libpthread-stubs supports this behavior even on platforms which do not supply
++all the necessary pthread stubs.  On platforms which already supply all the
++necessary pthread stubs, this package ships only the pkg-config file
++pthread-stubs.pc, to allow libraries to unconditionally express a dependency
++on pthread-stubs and still obtain correct behavior.
+diff --git a/libpthread-stubs/Makefile b/libpthread-stubs/Makefile
+index 0e5e34f..9775fec 100644
+--- a/libpthread-stubs/Makefile
++++ b/libpthread-stubs/Makefile
+@@ -1,30 +1,19 @@
+-# $NetBSD: Makefile,v 1.12 2012/10/03 09:10:40 asau Exp $
++# $NetBSD$
+ 
+-DISTNAME=	libpthread-stubs-1.0
+-PKGREVISION=	6
+-CATEGORIES=	devel
+-DISTFILES=	# empty
++DISTNAME=	libpthread-stubs-0.3
++CATEGORIES=	x11
++MASTER_SITES=	<a  rel="nofollow" href="https://xcb.freedesktop.org/dist/">https://xcb.freedesktop.org/dist/</a>
++EXTRACT_SUFX=	.tar.bz2
+ 
+-MAINTAINER=	blair.sadewitz%gmail.com@localhost #drochner%NetBSD.org@localhost
+-COMMENT=	Library providing noop-stubs for pthread functions
++MAINTAINER=	pkgsrc-users%NetBSD.org@localhost
++HOMEPAGE=	<a  rel="nofollow" href="https://xcb.freedesktop.org/">https://xcb.freedesktop.org/</a>
++COMMENT=	This library provides weak aliases for pthread functions
++LICENSE=	mit
+ 
+-
+-WRKSRC=		${WRKDIR}
++GNU_CONFIGURE=	yes
+ USE_LIBTOOL=	yes
+ USE_TOOLS+=	pkg-config
+ 
+-PKGCONFIG_OVERRIDE+=	pthread-stubs.pc
+-
+-PKGCONFIG_BASE=		${PKGBASE:S/lib//1}
+-
+-SUBST_CLASSES+=		pc
+-SUBST_STAGE.pc=		post-extract
+-SUBST_MESSAGE.pc=	Creating pkg-config file
+-SUBST_FILES.pc+=	pthread-stubs.pc
+-SUBST_VARS.pc+=		PKGVERSION PKGCONFIG_BASE PREFIX
+-
+-do-extract:
+-	${CP} ${FILESDIR}/pthread-stubs.c ${FILESDIR}/Makefile \
+-	${FILESDIR}/pthread-stubs.pc ${FILESDIR}/pth.sym ${WRKSRC}
++PKGCONFIG_OVERRIDE+=	pthread-stubs.pc.in
+ 
+ .include &quot;../../mk/bsd.pkg.mk&quot;
+diff --git a/libpthread-stubs/PLIST b/libpthread-stubs/PLIST
+index 12bee2a..418caea 100644
+--- a/libpthread-stubs/PLIST
++++ b/libpthread-stubs/PLIST
+@@ -1,3 +1,3 @@
+-@comment $NetBSD: PLIST,v 1.1 2007/04/25 21:43:43 bsadewitz Exp $
++@comment $NetBSD$
+ lib/libpthread-stubs.la
+ lib/pkgconfig/pthread-stubs.pc
+diff --git a/libpthread-stubs/buildlink3.mk b/libpthread-stubs/buildlink3.mk
+index 248b9b3..a2fe280 100644
+--- a/libpthread-stubs/buildlink3.mk
++++ b/libpthread-stubs/buildlink3.mk
+@@ -1,12 +1,12 @@
+-# $NetBSD: buildlink3.mk,v 1.6 2009/03/20 19:43:48 jsonn Exp $
++# $NetBSD$
+ 
+ BUILDLINK_TREE+=	libpthread-stubs
+ 
+ .if !defined(LIBPTHREAD_STUBS_BUILDLINK3_MK)
+ LIBPTHREAD_STUBS_BUILDLINK3_MK:=
+ 
+-BUILDLINK_API_DEPENDS.libpthread-stubs+=	libpthread-stubs&gt;=1.0nb4
++BUILDLINK_API_DEPENDS.libpthread-stubs+=	libpthread-stubs&gt;=0.3
+ BUILDLINK_PKGSRCDIR.libpthread-stubs?=	../../wip/libpthread-stubs
+-.endif # LIBPTHREAD_STUBS_BUILDLINK3_MK
++.endif	# LIBPTHREAD_STUBS_BUILDLINK3_MK
+ 
+ BUILDLINK_TREE+=	-libpthread-stubs
+diff --git a/libpthread-stubs/distinfo b/libpthread-stubs/distinfo
+new file mode 100644
+index 0000000..81e310d
+--- /dev/null
++++ b/libpthread-stubs/distinfo
+@@ -0,0 +1,7 @@
++$NetBSD$
++
++SHA1 (libpthread-stubs-0.3.tar.bz2) = 7fc486ad0ec54938f8b781cc374218f50eac8b99
++RMD160 (libpthread-stubs-0.3.tar.bz2) = a3a5f76e103c645749d7b8a8fc00ad472e59987b
++SHA512 (libpthread-stubs-0.3.tar.bz2) = c7cf63fa82ce9e8c37c6dc3b8cc30f8883655f95683c4466c54b617b086dd26a43bfa36363e47dc5730af6d59ac70443d211eb01b07d276edd144030a3580b15
++Size (libpthread-stubs-0.3.tar.bz2) = 203468 bytes
++SHA1 (patch-stubs.c) = ca7a2354d408b8caba6a1e6cee92dd782cf7f388
+diff --git a/libpthread-stubs/files/Makefile b/libpthread-stubs/files/Makefile
+deleted file mode 100644
+index 36cce65..0000000
+--- a/libpthread-stubs/files/Makefile
++++ /dev/null
+@@ -1,18 +0,0 @@
+-# $NetBSD: Makefile,v 1.4 2008/02/04 20:58:54 tnn2 Exp $
+-
+-all: libpthread-stubs.la
+-
+-libpthread-stubs.la: pthread-stubs.lo
+-	${LIBTOOL} --mode=link ${CC} -o $@ $? \
+-	-export-symbols pth.sym -rpath ${PREFIX}/lib
+-
+-pthread-stubs.lo: pthread-stubs.c
+-	${LIBTOOL} --mode=compile ${CC} -c -o $@ $?
+-
+-
+-install:
+-	${BSD_INSTALL_LIB_DIR} ${PREFIX}/lib
+-	${LIBTOOL} --mode=install ${BSD_INSTALL_LIB} libpthread-stubs.la \
+-		${PREFIX}/lib
+-	${BSD_INSTALL_DATA_DIR} ${PREFIX}/lib/pkgconfig
+-	${BSD_INSTALL_DATA} pthread-stubs.pc ${PREFIX}/lib/pkgconfig
+diff --git a/libpthread-stubs/files/pth.sym b/libpthread-stubs/files/pth.sym
+deleted file mode 100644
+index 35d300f..0000000
+--- a/libpthread-stubs/files/pth.sym
++++ /dev/null
+@@ -1,16 +0,0 @@
+-pthread_cond_broadcast
+-pthread_cond_destroy
+-pthread_cond_init
+-pthread_cond_signal
+-phread_cond_wait
+-pthread_equal
+-pthread_getspecific
+-pthread_key_create
+-pthread_mutex_destroy
+-pthread_mutex_init
+-pthread_mutex_lock
+-pthread_mutex_trylock
+-pthread_mutex_unlock
+-pthread_once
+-pthread_self
+-pthread_setspecific
+diff --git a/libpthread-stubs/files/pthread-stubs.c b/libpthread-stubs/files/pthread-stubs.c
+deleted file mode 100644
+index d62b03c..0000000
+--- a/libpthread-stubs/files/pthread-stubs.c
++++ /dev/null
+@@ -1,68 +0,0 @@
+-/* $NetBSD: pthread-stubs.c,v 1.2 2007/05/02 03:30:52 bsadewitz Exp $ */
+-
+-#include &lt;sys/cdefs.h&gt;
+-
+-int __pthstub_mutex_noop(void);
+-
+-__weak_alias(pthread_mutex_init,__pthstub_noop)
+-__weak_alias(pthread_mutex_lock,__pthstub_noop)
+-__weak_alias(pthread_mutex_trylock,__pthstub_noop)
+-__weak_alias(pthread_mutex_unlock,__pthstub_noop)
+-__weak_alias(pthread_mutex_destroy,__pthstub_noop)
+-__weak_alias(pthread_key_create,__pthstub_noop)
+-__weak_alias(pthread_self,__pthstub_noop)
+-__weak_alias(pthread_equal,__pthstub_equal)
+-
+-__weak_alias(pthread_cond_init,__pthstub_noop)
+-__weak_alias(pthread_cond_wait,__pthstub_noop)
+-__weak_alias(pthread_cond_signal,__pthstub_noop)
+-__weak_alias(pthread_cond_broadcast,__pthstub_noop)
+-__weak_alias(pthread_cond_destroy,__pthstub_noop)
+-
+-
+-int
+-__pthstub_equal(void *t1, void *t2)
+-{
+-
+-	return (t1 == t2);
+-}
+-
+-int
+-__pthstub_noop()
+-{
+-
+-	return (0);
+-}
+-
+-__weak_alias(pthread_setspecific,__pthstub_setspecific)
+-__weak_alias(pthread_getspecific,__pthstub_getspecific)
+-static void *__pthstub_localdata;
+-
+-int
+-__pthstub_setspecific(int k, void *v)
+-{
+-
+-	__pthstub_localdata = v;
+-	return (0);
+-}
+-
+-void *
+-__pthstub_getspecific()
+-{
+-
+-	return (__pthstub_localdata);
+-}
+-
+-__weak_alias(pthread_once,__pthstub_once)
+-static int __once_done;
+-
+-int
+-__pthstub_once(void *oc, void (*f)(void))
+-{
+-
+-	if (!__once_done) {
+-		(*f)();
+-		__once_done = 1;
+-	}
+-	return (0);
+-}
+diff --git a/libpthread-stubs/files/pthread-stubs.pc b/libpthread-stubs/files/pthread-stubs.pc
+deleted file mode 100644
+index 52f2e7c..0000000
+--- a/libpthread-stubs/files/pthread-stubs.pc
++++ /dev/null
+@@ -1,8 +0,0 @@
+-prefix=@PREFIX@
+-exec_prefix=${prefix}
+-libdir=${exec_prefix}/lib
+-
+-Name: pthread stubs
+-Description: Stubs missing from libc for standard pthread functions
+-Version: @PKGVERSION@
+-Libs: -L${libdir} -l@PKGCONFIG_BASE@
+diff --git a/libpthread-stubs/patches/patch-stubs.c b/libpthread-stubs/patches/patch-stubs.c
+new file mode 100644
+index 0000000..8b2da07
+--- /dev/null
++++ b/libpthread-stubs/patches/patch-stubs.c
+@@ -0,0 +1,22 @@
++$NetBSD$
++
++--- stubs.c.orig	2009-10-14 09:13:09.000000000 +0000
+++++ stubs.c
++@@ -31,7 +31,7 @@
++ #ifndef HAVE_PTHREAD_SELF
++ #define NEED_ZERO_STUB
++ # ifdef SUPPORT_ATTRIBUTE_ALIAS
++-int pthread_self() __attribute__ ((weak, alias (&quot;__pthread_zero_stub&quot;)));
+++pthread_t pthread_self() __attribute__ ((weak, alias (&quot;__pthread_zero_stub&quot;)));
++ # else
++ #  pragma weak pthread_self = __pthread_zero_stub
++ # endif
++@@ -157,7 +157,7 @@ int pthread_equal() __attribute__ ((weak
++ #ifndef HAVE_PTHREAD_EXIT
++ #define NEED_EXIT_STUB
++ # ifdef SUPPORT_ATTRIBUTE_ALIAS
++-int pthread_exit() __attribute__ ((weak, alias (&quot;__pthread_exit_stub&quot;)));
+++void pthread_exit(void*) __attribute__ ((weak, alias (&quot;__pthread_exit_stub&quot;)));
++ # else
++ #  pragma weak pthread_exit = __pthread_exit_stub
++ # endif
+</pre>
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<hr>
+<ul>
+<li>Prev by Date:
+<strong><a href="/pkgsrc-wip-changes/2016/11/20/msg005039.html">Import seafile-client but it doesn't compile yet.</a></strong>
+</li>
+<li>Next by Date:
+<strong><a href="/pkgsrc-wip-changes/2016/11/21/msg005041.html">Makefile: +MesaLib</a></strong>
+</li>
+
+<li>Previous by Thread:
+<strong><a href="/pkgsrc-wip-changes/2016/11/20/msg005039.html">Import seafile-client but it doesn't compile yet.</a></strong>
+</li>
+<li>Next by Thread:
+<strong><a href="/pkgsrc-wip-changes/2016/11/21/msg005041.html">Makefile: +MesaLib</a></strong>
+</li>
+
+<li>Indexes:
+<ul>
+<li><a href="../../../2016/11/date1.html#005040">
+<strong>reverse Date</strong></a></li>
+<li><a href="../../../2016/11/thread1.html#005040">
+<strong>reverse Thread</strong></a></li>
+<li><a href="../oindex.html">
+<strong>Old Index</strong></a></li>
+</ul>
+</li>
+</ul>
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<strong>
+<a href="/index.html">Home</a> |
+<a href="../../../index.html">Main Index</a> |
+<a href="../../../tindex.html">Thread Index</a> |
+<a href="../../../oindex.html">Old Index</a>
+</strong>
+<!--X-User-Footer-End-->
+</body>
+</html>

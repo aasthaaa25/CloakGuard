@@ -1,0 +1,10 @@
+{
+  "url": "https://www.olark.com",
+  "url_id": "3203237704c6",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 126312,
+  "bot_html_len": 126312,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

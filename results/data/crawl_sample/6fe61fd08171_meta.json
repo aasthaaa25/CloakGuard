@@ -1,0 +1,10 @@
+{
+  "url": "https://www.champtires.com/product-category/uncategorized/?product_orderby=popularity&product_order=desc",
+  "url_id": "6fe61fd08171",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 144788,
+  "bot_html_len": 144788,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

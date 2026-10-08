@@ -1,0 +1,10 @@
+{
+  "url": "https://miyah-ef9f.serv-0etwork.workers.dev/",
+  "url_id": "3ea34d77035a",
+  "human_status": 403,
+  "bot_status": 403,
+  "human_html_len": 5068,
+  "bot_html_len": 5068,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

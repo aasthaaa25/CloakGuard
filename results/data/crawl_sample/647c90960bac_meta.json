@@ -1,0 +1,10 @@
+{
+  "url": "http://www.ritzclinic.com.tw/3;jsessionid=5C3D3B877059EBC46F330DE4D9261DBD",
+  "url_id": "647c90960bac",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 52462,
+  "bot_html_len": 52462,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

@@ -1,0 +1,10 @@
+{
+  "url": "https://www.shesoleshoes.com",
+  "url_id": "4340b7c6b31f",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 418892,
+  "bot_html_len": 418892,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

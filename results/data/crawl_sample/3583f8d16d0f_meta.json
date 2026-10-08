@@ -1,0 +1,10 @@
+{
+  "url": "http://www.vivazenergia.com.br",
+  "url_id": "3583f8d16d0f",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 811650,
+  "bot_html_len": 565261,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

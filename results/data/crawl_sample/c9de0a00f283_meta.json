@@ -1,0 +1,10 @@
+{
+  "url": "https://umzug-henning-gelsenkirchen.de/rumaenien/drobeta-turnu-severin/",
+  "url_id": "c9de0a00f283",
+  "human_status": 500,
+  "bot_status": 500,
+  "human_html_len": 2487,
+  "bot_html_len": 2487,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

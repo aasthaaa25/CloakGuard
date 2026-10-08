@@ -1,0 +1,10 @@
+{
+  "url": "https://cfde-frontend-dxp-uat-web-fuh9dscwbmeaemb8.a02.azurefd.net/en-AU/p/chilled_water_clamp_sks_top_2c/195000",
+  "url_id": "a0ac164b4390",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 352622,
+  "bot_html_len": 352622,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}

@@ -1,0 +1,10 @@
+{
+  "url": "https://byte4byte.com/support/search.php?sid=4433b87251ab744551ebd132c10b56af",
+  "url_id": "89989df92739",
+  "human_status": 200,
+  "bot_status": 200,
+  "human_html_len": 21821,
+  "bot_html_len": 15327,
+  "human_method": "httpx",
+  "bot_method": "httpx"
+}
