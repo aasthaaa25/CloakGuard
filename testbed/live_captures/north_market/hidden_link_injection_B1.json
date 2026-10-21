@@ -1,0 +1,14 @@
+{
+  "template_family": "north_market",
+  "scenario_id": "hidden_link_injection",
+  "view_id": "B1",
+  "profile": "bot",
+  "requested_url": "http://127.0.0.1:8765/north_market/hidden_link_injection",
+  "final_url": "http://127.0.0.1:8765/north_market/hidden_link_injection",
+  "status": 200,
+  "method": "httpx",
+  "capture_success": true,
+  "error": "",
+  "artifact": "testbed/live_captures/north_market/hidden_link_injection_B1.html",
+  "capture_source": "httpx fetcher from detection/pipeline/crawl.py against testbed/local_app.py"
+}

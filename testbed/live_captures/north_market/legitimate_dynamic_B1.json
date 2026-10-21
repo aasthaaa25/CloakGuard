@@ -1,0 +1,14 @@
+{
+  "template_family": "north_market",
+  "scenario_id": "legitimate_dynamic",
+  "view_id": "B1",
+  "profile": "bot",
+  "requested_url": "http://127.0.0.1:8765/north_market/legitimate_dynamic",
+  "final_url": "http://127.0.0.1:8765/north_market/legitimate_dynamic",
+  "status": 200,
+  "method": "httpx",
+  "capture_success": true,
+  "error": "",
+  "artifact": "testbed/live_captures/north_market/legitimate_dynamic_B1.html",
+  "capture_source": "httpx fetcher from detection/pipeline/crawl.py against testbed/local_app.py"
+}

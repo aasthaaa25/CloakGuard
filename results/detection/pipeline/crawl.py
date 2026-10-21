@@ -105,6 +105,7 @@ def _fetch_httpx(url: str, profile: dict) -> dict:
             return {
                 "html": r.text,
                 "status": r.status_code,
+                "final_url": str(r.url),
                 "screenshot_bytes": b"",
                 "method": "httpx",
             }

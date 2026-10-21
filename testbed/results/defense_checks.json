@@ -1,0 +1,73 @@
+{
+  "note": "Injected-verdict and stubbed-DNS checks. They do not measure end-to-end detector accuracy.",
+  "checks": [
+    {
+      "name": "benign_fingerprint_unchanged",
+      "passed": true,
+      "detail": "{'score': 0.0, 'action': 'ALLOW', 'reason': 'no_history'}",
+      "category": "injected_verdict"
+    },
+    {
+      "name": "one_injected_match_rate_limits",
+      "passed": true,
+      "detail": "{'score': 25.0, 'action': 'RATE_LIMIT', 'hit_count': 1, 'reason': 'scored_history'}",
+      "category": "injected_verdict"
+    },
+    {
+      "name": "three_injected_matches_block",
+      "passed": true,
+      "detail": "{'score': 75.0, 'action': 'BLOCK', 'hit_count': 3, 'reason': 'scored_history'}",
+      "category": "injected_verdict"
+    },
+    {
+      "name": "decoy_served_while_armed",
+      "passed": true,
+      "detail": "served=<html><body><p>Inert decoy</p></body></html>",
+      "category": "injected_verdict"
+    },
+    {
+      "name": "decoy_expires",
+      "passed": true,
+      "detail": "after_ttl=None",
+      "category": "injected_verdict"
+    },
+    {
+      "name": "rollback_disarms_decoy",
+      "passed": true,
+      "detail": "disarm then fetch",
+      "category": "injected_verdict"
+    },
+    {
+      "name": "missing_screenshot_is_recorded",
+      "passed": true,
+      "detail": "C:\\Users\\vt903\\AppData\\Local\\Temp\\cloakguard-defense-gbo1xb_f\\forensics/forensic_report_evidence1.html",
+      "category": "injected_verdict"
+    },
+    {
+      "name": "concurrent_bucket_rejects_some_requests",
+      "passed": true,
+      "detail": "allowed 10 of 12",
+      "category": "injected_verdict"
+    },
+    {
+      "name": "dns_rejection_fail_closed",
+      "passed": true,
+      "detail": "reverse_dns_failed",
+      "category": "stub_or_live_dns"
+    },
+    {
+      "name": "stubbed_dns_success",
+      "passed": true,
+      "detail": "dns_verification_passed; stubbed resolver, not a live Google address",
+      "category": "stubbed_dns"
+    },
+    {
+      "name": "stubbed_dns_timeout_fail_closed",
+      "passed": true,
+      "detail": "reverse_dns_failed",
+      "category": "stubbed_dns"
+    }
+  ],
+  "passed": 11,
+  "failed": 0
+}

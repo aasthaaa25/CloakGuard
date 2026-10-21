@@ -1,0 +1,14 @@
+{
+  "template_family": "harbor_books",
+  "scenario_id": "overt_modification",
+  "view_id": "B1",
+  "profile": "bot",
+  "requested_url": "http://127.0.0.1:8765/harbor_books/overt_modification",
+  "final_url": "http://127.0.0.1:8765/harbor_books/overt_modification",
+  "status": 200,
+  "method": "httpx",
+  "capture_success": true,
+  "error": "",
+  "artifact": "testbed/live_captures/harbor_books/overt_modification_B1.html",
+  "capture_source": "httpx fetcher from detection/pipeline/crawl.py against testbed/local_app.py"
+}

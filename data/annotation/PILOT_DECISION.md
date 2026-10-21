@@ -34,6 +34,8 @@ Reviewer 1 inspected that packet and `data/annotation/pilot_diff_notes.txt` as s
 
 The three benign differences are two Cloudflare email-token link changes with identical visible text, and one game-promotion page whose boilerplate paragraph and related links change while the title and article stay the same. One identical pair is an Indonesian lottery page served to both profiles. That is promotional content, not selective cloaking. Two pairs are unusable: an empty 114-byte body, and a redirect stub whose destination was not stored.
 
+In a randomly selected 30-pair pilot, the first reviewer identified no supported malicious cloaking. Independent review and adjudication are pending. This does not establish that all 204 artifact-complete pairs are negative. `pair_complete` means the file and status check passed, not that the pair is a usable annotation. `site_group` is a hostname with `www.` removed, not a registrable domain.
+
 ## Branch
 
 **Branch B for a training benchmark.** This pilot does not contain a defensible positive cloaking example. The 204 pairs should not be turned into a model-training set on the basis of this pass.

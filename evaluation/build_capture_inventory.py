@@ -167,8 +167,13 @@ def summary(rows: list[dict]) -> dict:
         "complete_site_groups_with_more_than_one_capture": sum(1 for n in complete_sites.values() if n > 1),
         "screenshot_files_present": sum(1 for r in rows if r["human_screenshot_path"] or r["bot_screenshot_path"]),
         "pair_complete_definition": (
-            "Both HTML files exist, both are non-empty after stripping whitespace, "
-            "and both recorded statuses are HTTP 200. This is the 204-count."
+            "Artifact and status check only: both HTML files exist, both are non-empty "
+            "after stripping whitespace, and both recorded statuses are HTTP 200. "
+            "This is the 204-count. It does not mean the pair is a valid annotation example."
+        ),
+        "site_group_definition": (
+            "Hostname with a leading www. removed. This is not a public-suffix registrable "
+            "domain and not a template family. Distinct hostnames are not necessarily independent sites."
         ),
         "attempted_definition": "One row per *_meta.json in results/data/crawl_sample. This is the 300-count.",
         "fields_not_in_source_meta": ["final_human_url", "final_bot_url", "capture_timestamp"],

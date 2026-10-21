@@ -1,0 +1,14 @@
+{
+  "template_family": "harbor_books",
+  "scenario_id": "hidden_link_injection",
+  "view_id": "H2",
+  "profile": "human",
+  "requested_url": "http://127.0.0.1:8765/harbor_books/hidden_link_injection",
+  "final_url": "http://127.0.0.1:8765/harbor_books/hidden_link_injection",
+  "status": 200,
+  "method": "httpx",
+  "capture_success": true,
+  "error": "",
+  "artifact": "testbed/live_captures/harbor_books/hidden_link_injection_H2.html",
+  "capture_source": "httpx fetcher from detection/pipeline/crawl.py against testbed/local_app.py"
+}

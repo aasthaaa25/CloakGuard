@@ -1,0 +1,14 @@
+{
+  "template_family": "north_market",
+  "scenario_id": "benign_promotional",
+  "view_id": "B2",
+  "profile": "bot",
+  "requested_url": "http://127.0.0.1:8765/north_market/benign_promotional",
+  "final_url": "http://127.0.0.1:8765/north_market/benign_promotional",
+  "status": 200,
+  "method": "httpx",
+  "capture_success": true,
+  "error": "",
+  "artifact": "testbed/live_captures/north_market/benign_promotional_B2.html",
+  "capture_source": "httpx fetcher from detection/pipeline/crawl.py against testbed/local_app.py"
+}
