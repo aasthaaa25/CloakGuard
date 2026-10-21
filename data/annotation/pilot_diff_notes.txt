@@ -1,0 +1,143 @@
+ID b08e5e344b41 mindtools.com identical=False
+text_len 5365 5365 first_diff 5365
+human ineo Policies Legal Terms of Website Sale Privacy Policy Cookie Policy
+bot   ineo Policies Legal Terms of Website Sale Privacy Policy Cookie Policy
+head  Leadership & Management Learning Solutions For Leaders & Managers - Mindtools Membership Assess your management skills with the Manager Skills Assessment. Shop now Individuals Organizations Skip to content Develop The Co
+bot_only 
+human_only 
+
+ID 018dc28cfc45 wineroad.com identical=True
+text_len 3718 3718 first_diff 3718
+human images cannot be used without express written permission of Wine Road.
+bot   images cannot be used without express written permission of Wine Road.
+head  Discover the Finest Wineries in Sonoma County - Wine Road Skip to content FREE Tasting on Thurs & Fri – DETAILS × Menu × Events Celebrating 50 Years Wine & Food Affair Winter WINEland Barrel Weekend Wine Trails Event Cal
+bot_only 
+human_only 
+
+ID 8197fc6716a8 sapphiremanagment.com identical=True
+text_len 0 0 first_diff 0
+human 
+bot   
+head  
+bot_only 
+human_only 
+
+ID 68dbce0a7477 strap-seal-machine.com identical=False
+text_len 6784 6784 first_diff 6784
+human e languages Copyright © 2018.Changs International All rights reserved.
+bot   e languages Copyright © 2018.Changs International All rights reserved.
+head  All the machines for manufacturing strapping clips and woven strapping buckles,painted steel strapping machines home about customers products news contact español español Tiếng Việt हिंदी عربي русский português 日本語 한국인 T
+bot_only /cdn-cgi/l/email-protection#45653f2f24362e24052a3031292a2a2e6b262a28 | /cdn-cgi/l/email-protection#fada80909b89919bba958f8e96959591d4999597
+human_only /cdn-cgi/l/email-protection#61411b0b00120a00210e14150d0e0e0a4f020e0c | /cdn-cgi/l/email-protection#86a6fcece7f5ede7c6e9f3f2eae9e9eda8e5e9eb
+
+ID c2d1a3027c50 politicaheroica.co identical=True
+text_len 10944 10944 first_diff 10944
+human  alternatif terbaru 2026 Akses tanpa gangguan untuk meraih kemenangan.
+bot    alternatif terbaru 2026 Akses tanpa gangguan untuk meraih kemenangan.
+head  TOTO TOGEL 158: Funer Link Toto Togel Terpercaya Dan Login Togel158 Situs Togel Online Resmi Posisi Puncak Previous SITUS TOGEL158 DAPAT DIAKSES DARI BERBAGAI NEGARA TERMASUK INDONESIA TOTO TOGEL 158: Funer Link Toto Tog
+bot_only 
+human_only 
+
+ID 4c9b516a122e uchockey.com.au identical=False
+text_len 1187 1187 first_diff 1187
+human treasurer.ucstarshockey@gmail.com Follow us on socials: bottom of page
+bot   treasurer.ucstarshockey@gmail.com Follow us on socials: bottom of page
+head  Umpire of the Year - Women top of page Home About About UCHC Playing/Member Fees Policies and Publications Awards Events Shop Draws & Results Stats Contact Use tab to navigate through the menu items. Life Members Life Me
+bot_only 
+human_only 
+
+ID 8061572efed0 gazeta-savelki.ru identical=False
+text_len 5034 5034 first_diff 5034
+human юбом использовании материалов сайта, активная гиперссылка обязательна.
+bot   юбом использовании материалов сайта, активная гиперссылка обязательна.
+head  Собянин: Цифровые экосистемы избавили москвичей от сбора миллионов бумажных документов УПРАВА РАЙОНА САВЁЛКИ НОВОСТИ АКТИВНЫЙ ГРАЖДАНИН КАПРЕМОНТ МОЛОДЕЖНАЯ ПАЛАТА СТОП КОРОНАВИРУС НАШ ДЕПУТАТ ГОРОДСКИЕ ПАРКОВКИ КОНТАКТЫ
+bot_only 
+human_only 
+
+ID 000404e03596 nadinekessler.ch identical=False
+text_len 11079 11079 first_diff 11079
+human Voreinstellungen anzeigen {title} {title} {title} Zustimmung verwalten
+bot   Voreinstellungen anzeigen {title} {title} {title} Zustimmung verwalten
+head  EMOTIONSFLÜSTERN - Nadine Kessler HOME ABOUT ME WORK WITH ME FÜR DEINEN HUND FÜR DICH CONTACT HOME ABOUT ME WORK WITH ME FÜR DEINEN HUND FÜR DICH CONTACT Emotionsflüstern Wegbegleitung für Dich. Emotionsflüstern Wegbegle
+bot_only 
+human_only 
+
+ID 46c3cd998d80 773hf.com identical=False
+text_len 4653 4650 first_diff 689
+human 6 13:48:52 编辑：小七 浏览量： 5158 您的任务：体验一次传奇游戏并且薅游戏羊毛 AI小七： 七七三好服游戏网就像是一个大型的艺术工坊，每一款游戏都是一件艺术品，让你发挥创造力和艺术才华。你可以在这里体验各种类型的游戏，就像在艺术工坊中创作和装饰艺术品一样，展示你的艺术眼光和创意表达。 音频：七七三好服玩
+bot   6 13:48:52 编辑：小七 浏览量： 5158 您的任务：体验一次传奇游戏并且薅游戏羊毛 AI小七： 七七三好服游戏网就像是一个大型的体育馆，每一款游戏都是一场激烈的体育竞赛，让你感受到体育的激情和荣耀。你可以在这里与其他玩家一起参与体育比赛，展现你的技巧和运动才能，享受体育游戏带来的乐趣。 音频：七七三好服玩家
+head  七七三好服玩家免费领红包攻略（红包雨） - 七七三好服游戏网 热门搜索： 单职业传奇 1.76传奇 迷失传奇 合击传奇 超变传奇 复古传奇 传奇网站发布网 收藏本站 手机版 用手机扫描二维码，查看手机端网页 导航 资讯 传奇故事 网游 手游 单机 游戏cg 元宇宙 VR游戏 小游戏 公告 百科文章 游戏专题 攻略 入门攻略 活动攻略 装备攻略 技能攻略 版本大全 复古 火龙 沉默 合击 迷失 冰雪 暗黑 赤月 打金 公益 专属 神器 1
+bot_only /banben/277.html | /banben/296.html | /banben/435.html | /banben/562.html | /banben/563.html
+human_only /banben/110.html | /banben/449.html | /banben/462.html | /banben/469.html | /banben/546.html
+
+ID 02ee35902a36 adirondackquilts.com identical=False
+text_len 494 494 first_diff 494
+human s Copyright © 2007-2026 - Adirondack Quilts Website Design by Like Sew
+bot   s Copyright © 2007-2026 - Adirondack Quilts Website Design by Like Sew
+head  FQs of 80920-23 Memory Lane Skip Navigation Website Accessibility Toggle navigation ☰ Menu Home Shop Calendar Services Long Arm Quilting Service Sewing Machines Scissor Service Roll It Quilt It OESD Contact Us About Us L
+bot_only 
+human_only 
+
+ID d4f1e93fdd72 disenparts.com identical=False
+text_len 11199 11199 first_diff 11199
+human e Accepted: Copyright © 2024-Disenparts.com, Inc. All rights reserved.
+bot   e Accepted: Copyright © 2024-Disenparts.com, Inc. All rights reserved.
+head  2Pcs Door Hinge 7305580 Bobcat SAVE 8% ON FIRST ORDER OVER $100 | CODE COPIED SUCCESSFULLY [email protected] United States chevron-down Deutsche Français Search Search search Loading... Search scale Compare Products item
+bot_only /cdn-cgi/l/email-protection#3a53545c557a5e53495f544a5b484e4914595557
+human_only /cdn-cgi/l/email-protection#11787f777e51757862747f61706365623f727e7c
+
+ID 0d8c9ba83679 surfsidewebdesigns.com identical=False
+text_len 3857 3857 first_diff 3857
+human  by Surfside Web Designs | New England | Privacy Policy bottom of page
+bot    by Surfside Web Designs | New England | Privacy Policy bottom of page
+head  Surfside Web Designs | Trusted web design services for architecture in Rumney, NH. top of page Home Services NH Web Design About Portfolio Testimonials Contact Blog More Use tab to navigate through the menu items. Log In
+bot_only 
+human_only 
+
+ID 2109e63d21b8 dykcjonorz.eu identical=False
+text_len 2004 2004 first_diff 2004
+human ie © Dykcjonorz Ślonskij Godki Theme by Colorlib Powered by WordPress
+bot   ie © Dykcjonorz Ślonskij Godki Theme by Colorlib Powered by WordPress
+head  kabociorz – Dykcjōnorz Toggle navigation Witōmy Rzeczowniki Czasowniki Przymiotniki Imiona Liczebniki Inne O dykcjōnorzu pokŏż wiyncyj Generic selectors Exact matches only Search in title Search in content Post Type Sele
+bot_only 
+human_only 
+
+ID 932ae8cf0a7a theme.funmaker.link identical=False
+text_len 1939 1939 first_diff 1939
+human たちについて サイトマップ お問い合わせ © JAMT, All rights reserved. がん治療・癌の最新情報 | リファレンス
+bot   たちについて サイトマップ お問い合わせ © JAMT, All rights reserved. がん治療・癌の最新情報 | リファレンス
+head  免疫療法：免疫系を使ったがん治療 | がん治療・癌の最新情報リファレンス 免疫療法：免疫系を使ったがん治療 お問い合わせはこちら がん記事一覧 ニュースフィード FDA承認情報 がん薬剤リスト がん種別記事 資料アーカイブ サイトについて がんリファブログ HOME がん記事一覧 がん治療 免疫療法：免疫系を使ったがん治療 免疫療法：免疫系を使ったがん治療 ポスト X シェア Facebook 2018年11月14日 日本語動画のURL
+bot_only 
+human_only 
+
+ID 81f9d24dc81d tarphat.co.uk identical=False
+text_len 2113 2113 first_diff 2113
+human e Map Copyright © The Amazonas Brazillian Tarp Hat Company 2013 - 2024
+bot   e Map Copyright © The Amazonas Brazillian Tarp Hat Company 2013 - 2024
+head  Walking hat from Brazil great sun hat and winter hats Home (current) Shop View all Wide Brim Tarp Hats Floppy Canvas Hats Wide Brim Side Vented Tarp Hats Military Castro Tarp Eco Cap Tarp Bags Eco Canvas Baseball Caps Ac
+bot_only 
+human_only 
+
+ID 1e08b84fe6a4 hercarresf.firebaseapp.com identical=True
+text_len 84 84 first_diff 84
+human on If you are not redirected automatically, follow the link to example
+bot   on If you are not redirected automatically, follow the link to example
+head  Page Redirection If you are not redirected automatically, follow the link to example
+bot_only 
+human_only 
+
+ID 66e589bae96b tribelio.page identical=False
+text_len 138 138 first_diff 138
+human d because chief has removed / deactivated the site or changed the link
+bot   d because chief has removed / deactivated the site or changed the link
+head  Page Not found! This site couldn’t be found This site cannot be found because chief has removed / deactivated the site or changed the link
+bot_only 
+human_only 
+
+ID 60e67a49f2a3 culturedynamics.com.my identical=False
+text_len 485 485 first_diff 485
+human witter Instagram RSS Designed by Elegant Themes | Powered by WordPress
+bot   witter Instagram RSS Designed by Elegant Themes | Powered by WordPress
+head  Rabit(BR) | Culture Dynamic Colored Brain Practitioner Professional Certification Colored Brain Trainers Certification Select Page No Results Found The page you requested could not be found. Try refining your search, or 
+bot_only 
+human_only 

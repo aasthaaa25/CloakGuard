@@ -1,0 +1,291 @@
+{
+  "summary": {
+    "complete_pairs": 204,
+    "byte_identical": 113,
+    "visible_text_identical": 176,
+    "visible_text_differs": 28,
+    "note": "Triage only. These rows are not annotated and are not cloaking labels."
+  },
+  "differences": [
+    {
+      "capture_id": "0b5680cb7e34",
+      "site_group": "oswiataiprawo.pl",
+      "requested_url": "https://oswiataiprawo.pl/porady/kwalifikacje-do-nauczania-matematyki/",
+      "human_text_chars": 3347,
+      "bot_text_chars": 3279,
+      "first_diff": 2223,
+      "human_window": "pracuję w zawodzie. Zaloguj się, aby móc odpowiedzieć Dariusz Skrzyński Prawnik Kwalifikacje do nauczania języka angielskiego w szkole podstawowej Dariusz Skrzyński Prawnik Awans na dyplomowanego od 1",
+      "bot_window": "pracuję w zawodzie. Zaloguj się, aby móc odpowiedzieć Dariusz Skrzyński Prawnik Brak zgody dyrektora na rozwiązanie umowy z nauczycielem Marta Handzlik Prawnik Kwalifikacje nauczyciela w szkole specja"
+    },
+    {
+      "capture_id": "0cd9f910a3ed",
+      "site_group": "daxberger.at",
+      "requested_url": "http://www.daxberger.at",
+      "human_text_chars": 255,
+      "bot_text_chars": 146,
+      "first_diff": 146,
+      "human_window": "schlerei DAXBERGER Daxberger GmbH - Dorf 20 - 4942 Gurten - herbert@daxberger.at Diese Website benutzt Cookies. Wenn du die Website weiter nutzt, gehen wir von deinem Einverständnis aus. OK",
+      "bot_window": "schlerei DAXBERGER Daxberger GmbH - Dorf 20 - 4942 Gurten - herbert@daxberger.at"
+    },
+    {
+      "capture_id": "1162ffbdab6d",
+      "site_group": "stasiguhrlager-shop.dk",
+      "requested_url": "https://stasiguhrlager-shop.dk/vare/jaguar-herre-analog/",
+      "human_text_chars": 1659,
+      "bot_text_chars": 1670,
+      "first_diff": 745,
+      "human_window": "på lager Varenummer (SKU): J860/D Kategorier: Herreur , Jaguar Relaterede varer Bonett Titanium Herreur kr. 899,00 Tilføj til kurv Bonett Herreur kr. 699,00 Tilføj til kurv Bonett Herreur kr. 849,00 L",
+      "bot_window": "på lager Varenummer (SKU): J860/D Kategorier: Herreur , Jaguar Relaterede varer Casio Waveceptor kr. 3.199,00 Læs mere Bonett Herreur kr. 699,00 Læs mere Daniel Wellington Classic York 40mm kr. 1.499,"
+    },
+    {
+      "capture_id": "130490da75de",
+      "site_group": "closeup.org",
+      "requested_url": "https://www.closeup.org",
+      "human_text_chars": 4530,
+      "bot_text_chars": 4502,
+      "first_diff": 3106,
+      "human_window": "ose Up's innovative onsite professional development workshops and resources! “ I think Close Up’s virtual program is an amazing experience … to get out of the bubble of your own community. — Kayla, St",
+      "bot_window": "ose Up's innovative onsite professional development workshops and resources! “ I’m truly blown away by what Close Up’s been able to accomplish in the last two weeks during IMPACT 2020 … The material s"
+    },
+    {
+      "capture_id": "148bdd96fd38",
+      "site_group": "bartowsportszone.com",
+      "requested_url": "https://www.bartowsportszone.com/single-post/soccer-wildcats-fall-at-north-cobb",
+      "human_text_chars": 3451,
+      "bot_text_chars": 3498,
+      "first_diff": 2333,
+      "human_window": "s in the loss. Woodland (1-1) entertains Kennesaw Mountain on Tuesday at 8 p.m. Recent stories Athletes Beyond Bartow: Seigler recalled to the Red Sox, Earwood joins pro ranks Brumlow adds to resume; ",
+      "bot_window": "s in the loss. Woodland (1-1) entertains Kennesaw Mountain on Tuesday at 8 p.m. Comments Write a comment... Write a comment... Recent stories Athletes Beyond Bartow: Seigler recalled to the Red Sox, E"
+    },
+    {
+      "capture_id": "160c4bfb4885",
+      "site_group": "tabikobo.com",
+      "requested_url": "https://www.tabikobo.com/tabi-pocket/tag/%E3%83%A9%E3%82%A6%E3%83%B3%E3%82%B8",
+      "human_text_chars": 2623,
+      "bot_text_chars": 2670,
+      "first_diff": 1459,
+      "human_window": "ラリア ニューカレドニア タヒチ ニュージーランド フィジー カリブ海 カリブ海一覧 カンクン キューバ クルーズ クルーズ一覧 PICK UP ピックアップ 韓国 ソウルで黒糖&タピオカドリンク飲み比べ！おすすめ6... 北海道 函館朝市-完全ガイド「食べ歩き」「海鮮丼」「朝食」のおすすめ... 北海道 【札幌市民】が選ぶ！おすすめ観光地14選｜効率良い「半日モデ... 香港・マカオ 香港らしい",
+      "bot_window": "ラリア ニューカレドニア タヒチ ニュージーランド フィジー カリブ海 カリブ海一覧 カンクン キューバ クルーズ クルーズ一覧 PICK UP ピックアップ カナダ プリンスエドワード島で『赤毛のアン』の世界観を満喫！オプショ... ベトナム ハノイのスーパーIntimexでプチプラ&現地なら... アメリカ合衆国 思わず撮りたくなる！ポートランドのフォトジェニックスポット3... ハワイ ハワ"
+    },
+    {
+      "capture_id": "2bb19847ea8c",
+      "site_group": "musdepot.ru",
+      "requested_url": "https://musdepot.ru/catalog/lineynyy_massiv_kla/sp_26_stoyka_sabvufer_satellit_diametr_35_mm_dlina_66_sm_qsc/?com=y",
+      "human_text_chars": 9199,
+      "bot_text_chars": 9199,
+      "first_diff": 3449,
+      "human_window": "и Загрузка комментариев... Нет документации Похожие товары < > Быстрый просмотр SP-36 / Стойка \"сабвуфер - сателлит\", диаметр 35 мм, длина 91 см, к сабвуферам серии KLA, KS, E /QSC 8 512,00 a В корзин",
+      "bot_window": "и Загрузка комментариев... Нет документации Похожие товары < > Быстрый просмотр KLA12-BK / Активный модуль линейного массива 1000Вт / QSC 379 680,00 a В корзину Быстрый просмотр SP-36 / Стойка \"сабвуф"
+    },
+    {
+      "capture_id": "3b53ee14925f",
+      "site_group": "desq.dict.cc",
+      "requested_url": "https://desq.dict.cc/?s=Afghanistan",
+      "human_text_chars": 3519,
+      "bot_text_chars": 3514,
+      "first_diff": 0,
+      "human_window": "dict.cc | Afghanistan | German-Albanian Dictionary | All Languages EN SV IS RU RO FR SK IT NL LA ES PT UK FI HU NO BG HR",
+      "bot_window": "Afghanistan | Übersetzung Albanisch-Deutsch | Alle Sprachen EN SV IS RU RO FR SK IT NL LA ES PT UK FI HU NO BG HR CS DA "
+    },
+    {
+      "capture_id": "46c3cd998d80",
+      "site_group": "773hf.com",
+      "requested_url": "https://www.773hf.com/zixun/67.html",
+      "human_text_chars": 4653,
+      "bot_text_chars": 4650,
+      "first_diff": 689,
+      "human_window": " 2024-04-26 13:48:52 编辑：小七 浏览量： 5158 您的任务：体验一次传奇游戏并且薅游戏羊毛 AI小七： 七七三好服游戏网就像是一个大型的艺术工坊，每一款游戏都是一件艺术品，让你发挥创造力和艺术才华。你可以在这里体验各种类型的游戏，就像在艺术工坊中创作和装饰艺术品一样，展示你的艺术眼光和创意表达。 音频：七七三好服玩家免费领红包攻略（红包雨） 曾经有一场红包像雨点一样向我打来",
+      "bot_window": " 2024-04-26 13:48:52 编辑：小七 浏览量： 5158 您的任务：体验一次传奇游戏并且薅游戏羊毛 AI小七： 七七三好服游戏网就像是一个大型的体育馆，每一款游戏都是一场激烈的体育竞赛，让你感受到体育的激情和荣耀。你可以在这里与其他玩家一起参与体育比赛，展现你的技巧和运动才能，享受体育游戏带来的乐趣。 音频：七七三好服玩家免费领红包攻略（红包雨） 曾经有一场红包像雨点一样向我打来，"
+    },
+    {
+      "capture_id": "637c9d1ef51a",
+      "site_group": "makiyazh-litsa.ru-best.com",
+      "requested_url": "https://makiyazh-litsa.ru-best.com/kak-nanosit-makiyazh/vot-k-chemu-nuzhno-byt-gotovoy-kogda-ty-delaesh-sebe-dlinnye-nogti",
+      "human_text_chars": 2530,
+      "bot_text_chars": 2464,
+      "first_diff": 1330,
+      "human_window": "нщин 45 лет. Модные стрижки после 45 лет для средних волос, которые омолаживают Поход в кино тревожность снижает. В России с марта 2027 года введут гост на сумки, чемоданы и другие изделия кожгалантер",
+      "bot_window": "нщин 45 лет. Модные стрижки после 45 лет для средних волос, которые омолаживают Мониторинг диабета по омс теперь доступен россиянам. Слабые и редкие ресницы - проблема, с которой сталкиваются многие. "
+    },
+    {
+      "capture_id": "82aec19b93a0",
+      "site_group": "tomforshreveport.com",
+      "requested_url": "https://www.tomforshreveport.com/media/",
+      "human_text_chars": 794,
+      "bot_text_chars": 789,
+      "first_diff": 311,
+      "human_window": "ith Shreveport Mayor Tom Arceneaux Q JOIN THE TEAM Get in Touch Follow Follow Q LinkedIn This field is for validation purposes and should be left unchanged. Name (Required) First Last Email (Required)",
+      "bot_window": "ith Shreveport Mayor Tom Arceneaux Q JOIN THE TEAM Get in Touch Follow Follow Q URL This field is for validation purposes and should be left unchanged. Name (Required) First Last Email (Required) Get "
+    },
+    {
+      "capture_id": "83786109d2f1",
+      "site_group": "hkpnews.com",
+      "requested_url": "https://www.hkpnews.com/latest/%E0%A4%A1%E0%A4%BF%E0%A4%9C%E0%A4%BF%E0%A4%9F%E0%A4%B2-%E0%A4%AA%E0%A5%87%E0%A4%AE%E0%A5%87%E0%A4%82%E0%A4%9F-%E0%A4%AE%E0%A5%87%E0%A4%82-%E0%A4%B8%E0%A4%BE%E0%A4%87%E0%A4%AC%E0%A4%B0-%E0%A4%B8/",
+      "human_text_chars": 6151,
+      "bot_text_chars": 6206,
+      "first_diff": 3394,
+      "human_window": " बाद संसद में गतिरोध खत्म, कल से सुचारू रूप से कामकाज की उम्मीद ⟶ Related Posts फिल्म ‘बड़े मियां छोटे मियां’ का टीजर रिलीज अक्षय कुमार और टाइगर श्रॉफ अभिनीत फिल्म ‘बड़े मियां छोटे मियां’ जल्द ही रिली",
+      "bot_window": " बाद संसद में गतिरोध खत्म, कल से सुचारू रूप से कामकाज की उम्मीद ⟶ Related Posts सीएम खोजने के लिए राजस्थान के कोने-कोने में घूम रहे हैं मोदी : प्रियंका गांधी चित्तौड़गढ़/डूंगरपुर, 17 नवंबर कांग्रेस मह"
+    },
+    {
+      "capture_id": "89989df92739",
+      "site_group": "byte4byte.com",
+      "requested_url": "https://byte4byte.com/support/search.php?sid=4433b87251ab744551ebd132c10b56af",
+      "human_text_chars": 1524,
+      "bot_text_chars": 433,
+      "first_diff": 153,
+      "human_window": "Theme Software Home | Products | Downloads Support Byte4Byte Software Support - Search Byte4Byte Software Support Computer Science at its finest! Skip to content Quick links Unanswered topics Active t",
+      "bot_window": "Theme Software Home | Products | Downloads Support Byte4Byte Software Support - Information Byte4Byte Software Support Computer Science at its finest! Skip to content Quick links FAQ Board index Infor"
+    },
+    {
+      "capture_id": "8f342ed3e288",
+      "site_group": "ca.trip.com",
+      "requested_url": "https://ca.trip.com/hotels/swimming-pool/city/jp/atami.html",
+      "human_text_chars": 9856,
+      "bot_text_chars": 11671,
+      "first_diff": 1964,
+      "human_window": "nveniences include safes and desks, and housekeeping is provided once per stay. Show more Good 29 reviews 7.9 / 10 1 night From CAD 104 Check Availability 99+ LiVEMAX RESORT ATAMI SEA FRONT Hotels in ",
+      "bot_window": "nveniences include safes and desks, and housekeeping is provided once per stay. \"My family and I have two different evaluations of this hotel. I am very satisfied with the location of the hotel, becau"
+    },
+    {
+      "capture_id": "8fe968905653",
+      "site_group": "paluch4x4.pl",
+      "requested_url": "https://paluch4x4.pl/produkt/sprzeglo-konwersja-sprzegla-kolo-zamachowe-dwumasa-nissan-patrol-gr-y61-3-0/",
+      "human_text_chars": 8817,
+      "bot_text_chars": 8826,
+      "first_diff": 1957,
+      "human_window": "MACHOWE DWUMASA NISSAN PATROL GR Y61 3.0 Dodaj do koszyka Kup teraz Udostępnij: 2 Osoby oglądają ten produkt! Opis produktu WITAM, OFERUJEMY: SPRZĘGŁO , KONWERSJĘ KOŁA DWUMASOWEGO NA KOŁO JEDOMASOWE O",
+      "bot_window": "MACHOWE DWUMASA NISSAN PATROL GR Y61 3.0 Dodaj do koszyka Kup teraz Udostępnij: 1 Osoba ogląda ten produkt! Opis produktu WITAM, OFERUJEMY: SPRZĘGŁO , KONWERSJĘ KOŁA DWUMASOWEGO NA KOŁO JEDOMASOWE OD "
+    },
+    {
+      "capture_id": "9323375531ac",
+      "site_group": "mickybells.com",
+      "requested_url": "https://www.mickybells.com/photos/Micky-Bells/52105/?nats=MTAwNC45LjEyMS4zMjQuOTE1LjAuMC4wLjA",
+      "human_text_chars": 2865,
+      "bot_text_chars": 2865,
+      "first_diff": 1102,
+      "human_window": "Now Micky Bells 36-J Join Now Micky Bells 36-J Join Now More Micky Bells Videos A snack with Micky 70 Pics 5.0 ★ Maid For Breast Lovers 53 Pics 5.0 ★ Bells Rings Our Bells 53 Pics 5.0 ★ Lingerie Party",
+      "bot_window": "Now Micky Bells 36-J Join Now Micky Bells 36-J Join Now More Micky Bells Videos Lingerie Party 85 Pics 4.9 ★ When Boobs Collide 95 Pics 5.0 ★ Maid For Breast Lovers 53 Pics 5.0 ★ A snack with Micky 70"
+    },
+    {
+      "capture_id": "95138021caeb",
+      "site_group": "xn--80ahtg2a5f.xn--p1ai",
+      "requested_url": "https://xn--80ahtg2a5f.xn--p1ai/avtotovary/vse-dlya-shinomontazha/nakonechniki-beskamernyh-shin/",
+      "human_text_chars": 23279,
+      "bot_text_chars": 23272,
+      "first_diff": 418,
+      "human_window": "8 927 894 14 30 8 8482 51-82-46 Корзина 0 Итого: 0 Р Вход Регистрация Например: Противотум. Каталог товаров Кнов НОВИНКИ АВТОСВЕТ ФОНАРИ ЗАДНИЕ АВТОЛАМПЫ Лампа Formula Sveta Лампа MTF Лампы \"MTF\" гало",
+      "bot_window": "8 927 894 14 30 8 8482 51-82-46 Корзина 0 Итого: 0 Р Вход Регистрация Например: Знак Каталог товаров Кнов НОВИНКИ АВТОСВЕТ ФОНАРИ ЗАДНИЕ АВТОЛАМПЫ Лампа Formula Sveta Лампа MTF Лампы \"MTF\" галогеновые"
+    },
+    {
+      "capture_id": "994dd796c36d",
+      "site_group": "comnieuthienly.com",
+      "requested_url": "https://comnieuthienly.com/blogs/local-food",
+      "human_text_chars": 16322,
+      "bot_text_chars": 16322,
+      "first_diff": 328,
+      "human_window": "tôi Thực đơn Hệ thống chi nhánh Khách hàng thân thiết Liên hệ Giao hàng Đặt bàn Phản hồi về dịch vụ của chúng tôi Chúng tôi lắng nghe bạn Nhập Email để nhận thông tin khuyến mãi Gửi CÔNG TY CỔ PHẦN ẨM",
+      "bot_window": "tôi Thực đơn Hệ thống chi nhánh Khách hàng thân thiết Liên hệ Giao hàng Đặt bàn Trở lại Top 10 Must-Try Local Foods in Ho Chi Minh City Kinh Nghiệm Nấu Ăn 23/03/2025 Ho Chi Minh City is a vibrant econ"
+    },
+    {
+      "capture_id": "9fb1c7c5c7e8",
+      "site_group": "noviradiosombor.com",
+      "requested_url": "https://noviradiosombor.com/viki-konekt-godisnja-konferencija-vikimedijine-zajednice-srpske/",
+      "human_text_chars": 3955,
+      "bot_text_chars": 3955,
+      "first_diff": 2098,
+      "human_window": "ranje događaja. Medijska pažnja i pratnja: Novi Radio Sombor Broj pregleda: 5.231 Tags: Viki konekt Vikimedija Žana Gnjatović Continue Reading Previous: Karate klub Ravangrad zaokružio još jednu sezon",
+      "bot_window": "ranje događaja. Medijska pažnja i pratnja: Novi Radio Sombor Broj pregleda: 5.232 Tags: Viki konekt Vikimedija Žana Gnjatović Continue Reading Previous: Karate klub Ravangrad zaokružio još jednu sezon"
+    },
+    {
+      "capture_id": "a0fa5af26a89",
+      "site_group": "vancouverpolicefoundation.org",
+      "requested_url": "https://www.vancouverpolicefoundation.org",
+      "human_text_chars": 6951,
+      "bot_text_chars": 6949,
+      "first_diff": 3034,
+      "human_window": "ow and a member of our team will follow up with the next steps. Step 1 of 3 33% URL This field is for validation purposes and should be left unchanged. Contact Information Name (Required) First Last C",
+      "bot_window": "ow and a member of our team will follow up with the next steps. Step 1 of 3 33% Email This field is for validation purposes and should be left unchanged. Contact Information Name (Required) First Last"
+    },
+    {
+      "capture_id": "a422600e99dc",
+      "site_group": "metaltozlari.com",
+      "requested_url": "https://metaltozlari.com/grafen-oksit-aktuatorler-donusturuculerin-gelecegi-nanografi/",
+      "human_text_chars": 5127,
+      "bot_text_chars": 5108,
+      "first_diff": 3983,
+      "human_window": "et Yorum yapabilmek için giriş yapmalısınız . Arama: Ürünler Alüminyum Oksit F 240 Pirinç Tozu 44 Mikron Korund (Kahve) Bor Karbür <10 Mikron Ferro Krom Yüksek Karbonlu (HC) 25 µm %99.5 Kobalt Sülfat ",
+      "bot_window": "et Yorum yapabilmek için giriş yapmalısınız . Arama: Ürünler Alüminyum Oksit F 230 Ferro Silisyum Toz 100 µm %99.5 Demiroksit Yeşil Alüminyum Oksit F 40 Küresel Nikel Katkılı Alaşım Inconel 718 Toz 50"
+    },
+    {
+      "capture_id": "ad195c14a14f",
+      "site_group": "test.tp-link.com",
+      "requested_url": "https://test.tp-link.com/it/support/emulator/?model=SG2210XMP-M2",
+      "human_text_chars": 15330,
+      "bot_text_chars": 15330,
+      "first_diff": 11740,
+      "human_window": "Router Wired Router Wired G36 G611 Load Balance Routers Load Balance Routers TL-ER5120 Business > SOHO Networking > Load Balance Gateways Load Balance Gateways TL-R480T+ TL-R470T+ CPE CPE CPE710 WBS51",
+      "bot_window": "Router Wired Router Wired G36 G611 Load Balance Routers Load Balance Routers TL-R480T+ TL-R470T+ Business > SOHO Networking > Load Balance Gateways Load Balance Gateways TL-ER5120 Business > SOHO Netw"
+    },
+    {
+      "capture_id": "bf6ada3a542f",
+      "site_group": "amigans.net",
+      "requested_url": "https://www.amigans.net/modules/myalbum/photo.php?lid=387&cid=5",
+      "human_text_chars": 3524,
+      "bot_text_chars": 3524,
+      "first_diff": 993,
+      "human_window": "Forums Articles News User Profile Headlines Images Popular Polls Who's Online 241 user(s) are online ( 1 user(s) are browsing Images ) Members: 0 Guests: 241 more... Support us! Donate Headlines v-mpl",
+      "bot_window": "Forums Articles News User Profile Headlines Images Popular Polls Who's Online 242 user(s) are online ( 1 user(s) are browsing Images ) Members: 0 Guests: 242 more... Support us! Donate Headlines v-mpl"
+    },
+    {
+      "capture_id": "cabbb5354c80",
+      "site_group": "pitypangkonyvek.hu",
+      "requested_url": "https://pitypangkonyvek.hu/termek/szorakoztato-irodalom/krimi/hadhazi-anita-dubai-gesai-2-manila-pillangoi/",
+      "human_text_chars": 5886,
+      "bot_text_chars": 5813,
+      "first_diff": 3470,
+      "human_window": "iadás éve 2026 Korosztály Felnőtt Típus Könyv Oldalszám 368 Kapcsolódó termékek Egy riport ára 4190 Ft Tovább olvasom Continue Loading Done Sakk-matt 3199 Ft Kosárba teszem Continue Loading Done A köz",
+      "bot_window": "iadás éve 2026 Korosztály Felnőtt Típus Könyv Oldalszám 368 Kapcsolódó termékek A középszerűnél egy fokkal jobb 2999 Ft Kosárba teszem Continue Loading Done Papírpillangók 5690 Ft Kosárba teszem Conti"
+    },
+    {
+      "capture_id": "cd42e720b1a9",
+      "site_group": "kitchenadore.com",
+      "requested_url": "https://www.kitchenadore.com/post/sour-cream-and-chives-rolls",
+      "human_text_chars": 2426,
+      "bot_text_chars": 2525,
+      "first_diff": 2412,
+      "human_window": " See All Cardamom Loaf with Raisins & Cranberries Mill Time Ultimate Lemon Loaf bottom of page",
+      "bot_window": " See All Cardamom Loaf with Raisins & Cranberries Mill Time Ultimate Lemon Loaf Comments Rated 0 out of 5 stars. No ratings yet Add a rating Write a comment... Write a comment... bottom of page"
+    },
+    {
+      "capture_id": "df56ad8db9ea",
+      "site_group": "ethplorer.io",
+      "requested_url": "https://ethplorer.io/address/0xb19dd661f076998e3b0456935092a233e12c2280",
+      "human_text_chars": 4636,
+      "bot_text_chars": 4675,
+      "first_diff": 655,
+      "human_window": "kçe 한국어 Tiếng Việt EN English 中文 Français Español Русский Türkçe 한국어 Tiếng Việt Token Continuum World 0xb19Dd661F076998e3B0456935092a233e12C2280 Internal operations Chainy URL SHA256 Hash Filename Fil",
+      "bot_window": "kçe 한국어 Tiếng Việt EN English 中文 Français Español Русский Türkçe 한국어 Tiếng Việt Dive into Binance Chain with Binplorer Token Continuum World 0xb19Dd661F076998e3B0456935092a233e12C2280 Internal operati"
+    },
+    {
+      "capture_id": "e01dcf3ac7e3",
+      "site_group": "chips-kingdom.com",
+      "requested_url": "https://chips-kingdom.com/amica-alfred-salt/",
+      "human_text_chars": 5124,
+      "bot_text_chars": 5116,
+      "first_diff": 3698,
+      "human_window": "ICA ☆4.5 うすしお（シーソルト） イタリア スポンサーリンク シェアする X Facebook はてブ LINE コピー ポテトチップス王国 関連記事 イタリアのポテチ 〈イタリア製〉「SAN CARLO（サンカルロ） ポテトチップス クラシック」を実食 こんにちは。本日は、イタリア製の「SAN CALRO（サンカルロ） ポテトチップス クラシック」を実食した感想を書いていきたいと思います",
+      "bot_window": "ICA ☆4.5 うすしお（シーソルト） イタリア スポンサーリンク シェアする X Facebook はてブ LINE コピー ポテトチップス王国 関連記事 ポテチレビュー 〈千葉ご当地チップス〉「海と太陽のしおレモンチップ」を実食 こんにちは。先日、千葉の房総半島に旅行に行った際に、立ち寄った道の駅で「海と太陽のしおレモンチップ」を見かけました。かなり目立つところに陳列されていて、テレビなどで"
+    },
+    {
+      "capture_id": "eafa692e26e4",
+      "site_group": "sex-opt.by",
+      "requested_url": "https://sex-opt.by/0t-00008358",
+      "human_text_chars": 16145,
+      "bot_text_chars": 16077,
+      "first_diff": 6541,
+      "human_window": "к, пр-т. Победителей 57, 16Н Аккаунт Заказы Отложенные товары Войти Регистрация E-mail Пароль Забыли пароль? Создать учетную запись Войти Запомнить 0 Корзина Корзина пуста Корзина Оформить заказ Все т",
+      "bot_window": "к, пр-т. Победителей 57, 16Н Аккаунт Заказы Отложенные товары Войти Регистрация 0 Корзина Корзина пуста Корзина Оформить заказ Все товары БАДы и пищевые концентраты БАДы и пищевые концентраты БАДы для"
+    }
+  ]
+}

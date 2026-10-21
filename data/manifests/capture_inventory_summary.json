@@ -1,0 +1,20 @@
+{
+  "attempted_captures": 300,
+  "pair_complete_yes": 204,
+  "pair_complete_no": 96,
+  "unique_requested_urls": 300,
+  "duplicate_requested_urls": 0,
+  "unique_site_groups": 300,
+  "site_groups_with_more_than_one_capture": 0,
+  "complete_unique_urls": 204,
+  "complete_unique_site_groups": 204,
+  "complete_site_groups_with_more_than_one_capture": 0,
+  "screenshot_files_present": 0,
+  "pair_complete_definition": "Both HTML files exist, both are non-empty after stripping whitespace, and both recorded statuses are HTTP 200. This is the 204-count.",
+  "attempted_definition": "One row per *_meta.json in results/data/crawl_sample. This is the 300-count.",
+  "fields_not_in_source_meta": [
+    "final_human_url",
+    "final_bot_url",
+    "capture_timestamp"
+  ]
+}

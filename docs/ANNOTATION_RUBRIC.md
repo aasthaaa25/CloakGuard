@@ -13,3 +13,18 @@ A row receives one of these labels only when the evidence named in the definitio
 | `uncertain` | The artifacts are insufficient, the annotators disagree, or the only “label” is a detector score. |
 
 The 300 crawl records in `results/data/crawl_sample/` do not contain an annotator decision. The audit assigns every one of them `uncertain` unless the capture itself failed, in which case the observation also carries failure reasons. The column `drift_score` in the missing 160,000-URL CSV is not one of the labels above.
+
+## Pilot labels
+
+The 30-pair pilot uses the categories below. A difference by itself is not a positive. Cloaking, in Google's published description, involves showing different content to users and search engines with deceptive intent. These labels are not detector outputs.
+
+| Label | Meaning |
+| --- | --- |
+| `supported_malicious_cloaking` | The saved artifacts support selective deceptive or promotional content. |
+| `benign_profile_dependent_difference` | The views differ, and a legitimate explanation is available from the artifacts. |
+| `no_suspicious_difference_observed` | This saved pair does not show a supported suspicious difference. It does not prove the site is clean. |
+| `bot_challenge_or_access_difference` | A challenge, denial, or access policy blocks a meaningful comparison. |
+| `uncertain` | The artifacts do not support a reliable decision. |
+| `unusable` | The capture is broken, incomplete, or not the destination document. |
+
+Reviewers must not see fusion scores, jargon scores, model predictions, or a suggested detector label. The review packet is `data/annotation/pilot_30_packet.jsonl`. Reviewer 1's labels are `data/annotation/pilot_30_reviewer_1.csv`. Reviewer 2's sheet is blank. Do not open the saved HTML in a normal browser; inspect escaped source and extracted visible text.
