@@ -1,0 +1,30 @@
+{
+  "template_family": "maple_archive",
+  "scenario_family": "rotating_post",
+  "scenario_id": "maple_archive:rotating_post",
+  "split": "calibration",
+  "role": "negative",
+  "view_id": "B2",
+  "profile": "bot",
+  "application_version": "local-v2",
+  "fetched_at_utc": "2026-10-21T17:14:47.958193+00:00",
+  "requested_url": "http://127.0.0.1:8766/maple_archive/rotating_post",
+  "final_url": "http://127.0.0.1:8766/maple_archive/rotating_post",
+  "redirect_chain": [
+    "http://127.0.0.1:8766/maple_archive/rotating_post"
+  ],
+  "status": 200,
+  "response_headers": {
+    "server": "BaseHTTP/0.6 Python/3.11.9",
+    "date": "Wed, 21 Oct 2026 17:14:47 GMT",
+    "content-type": "text/html; charset=utf-8",
+    "content-length": "2649",
+    "x-app-version": "local-v2"
+  },
+  "artifact_sha256": "0429d256c4eb0adc5d8560bfe5f8f64afdf19f092e8453a460e0b017f15e71c6",
+  "artifact": "testbed/v2_captures/maple_archive/rotating_post_B2.html",
+  "capture_success": true,
+  "hostname_group": "127.0.0.1",
+  "registrable_domain_group": "",
+  "screenshot": "unsupported_in_this_phase"
+}

@@ -1,0 +1,30 @@
+{
+  "template_family": "quartz_supply",
+  "scenario_family": "rotating_post",
+  "scenario_id": "quartz_supply:rotating_post",
+  "split": "reserved",
+  "role": "negative",
+  "view_id": "B2",
+  "profile": "bot",
+  "application_version": "local-v2",
+  "fetched_at_utc": "2026-10-21T17:14:48.980738+00:00",
+  "requested_url": "http://127.0.0.1:8766/quartz_supply/rotating_post",
+  "final_url": "http://127.0.0.1:8766/quartz_supply/rotating_post",
+  "redirect_chain": [
+    "http://127.0.0.1:8766/quartz_supply/rotating_post"
+  ],
+  "status": 200,
+  "response_headers": {
+    "server": "BaseHTTP/0.6 Python/3.11.9",
+    "date": "Wed, 21 Oct 2026 17:14:48 GMT",
+    "content-type": "text/html; charset=utf-8",
+    "content-length": "129",
+    "x-app-version": "local-v2"
+  },
+  "artifact_sha256": "c1adcf0efa4af13e9f5f5f34430ee6372f6f59f65d49f4a160563ba7d384542b",
+  "artifact": "testbed/v2_captures/quartz_supply/rotating_post_B2.html",
+  "capture_success": true,
+  "hostname_group": "127.0.0.1",
+  "registrable_domain_group": "",
+  "screenshot": "unsupported_in_this_phase"
+}

@@ -1,0 +1,30 @@
+{
+  "template_family": "cedar_clinic",
+  "scenario_family": "counter",
+  "scenario_id": "cedar_clinic:counter",
+  "split": "calibration",
+  "role": "negative",
+  "view_id": "H1",
+  "profile": "human",
+  "application_version": "local-v2",
+  "fetched_at_utc": "2026-10-21T17:14:46.943759+00:00",
+  "requested_url": "http://127.0.0.1:8766/cedar_clinic/counter",
+  "final_url": "http://127.0.0.1:8766/cedar_clinic/counter",
+  "redirect_chain": [
+    "http://127.0.0.1:8766/cedar_clinic/counter"
+  ],
+  "status": 200,
+  "response_headers": {
+    "server": "BaseHTTP/0.6 Python/3.11.9",
+    "date": "Wed, 21 Oct 2026 17:14:46 GMT",
+    "content-type": "text/html; charset=utf-8",
+    "content-length": "113",
+    "x-app-version": "local-v2"
+  },
+  "artifact_sha256": "1c95db3196c7799bcf40ab0b52df7abca3ef86fdc578014855de37b977543f8f",
+  "artifact": "testbed/v2_captures/cedar_clinic/counter_H1.html",
+  "capture_success": true,
+  "hostname_group": "127.0.0.1",
+  "registrable_domain_group": "",
+  "screenshot": "unsupported_in_this_phase"
+}

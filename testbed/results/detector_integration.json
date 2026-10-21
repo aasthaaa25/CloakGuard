@@ -1,0 +1,26 @@
+{
+  "category": "detector_generated_integration",
+  "target": "quartz_supply:bot_substantial",
+  "raw_score": 0.6044591107582373,
+  "review_threshold": 0.26962955835598135,
+  "review_verdict": "alert",
+  "designated_subject": "authorized-test-subject",
+  "subject_action": "RATE_LIMIT",
+  "unrelated_client_action": "ALLOW",
+  "decoy_served": true,
+  "rollback_clears_decoy": true,
+  "evidence_report": "C:\\Users\\vt903\\AppData\\Local\\Temp\\cloakguard-v2-sqha_pyb\\forensics/forensic_report_quartz-substantial.html",
+  "attribution": "The harness designated the test subject. The URL was not mapped to a client fingerprint.",
+  "live_dns": {
+    "note": "live resolver answered",
+    "result": {
+      "verified": false,
+      "claimed_bot": "googlebot",
+      "hostname": "dns.google",
+      "reason": "hostname dns.google not in valid range for googlebot",
+      "dns_policy": "fail_closed",
+      "fail_closed": true
+    },
+    "is_live_googlebot_proof": false
+  }
+}

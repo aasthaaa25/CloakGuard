@@ -1,0 +1,30 @@
+{
+  "template_family": "quartz_supply",
+  "scenario_family": "error_page",
+  "scenario_id": "quartz_supply:error_page",
+  "split": "reserved",
+  "role": "negative",
+  "view_id": "H1",
+  "profile": "human",
+  "application_version": "local-v2",
+  "fetched_at_utc": "2026-10-21T17:14:49.390280+00:00",
+  "requested_url": "http://127.0.0.1:8766/quartz_supply/error_page",
+  "final_url": "http://127.0.0.1:8766/quartz_supply/error_page",
+  "redirect_chain": [
+    "http://127.0.0.1:8766/quartz_supply/error_page"
+  ],
+  "status": 200,
+  "response_headers": {
+    "server": "BaseHTTP/0.6 Python/3.11.9",
+    "date": "Wed, 21 Oct 2026 17:14:49 GMT",
+    "content-type": "text/html; charset=utf-8",
+    "content-length": "86",
+    "x-app-version": "local-v2"
+  },
+  "artifact_sha256": "91daa1a18d4a710b98f4457d4d1215ce653b7dc5c7596fe092b954f66b896772",
+  "artifact": "testbed/v2_captures/quartz_supply/error_page_H1.html",
+  "capture_success": true,
+  "hostname_group": "127.0.0.1",
+  "registrable_domain_group": "",
+  "screenshot": "unsupported_in_this_phase"
+}

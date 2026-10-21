@@ -1,0 +1,30 @@
+{
+  "template_family": "linen_press",
+  "scenario_family": "identical_defacement",
+  "scenario_id": "linen_press:identical_defacement",
+  "split": "reserved",
+  "role": "negative",
+  "view_id": "B2",
+  "profile": "bot",
+  "application_version": "local-v2",
+  "fetched_at_utc": "2026-10-21T17:14:50.334379+00:00",
+  "requested_url": "http://127.0.0.1:8766/linen_press/identical_defacement",
+  "final_url": "http://127.0.0.1:8766/linen_press/identical_defacement",
+  "redirect_chain": [
+    "http://127.0.0.1:8766/linen_press/identical_defacement"
+  ],
+  "status": 200,
+  "response_headers": {
+    "server": "BaseHTTP/0.6 Python/3.11.9",
+    "date": "Wed, 21 Oct 2026 17:14:50 GMT",
+    "content-type": "text/html; charset=utf-8",
+    "content-length": "93",
+    "x-app-version": "local-v2"
+  },
+  "artifact_sha256": "79bdbc72f3727551d3968dd765b251b0ae5c9d51e3be7c115fdc69c0a7f7edbe",
+  "artifact": "testbed/v2_captures/linen_press/identical_defacement_B2.html",
+  "capture_success": true,
+  "hostname_group": "127.0.0.1",
+  "registrable_domain_group": "",
+  "screenshot": "unsupported_in_this_phase"
+}

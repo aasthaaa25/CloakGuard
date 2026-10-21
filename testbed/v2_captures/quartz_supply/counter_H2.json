@@ -1,0 +1,30 @@
+{
+  "template_family": "quartz_supply",
+  "scenario_family": "counter",
+  "scenario_id": "quartz_supply:counter",
+  "split": "reserved",
+  "role": "negative",
+  "view_id": "H2",
+  "profile": "human",
+  "application_version": "local-v2",
+  "fetched_at_utc": "2026-10-21T17:14:48.791928+00:00",
+  "requested_url": "http://127.0.0.1:8766/quartz_supply/counter",
+  "final_url": "http://127.0.0.1:8766/quartz_supply/counter",
+  "redirect_chain": [
+    "http://127.0.0.1:8766/quartz_supply/counter"
+  ],
+  "status": 200,
+  "response_headers": {
+    "server": "BaseHTTP/0.6 Python/3.11.9",
+    "date": "Wed, 21 Oct 2026 17:14:48 GMT",
+    "content-type": "text/html; charset=utf-8",
+    "content-length": "116",
+    "x-app-version": "local-v2"
+  },
+  "artifact_sha256": "a12ad8c8a58942f1e9d4ea12f1d75349ae096f3b32f53e2b112563b9adb17343",
+  "artifact": "testbed/v2_captures/quartz_supply/counter_H2.html",
+  "capture_success": true,
+  "hostname_group": "127.0.0.1",
+  "registrable_domain_group": "",
+  "screenshot": "unsupported_in_this_phase"
+}

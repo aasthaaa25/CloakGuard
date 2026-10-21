@@ -1,0 +1,30 @@
+{
+  "template_family": "cedar_clinic",
+  "scenario_family": "redirect_stub",
+  "scenario_id": "cedar_clinic:redirect_stub",
+  "split": "calibration",
+  "role": "negative",
+  "view_id": "B1",
+  "profile": "bot",
+  "application_version": "local-v2",
+  "fetched_at_utc": "2026-10-21T17:14:47.416596+00:00",
+  "requested_url": "http://127.0.0.1:8766/cedar_clinic/redirect_stub",
+  "final_url": "http://127.0.0.1:8766/cedar_clinic/redirect_stub",
+  "redirect_chain": [
+    "http://127.0.0.1:8766/cedar_clinic/redirect_stub"
+  ],
+  "status": 200,
+  "response_headers": {
+    "server": "BaseHTTP/0.6 Python/3.11.9",
+    "date": "Wed, 21 Oct 2026 17:14:47 GMT",
+    "content-type": "text/html; charset=utf-8",
+    "content-length": "93",
+    "x-app-version": "local-v2"
+  },
+  "artifact_sha256": "5c6a8053709b23eb7a0f9aed56a48a07e61e6685d7b8a099fc85ccd2f71900b9",
+  "artifact": "testbed/v2_captures/cedar_clinic/redirect_stub_B1.html",
+  "capture_success": true,
+  "hostname_group": "127.0.0.1",
+  "registrable_domain_group": "",
+  "screenshot": "unsupported_in_this_phase"
+}

@@ -1,0 +1,30 @@
+{
+  "template_family": "cedar_clinic",
+  "scenario_family": "bot_few",
+  "scenario_id": "cedar_clinic:bot_few",
+  "split": "calibration",
+  "role": "positive",
+  "view_id": "H2",
+  "profile": "human",
+  "application_version": "local-v2",
+  "fetched_at_utc": "2026-10-21T17:14:46.779654+00:00",
+  "requested_url": "http://127.0.0.1:8766/cedar_clinic/bot_few",
+  "final_url": "http://127.0.0.1:8766/cedar_clinic/bot_few",
+  "redirect_chain": [
+    "http://127.0.0.1:8766/cedar_clinic/bot_few"
+  ],
+  "status": 200,
+  "response_headers": {
+    "server": "BaseHTTP/0.6 Python/3.11.9",
+    "date": "Wed, 21 Oct 2026 17:14:46 GMT",
+    "content-type": "text/html; charset=utf-8",
+    "content-length": "129",
+    "x-app-version": "local-v2"
+  },
+  "artifact_sha256": "aab83eb6722015f220a452479f3d9b7e18f6aa14196ec1c9dc4a17ef6d67689f",
+  "artifact": "testbed/v2_captures/cedar_clinic/bot_few_H2.html",
+  "capture_success": true,
+  "hostname_group": "127.0.0.1",
+  "registrable_domain_group": "",
+  "screenshot": "unsupported_in_this_phase"
+}

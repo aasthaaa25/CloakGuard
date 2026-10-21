@@ -1,0 +1,30 @@
+{
+  "template_family": "maple_archive",
+  "scenario_family": "challenge",
+  "scenario_id": "maple_archive:challenge",
+  "split": "calibration",
+  "role": "negative",
+  "view_id": "B2",
+  "profile": "bot",
+  "application_version": "local-v2",
+  "fetched_at_utc": "2026-10-21T17:14:48.019176+00:00",
+  "requested_url": "http://127.0.0.1:8766/maple_archive/challenge",
+  "final_url": "http://127.0.0.1:8766/maple_archive/challenge",
+  "redirect_chain": [
+    "http://127.0.0.1:8766/maple_archive/challenge"
+  ],
+  "status": 200,
+  "response_headers": {
+    "server": "BaseHTTP/0.6 Python/3.11.9",
+    "date": "Wed, 21 Oct 2026 17:14:48 GMT",
+    "content-type": "text/html; charset=utf-8",
+    "content-length": "116",
+    "x-app-version": "local-v2"
+  },
+  "artifact_sha256": "913f0e55292e10e37b81b36ddb97bc5ef230e694e5cced2a43e45910e17f6fd2",
+  "artifact": "testbed/v2_captures/maple_archive/challenge_B2.html",
+  "capture_success": true,
+  "hostname_group": "127.0.0.1",
+  "registrable_domain_group": "",
+  "screenshot": "unsupported_in_this_phase"
+}

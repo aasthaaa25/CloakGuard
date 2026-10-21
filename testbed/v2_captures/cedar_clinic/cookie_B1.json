@@ -1,0 +1,30 @@
+{
+  "template_family": "cedar_clinic",
+  "scenario_family": "cookie",
+  "scenario_id": "cedar_clinic:cookie",
+  "split": "calibration",
+  "role": "negative",
+  "view_id": "B1",
+  "profile": "bot",
+  "application_version": "local-v2",
+  "fetched_at_utc": "2026-10-21T17:14:47.004876+00:00",
+  "requested_url": "http://127.0.0.1:8766/cedar_clinic/cookie",
+  "final_url": "http://127.0.0.1:8766/cedar_clinic/cookie",
+  "redirect_chain": [
+    "http://127.0.0.1:8766/cedar_clinic/cookie"
+  ],
+  "status": 200,
+  "response_headers": {
+    "server": "BaseHTTP/0.6 Python/3.11.9",
+    "date": "Wed, 21 Oct 2026 17:14:47 GMT",
+    "content-type": "text/html; charset=utf-8",
+    "content-length": "167",
+    "x-app-version": "local-v2"
+  },
+  "artifact_sha256": "5d0f923dd22eeacd0205415bbf178154d1c7f0226a0166a6148ff24f009c4af3",
+  "artifact": "testbed/v2_captures/cedar_clinic/cookie_B1.html",
+  "capture_success": true,
+  "hostname_group": "127.0.0.1",
+  "registrable_domain_group": "",
+  "screenshot": "unsupported_in_this_phase"
+}

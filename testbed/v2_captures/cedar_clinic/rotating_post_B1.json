@@ -1,0 +1,30 @@
+{
+  "template_family": "cedar_clinic",
+  "scenario_family": "rotating_post",
+  "scenario_id": "cedar_clinic:rotating_post",
+  "split": "calibration",
+  "role": "negative",
+  "view_id": "B1",
+  "profile": "bot",
+  "application_version": "local-v2",
+  "fetched_at_utc": "2026-10-21T17:14:47.098977+00:00",
+  "requested_url": "http://127.0.0.1:8766/cedar_clinic/rotating_post",
+  "final_url": "http://127.0.0.1:8766/cedar_clinic/rotating_post",
+  "redirect_chain": [
+    "http://127.0.0.1:8766/cedar_clinic/rotating_post"
+  ],
+  "status": 200,
+  "response_headers": {
+    "server": "BaseHTTP/0.6 Python/3.11.9",
+    "date": "Wed, 21 Oct 2026 17:14:47 GMT",
+    "content-type": "text/html; charset=utf-8",
+    "content-length": "127",
+    "x-app-version": "local-v2"
+  },
+  "artifact_sha256": "caf3eff8ed2d52b5d6a320262b4a257057b8f3883eb04c4c3ce181c89a172923",
+  "artifact": "testbed/v2_captures/cedar_clinic/rotating_post_B1.html",
+  "capture_success": true,
+  "hostname_group": "127.0.0.1",
+  "registrable_domain_group": "",
+  "screenshot": "unsupported_in_this_phase"
+}

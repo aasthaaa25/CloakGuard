@@ -1,0 +1,30 @@
+{
+  "template_family": "quartz_supply",
+  "scenario_family": "bot_few",
+  "scenario_id": "quartz_supply:bot_few",
+  "split": "reserved",
+  "role": "positive",
+  "view_id": "B2",
+  "profile": "bot",
+  "application_version": "local-v2",
+  "fetched_at_utc": "2026-10-21T17:14:48.608106+00:00",
+  "requested_url": "http://127.0.0.1:8766/quartz_supply/bot_few",
+  "final_url": "http://127.0.0.1:8766/quartz_supply/bot_few",
+  "redirect_chain": [
+    "http://127.0.0.1:8766/quartz_supply/bot_few"
+  ],
+  "status": 200,
+  "response_headers": {
+    "server": "BaseHTTP/0.6 Python/3.11.9",
+    "date": "Wed, 21 Oct 2026 17:14:48 GMT",
+    "content-type": "text/html; charset=utf-8",
+    "content-length": "168",
+    "x-app-version": "local-v2"
+  },
+  "artifact_sha256": "85dcaa181c3290b3dcb9e43cf81b3dfe38d68183e35972f3b4d8dd6bfda33578",
+  "artifact": "testbed/v2_captures/quartz_supply/bot_few_B2.html",
+  "capture_success": true,
+  "hostname_group": "127.0.0.1",
+  "registrable_domain_group": "",
+  "screenshot": "unsupported_in_this_phase"
+}

@@ -1,0 +1,30 @@
+{
+  "template_family": "maple_archive",
+  "scenario_family": "cookie",
+  "scenario_id": "maple_archive:cookie",
+  "split": "calibration",
+  "role": "negative",
+  "view_id": "H2",
+  "profile": "human",
+  "application_version": "local-v2",
+  "fetched_at_utc": "2026-10-21T17:14:47.849736+00:00",
+  "requested_url": "http://127.0.0.1:8766/maple_archive/cookie",
+  "final_url": "http://127.0.0.1:8766/maple_archive/cookie",
+  "redirect_chain": [
+    "http://127.0.0.1:8766/maple_archive/cookie"
+  ],
+  "status": 200,
+  "response_headers": {
+    "server": "BaseHTTP/0.6 Python/3.11.9",
+    "date": "Wed, 21 Oct 2026 17:14:47 GMT",
+    "content-type": "text/html; charset=utf-8",
+    "content-length": "2678",
+    "x-app-version": "local-v2"
+  },
+  "artifact_sha256": "3a14fb47b23a05eb74d9371bae09ffa48cc430130028e0ea96b14063da3209ca",
+  "artifact": "testbed/v2_captures/maple_archive/cookie_H2.html",
+  "capture_success": true,
+  "hostname_group": "127.0.0.1",
+  "registrable_domain_group": "",
+  "screenshot": "unsupported_in_this_phase"
+}

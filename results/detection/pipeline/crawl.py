@@ -106,6 +106,8 @@ def _fetch_httpx(url: str, profile: dict) -> dict:
                 "html": r.text,
                 "status": r.status_code,
                 "final_url": str(r.url),
+                "redirect_chain": [str(item.url) for item in r.history] + [str(r.url)],
+                "response_headers": {k: v for k, v in r.headers.items()},
                 "screenshot_bytes": b"",
                 "method": "httpx",
             }

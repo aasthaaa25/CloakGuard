@@ -1,0 +1,30 @@
+{
+  "template_family": "maple_archive",
+  "scenario_family": "both_out_of_list",
+  "scenario_id": "maple_archive:both_out_of_list",
+  "split": "calibration",
+  "role": "negative",
+  "view_id": "B1",
+  "profile": "bot",
+  "application_version": "local-v2",
+  "fetched_at_utc": "2026-10-21T17:14:47.623329+00:00",
+  "requested_url": "http://127.0.0.1:8766/maple_archive/both_out_of_list",
+  "final_url": "http://127.0.0.1:8766/maple_archive/both_out_of_list",
+  "redirect_chain": [
+    "http://127.0.0.1:8766/maple_archive/both_out_of_list"
+  ],
+  "status": 200,
+  "response_headers": {
+    "server": "BaseHTTP/0.6 Python/3.11.9",
+    "date": "Wed, 21 Oct 2026 17:14:47 GMT",
+    "content-type": "text/html; charset=utf-8",
+    "content-length": "2652",
+    "x-app-version": "local-v2"
+  },
+  "artifact_sha256": "a3ae2f8eec0835c97236ab59e6ac3d662df6fb14d418f39e82dc8c2eeb89e03b",
+  "artifact": "testbed/v2_captures/maple_archive/both_out_of_list_B1.html",
+  "capture_success": true,
+  "hostname_group": "127.0.0.1",
+  "registrable_domain_group": "",
+  "screenshot": "unsupported_in_this_phase"
+}

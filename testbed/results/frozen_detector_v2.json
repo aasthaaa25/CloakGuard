@@ -1,0 +1,18 @@
+{
+  "heuristic_version": 2,
+  "weights": {
+    "drift": 0.4,
+    "jargon": 0.35,
+    "promo": 0.25
+  },
+  "keyword_lists": "detection/pipeline/promotion.py PROMO_CATEGORIES",
+  "v1_threshold_unchanged": 0.5,
+  "decision": {
+    "max_negative": 0.2403023233732854,
+    "min_positive": 0.29895679333867725,
+    "min_substantial": 0.44230038455381104,
+    "scope_used": "bot_directed_including_few_terms_and_hidden_in_list_links",
+    "review_threshold": 0.26962955835598135
+  },
+  "objective": "review alert for bot-directed promotional cloaking; not a block"
+}

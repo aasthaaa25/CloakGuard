@@ -1,0 +1,30 @@
+{
+  "template_family": "linen_press",
+  "scenario_family": "counter",
+  "scenario_id": "linen_press:counter",
+  "split": "reserved",
+  "role": "negative",
+  "view_id": "H1",
+  "profile": "human",
+  "application_version": "local-v2",
+  "fetched_at_utc": "2026-10-21T17:14:49.840323+00:00",
+  "requested_url": "http://127.0.0.1:8766/linen_press/counter",
+  "final_url": "http://127.0.0.1:8766/linen_press/counter",
+  "redirect_chain": [
+    "http://127.0.0.1:8766/linen_press/counter"
+  ],
+  "status": 200,
+  "response_headers": {
+    "server": "BaseHTTP/0.6 Python/3.11.9",
+    "date": "Wed, 21 Oct 2026 17:14:49 GMT",
+    "content-type": "text/html; charset=utf-8",
+    "content-length": "2672",
+    "x-app-version": "local-v2"
+  },
+  "artifact_sha256": "b03c6f0237cab8e278401f7eef8c0cc3e30e1dab001cf109b6714be719125c8a",
+  "artifact": "testbed/v2_captures/linen_press/counter_H1.html",
+  "capture_success": true,
+  "hostname_group": "127.0.0.1",
+  "registrable_domain_group": "",
+  "screenshot": "unsupported_in_this_phase"
+}

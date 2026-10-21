@@ -1,0 +1,30 @@
+{
+  "template_family": "cedar_clinic",
+  "scenario_family": "hidden_in_vocab_link",
+  "scenario_id": "cedar_clinic:hidden_in_vocab_link",
+  "split": "calibration",
+  "role": "positive",
+  "view_id": "B1",
+  "profile": "bot",
+  "application_version": "local-v2",
+  "fetched_at_utc": "2026-10-21T17:14:47.298536+00:00",
+  "requested_url": "http://127.0.0.1:8766/cedar_clinic/hidden_in_vocab_link",
+  "final_url": "http://127.0.0.1:8766/cedar_clinic/hidden_in_vocab_link",
+  "redirect_chain": [
+    "http://127.0.0.1:8766/cedar_clinic/hidden_in_vocab_link"
+  ],
+  "status": 200,
+  "response_headers": {
+    "server": "BaseHTTP/0.6 Python/3.11.9",
+    "date": "Wed, 21 Oct 2026 17:14:47 GMT",
+    "content-type": "text/html; charset=utf-8",
+    "content-length": "203",
+    "x-app-version": "local-v2"
+  },
+  "artifact_sha256": "a100a36097ea08505a15e9dc05448b02fb813b423423bc8b245ded97ff593ed0",
+  "artifact": "testbed/v2_captures/cedar_clinic/hidden_in_vocab_link_B1.html",
+  "capture_success": true,
+  "hostname_group": "127.0.0.1",
+  "registrable_domain_group": "",
+  "screenshot": "unsupported_in_this_phase"
+}

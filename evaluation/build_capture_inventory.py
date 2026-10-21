@@ -15,6 +15,10 @@ from collections import Counter
 from pathlib import Path
 from urllib.parse import urlparse
 
+import tldextract
+
+_TLD = tldextract.TLDExtract(suffix_list_urls=None)
+
 from bs4 import BeautifulSoup
 
 REPO = Path(__file__).resolve().parents[1]
@@ -33,6 +37,15 @@ def _host(url: str) -> str:
     if host.startswith("www."):
         host = host[4:]
     return host
+
+
+def _registrable(host: str) -> str:
+    if not host or host.replace(".", "").isdigit():
+        return ""
+    parsed = _TLD(host)
+    if not parsed.domain or not parsed.suffix:
+        return host
+    return f"{parsed.domain}.{parsed.suffix}"
 
 
 def _sha256(path: Path) -> str:
@@ -111,6 +124,8 @@ def inventory_rows() -> list[dict]:
         rows.append({
             "capture_id": capture_id,
             "site_group": _host(requested),
+            "hostname_group": _host(requested),
+            "registrable_domain_group": _registrable(_host(requested)),
             "requested_url": requested,
             "final_human_url": "",
             "final_bot_url": "",
@@ -136,7 +151,7 @@ def inventory_rows() -> list[dict]:
 def write_inventory(rows: list[dict]) -> None:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     fields = [
-        "capture_id", "site_group", "requested_url", "final_human_url", "final_bot_url",
+        "capture_id", "site_group", "hostname_group", "registrable_domain_group", "requested_url", "final_human_url", "final_bot_url",
         "capture_timestamp", "human_html_path", "bot_html_path", "human_status", "bot_status",
         "pair_complete", "failure_reason", "human_screenshot_path", "bot_screenshot_path",
         "human_method", "bot_method", "human_bytes", "bot_bytes",

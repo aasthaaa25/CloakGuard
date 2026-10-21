@@ -1,0 +1,30 @@
+{
+  "template_family": "linen_press",
+  "scenario_family": "bot_substantial",
+  "scenario_id": "linen_press:bot_substantial",
+  "split": "reserved",
+  "role": "positive_substantial",
+  "view_id": "B2",
+  "profile": "bot",
+  "application_version": "local-v2",
+  "fetched_at_utc": "2026-10-21T17:14:49.775408+00:00",
+  "requested_url": "http://127.0.0.1:8766/linen_press/bot_substantial",
+  "final_url": "http://127.0.0.1:8766/linen_press/bot_substantial",
+  "redirect_chain": [
+    "http://127.0.0.1:8766/linen_press/bot_substantial"
+  ],
+  "status": 200,
+  "response_headers": {
+    "server": "BaseHTTP/0.6 Python/3.11.9",
+    "date": "Wed, 21 Oct 2026 17:14:49 GMT",
+    "content-type": "text/html; charset=utf-8",
+    "content-length": "2789",
+    "x-app-version": "local-v2"
+  },
+  "artifact_sha256": "330b630f1ca23b8fa7f11cdda1800bbbb292b7528ada2f7e607f26a91853d503",
+  "artifact": "testbed/v2_captures/linen_press/bot_substantial_B2.html",
+  "capture_success": true,
+  "hostname_group": "127.0.0.1",
+  "registrable_domain_group": "",
+  "screenshot": "unsupported_in_this_phase"
+}
