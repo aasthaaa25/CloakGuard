@@ -76,7 +76,8 @@ MODALITY_GROUPS = {
                "total_bot_promo_hits", "total_human_promo_hits", "bot_excess_promo_hits"],
     "jargon": ["jargon_asymmetry_score", "jargon_mass_bot", "jargon_mass_human",
                "jargon_mass_delta", "jargon_jsd"],
-    "fused":  list(URL_FEAT_NAMES) + MULTIMODAL_FEAT_NAMES,
+    # final_risk_score and model_probability are fusion outputs, not inputs.
+    "fused":  list(URL_FEAT_NAMES) + [c for c in MULTIMODAL_FEAT_NAMES if c not in {"final_risk_score", "model_probability"}],
 }
 
 

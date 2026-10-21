@@ -1,0 +1,53 @@
+{
+  "target": "https://north.example/produce",
+  "authorization": "synthetic local HTML only; no remote host was contacted",
+  "configuration": "heuristic fusion, threshold 0.50, weights as coded in fusion.py",
+  "identical_views": {
+    "drift_score": 0.0,
+    "visual_used": false,
+    "promo_score": 0.0,
+    "promo_categories": [],
+    "jargon_alternatives": {
+      "human_density": 0.0,
+      "bot_density": 0.0,
+      "signed_density_delta": 0.0,
+      "absolute_density_delta": 0.0,
+      "vocabulary_divergence": 0.0,
+      "combined_jargon_score": 0.0
+    },
+    "jsd_definition": "jensen_shannon_divergence_bits",
+    "jsd_log_base": 2,
+    "final_risk_score": 0.0,
+    "score_is_probability": false,
+    "scoring_path": "fixed_weight_heuristic",
+    "alert_threshold": 0.5,
+    "alert": false,
+    "response": "owner_authorized mode may rate-limit the observed client, serve an inert decoy, or block. This fixture does not arm a live control. external_monitor would log only."
+  },
+  "bot_injected_keywords": {
+    "drift_score": 0.32181434175678203,
+    "visual_used": false,
+    "promo_score": 0.6129166666666666,
+    "promo_categories": [
+      "gambling",
+      "pharma"
+    ],
+    "jargon_alternatives": {
+      "human_density": 0.0,
+      "bot_density": 0.5384615384615384,
+      "signed_density_delta": 0.5384615384615384,
+      "absolute_density_delta": 0.5384615384615384,
+      "vocabulary_divergence": 1.0,
+      "combined_jargon_score": 1.0
+    },
+    "jsd_definition": "jensen_shannon_divergence_bits",
+    "jsd_log_base": 2,
+    "final_risk_score": 0.6319549033693794,
+    "score_is_probability": false,
+    "scoring_path": "fixed_weight_heuristic",
+    "alert_threshold": 0.5,
+    "alert": true,
+    "response": "owner_authorized mode may rate-limit the observed client, serve an inert decoy, or block. This fixture does not arm a live control. external_monitor would log only."
+  },
+  "interpretation": "The injected fixture scores higher than the identical-view fixture. That checks the pipeline. It is not a measurement of real cloaking."
+}

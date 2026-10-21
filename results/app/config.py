@@ -14,6 +14,19 @@ FORENSICS_OUTPUT_DIR = os.getenv("FORENSICS_OUTPUT_DIR", "logs/forensics")
 # ── Origin server (the real site being protected) ──────────
 ORIGIN_SERVER_URL = os.getenv("ORIGIN_SERVER_URL", "http://127.0.0.1:8000")
 
+# Defense modes are separate because a remote cloaking verdict does not
+# identify the client that is currently requesting the page.
+#   external_monitor: detect, preserve evidence, notify. No block or decoy.
+#   owner_authorized: the site owner deployed this middleware and may apply
+#                     bounded local actions to the observed client.
+DEFENSE_MODE = os.getenv("DEFENSE_MODE", "owner_authorized")
+
+# Claimed-crawler DNS checks fail closed: a User-Agent that claims to be
+# Googlebot or Bingbot is not exempt unless reverse and forward DNS both match.
+# This is not a zero false-block guarantee. The JA3 allowlist starts empty.
+CRAWLER_DNS_FAILURE_POLICY = "fail_closed"
+CRAWLER_DNS_TIMEOUT_SECONDS = float(os.getenv("CRAWLER_DNS_TIMEOUT_SECONDS", "2.0"))
+
 # ── Fingerprint scoring ──────────────────────────────────────
 SCORE_INCREMENT_ON_CLOAK_MATCH = 25.0
 SCORE_DECAY_PER_HOUR           = 1.0          # fingerprint trust recovers over time

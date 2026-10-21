@@ -10,6 +10,8 @@ Both directions must match. Bingbot has an equivalent documented method.
 
 import socket
 
+from app.config import CRAWLER_DNS_FAILURE_POLICY, CRAWLER_DNS_TIMEOUT_SECONDS
+
 VERIFIED_CRAWLER_SUFFIXES = {
     "googlebot": [".googlebot.com", ".google.com"],
     "bingbot":   [".search.msn.com"],
@@ -43,41 +45,59 @@ def verify_crawler(source_ip: str, user_agent: str) -> dict:
             "reason": "not_claiming_to_be_a_known_crawler",
         }
 
+    old_timeout = socket.getdefaulttimeout()
+    socket.setdefaulttimeout(CRAWLER_DNS_TIMEOUT_SECONDS)
     try:
-        hostname, _, _ = socket.gethostbyaddr(source_ip)
-    except socket.herror:
-        return {
-            "verified": False,
-            "claimed_bot": claimed_bot,
-            "reason": "reverse_dns_failed — IMPERSONATION SUSPECTED",
-        }
+        try:
+            hostname, _, _ = socket.gethostbyaddr(source_ip)
+        except (socket.herror, socket.timeout, OSError):
+            return {
+                "verified": False,
+                "claimed_bot": claimed_bot,
+                "reason": "reverse_dns_failed",
+                "dns_policy": CRAWLER_DNS_FAILURE_POLICY,
+                "fail_closed": CRAWLER_DNS_FAILURE_POLICY == "fail_closed",
+            }
 
-    valid_suffixes = VERIFIED_CRAWLER_SUFFIXES.get(claimed_bot, [])
-    if not any(hostname.endswith(suf) for suf in valid_suffixes):
-        return {
-            "verified": False,
-            "claimed_bot": claimed_bot,
-            "reason": f"hostname {hostname} not in valid range for {claimed_bot} — IMPERSONATION SUSPECTED",
-        }
+        valid_suffixes = VERIFIED_CRAWLER_SUFFIXES.get(claimed_bot, [])
+        if not any(hostname.endswith(suf) for suf in valid_suffixes):
+            return {
+                "verified": False,
+                "claimed_bot": claimed_bot,
+                "hostname": hostname,
+                "reason": f"hostname {hostname} not in valid range for {claimed_bot}",
+                "dns_policy": CRAWLER_DNS_FAILURE_POLICY,
+                "fail_closed": True,
+            }
 
-    try:
-        forward_ips = socket.gethostbyname_ex(hostname)[2]
-    except socket.gaierror:
-        return {
-            "verified": False,
-            "claimed_bot": claimed_bot,
-            "reason": "forward_dns_failed — IMPERSONATION SUSPECTED",
-        }
+        try:
+            forward_ips = socket.gethostbyname_ex(hostname)[2]
+        except (socket.gaierror, socket.timeout, OSError):
+            return {
+                "verified": False,
+                "claimed_bot": claimed_bot,
+                "hostname": hostname,
+                "reason": "forward_dns_failed",
+                "dns_policy": CRAWLER_DNS_FAILURE_POLICY,
+                "fail_closed": CRAWLER_DNS_FAILURE_POLICY == "fail_closed",
+            }
 
-    if source_ip not in forward_ips:
-        return {
-            "verified": False,
-            "claimed_bot": claimed_bot,
-            "reason": "forward_dns_mismatch — IMPERSONATION SUSPECTED",
-        }
+        if source_ip not in forward_ips:
+            return {
+                "verified": False,
+                "claimed_bot": claimed_bot,
+                "hostname": hostname,
+                "reason": "forward_dns_mismatch",
+                "dns_policy": CRAWLER_DNS_FAILURE_POLICY,
+                "fail_closed": True,
+            }
 
-    return {
-        "verified": True,
-        "claimed_bot": claimed_bot,
-        "reason": "dns_verification_passed",
-    }
+        return {
+            "verified": True,
+            "claimed_bot": claimed_bot,
+            "hostname": hostname,
+            "reason": "dns_verification_passed",
+            "dns_policy": CRAWLER_DNS_FAILURE_POLICY,
+        }
+    finally:
+        socket.setdefaulttimeout(old_timeout)

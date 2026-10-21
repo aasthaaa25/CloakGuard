@@ -110,8 +110,10 @@ def _process_crawl_sample(sample_dir: Path) -> pd.DataFrame:
                         break
                 else:
                     row[fn] = 0.0
-            # label from fusion
-            row["label"]      = 1 if fusion["final_risk_score"] >= 0.45 else 0
+            # The fusion score is stored for auditing. It is not a cloaking label.
+            row["label"] = None
+            row["weak_fusion_label"] = 1 if fusion["final_risk_score"] >= 0.45 else 0
+            row["label_status"] = "unlabeled_paired_capture"
             row["provenance"] = "live_crawl"
             rows.append(row)
         except Exception as e:
@@ -139,13 +141,14 @@ def _build_backbone_subset(n: int = 5000) -> pd.DataFrame:
     df_sub = pd.concat([pos, neg]).reset_index(drop=True)
 
     df_x = _url_transform(df_sub)
-    df_x["label"]      = df_sub["drift_score"].values
-    df_x["url"]        = df_sub["url"].values
-    df_x["url_id"]     = ""
+    df_x["label"] = df_sub["drift_score"].values
+    df_x["label_status"] = "source_column_drift_score_not_confirmed_cloaking"
+    df_x["url"] = df_sub["url"].values
+    df_x["url_id"] = ""
     df_x["provenance"] = "csv_backbone"
 
     for fn in MULTIMODAL_FEAT_NAMES:
-        df_x[fn] = 0.0
+        df_x[fn] = np.nan
 
     print(f"[dataset] Backbone subset: {len(df_x)} rows")
     return df_x
@@ -184,8 +187,15 @@ def build_dataset(force_rebuild: bool = False) -> pd.DataFrame:
         if fn not in df.columns:
             df[fn] = 0.0
 
-    df = df.fillna(0.0)
+    # URL features may be zero. Multimodal features stay missing on backbone rows.
+    url_cols = [c for c in _URL_FEAT_NAMES if c in df.columns]
+    df[url_cols] = df[url_cols].fillna(0.0)
     OUTPUT_PARQUET.parent.mkdir(parents=True, exist_ok=True)
+    print(
+        "[dataset] WARNING: backbone drift_score is not a confirmed cloaking label, "
+        "and missing paired-view features are NaN rather than observed zeros. "
+        "Do not train a publication model on this mixed table."
+    )
     df.to_parquet(OUTPUT_PARQUET, index=False)
     print(f"[dataset] Saved → {OUTPUT_PARQUET}  ({len(df)} rows)")
     print(f"[dataset] Class balance: {df['label'].value_counts().to_dict()}")

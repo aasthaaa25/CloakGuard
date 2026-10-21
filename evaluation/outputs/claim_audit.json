@@ -1,0 +1,250 @@
+{
+  "generated_at": "2026-10-21T16:36:55.383947+00:00",
+  "freeze": {
+    "frozen_at": "2026-10-21T16:35:46.855641+00:00",
+    "purpose": "Pre-repair snapshot hashes. Historical files are not rewritten by the audit.",
+    "files": [
+      {
+        "path": "paper/CloakGuard_Paper.pdf",
+        "bytes": 425078,
+        "sha256": "dfa934588b0ad013ca0178753b02971743753e6a3098ec485d5bb4358ecaa049"
+      },
+      {
+        "path": "results/detection/artifacts/metrics.json",
+        "bytes": 2506,
+        "sha256": "7a55a06820d9c6a9a6f4ad30593cde3f24aec051d10d28a301b52da216306b24"
+      },
+      {
+        "path": "results/detection/artifacts/multimodal_metrics.json",
+        "bytes": 4047,
+        "sha256": "f9d62e8c364fc51ed8b0cd27b68a3f4d68ac8c1003465610252078086a79dfdb"
+      },
+      {
+        "path": "results/data/multimodal_features.parquet",
+        "bytes": 431544,
+        "sha256": "a0cbbe572dd1816eb7bdb86a935c6343737c8f3b985f6e0c9e5a28c17bf60687"
+      },
+      {
+        "path": "README.md",
+        "bytes": 1695,
+        "sha256": "a55622109ee9c21d52d81481033c100fd3f59b672b71f98f86207292d1fb0fea"
+      },
+      {
+        "path": "results/README.md",
+        "bytes": 27686,
+        "sha256": "1a31f37ea9f38ac51281e5018b717fc5b130447aca6154775c6f0403a9ce70fe"
+      }
+    ],
+    "python_tree_sha256": "6d90afb0014e2b363446341f44874e8f59736453e609c49115f5eea1710a399c",
+    "python_file_count": 43,
+    "note": "The 160k URL CSV named final_full (1).csv is not in this repository. Phase 1 metrics cannot be regenerated from local evidence."
+  },
+  "parquet": {
+    "rows": 5122,
+    "columns": 67,
+    "provenance_counts": {
+      "csv_backbone": 5000,
+      "live_crawl": 122
+    },
+    "backbone_rows_with_all_zero_multimodal_features": 5000,
+    "live_rows_with_all_zero_multimodal_features": 0,
+    "fusion_outputs_stored_as_columns": [
+      "final_risk_score",
+      "model_probability"
+    ],
+    "live_label_agreement_with_fusion_threshold_0_45": 1.0,
+    "label_counts": {
+      "0.0": 2622,
+      "1.0": 2500
+    },
+    "interpretation": "This table mixes URL-only backbone rows with paired captures and fills missing multimodal features with zero. It is not a fully observed multimodal benchmark. Live labels match the fusion threshold, so agreement with those labels is circular."
+  },
+  "crawl": {
+    "meta_files": 300,
+    "unique_urls": 300,
+    "unique_domains": 300,
+    "duplicate_url_rows": 0,
+    "methods": {
+      "httpx": 259,
+      "httpx_fail": 41
+    },
+    "status_counts": {
+      "human:200": 211,
+      "bot:200": 211,
+      "human:0": 41,
+      "bot:0": 41,
+      "human:404": 23,
+      "bot:404": 23,
+      "human:403": 20,
+      "bot:403": 18,
+      "bot:202": 2,
+      "human:202": 1,
+      "bot:500": 2,
+      "human:503": 1,
+      "bot:503": 1,
+      "human:410": 1,
+      "bot:410": 1,
+      "human:500": 1,
+      "human:429": 1,
+      "bot:429": 1
+    },
+    "capture_outcomes": {
+      "both_views_nonempty_http_200": 204,
+      "failed_or_incomplete": 96
+    },
+    "screenshot_rows": 0,
+    "visual_features_extracted_on_ok_rows": 0,
+    "renderer": "httpx User-Agent fetch only. No rendered DOM, screenshot, redirect chain, or execution trace is stored in the crawl metadata.",
+    "repeated_profile_protocol": "One human fetch and one bot fetch per meta file. H1/B1/H2/B2 repeats are not present.",
+    "ok_drift_score_mean": 0.012483142155889766,
+    "ok_jargon_score_mean": 7.833877674616057e-06,
+    "ok_promo_score_mean": 0.05141441993464052,
+    "feature_schema": {
+      "url_lexical": [
+        "url_len",
+        "host_len",
+        "path_len",
+        "query_len",
+        "num_path_slashes",
+        "num_dots",
+        "num_hyphens",
+        "num_digits",
+        "num_underscores",
+        "num_at",
+        "num_percent",
+        "has_query",
+        "has_https",
+        "has_ip_host",
+        "token_count",
+        "suspicious_token_count",
+        "url_entropy",
+        "path_entropy",
+        "host_entropy",
+        "digit_ratio",
+        "letter_ratio",
+        "special_ratio",
+        "vowel_ratio",
+        "subdomain_count",
+        "path_depth",
+        "query_param_count",
+        "max_consecutive_digits",
+        "longest_token_len",
+        "mean_token_len",
+        "is_punycode",
+        "is_ipfs_host",
+        "is_hex_host",
+        "has_suspicious_tld",
+        "has_double_slash",
+        "has_at_in_path",
+        "has_redirect_token",
+        "has_encoded_chars",
+        "num_query_params",
+        "suspicious_in_host",
+        "suspicious_in_path",
+        "suspicious_in_query"
+      ],
+      "url_lexical_count": 41,
+      "multimodal_columns_in_dataset_module": [
+        "drift_score",
+        "html_size_drift",
+        "dom_drift",
+        "link_drift",
+        "text_drift",
+        "title_drift",
+        "bot_only_link_count",
+        "visual_ssim",
+        "visual_pixel_delta",
+        "promo_score",
+        "promo_asymmetry",
+        "category_count",
+        "total_bot_promo_hits",
+        "total_human_promo_hits",
+        "bot_excess_promo_hits",
+        "jargon_asymmetry_score",
+        "jargon_mass_bot",
+        "jargon_mass_human",
+        "jargon_mass_delta",
+        "jargon_jsd",
+        "final_risk_score",
+        "model_probability"
+      ],
+      "multimodal_column_count_including_fusion_outputs": 22,
+      "detector_feature_count_excluding_fusion_outputs": 61,
+      "claimed_63_resolution": "41 URL features + 9 drift + 6 promotional + 5 jargon = 61 detector features. The extra two columns are final_risk_score and model_probability, which are fusion outputs and are excluded from the publication feature set.",
+      "duplicate_url_features": [
+        "path_depth duplicates num_path_slashes",
+        "num_query_params duplicates query_param_count"
+      ],
+      "visual_features": {
+        "names": [
+          "visual_ssim",
+          "visual_pixel_delta"
+        ],
+        "used_by_detector_when_screenshots_exist": true,
+        "present_in_this_crawl_sample": false,
+        "formula": "SSIM and mean absolute pixel difference on 256x192 grayscale screenshots. Default visual_ssim=1 and visual_pixel_delta=0 when screenshots are absent, and have_visual is false so the drift aggregate drops the visual weight."
+      }
+    }
+  },
+  "historical_results": {
+    "phase1_status": "archived_not_reproduced",
+    "phase1_reason": "final_full (1).csv is absent. metrics.json records a prior run whose label column was drift_score. That column is not independent evidence of cloaking.",
+    "phase1_best_archived_model_by_accuracy_then_auc": "HistGradientBoosting",
+    "phase1_archived": {
+      "LogisticRegression": {
+        "accuracy": 0.95315,
+        "recall": 0.96815,
+        "roc_auc": 0.98578
+      },
+      "RandomForest": {
+        "accuracy": 0.971325,
+        "recall": 0.9867,
+        "roc_auc": 0.99578
+      },
+      "HistGradientBoosting": {
+        "accuracy": 0.972675,
+        "recall": 0.983,
+        "roc_auc": 0.996074
+      },
+      "Ensemble": {
+        "accuracy": 0.971225,
+        "recall": 0.98285,
+        "roc_auc": 0.995309
+      }
+    },
+    "phase1_wording": "Archived ensemble ROC-AUC is 0.995309, which is not the same number as HistGradientBoosting ROC-AUC 0.996074. HistGradientBoosting is the best archived Phase 1 model by accuracy and ROC-AUC.",
+    "phase2_status": "archived_debugging_not_publication_evidence",
+    "phase2_reason": "Trained on the mixed 5,122-row table with zero-filled multimodal features and fusion-derived live labels. final_risk_score and model_probability were included as features.",
+    "phase2_archived": {
+      "LR_multimodal": {
+        "accuracy": 0.960967993754879,
+        "recall": 0.9856,
+        "roc_auc": 0.9849780487804878
+      },
+      "RF_multimodal": {
+        "accuracy": 0.9578454332552693,
+        "recall": 0.9968,
+        "roc_auc": 0.9914609756097561
+      },
+      "HGB_multimodal": {
+        "accuracy": 0.9562841530054644,
+        "recall": 0.9904,
+        "roc_auc": 0.9905780487804877
+      },
+      "Ensemble_multimodal": {
+        "accuracy": 0.9617486338797814,
+        "recall": 0.9952,
+        "roc_auc": 0.9924390243902439
+      }
+    },
+    "phase2_wording": "On the archived debugging run, Ensemble_multimodal has the highest accuracy and ROC-AUC, while RF_multimodal has higher recall (0.9968 vs 0.9952). That comparison is not evidence of cloaking detection.",
+    "synthetic_400_status": "unsupported",
+    "synthetic_400_reason": "No synthetic corpus, generation script, prediction file, or confusion-matrix artifact for a 400-example evaluation is in the repository."
+  },
+  "tasks_separated": {
+    "url_risk_classification": "Not rerun. Source CSV missing. Archived metrics must not be described as confirmed cloaking detection.",
+    "promotional_cloaking_detection": "Not established. Paired captures have no independent cloaking labels.",
+    "overt_defacement_detection": "Not evaluated. No defacement ground truth is stored.",
+    "controlled_attack_detection": "Only fixture-level unit tests exist. The 400-example synthetic result is unsupported."
+  }
+}

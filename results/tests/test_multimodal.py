@@ -293,25 +293,26 @@ class TestMultimodalModelMetrics:
         metrics_path = ROOT / "detection" / "artifacts" / "multimodal_metrics.json"
         assert metrics_path.exists(), f"multimodal_metrics.json not found at {metrics_path}"
 
-    def test_ensemble_accuracy_above_90(self):
+    def test_archived_phase2_recall_is_not_universal_superiority(self):
         metrics_path = ROOT / "detection" / "artifacts" / "multimodal_metrics.json"
         if not metrics_path.exists():
             pytest.skip("multimodal_metrics.json not yet generated")
         with open(metrics_path) as f:
             metrics = json.load(f)
-        ens = metrics.get("models", {}).get("Ensemble_multimodal", {})
-        acc = ens.get("accuracy", 0)
-        assert acc >= 0.85, f"Ensemble_multimodal accuracy {acc:.4f} below 0.85"
+        ens = metrics["models"]["Ensemble_multimodal"]
+        rf = metrics["models"]["RF_multimodal"]
+        assert ens["accuracy"] >= rf["accuracy"]
+        assert ens["roc_auc"] >= rf["roc_auc"]
+        assert rf["recall"] > ens["recall"]
 
-    def test_fused_auc_above_90(self):
+    def test_archived_feature_list_contains_fusion_outputs(self):
         metrics_path = ROOT / "detection" / "artifacts" / "multimodal_metrics.json"
-        if not metrics_path.exists():
-            pytest.skip("multimodal_metrics.json not yet generated")
         with open(metrics_path) as f:
             metrics = json.load(f)
-        ens = metrics.get("models", {}).get("Ensemble_multimodal", {})
-        auc = ens.get("roc_auc", 0)
-        assert auc >= 0.85, f"Ensemble_multimodal ROC-AUC {auc:.4f} below 0.85"
+        names = metrics["feature_names"]
+        assert "final_risk_score" in names
+        assert "model_probability" in names
+        assert metrics["feature_count"] == 63
 
     def test_all_7_graphs_generated(self):
         graphs_dir = ROOT / "detection" / "artifacts" / "graphs"
@@ -324,18 +325,17 @@ class TestMultimodalModelMetrics:
         for fname in expected:
             assert (graphs_dir / fname).exists(), f"Missing graph: {fname}"
 
-    def test_fused_beats_url_only_in_ablation(self):
+    def test_archived_ablation_is_not_a_controlled_comparison(self):
         metrics_path = ROOT / "detection" / "artifacts" / "multimodal_metrics.json"
         if not metrics_path.exists():
             pytest.skip("multimodal_metrics.json not yet generated")
         with open(metrics_path) as f:
             metrics = json.load(f)
-        abl = metrics.get("ablation", {})
-        fused_auc = abl.get("fused", {}).get("roc_auc", 0)
-        url_auc   = abl.get("url_lexical", {}).get("roc_auc", 0)
-        assert fused_auc >= url_auc - 0.02, (
-            f"Fused AUC {fused_auc:.4f} should be competitive with url_lexical {url_auc:.4f}"
-        )
+        abl = metrics["ablation"]
+        # Drift, promo, and jargon were mostly zeros on the backbone rows,
+        # so their archived AUC near 0.5 is expected and is not a modality result.
+        assert abl["drift"]["roc_auc"] < 0.6
+        assert abl["url_lexical"]["roc_auc"] > abl["drift"]["roc_auc"]
 
 
 # ── Pipeline integration: end-to-end contract ────────────────────────────────

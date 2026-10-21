@@ -133,7 +133,7 @@ def _write_forensic_report(url, url_id, fusion, drift, promo,
 <h1>🔍 Automated Forensic Deep-Scan Report</h1>
 <p><b>URL:</b> {url} &nbsp;|&nbsp; <b>Generated:</b> {timestamp}</p>
 
-<div class="banner">⚠ CLOAKING CONFIRMED — Risk Score: {fusion.get('final_risk_score', 'N/A')}</div>
+<div class="banner">HEURISTIC ALERT — uncalibrated score {fusion.get('final_risk_score', 'N/A')} on path {fusion.get('scoring_path', 'unspecified')}. This package does not by itself confirm cloaking or identify an attacker.</div>
 
 <div class="section">
 <h2>Executive Summary</h2>

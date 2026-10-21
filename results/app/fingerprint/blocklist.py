@@ -47,8 +47,11 @@ def _apply_decay(score: float, last_seen: float, now: float) -> float:
 
 def register_cloak_match(ja3_hash: str, url: str):
     """
-    Called when the detection pipeline confirms cloaking was served
-    to a request bearing this fingerprint. Increments its score.
+    Add points to the inbound client fingerprint that was observed on this
+    request. The score belongs to that JA3 hash, not to a remote server and
+    not to a proven attacker identity. A cloaking heuristic is a supporting
+    signal; shared fingerprints, proxies, and TLS termination can make the
+    same hash appear for unrelated clients.
     """
     if ja3_hash in GOOGLEBOT_ALLOWLIST_JA3:
         return  # NEVER score legitimate verified crawlers — see §1.7

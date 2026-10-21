@@ -55,16 +55,26 @@ def fuse_risk_scores(drift: dict, promo: dict, url: str = "",
     Stage 6 entry point.
     Combines all modality signals into final_risk_score + alert.
 
-    Weights (when model is available):
-        url_model  35%  (trained on 160k URLs)
-        drift      25%  (html/dom/text/visual divergence)
-        jargon     25%  (jargon asymmetry — the cloaking fingerprint)
-        promo      15%  (promotional keyword presence)
+    This function is the operational heuristic scorer. It is not the trained
+    multimodal ensemble in detection/train_multimodal.py. Those are different
+    scoring paths.
 
-    Weights (heuristic fallback):
-        drift      40%
-        jargon     35%
-        promo      25%
+    url_model_assisted_heuristic, used only when a Phase-1 URL model loads
+    and returns a positive score:
+        url_model  0.35
+        drift      0.25
+        jargon     0.25
+        promo      0.15
+
+    fixed_weight_heuristic, used otherwise:
+        drift      0.40
+        jargon     0.35
+        promo      0.25
+
+    The weights are fixed constants. They were not selected on a held-out
+    cloaking test. final_risk_score is an uncalibrated score in [0, 1], not
+    a probability. The alert threshold is ALERT_THRESHOLD (default 0.50) on
+    this same score. A 0.05 cutoff is not an operating threshold of this path.
     """
     drift_score  = float(drift.get("drift_score",  0.0))
     promo_score  = float(promo.get("promo_score",  0.0))
@@ -72,19 +82,24 @@ def fuse_risk_scores(drift: dict, promo: dict, url: str = "",
 
     model_bundle = _load_model()
     model_prob   = _url_probability(url, model_bundle) if model_bundle and url else 0.0
+    assisted = bool(model_bundle and model_prob > 0)
 
-    if model_bundle and model_prob > 0:
+    if assisted:
+        scoring_path = "url_model_assisted_heuristic"
+        weights = {"url_model": 0.35, "drift": 0.25, "jargon": 0.25, "promo": 0.15}
         final_score = min(1.0, (
-            0.35 * model_prob +
-            0.25 * drift_score +
-            0.25 * jargon_score +
-            0.15 * promo_score
+            weights["url_model"] * model_prob +
+            weights["drift"] * drift_score +
+            weights["jargon"] * jargon_score +
+            weights["promo"] * promo_score
         ))
     else:
+        scoring_path = "fixed_weight_heuristic"
+        weights = {"url_model": 0.0, "drift": 0.40, "jargon": 0.35, "promo": 0.25}
         final_score = min(1.0, (
-            0.40 * drift_score +
-            0.35 * jargon_score +
-            0.25 * promo_score
+            weights["drift"] * drift_score +
+            weights["jargon"] * jargon_score +
+            weights["promo"] * promo_score
         ))
 
     alert = bool(final_score >= _ALERT_THRESHOLD)
@@ -127,12 +142,17 @@ def fuse_risk_scores(drift: dict, promo: dict, url: str = "",
 
     return {
         "final_risk_score":          final_score,
+        "score_is_probability":      False,
+        "scoring_path":              scoring_path,
+        "weights":                   weights,
+        "alert_threshold":           _ALERT_THRESHOLD,
         "alert":                     alert,
         "flagged_vectors":           flagged_vectors,
         "model_probability":         model_prob,
-        "drift_contribution":        0.25 * drift_score if model_bundle else 0.40 * drift_score,
-        "jargon_contribution":       0.25 * jargon_score if model_bundle else 0.35 * jargon_score,
-        "promo_contribution":        0.15 * promo_score if model_bundle else 0.25 * promo_score,
-        "url_model_contribution":    0.35 * model_prob if model_bundle else 0.0,
+        "drift_contribution":        weights["drift"] * drift_score,
+        "jargon_contribution":       weights["jargon"] * jargon_score,
+        "promo_contribution":        weights["promo"] * promo_score,
+        "url_model_contribution":    weights["url_model"] * model_prob,
         "high_confidence":           bool(final_score >= _HIGH_CONFIDENCE_THRESHOLD),
+        "trained_multimodal_ensemble_used": False,
     }

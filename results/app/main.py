@@ -29,7 +29,7 @@ except ImportError:
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from app.config import ORIGIN_SERVER_URL, LOG_ONLY
+from app.config import ORIGIN_SERVER_URL, LOG_ONLY, DEFENSE_MODE
 from app.fingerprint.capture import capture_loop, lookup_fingerprint
 from app.fingerprint.crawler_verify import verify_crawler, identify_claimed_bot
 from app.fingerprint.blocklist import get_fingerprint_status, register_cloak_match
@@ -81,8 +81,13 @@ async def proxy(full_path: str, request: Request):
     else:
         impersonation_detected = False
 
-    # LOG_ONLY mode: skip all enforcement and just forward
-    if LOG_ONLY:
+    # External monitoring records evidence and does not block, rate-limit, or decoy.
+    # LOG_ONLY is the calibration switch and has the same enforcement boundary.
+    if LOG_ONLY or DEFENSE_MODE == "external_monitor":
+        logger.info(
+            "MONITOR_ONLY mode=%s claimed_bot=%s impersonation=%s ip=%s",
+            DEFENSE_MODE, claimed_bot, impersonation_detected, client_ip,
+        )
         return await _forward_to_origin(request, full_path)
 
     # ── Step 2: Fingerprint lookup ─────────────────────────────────

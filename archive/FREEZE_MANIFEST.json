@@ -1,0 +1,39 @@
+{
+  "frozen_at": "2026-10-21T16:35:46.855641+00:00",
+  "purpose": "Pre-repair snapshot hashes. Historical files are not rewritten by the audit.",
+  "files": [
+    {
+      "path": "paper/CloakGuard_Paper.pdf",
+      "bytes": 425078,
+      "sha256": "dfa934588b0ad013ca0178753b02971743753e6a3098ec485d5bb4358ecaa049"
+    },
+    {
+      "path": "results/detection/artifacts/metrics.json",
+      "bytes": 2506,
+      "sha256": "7a55a06820d9c6a9a6f4ad30593cde3f24aec051d10d28a301b52da216306b24"
+    },
+    {
+      "path": "results/detection/artifacts/multimodal_metrics.json",
+      "bytes": 4047,
+      "sha256": "f9d62e8c364fc51ed8b0cd27b68a3f4d68ac8c1003465610252078086a79dfdb"
+    },
+    {
+      "path": "results/data/multimodal_features.parquet",
+      "bytes": 431544,
+      "sha256": "a0cbbe572dd1816eb7bdb86a935c6343737c8f3b985f6e0c9e5a28c17bf60687"
+    },
+    {
+      "path": "README.md",
+      "bytes": 1695,
+      "sha256": "a55622109ee9c21d52d81481033c100fd3f59b672b71f98f86207292d1fb0fea"
+    },
+    {
+      "path": "results/README.md",
+      "bytes": 27686,
+      "sha256": "1a31f37ea9f38ac51281e5018b717fc5b130447aca6154775c6f0403a9ce70fe"
+    }
+  ],
+  "python_tree_sha256": "6d90afb0014e2b363446341f44874e8f59736453e609c49115f5eea1710a399c",
+  "python_file_count": 43,
+  "note": "The 160k URL CSV named final_full (1).csv is not in this repository. Phase 1 metrics cannot be regenerated from local evidence."
+}

@@ -3,10 +3,9 @@
 ### Cloaking-Aware Promotional Defacement Detection · Full Multimodal Pipeline · Three-Layer Active Defense
 
 > **Author:** Aastha | B.Tech CSE | Defensive Security Research
-> **Dataset:** 160,000 URLs
-> **Phase 1 headline:** 95.32% acc / 97.12% ensemble (URL-lexical, 160k URLs)
-> **Phase 2 fused:** 96.17% acc / 99.24% ROC-AUC (multimodal dual-view pipeline)
-> **Tests:** 53 / 53 passing
+>
+> The headline accuracies below are archived debugging outputs. They are not a cloaking-detection result. See `../docs/CLAIM_AUDIT.md` and `../paper/CloakGuard_corrected.md`.
+> The 160,000-URL CSV is not included. The parquet has 5,000 zero-filled backbone rows and 122 fusion-labeled crawl rows.
 
 ---
 

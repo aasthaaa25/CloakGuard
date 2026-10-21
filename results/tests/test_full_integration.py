@@ -145,8 +145,8 @@ class TestFullIntegration:
 
         report_path = asyncio.run(_run())
         assert Path(report_path).exists()
-        content = Path(report_path).read_text()
-        assert "CLOAKING CONFIRMED" in content
+        content = Path(report_path).read_text(encoding="utf-8")
+        assert "HEURISTIC ALERT" in content
         assert "0.87" in content
         print(f"\n  Step 3 ✓ — forensic report: {report_path}")
 

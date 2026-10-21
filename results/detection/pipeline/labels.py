@@ -31,17 +31,22 @@ def label_from_csv(row: pd.Series) -> dict:
 
 def label_from_fusion(url: str, fusion_result: dict) -> dict:
     """
-    Derive label from a fresh crawl's fusion result.
-    Used when building the live-crawled multimodal sample.
+    Record a weak label derived from the fusion score.
+
+    This is not ground truth. The same score must not be used both to create
+    the label and to evaluate the detector. Publication rows keep label=None
+    and store the thresholded score only as weak_fusion_label.
     """
     score = fusion_result.get("final_risk_score", 0.0)
-    y = 1 if score >= FUSION_LABEL_THRESHOLD else 0
+    weak = 1 if score >= FUSION_LABEL_THRESHOLD else 0
     return {
-        "label":          y,
-        "provenance":     "fusion_threshold",
-        "url":            url,
-        "fusion_score":   score,
-        "alert":          fusion_result.get("alert", False),
+        "label": None,
+        "weak_fusion_label": weak,
+        "label_status": "weak_fusion_threshold_not_ground_truth",
+        "provenance": "fusion_threshold_weak",
+        "url": url,
+        "fusion_score": score,
+        "alert": fusion_result.get("alert", False),
         "high_confidence": fusion_result.get("high_confidence", False),
     }
 

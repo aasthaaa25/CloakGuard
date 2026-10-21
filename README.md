@@ -1,6 +1,8 @@
 # CloakGuard
 
-CloakGuard is a research system for detecting promotional cloaking and web defacement, plus a three-layer active defense prototype. The write-up and the experiment bundle are in this repository.
+CloakGuard is a defensive research prototype: paired User-Agent fetches, heuristic drift and jargon scores, and owner-side middleware. The corrected write-up is [`paper/CloakGuard_corrected.md`](paper/CloakGuard_corrected.md). The earlier PDF in `paper/` is a historical draft. Read [`docs/CLAIM_AUDIT.md`](docs/CLAIM_AUDIT.md) before citing any accuracy number.
+
+The 160,000-URL file is not in this repository. The 5,122-row parquet is not a fully observed multimodal cloaking benchmark. The crawl sample has 300 URLs and no independent cloaking labels.
 
 **Author:** Aastha Tyagi
 
@@ -15,9 +17,9 @@ CloakGuard is a research system for detecting promotional cloaking and web defac
 
 `paper/CloakGuard_Paper.pdf` describes a two-phase detector and an active defense layer:
 
-- Phase 1 engineers 41 URL-lexical features on a 160,000-URL dataset (95.32% accuracy with logistic regression; 97.12% with a soft-voting ensemble).
-- Phase 2 adds a dual-view crawl (human Chrome user-agent and Googlebot) and 22 more signals, then fuses them into a multimodal ensemble (96.17% accuracy, 99.24% ROC-AUC on the reported evaluation).
-- The defense layer covers TLS/JA3 fingerprinting, decoy neutralization, and forensic packaging. The bundle reports a 53-test suite.
+- Archived URL-model numbers live in `results/detection/artifacts/metrics.json`. They were not rerun here. HistGradientBoosting is the best archived model by accuracy and ROC-AUC.
+- The paired-view audit is `evaluation/outputs/claim_audit.json`.
+- The defense code scores the observed client JA3. `DEFENSE_MODE=external_monitor` logs and forwards. The default owner-authorized mode may rate-limit, block, or serve an inert decoy.
 
 ## Results
 
