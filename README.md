@@ -10,7 +10,7 @@ The 160,000-URL file is not in this repository. The 5,122-row parquet is not a f
 
 | Directory | What it contains |
 | --- | --- |
-| [`paper/`](paper/) | `CloakGuard_Paper.pdf` — the paper |
+| [`paper/`](paper/) | Corrected Markdown write-up and historical PDF |
 | [`results/`](results/) | Implementation, tests, trained artifacts, crawl sample, and the generated report |
 
 ## Paper
@@ -23,7 +23,7 @@ The 160,000-URL file is not in this repository. The 5,122-row parquet is not a f
 
 ## Results
 
-`results/` is the active defense system that produced those numbers. Start with [`results/README.md`](results/README.md) for setup and how to rerun the pipeline.
+`results/` contains the current implementation and historical training artifacts. Start with [`results/README.md`](results/README.md) for setup and how to rerun the pipeline.
 
 Main pieces inside `results/`:
 

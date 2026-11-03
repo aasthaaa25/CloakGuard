@@ -35,5 +35,16 @@
   ],
   "python_tree_sha256": "6d90afb0014e2b363446341f44874e8f59736453e609c49115f5eea1710a399c",
   "python_file_count": 43,
-  "note": "The 160k URL CSV named final_full (1).csv is not in this repository. Phase 1 metrics cannot be regenerated from local evidence."
+  "note": "The 160k URL CSV named final_full (1).csv is not in this repository. Phase 1 metrics cannot be regenerated from local evidence.",
+  "operational_review_policy": {
+    "source": "testbed/results/frozen_detector_v2.json",
+    "fixed_weight_review_threshold": 0.27,
+    "legacy_alert_threshold": 0.5,
+    "weights": {
+      "drift": 0.4,
+      "jargon": 0.35,
+      "promo": 0.25
+    },
+    "scope": "Controlled bot-directed promotional injection. No new held-out benchmark run."
+  }
 }

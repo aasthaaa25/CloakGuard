@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-21T16:36:55.383947+00:00",
+  "generated_at": "2026-11-03T08:28:42.172912+00:00",
   "freeze": {
     "frozen_at": "2026-10-21T16:35:46.855641+00:00",
     "purpose": "Pre-repair snapshot hashes. Historical files are not rewritten by the audit.",
@@ -37,7 +37,18 @@
     ],
     "python_tree_sha256": "6d90afb0014e2b363446341f44874e8f59736453e609c49115f5eea1710a399c",
     "python_file_count": 43,
-    "note": "The 160k URL CSV named final_full (1).csv is not in this repository. Phase 1 metrics cannot be regenerated from local evidence."
+    "note": "The 160k URL CSV named final_full (1).csv is not in this repository. Phase 1 metrics cannot be regenerated from local evidence.",
+    "operational_review_policy": {
+      "source": "testbed/results/frozen_detector_v2.json",
+      "fixed_weight_review_threshold": 0.27,
+      "legacy_alert_threshold": 0.5,
+      "weights": {
+        "drift": 0.4,
+        "jargon": 0.35,
+        "promo": 0.25
+      },
+      "scope": "Controlled bot-directed promotional injection. No new held-out benchmark run."
+    }
   },
   "parquet": {
     "rows": 5122,
@@ -96,9 +107,9 @@
     "visual_features_extracted_on_ok_rows": 0,
     "renderer": "httpx User-Agent fetch only. No rendered DOM, screenshot, redirect chain, or execution trace is stored in the crawl metadata.",
     "repeated_profile_protocol": "One human fetch and one bot fetch per meta file. H1/B1/H2/B2 repeats are not present.",
-    "ok_drift_score_mean": 0.012483142155889766,
+    "ok_drift_score_mean": 0.012448090500819136,
     "ok_jargon_score_mean": 7.833877674616057e-06,
-    "ok_promo_score_mean": 0.05141441993464052,
+    "ok_promo_score_mean": 0.051218341503267976,
     "feature_schema": {
       "url_lexical": [
         "url_len",

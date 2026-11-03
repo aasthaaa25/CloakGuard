@@ -60,6 +60,8 @@ def _run(html_h: str, html_b: str, url: str) -> dict:
         "scoring_path": fusion["scoring_path"],
         "alert_threshold": fusion["alert_threshold"],
         "alert": fusion["alert"],
+        "review_threshold": fusion["review_threshold"],
+        "review_alert": fusion["review_alert"],
         "response": (
             "owner_authorized mode may rate-limit the observed client, serve an inert decoy, "
             "or block. This fixture does not arm a live control. external_monitor would log only."

@@ -28,3 +28,5 @@ The 30-pair pilot uses the categories below. A difference by itself is not a pos
 | `unusable` | The capture is broken, incomplete, or not the destination document. |
 
 Reviewers must not see fusion scores, jargon scores, model predictions, or a suggested detector label. The review packet is `data/annotation/pilot_30_packet.jsonl`. Reviewer 1's labels are `data/annotation/pilot_30_reviewer_1.csv`. Reviewer 2's sheet is blank. Do not open the saved HTML in a normal browser; inspect escaped source and extracted visible text.
+
+After reviewer 2 has independently completed the sheet, run `python evaluation/pilot_agreement.py` from the repository root. The script reports raw agreement and Cohen's kappa overall and one-versus-rest for each label when both sheets are complete. An undefined kappa is recorded as null. Agreement precedes adjudication and creates no training labels.

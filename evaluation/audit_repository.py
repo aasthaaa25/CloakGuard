@@ -13,7 +13,6 @@ not modify historical metric files.
 
 from __future__ import annotations
 
-import hashlib
 import json
 import sys
 from collections import Counter
@@ -32,50 +31,8 @@ OUT = REPO / "evaluation" / "outputs"
 ARCHIVE = REPO / "archive"
 
 
-def _sha256(path: Path) -> str:
-    h = hashlib.sha256()
-    with path.open("rb") as f:
-        for chunk in iter(lambda: f.read(1 << 20), b""):
-            h.update(chunk)
-    return h.hexdigest()
-
-
 def freeze_manifest() -> dict:
-    ARCHIVE.mkdir(parents=True, exist_ok=True)
-    targets = []
-    for rel in [
-        "paper/CloakGuard_Paper.pdf",
-        "results/detection/artifacts/metrics.json",
-        "results/detection/artifacts/multimodal_metrics.json",
-        "results/data/multimodal_features.parquet",
-        "README.md",
-        "results/README.md",
-    ]:
-        path = REPO / rel
-        if path.exists():
-            targets.append({
-                "path": rel.replace("\\", "/"),
-                "bytes": path.stat().st_size,
-                "sha256": _sha256(path),
-            })
-    code_files = sorted((RESULTS).rglob("*.py"))
-    code_digest = hashlib.sha256()
-    for path in code_files:
-        code_digest.update(str(path.relative_to(REPO)).encode())
-        code_digest.update(_sha256(path).encode())
-    manifest = {
-        "frozen_at": datetime.now(timezone.utc).isoformat(),
-        "purpose": "Pre-repair snapshot hashes. Historical files are not rewritten by the audit.",
-        "files": targets,
-        "python_tree_sha256": code_digest.hexdigest(),
-        "python_file_count": len(code_files),
-        "note": (
-            "The 160k URL CSV named final_full (1).csv is not in this repository. "
-            "Phase 1 metrics cannot be regenerated from local evidence."
-        ),
-    }
-    (ARCHIVE / "FREEZE_MANIFEST.json").write_text(json.dumps(manifest, indent=2), encoding="utf-8")
-    return manifest
+    return json.loads((ARCHIVE / "FREEZE_MANIFEST.json").read_text(encoding="utf-8"))
 
 
 def _domain(url: str) -> str:

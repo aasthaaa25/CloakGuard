@@ -15,6 +15,7 @@ from detection.detection_pipeline import (
     extract_dual_artifacts,
     compute_cross_view_drift,
     compute_promotional_score,
+    compute_jargon_asymmetry,
     fuse_risk_scores,
 )
 
@@ -48,11 +49,12 @@ async def run_detection_async(url: str, ja3_hash: str | None, response_body: byt
         artifacts = extract_dual_artifacts(record)
         drift = compute_cross_view_drift(artifacts, record)
         promo = compute_promotional_score(artifacts, record)
-        fusion = fuse_risk_scores(drift, promo, url=url)
+        jargon = compute_jargon_asymmetry(artifacts, record)
+        fusion = fuse_risk_scores(drift, promo, url=url, jargon=jargon)
         return record, artifacts, drift, promo, fusion
 
     record, artifacts, drift, promo, fusion = await asyncio.to_thread(run_pipeline)
-    if fusion.get("alert"):
+    if fusion.get("review_alert"):
         review_id = uuid4().hex
         record = {**record, "url_id": review_id}
         fusion = {**fusion, "observed_ja3": ja3_hash}

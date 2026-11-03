@@ -26,3 +26,11 @@ Each row names the artifact that supports the statement in `paper/CloakGuard_cor
 1. The test suite can still miss bugs. Passing tests are not a proof that every branch is correct.
 2. Nothing here shows that the jargon score improves detection. The successful httpx pairs have almost no jargon asymmetry. A future labeled study might find that the signal helps, helps in one category, or adds nothing. The crawl labels must not be edited to produce one of those outcomes.
 3. This dataset cannot support a large-scale cloaking-detection claim. The 160,000-URL file is absent, and the paired captures have no independent labels. The honest scope is the audit, the pipeline behavior on fixtures, and the owner-side control tests.
+
+## Operational follow-up
+
+| Statement | Evidence |
+| --- | --- |
+| Fixed-weight review at 0.270 and separate legacy alert | `archive/FREEZE_MANIFEST.json`, `testbed/results/frozen_detector_v2.json`, `results/tests/test_review_threshold.py` |
+| Same replacement in both views can be flagged by an owner-approved digest check | `results/detection/pipeline/integrity.py`, `results/tests/test_review_threshold.py` |
+| Pilot second-review coverage and agreement status | `evaluation/pilot_agreement.py` → `evaluation/outputs/pilot_agreement.json` |

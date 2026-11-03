@@ -28,3 +28,7 @@ If they overlap, narrow P to scenarios whose role is `positive_substantial` and 
 If the narrowed sets still overlap, do not publish a threshold. Record the overlap.
 
 Do not set the threshold to 0.47 because a previous example scored about 0.48.
+
+## Operational review
+
+The service rounds the controlled threshold to 0.270 on the fixed-weight scoring path. Set `REVIEW_THRESHOLD` to override it. The URL-model-assisted path retains the 0.50 alert for review because the 0.270 rule was selected without the URL model. Neither alert authorizes blocking. Human-only injection is outside this rule. Owner-approved static artifacts can be checked independently with `detection.pipeline.integrity`.

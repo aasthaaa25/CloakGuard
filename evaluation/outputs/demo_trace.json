@@ -22,6 +22,8 @@
     "scoring_path": "fixed_weight_heuristic",
     "alert_threshold": 0.5,
     "alert": false,
+    "review_threshold": 0.27,
+    "review_alert": false,
     "response": "owner_authorized mode may rate-limit the observed client, serve an inert decoy, or block. This fixture does not arm a live control. external_monitor would log only."
   },
   "bot_injected_keywords": {
@@ -47,6 +49,8 @@
     "scoring_path": "fixed_weight_heuristic",
     "alert_threshold": 0.5,
     "alert": true,
+    "review_threshold": 0.27,
+    "review_alert": true,
     "response": "owner_authorized mode may rate-limit the observed client, serve an inert decoy, or block. This fixture does not arm a live control. external_monitor would log only."
   },
   "interpretation": "The injected fixture scores higher than the identical-view fixture. That checks the pipeline. It is not a measurement of real cloaking."

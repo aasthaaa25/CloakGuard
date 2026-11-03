@@ -5,6 +5,7 @@ risk score and alert decision.  Uses the trained model when available;
 falls back to a heuristic weighted sum.
 """
 
+import os
 import sys
 from pathlib import Path
 from typing import Optional
@@ -12,15 +13,21 @@ from typing import Optional
 ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(ROOT))
 
+_REVIEW_THRESHOLD        = float(os.getenv("REVIEW_THRESHOLD", "0.270"))
 _ALERT_THRESHOLD         = 0.50
 _HIGH_CONFIDENCE_THRESHOLD = 0.75
 
 try:
-    from app.config import ALERT_THRESHOLD, HIGH_CONFIDENCE_THRESHOLD
+    from app.config import ALERT_THRESHOLD, HIGH_CONFIDENCE_THRESHOLD, REVIEW_THRESHOLD
+    _REVIEW_THRESHOLD         = REVIEW_THRESHOLD
     _ALERT_THRESHOLD          = ALERT_THRESHOLD
     _HIGH_CONFIDENCE_THRESHOLD = HIGH_CONFIDENCE_THRESHOLD
 except Exception:
     pass
+
+
+if not 0 <= _REVIEW_THRESHOLD <= _ALERT_THRESHOLD:
+    raise ValueError("REVIEW_THRESHOLD must be between 0 and ALERT_THRESHOLD")
 
 
 def _load_model():
@@ -103,6 +110,7 @@ def fuse_risk_scores(drift: dict, promo: dict, url: str = "",
         ))
 
     alert = bool(final_score >= _ALERT_THRESHOLD)
+    review_threshold = _ALERT_THRESHOLD if assisted else _REVIEW_THRESHOLD
 
     flagged_vectors = []
     if drift_score > 0.30:
@@ -147,6 +155,8 @@ def fuse_risk_scores(drift: dict, promo: dict, url: str = "",
         "weights":                   weights,
         "alert_threshold":           _ALERT_THRESHOLD,
         "alert":                     alert,
+        "review_threshold":          review_threshold,
+        "review_alert":              bool(final_score >= review_threshold),
         "flagged_vectors":           flagged_vectors,
         "model_probability":         model_prob,
         "drift_contribution":        weights["drift"] * drift_score,
