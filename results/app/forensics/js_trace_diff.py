@@ -42,16 +42,17 @@ def capture_js_trace(url: str, view_profile: dict, timeout_ms: int = 20000) -> d
             "text": msg.text[:200],
         }))
 
+        error = None
         try:
             page.goto(url, timeout=timeout_ms, wait_until="networkidle")
             page.wait_for_timeout(1500)
         except Exception as e:
-            console_events.append({"type": "error", "text": str(e)})
+            error = str(e)
 
         context.close()
         browser.close()
 
-    return {"requests": requests_fired, "console": console_events}
+    return {"requests": requests_fired, "console": console_events, "error": error}
 
 
 def diff_js_traces(human_trace: dict, bot_trace: dict) -> dict:

@@ -7,7 +7,9 @@ Type=simple
 User=defaceguard
 WorkingDirectory=/opt/defacement_defense_system
 Environment="ORIGIN_SERVER_URL=http://127.0.0.1:8000"
-ExecStart=/opt/defacement_defense_system/venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8443
+Environment="DEFENSE_MODE=external_monitor"
+EnvironmentFile=-/etc/cloakguard/defense.env
+ExecStart=/opt/defacement_defense_system/venv/bin/python -m app.tls_ingress --host 0.0.0.0 --port 8443 --cert /etc/cloakguard/tls/cert.pem --key /etc/cloakguard/tls/key.pem
 Restart=on-failure
 RestartSec=5
 

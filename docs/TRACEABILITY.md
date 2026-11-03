@@ -12,10 +12,11 @@ Each row names the artifact that supports the statement in `paper/CloakGuard_cor
 | Archived Phase 2 debugging numbers | `results/detection/artifacts/multimodal_metrics.json` |
 | Jargon definitions and weights | `results/detection/pipeline/jargon.py` |
 | Operational scoring path and threshold 0.50 | `results/detection/pipeline/fusion.py`, `results/app/config.py` |
-| DNS fail-closed crawler check | `results/app/fingerprint/crawler_verify.py` |
+| Reverse/forward crawler verification and outage handling | `results/app/fingerprint/crawler_verify.py`, `results/app/main.py` |
 | Client fingerprint scoring, decay, and actions | `results/app/fingerprint/blocklist.py`, `results/app/config.py` |
 | External-monitor versus owner-authorized mode | `results/app/main.py`, `DEFENSE_MODE` |
-| Inert decoy construction | `results/app/decoy/decoy_generator.py` |
+| Approved static decoy and expiry | `results/app/decoy/decoy_store.py`, `results/app/main.py` |
+| Controlled TLS-to-origin enforcement check | `results/tests/test_defense_ingress.py` |
 | Fixture walk-through | `evaluation/outputs/demo_trace.json`, produced by `evaluation/demo_case.py` |
 | Annotation categories | `docs/ANNOTATION_RUBRIC.md` |
 | Historical paper PDF | `paper/CloakGuard_Paper.pdf` |

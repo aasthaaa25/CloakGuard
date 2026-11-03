@@ -1,61 +1,86 @@
-"""
-Lightweight ClientHello capture using a raw socket listener.
-Runs as a background task alongside the FastAPI proxy.
-Pairs captured fingerprints with requests via (src_ip, src_port).
-"""
+"""Capture ClientHello on the public TCP listener before private TLS termination."""
 
 import asyncio
+import logging
+
 from app.fingerprint.ja3 import compute_ja3
 
-# In-memory short-lived cache: (src_ip, src_port) -> ja3_hash
-# Entries expire quickly since they only need to survive the handshake-to-request gap
-_fingerprint_cache: dict = {}
-_CACHE_TTL_SECONDS = 5
+logger = logging.getLogger(__name__)
+# Private connection tuple -> (real client IP, JA3). Shared within one process.
+_connections = {}
+MAX_HELLO = 65535
 
 
-def is_tls_client_hello(data: bytes) -> bool:
-    """Quick check: TLS record type 0x16 (handshake), then ClientHello (0x01)"""
-    return len(data) > 5 and data[0] == 0x16 and data[5] == 0x01
+def connection_metadata(peer):
+    return _connections.get(peer)
 
 
-async def capture_loop(listen_port: int = 8443):
-    """
-    Background task: listens on the raw TCP port the proxy binds to,
-    peeks at the first bytes of each new connection (the ClientHello),
-    computes its JA3 hash, and caches it keyed by (src_ip, src_port)
-    so the HTTP-layer handler can look it up moments later.
-    """
-    server = await asyncio.start_server(_handle_conn, "0.0.0.0", listen_port)
-    async with server:
-        await server.serve_forever()
+async def read_client_hello(reader):
+    """Read complete handshake records, preserving their original wire bytes."""
+    records = bytearray()
+    handshake = bytearray()
+    while len(records) < MAX_HELLO:
+        header = await reader.readexactly(5)
+        size = int.from_bytes(header[3:5], "big")
+        if header[0] != 22 or not 0 < size <= 16384:
+            raise ValueError("Invalid TLS handshake record")
+        body = await reader.readexactly(size)
+        records.extend(header + body)
+        handshake.extend(body)
+        if len(handshake) >= 4:
+            length = int.from_bytes(handshake[1:4], "big") + 4
+            if handshake[0] != 1 or length > MAX_HELLO:
+                raise ValueError("Expected a bounded ClientHello")
+            if len(handshake) >= length:
+                hello = handshake[:length]
+                if len(hello) > MAX_HELLO:
+                    return bytes(records), None
+                packet = bytes(header[:3]) + len(hello).to_bytes(2, "big") + hello
+                return bytes(records), compute_ja3(packet)["ja3_hash"]
+    raise ValueError("ClientHello exceeds capture limit")
 
 
-async def _handle_conn(reader: asyncio.StreamReader, writer: asyncio.StreamWriter):
-    addr = writer.get_extra_info("peername")
-    src_ip, src_port = addr[0], addr[1]
-    try:
-        data = await asyncio.wait_for(reader.read(4096), timeout=2.0)
-        if is_tls_client_hello(data):
-            result = compute_ja3(data)
-            _fingerprint_cache[(src_ip, src_port)] = {
-                "ja3_hash": result["ja3_hash"],
-                "timestamp": asyncio.get_event_loop().time(),
-            }
-    except (asyncio.TimeoutError, Exception):
-        pass
-    finally:
-        writer.close()
+async def _pipe(reader, writer):
+    while data := await reader.read(65536):
+        writer.write(data)
+        await writer.drain()
 
 
-def lookup_fingerprint(src_ip: str, src_port: int):
-    """Called by the HTTP middleware to retrieve the JA3 hash for an inbound request."""
-    entry = _fingerprint_cache.get((src_ip, src_port))
-    if entry is None:
-        return None
-    try:
-        now = asyncio.get_event_loop().time()
-    except RuntimeError:
-        return None
-    if now - entry["timestamp"] > _CACHE_TTL_SECONDS:
-        return None
-    return entry["ja3_hash"]
+async def start_capture(host, port, private_port):
+    """Relay TLS bytes to Uvicorn and convey metadata via process-local state."""
+    active = set()
+
+    async def handle(reader, writer):
+        if len(active) >= 256:
+            writer.close()
+            return
+        task = asyncio.current_task()
+        active.add(task)
+        upstream = None
+        key = None
+        pumps = []
+        try:
+            wire, fingerprint = await asyncio.wait_for(read_client_hello(reader), 3)
+            remote, upstream = await asyncio.open_connection("127.0.0.1", private_port)
+            key = upstream.get_extra_info("sockname")
+            ip = writer.get_extra_info("peername")[0]
+            _connections[key] = (ip, fingerprint)
+            upstream.write(wire)
+            await upstream.drain()
+            pumps = [asyncio.create_task(_pipe(reader, upstream)),
+                     asyncio.create_task(_pipe(remote, writer))]
+            await asyncio.wait(pumps, return_when=asyncio.FIRST_COMPLETED)
+        except (ValueError, OSError, asyncio.IncompleteReadError, asyncio.TimeoutError):
+            logger.debug("TLS capture connection closed", exc_info=True)
+        finally:
+            for pump in pumps:
+                pump.cancel()
+            if key is not None:
+                _connections.pop(key, None)
+            if upstream is not None:
+                upstream.close()
+            writer.close()
+            active.discard(task)
+            await asyncio.gather(*pumps, return_exceptions=True)
+
+    return await asyncio.start_server(handle, host, port)

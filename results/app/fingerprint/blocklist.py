@@ -27,8 +27,12 @@ def _db():
     )""")
     try:
         yield conn
-    finally:
+    except BaseException:
+        conn.rollback()
+        raise
+    else:
         conn.commit()
+    finally:
         conn.close()
 
 
@@ -45,7 +49,9 @@ def _apply_decay(score: float, last_seen: float, now: float) -> float:
     return max(decayed, 0.0)
 
 
-def register_cloak_match(ja3_hash: str, url: str):
+def register_cloak_match(
+    ja3_hash: str, url: str, *, evidence_id: str | None = None, review_id: str | None = None,
+):
     """
     Add points to the inbound client fingerprint that was observed on this
     request. The score belongs to that JA3 hash, not to a remote server and
@@ -56,18 +62,33 @@ def register_cloak_match(ja3_hash: str, url: str):
     if ja3_hash in GOOGLEBOT_ALLOWLIST_JA3:
         return  # NEVER score legitimate verified crawlers — see §1.7
 
-    now = time.time()
+    # Keep historical heuristic scores isolated from enforcement scores.
+    key = f"confirmed:{ja3_hash}" if evidence_id else ja3_hash
     with _db() as conn:
+        conn.execute("BEGIN IMMEDIATE")
+        now = time.time()
+        if evidence_id:
+            conn.execute("""CREATE TABLE IF NOT EXISTS confirmed_events (
+                evidence_id TEXT PRIMARY KEY, ja3_hash TEXT NOT NULL,
+                url TEXT NOT NULL, confirmed_at REAL NOT NULL, review_id TEXT UNIQUE
+            )""")
+            inserted = conn.execute(
+                "INSERT OR IGNORE INTO confirmed_events VALUES (?, ?, ?, ?, ?)",
+                (evidence_id, ja3_hash, url, now, review_id),
+            )
+            if inserted.rowcount == 0:
+                return False
+
         row = conn.execute(
             "SELECT score, last_seen, first_seen, hit_count, sample_urls "
             "FROM fingerprint_scores WHERE ja3_hash=?",
-            (ja3_hash,)
+            (key,)
         ).fetchone()
 
         if row is None:
             conn.execute(
                 "INSERT INTO fingerprint_scores VALUES (?,?,?,?,?,?)",
-                (ja3_hash, SCORE_INCREMENT_ON_CLOAK_MATCH, now, now, 1, url[:200])
+                (key, SCORE_INCREMENT_ON_CLOAK_MATCH, now, now, 1, url[:200])
             )
         else:
             old_score, last_seen, first_seen, hit_count, sample_urls = row
@@ -77,11 +98,13 @@ def register_cloak_match(ja3_hash: str, url: str):
             conn.execute(
                 "UPDATE fingerprint_scores SET score=?, last_seen=?, hit_count=?, "
                 "sample_urls=? WHERE ja3_hash=?",
-                (new_score, now, hit_count + 1, updated_urls, ja3_hash)
+                (new_score, now, hit_count + 1, updated_urls, key)
             )
 
+        return True
 
-def get_fingerprint_status(ja3_hash: str) -> dict:
+
+def get_fingerprint_status(ja3_hash: str, *, confirmed_only: bool = False) -> dict:
     """
     Returns the current decayed score and recommended action for
     a fingerprint. Called on EVERY inbound request by the middleware.
@@ -89,11 +112,12 @@ def get_fingerprint_status(ja3_hash: str) -> dict:
     if ja3_hash in GOOGLEBOT_ALLOWLIST_JA3:
         return {"score": 0.0, "action": "ALLOW", "reason": "verified_legitimate_crawler"}
 
+    key = f"confirmed:{ja3_hash}" if confirmed_only else ja3_hash
     now = time.time()
     with _db() as conn:
         row = conn.execute(
             "SELECT score, last_seen, hit_count FROM fingerprint_scores WHERE ja3_hash=?",
-            (ja3_hash,)
+            (key,)
         ).fetchone()
 
     if row is None:

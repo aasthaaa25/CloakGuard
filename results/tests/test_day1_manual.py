@@ -105,16 +105,21 @@ class TestCrawlerVerification:
         assert result["verified"] is False
         assert result["claimed_bot"] is None
 
-    def test_googlebot_impersonation_fails(self):
+    def test_googlebot_impersonation_fails(self, monkeypatch):
         from app.fingerprint.crawler_verify import verify_crawler
-        # 192.0.2.1 is RFC5737 doc address — reverse DNS won't resolve to googlebot.com
+        from dns import resolver
+
+        def missing_ptr(*args, **kwargs):
+            raise resolver.NXDOMAIN
+
+        monkeypatch.setattr(resolver, "resolve_address", missing_ptr)
         result = verify_crawler(
             "192.0.2.1",
             "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
         )
         assert result["verified"] is False
         assert result["claimed_bot"] == "googlebot"
-        assert "SUSPECTED" in result["reason"] or "failed" in result["reason"]
+        assert result["reason"] == "reverse_dns_no_match"
 
     def test_identify_claimed_bot(self):
         from app.fingerprint.crawler_verify import identify_claimed_bot

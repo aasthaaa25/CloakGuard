@@ -1,23 +1,15 @@
-"""
-Bridges the reverse-proxy middleware to the existing dual-view
-detection pipeline (originally built across Day 1-5 of the
-detection-side notebook). Exported as detection_pipeline.py.
-"""
+"""Run bounded dual-view reviews independently of enforcement."""
 
-import sys
 import asyncio
+import json
+import logging
+import time
+from uuid import uuid4
 from pathlib import Path
 
-# Make detection_pipeline importable whether we're run from project root or app/
-sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+from app.config import FORENSICS_OUTPUT_DIR
 
-from app.config import DEEP_SCAN_TRIGGER_THRESHOLD
-from app.fingerprint.blocklist import register_cloak_match
-from app.decoy.decoy_generator import build_decoy_page
-from app.decoy.decoy_store import arm_decoy
 from app.forensics.deep_scan import trigger_deep_scan
-
-# Import the detection pipeline (backed by the trained URL model)
 from detection.detection_pipeline import (
     dual_view_crawl,
     extract_dual_artifacts,
@@ -26,45 +18,46 @@ from detection.detection_pipeline import (
     fuse_risk_scores,
 )
 
+logger = logging.getLogger(__name__)
+_active = {}
+_recent = {}
 
-async def run_detection_async(url: str, ja3_hash: str, response_body: bytes):
-    """
-    Runs the FULL existing detection pipeline on a URL, then acts on
-    the verdict by arming L1 (fingerprint scoring), L2 (decoy), and/or
-    triggering L3 (deep scan) as appropriate.
-    """
-    loop = asyncio.get_event_loop()
 
-    # Your existing pipeline is synchronous (Playwright sync API or URL-model path) —
-    # run it in a thread pool so it doesn't block the async event loop
-    def _run_sync_pipeline():
-        crawl_record = dual_view_crawl(url)
-        artifacts    = extract_dual_artifacts(crawl_record)
-        drift        = compute_cross_view_drift(artifacts, crawl_record)
-        promo        = compute_promotional_score(artifacts, crawl_record)
-        fusion       = fuse_risk_scores(drift, promo, url=url)
-        return crawl_record, artifacts, drift, promo, fusion
+def schedule_review(url, fingerprint):
+    now = time.monotonic()
+    for expired in [key for key, deadline in _recent.items() if deadline <= now]:
+        del _recent[expired]
+    if url in _active or url in _recent or len(_active) >= 2 or len(_recent) >= 256:
+        return
+    task = asyncio.create_task(run_detection_async(url, fingerprint, b""))
+    _active[url] = task
+    _recent[url] = now + 300
 
-    crawl_record, artifacts, drift, promo, fusion = await loop.run_in_executor(
-        None, _run_sync_pipeline
-    )
+    def finished(task):
+        _active.pop(url, None)
+        if not task.cancelled() and (error := task.exception()):
+            logger.error("Dual-view review failed", exc_info=error)
 
-    if fusion.get("alert") and ja3_hash:
-        # Layer 1: score this fingerprint
-        register_cloak_match(ja3_hash, url)
+    task.add_done_callback(finished)
 
-        # Layer 2: arm decoy using the clean human-view HTML
-        human_html = crawl_record.get("human", {}).get("html", "")
-        if human_html:
-            decoy_html = build_decoy_page(
-                human_html,
-                fusion.get("flagged_vectors", []),
-                promo.get("keyword_categories_found", {}),
-            )
-            arm_decoy(url, decoy_html)
 
-        # Layer 3: trigger deep forensic scan (fire-and-forget)
-        if fusion.get("final_risk_score", 0) >= DEEP_SCAN_TRIGGER_THRESHOLD:
-            asyncio.create_task(
-                trigger_deep_scan(url, crawl_record, artifacts, drift, promo, fusion)
-            )
+async def run_detection_async(url: str, ja3_hash: str | None, response_body: bytes):
+    """Collect review evidence without promoting a page alert to enforcement."""
+    def run_pipeline():
+        record = dual_view_crawl(url)
+        artifacts = extract_dual_artifacts(record)
+        drift = compute_cross_view_drift(artifacts, record)
+        promo = compute_promotional_score(artifacts, record)
+        fusion = fuse_risk_scores(drift, promo, url=url)
+        return record, artifacts, drift, promo, fusion
+
+    record, artifacts, drift, promo, fusion = await asyncio.to_thread(run_pipeline)
+    if fusion.get("alert"):
+        review_id = uuid4().hex
+        record = {**record, "url_id": review_id}
+        fusion = {**fusion, "observed_ja3": ja3_hash}
+        directory = Path(FORENSICS_OUTPUT_DIR)
+        directory.mkdir(parents=True, exist_ok=True)
+        review = directory / f"review_{review_id}.json"
+        review.write_text(json.dumps({"url": url, "observed_ja3": ja3_hash}), encoding="utf-8")
+        await trigger_deep_scan(url, record, artifacts, drift, promo, fusion)

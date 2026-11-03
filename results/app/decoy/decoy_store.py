@@ -21,12 +21,22 @@ def _db():
     )""")
     try:
         yield conn
-    finally:
+    except BaseException:
+        conn.rollback()
+        raise
+    else:
         conn.commit()
+    finally:
         conn.close()
 
 
-def arm_decoy(url: str, decoy_html: str):
+STATIC_DECOY = "<!doctype html><title>Welcome</title><h1>Welcome</h1>"
+
+
+def arm_decoy(url: str, decoy_html: str, *, approved: bool = False):
+    if approved:
+        url = "approved:" + url
+        decoy_html = STATIC_DECOY
     with _db() as conn:
         conn.execute(
             "INSERT OR REPLACE INTO decoy_state (url, decoy_html, armed_at, serve_count) "
@@ -35,16 +45,19 @@ def arm_decoy(url: str, decoy_html: str):
         )
 
 
-def get_decoy_if_armed(url: str):
+def get_decoy_if_armed(url: str, *, approved_only: bool = False):
     """Returns decoy HTML if armed and not expired, else None."""
+    if approved_only:
+        url = "approved:" + url
     with _db() as conn:
+        conn.execute("BEGIN IMMEDIATE")
         row = conn.execute(
             "SELECT decoy_html, armed_at FROM decoy_state WHERE url=?", (url,)
         ).fetchone()
         if row is None:
             return None
         decoy_html, armed_at = row
-        if (time.time() - armed_at) > DECOY_TTL_HOURS * 3600:
+        if (time.time() - armed_at) >= DECOY_TTL_HOURS * 3600:
             conn.execute("DELETE FROM decoy_state WHERE url=?", (url,))
             return None
         conn.execute(
@@ -56,4 +69,4 @@ def get_decoy_if_armed(url: str):
 def disarm_decoy(url: str):
     """Called once the site owner confirms the real page has been cleaned."""
     with _db() as conn:
-        conn.execute("DELETE FROM decoy_state WHERE url=?", (url,))
+        conn.execute("DELETE FROM decoy_state WHERE url IN (?, ?)", (url, "approved:" + url))

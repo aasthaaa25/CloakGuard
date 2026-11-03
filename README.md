@@ -19,7 +19,7 @@ The 160,000-URL file is not in this repository. The 5,122-row parquet is not a f
 
 - Archived URL-model numbers live in `results/detection/artifacts/metrics.json`. They were not rerun here. HistGradientBoosting is the best archived model by accuracy and ROC-AUC.
 - The paired-view audit is `evaluation/outputs/claim_audit.json`.
-- The defense code scores the observed client JA3. `DEFENSE_MODE=external_monitor` logs and forwards. The default owner-authorized mode may rate-limit, block, or serve an inert decoy.
+- The defense service collects evidence in monitoring mode. In owner-authorized mode, confirmed reviews can add points to an observed JA3 and approved URLs can serve inert decoys. See [Active defense setup](results/README.md#active-defense-setup).
 
 ## Results
 

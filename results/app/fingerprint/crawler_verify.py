@@ -8,9 +8,13 @@ https://developers.google.com/search/docs/crawling-indexing/verifying-googlebot
 Both directions must match. Bingbot has an equivalent documented method.
 """
 
-import socket
+import ipaddress
+import time
 
-from app.config import CRAWLER_DNS_FAILURE_POLICY, CRAWLER_DNS_TIMEOUT_SECONDS
+import dns.exception
+import dns.resolver
+
+from app.config import CRAWLER_DNS_TIMEOUT_SECONDS
 
 VERIFIED_CRAWLER_SUFFIXES = {
     "googlebot": [".googlebot.com", ".google.com"],
@@ -45,59 +49,30 @@ def verify_crawler(source_ip: str, user_agent: str) -> dict:
             "reason": "not_claiming_to_be_a_known_crawler",
         }
 
-    old_timeout = socket.getdefaulttimeout()
-    socket.setdefaulttimeout(CRAWLER_DNS_TIMEOUT_SECONDS)
+    ip = ipaddress.ip_address(source_ip)
+    deadline = time.monotonic() + CRAWLER_DNS_TIMEOUT_SECONDS
+    result = {"verified": False, "claimed_bot": claimed_bot}
     try:
-        try:
-            hostname, _, _ = socket.gethostbyaddr(source_ip)
-        except (socket.herror, socket.timeout, OSError):
-            return {
-                "verified": False,
-                "claimed_bot": claimed_bot,
-                "reason": "reverse_dns_failed",
-                "dns_policy": CRAWLER_DNS_FAILURE_POLICY,
-                "fail_closed": CRAWLER_DNS_FAILURE_POLICY == "fail_closed",
-            }
-
-        valid_suffixes = VERIFIED_CRAWLER_SUFFIXES.get(claimed_bot, [])
-        if not any(hostname.endswith(suf) for suf in valid_suffixes):
-            return {
-                "verified": False,
-                "claimed_bot": claimed_bot,
-                "hostname": hostname,
-                "reason": f"hostname {hostname} not in valid range for {claimed_bot}",
-                "dns_policy": CRAWLER_DNS_FAILURE_POLICY,
-                "fail_closed": True,
-            }
-
-        try:
-            forward_ips = socket.gethostbyname_ex(hostname)[2]
-        except (socket.gaierror, socket.timeout, OSError):
-            return {
-                "verified": False,
-                "claimed_bot": claimed_bot,
-                "hostname": hostname,
-                "reason": "forward_dns_failed",
-                "dns_policy": CRAWLER_DNS_FAILURE_POLICY,
-                "fail_closed": CRAWLER_DNS_FAILURE_POLICY == "fail_closed",
-            }
-
-        if source_ip not in forward_ips:
-            return {
-                "verified": False,
-                "claimed_bot": claimed_bot,
-                "hostname": hostname,
-                "reason": "forward_dns_mismatch",
-                "dns_policy": CRAWLER_DNS_FAILURE_POLICY,
-                "fail_closed": True,
-            }
-
-        return {
-            "verified": True,
-            "claimed_bot": claimed_bot,
-            "hostname": hostname,
-            "reason": "dns_verification_passed",
-            "dns_policy": CRAWLER_DNS_FAILURE_POLICY,
-        }
-    finally:
-        socket.setdefaulttimeout(old_timeout)
+        ptr_records = dns.resolver.resolve_address(str(ip), lifetime=CRAWLER_DNS_TIMEOUT_SECONDS)
+        suffixes = VERIFIED_CRAWLER_SUFFIXES[claimed_bot]
+        for ptr in ptr_records:
+            hostname = str(ptr.target).lower().rstrip(".")
+            if not hostname.endswith(tuple(suffixes)):
+                continue
+            remaining = deadline - time.monotonic()
+            if remaining <= 0:
+                return {**result, "reason": "dns_unavailable"}
+            try:
+                records = dns.resolver.resolve(
+                    hostname + ".", "A" if ip.version == 4 else "AAAA", lifetime=remaining,
+                )
+            except (dns.resolver.NXDOMAIN, dns.resolver.NoAnswer):
+                continue
+            if any(ipaddress.ip_address(record.address) == ip for record in records):
+                return {**result, "verified": True, "hostname": hostname,
+                        "reason": "dns_verification_passed"}
+    except (dns.resolver.NXDOMAIN, dns.resolver.NoAnswer):
+        return {**result, "reason": "reverse_dns_no_match"}
+    except (dns.exception.DNSException, OSError):
+        return {**result, "reason": "dns_unavailable"}
+    return {**result, "reason": "forward_dns_or_hostname_mismatch"}

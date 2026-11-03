@@ -33,10 +33,10 @@ slowapi>=0.1.9
 
 # ── DNS / Networking ─────────────────────────────────────────────
 dnspython>=2.4.0
+scapy>=2.5.0               # TLS/JA3 fingerprinting (L1)
 
 # ── Optional / Heavy deps (marked — core still runs without them) ─
-# Uncomment to enable full forensics + JA3 fingerprinting:
-# scapy>=2.5.0              # TLS/JA3 fingerprinting (L1)
+# Uncomment to enable optional forensics and model explanations:
 # playwright>=1.37.0        # headless browser (L3 JS trace) — also run: playwright install chromium
 # opencv-python>=4.8.0      # screenshot diff heatmap (L3)
 # shap>=0.43.0              # SHAP feature importance (optional, falls back to permutation)

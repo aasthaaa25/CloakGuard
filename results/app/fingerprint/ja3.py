@@ -26,13 +26,15 @@ def compute_ja3(client_hello_bytes: bytes) -> dict:
     Returns None fields gracefully if parsing fails (e.g. non-TLS traffic).
     """
     try:
-        from scapy.all import TLS  # type: ignore  # optional dep
+        from scapy.layers.tls.record import TLS  # type: ignore  # optional dep
     except ImportError:
         return {"ja3": None, "ja3_hash": None, "error": "scapy not installed"}
 
     try:
         pkt = TLS(client_hello_bytes)
-        ch = pkt.msg[0]   # TLSClientHello
+        ch = pkt.msg[0]
+        if ch.msgtype != 1:
+            raise ValueError("Expected a ClientHello")
     except Exception as e:
         return {"ja3": None, "ja3_hash": None, "error": str(e)}
 

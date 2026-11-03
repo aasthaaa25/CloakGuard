@@ -9,8 +9,11 @@ services:
     volumes:
       - ../data:/app/data
       - ../logs:/app/logs
+      - ${TLS_CERT_DIR:?Set TLS_CERT_DIR to a directory containing cert.pem and key.pem}:/run/cloakguard/tls:ro
     environment:
-      - ORIGIN_SERVER_URL=http://host.docker.internal:8000
+      - ORIGIN_SERVER_URL=${ORIGIN_SERVER_URL:-http://host.docker.internal:8000}
+      - DEFENSE_MODE=${DEFENSE_MODE:-external_monitor}
+      - PASSIVE_DNS_API_URL=${PASSIVE_DNS_API_URL:-}
       - PASSIVE_DNS_API_KEY=${PASSIVE_DNS_API_KEY:-}
       - LOG_ONLY=${LOG_ONLY:-false}
     restart: unless-stopped

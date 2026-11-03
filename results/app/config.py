@@ -21,10 +21,7 @@ ORIGIN_SERVER_URL = os.getenv("ORIGIN_SERVER_URL", "http://127.0.0.1:8000")
 #                     bounded local actions to the observed client.
 DEFENSE_MODE = os.getenv("DEFENSE_MODE", "owner_authorized")
 
-# Claimed-crawler DNS checks fail closed: a User-Agent that claims to be
-# Googlebot or Bingbot is not exempt unless reverse and forward DNS both match.
-# This is not a zero false-block guarantee. The JA3 allowlist starts empty.
-CRAWLER_DNS_FAILURE_POLICY = "fail_closed"
+# Temporarily unavailable DNS defers enforcement for claimed crawlers.
 CRAWLER_DNS_TIMEOUT_SECONDS = float(os.getenv("CRAWLER_DNS_TIMEOUT_SECONDS", "2.0"))
 
 # ── Fingerprint scoring ──────────────────────────────────────
@@ -50,6 +47,7 @@ HIGH_CONFIDENCE_THRESHOLD  = 0.75
 
 # ── Forensics (Layer 3) ───────────────────────────────────────
 DEEP_SCAN_TRIGGER_THRESHOLD = ALERT_THRESHOLD
+PASSIVE_DNS_API_URL         = os.getenv("PASSIVE_DNS_API_URL", "")
 PASSIVE_DNS_API_KEY         = os.getenv("PASSIVE_DNS_API_KEY", "")
 
 # ── §1.10 Calibration: log-only mode flag ─────────────────────

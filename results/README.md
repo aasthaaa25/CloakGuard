@@ -29,9 +29,30 @@ This is a **two-phase cloaking detection and active defense research system** bu
 
 **Phase 2** runs a real dual-view crawl (human Chrome UA vs Googlebot UA), extracts drift / promotional / jargon asymmetry features, fuses them with the URL model, and trains a multimodal ensemble — 7 additional graphs, full per-modality ablation study.
 
-**Three-Layer Defense** is a FastAPI reverse-proxy middleware that blocks, neutralizes, and forensically documents cloaking attacks in real time.
+**Three-Layer Defense** uses a TLS ingress and a FastAPI reverse proxy to collect evidence and apply owner-approved enforcement.
 
 ---
+
+## Active defense setup
+
+Run from `results/` after installing the requirements. Use a trusted certificate and a reachable origin that bypasses this ingress. Bind the TLS ingress directly to client traffic so JA3 reflects the client handshake.
+
+```bash
+DEFENSE_MODE=external_monitor ORIGIN_SERVER_URL=http://127.0.0.1:8000 \
+  python -m app.tls_ingress --host 127.0.0.1 --port 8443 --cert cert.pem --key key.pem
+```
+
+This single-process launcher relays TLS to an ephemeral loopback listener. Keep the backend and review directory private. `uvicorn app.main:app` can run as a plain HTTP monitor and will have no trusted fingerprint. Run browser-based collection in an isolated environment with restricted egress and use a trusted origin. For Docker Compose, set `TLS_CERT_DIR` to the directory containing `cert.pem` and `key.pem`. The systemd unit reads them from `/etc/cloakguard/tls/`. Both deployment templates start in monitor mode. Playwright and OpenCV are optional. Passive DNS requires an HTTPS provider base URL in `PASSIVE_DNS_API_URL` and a bearer token in `PASSIVE_DNS_API_KEY`. The provider must accept a domain appended as a path segment and return the fields used by the report.
+
+Reviews are written to `logs/forensics/` by default. Check the report and independently confirm the client attribution before recording a review. Run the CLI from the same directory and with the same database and report paths as the service. Set `DEFENSE_MODE=owner_authorized` on the service when ready to enforce.
+
+```bash
+DEFENSE_MODE=owner_authorized python -m app.review confirm REVIEW_ID --ja3 OBSERVED_JA3 --evidence-id INCIDENT_ID
+DEFENSE_MODE=owner_authorized python -m app.review arm REVIEW_ID
+DEFENSE_MODE=owner_authorized python -m app.review disarm 'http://127.0.0.1:8000/example'
+```
+
+Arming approves the exact configured origin URL, including its path and query. Use the same incident ID when referring to the same independent evidence. A repeat of either the review or the incident leaves the score unchanged. Legacy scores and decoys remain readable by offline callers and are isolated from live enforcement. The local fixture is available with `python -m pytest -q tests/test_defense_ingress.py` and uses OpenSSL to create its TLS certificate.
 
 ## Prerequisites
 
@@ -433,69 +454,13 @@ Without Playwright, the crawler falls back to `httpx` (dual UA headers, no JS/sc
 
 ---
 
-## Run the Defense System (Advanced)
-
-This starts the three-layer middleware in front of a mock origin server.
-
-```bash
-# Terminal 1: start the mock origin (simulates a defaced website)
-python tests/mock_origin.py
-
-# Terminal 2: start the defense middleware
-uvicorn app.main:app --port 8443
-
-# Terminal 3: run the integration tests
-python -m pytest tests/test_full_integration.py -v
-```
-
-Expected output:
-
-```
-Step 1 ✓ — fusion verdict: alert=True score=0.872
-Step 2 ✓ — fingerprint scored: action=RATE_LIMIT score=25.0
-Step 2b ✓ — decoy armed, serving clean content
-Step 2c ✓ — second request: action=RATE_LIMIT, decoy_served=True
-Step 3 ✓ — forensic report: logs/forensics/report_...html
-```
-
----
-
 ## Three-Layer Defense Architecture
 
-```
-Incoming HTTP request
-        │
-        ▼
-┌─────────────────────────────────────────────────────────┐
-│  FastAPI Reverse Proxy Middleware  (app/main.py)        │
-│                                                         │
-│  L1 — Fingerprint + Rate Control                        │
-│    • Extract JA3 hash from TLS ClientHello              │
-│    • Extract HTTP/2 SETTINGS frame fingerprint          │
-│    • Crawler DNS verification (Googlebot safety)        │
-│    • Scored decaying blocklist (SQLite)                 │
-│    • Token-bucket rate limiter (per fingerprint)        │
-│                                                         │
-│  L2 — Decoy Neutralization                              │
-│    • If fingerprint is in blocklist + URL is armed:     │
-│      serve inert clean HTML instead of real content     │
-│    • Zero tracking, zero beacons — purely defensive     │
-│    • Backed by Phase 2 fusion score                     │
-│                                                         │
-│  L3 — Forensic Deep-Scan (async, fire-and-forget)       │
-│    • Screenshot pixel diff → heatmap                    │
-│    • DOM tree diff → injection node identification      │
-│    • JS execution trace diff → bot-only network calls   │
-│    • Passive DNS on bot-only domains                    │
-│    • Jargon asymmetry evidence (dominant category)      │
-│    • Self-contained HTML forensic report                │
-└─────────────────────────────────────────────────────────┘
-        │
-        ▼
-   Origin server (your real website)
-```
+1. The TLS ingress reads the ClientHello and relays the original bytes to the private terminator. The proxy uses the observed JA3 and peer IP for verified-crawler exemptions and confirmed-score enforcement.
+2. In owner-authorized mode, an approved URL can serve a static decoy to an eligible rate-limited client. Approval expires after 72 hours.
+3. Dual-view alerts open a review and collect screenshot, DOM, JavaScript trace, and passive DNS evidence where available. The report identifies missing evidence.
 
----
+See [Active defense setup](#active-defense-setup) for the launcher, review commands, and local test.
 
 ## Complete Deliverables Checklist
 
@@ -587,11 +552,11 @@ Incoming HTTP request
 | Long path errors on Windows | Enable long paths: `reg add HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\FileSystem /v LongPathsEnabled /t REG_DWORD /d 1 /f` |
 | `ModuleNotFoundError: pyarrow` | `pip install pyarrow` — needed for parquet dataset support |
 | `ModuleNotFoundError: playwright` | Playwright is optional. System runs with httpx fallback. Install with `pip install playwright && playwright install chromium` for screenshots. |
-| `ModuleNotFoundError: scapy` | Scapy is optional (JA3 fingerprinting). System runs without it. |
+| Missing JA3 | Install Scapy from the requirements and use the TLS ingress directly. |
 | `ModuleNotFoundError: cv2` | cv2 is optional (screenshot diff). System runs without it. |
 | `final_full (1).csv not found` | Place the CSV in the project root (same folder as `run_all.py`) |
 | `data/multimodal_features.parquet not found` | Run `python run_all.py` — it builds the parquet automatically |
-| Port 8443 already in use | `uvicorn app.main:app --port 9443` |
+| Port 8443 already in use | Set `--port 9443` on the TLS launcher. |
 | Port 8000 already in use | Edit `tests/mock_origin.py` line ~52 to use a different port |
 | Training takes > 10 minutes | Normal on first run — 160k rows × feature extraction. Subsequent runs use cached artifacts. |
 | PowerShell `Activate.ps1` blocked | `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned` |

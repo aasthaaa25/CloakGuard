@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
-RUN pip install playwright opencv-python scapy || true
+RUN pip install playwright opencv-python || true
 RUN playwright install --with-deps chromium || true
 
 COPY app/ ./app/
@@ -17,4 +17,5 @@ RUN mkdir -p data logs/forensics
 
 EXPOSE 8443
 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8443"]
+ENV DEFENSE_MODE=external_monitor
+CMD ["python", "-m", "app.tls_ingress", "--host", "0.0.0.0", "--port", "8443", "--cert", "/run/cloakguard/tls/cert.pem", "--key", "/run/cloakguard/tls/key.pem"]

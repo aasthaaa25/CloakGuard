@@ -5,8 +5,9 @@ sub-module and assembles one complete HTML report for the site admin.
 """
 
 import asyncio
-import json
 import base64
+import logging
+from html import escape
 from pathlib import Path
 from datetime import datetime
 
@@ -43,30 +44,37 @@ async def trigger_deep_scan(url, crawl_record, artifacts, drift, promo, fusion):
     diff_output_path = f"{FORENSICS_OUTPUT_DIR}/diff_{url_id}.png"
     Path(FORENSICS_OUTPUT_DIR).mkdir(parents=True, exist_ok=True)
 
+    async def collect(function, *args):
+        try:
+            return await asyncio.to_thread(function, *args)
+        except Exception:
+            logging.getLogger(__name__).warning("Evidence collection failed: %s",
+                                                function.__name__, exc_info=True)
+            return None
+
     screenshot_diff_result = None
     if human_ss and bot_ss:
-        screenshot_diff_result = await loop.run_in_executor(
-            None, generate_diff_heatmap, human_ss, bot_ss, diff_output_path
+        screenshot_diff_result = await collect(
+            generate_diff_heatmap, human_ss, bot_ss, diff_output_path
         )
 
-    # ── DOM diff ───────────────────────────────────────────────────
     human_html = crawl_record.get("human", {}).get("html", "")
-    bot_html   = crawl_record.get("bot",   {}).get("html", "")
-    dom_diff_result = compute_dom_diff(human_html, bot_html) if human_html and bot_html else None
+    bot_html = crawl_record.get("bot", {}).get("html", "")
+    dom_diff_result = None
+    if human_html and bot_html:
+        dom_diff_result = await collect(compute_dom_diff, human_html, bot_html)
 
-    # ── JS execution trace diff (re-crawls both views to capture traces) ──
-    human_trace = await loop.run_in_executor(
-        None, capture_js_trace, url, VIEW_PROFILES["human"]
-    )
-    bot_trace = await loop.run_in_executor(
-        None, capture_js_trace, url, VIEW_PROFILES["bot"]
-    )
-    js_diff_result = diff_js_traces(human_trace, bot_trace)
-
-    # ── Passive DNS on bot-only domains ────────────────────────────
-    dns_results = await loop.run_in_executor(
-        None, lookup_all_bot_only_domains, js_diff_result["bot_only_domains"]
-    )
+    human_trace = await collect(capture_js_trace, url, VIEW_PROFILES["human"])
+    bot_trace = await collect(capture_js_trace, url, VIEW_PROFILES["bot"])
+    js_diff_result = None
+    dns_results = None
+    if all(trace is not None and not trace.get("error") for trace in (human_trace, bot_trace)):
+        js_diff_result = await collect(diff_js_traces, human_trace, bot_trace)
+        if js_diff_result is not None:
+            domains = js_diff_result["bot_only_domains"]
+            dns_results = await collect(lookup_all_bot_only_domains, domains[:10])
+            if len(domains) > 10 and dns_results is not None:
+                dns_results.append({"domain": "(remaining domains)", "error": "lookup_limit"})
 
     # ── Assemble and write the report ──────────────────────────────
     report_path = await loop.run_in_executor(
@@ -81,20 +89,35 @@ def _write_forensic_report(url, url_id, fusion, drift, promo,
                              screenshot_diff, dom_diff, js_diff, dns_results):
     timestamp = datetime.now().isoformat()
 
+    def html_text(value):
+        return escape(str(value))
+
+    evidence = {
+        "Screenshot diff": "available" if screenshot_diff and screenshot_diff.get("output_path") else "unavailable",
+        "DOM diff": "available" if dom_diff is not None else "unavailable",
+        "JavaScript trace diff": "available" if js_diff is not None else "unavailable",
+        "Passive DNS": (
+            "unavailable" if dns_results is None or (dns_results and all(d.get("error") for d in dns_results))
+            else "partial" if any(d.get("error") for d in dns_results)
+            else "available" if dns_results else "no bot-only domains"
+        ),
+    }
+    availability = "".join(f"<li>{label}: {status}</li>" for label, status in evidence.items())
+
     dom_injection_rows = "".join(
-        f"<tr><td>{n['path']}</td><td>{n['tag']}</td><td>{n['text'][:60]}</td></tr>"
+        f"<tr><td>{html_text(n['path'])}</td><td>{html_text(n['tag'])}</td><td>{html_text(n['text'][:60])}</td></tr>"
         for n in ((dom_diff or {}).get("nodes_only_in_bot_view", [])[:25])
     )
 
     js_only_rows = "".join(
-        f"<tr><td>{r['url'][:80]}</td><td>{r['resource_type']}</td></tr>"
+        f"<tr><td>{html_text(r['url'][:80])}</td><td>{html_text(r['resource_type'])}</td></tr>"
         for r in (js_diff or {}).get("bot_only_requests", [])[:25]
     )
 
     dns_rows = "".join(
-        f"<tr><td>{d['domain']}</td><td>{d.get('first_seen','N/A')}</td>"
-        f"<td>{d.get('last_seen','N/A')}</td>"
-        f"<td>{', '.join(d.get('resolved_ips',[])[:3])}</td></tr>"
+        f"<tr><td>{html_text(d['domain'])}</td><td>{html_text(d.get('first_seen','N/A'))}</td>"
+        f"<td>{html_text(d.get('last_seen','N/A'))}</td>"
+        f"<td>{html_text(', '.join(d.get('resolved_ips',[])[:3]))}</td></tr>"
         for d in (dns_results or [])
     )
 
@@ -110,7 +133,7 @@ def _write_forensic_report(url, url_id, fusion, drift, promo,
 
     html = f"""<!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8">
-<title>Forensic Deep-Scan — {url}</title>
+<title>Forensic Deep-Scan — {html_text(url)}</title>
 <style>
   body {{ font-family: Arial, sans-serif; max-width: 1200px; margin: 30px auto;
           background: #f4f6fa; color: #222; }}
@@ -131,12 +154,13 @@ def _write_forensic_report(url, url_id, fusion, drift, promo,
 <body>
 
 <h1>🔍 Automated Forensic Deep-Scan Report</h1>
-<p><b>URL:</b> {url} &nbsp;|&nbsp; <b>Generated:</b> {timestamp}</p>
+<p><b>URL:</b> {html_text(url)} &nbsp;|&nbsp; <b>Generated:</b> {timestamp}</p>
 
 <div class="banner">HEURISTIC ALERT — uncalibrated score {fusion.get('final_risk_score', 'N/A')} on path {fusion.get('scoring_path', 'unspecified')}. This package does not by itself confirm cloaking or identify an attacker.</div>
 
 <div class="section">
 <h2>Executive Summary</h2>
+<ul>{availability}</ul>
 <span class="metric">Risk Score: {fusion.get('final_risk_score', 'N/A')}</span>
 <span class="metric">Alert: {'YES' if fusion.get('alert') else 'NO'}</span>
 <span class="metric">DOM Injections: {(dom_diff or {}).get('injection_node_count','N/A')}</span>
@@ -179,8 +203,7 @@ def _write_forensic_report(url, url_id, fusion, drift, promo,
 <li>Inspect the DOM-injection nodes above to locate the exact injected snippet in your CMS/file system.</li>
 <li>Search your codebase/database for the domains listed in Section 4 to find the injection point.</li>
 <li>Check file modification times around when bot-only domains first appeared (per passive DNS first_seen).</li>
-<li>The decoy layer is already serving inert content to confirmed-malicious fingerprints —
-you have time to clean the source without continued live exposure to search engines.</li>
+<li>Review this evidence before approving any enforcement action.</li>
 </ol>
 </div>
 

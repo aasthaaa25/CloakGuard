@@ -1,151 +1,123 @@
-"""
-Main reverse-proxy middleware entrypoint.
-Run with: uvicorn app.main:app --host 0.0.0.0 --port 8443
-
-Layer 1 (L1): JA3/HTTP2 fingerprint + scored blocklist + rate limiting
-Layer 2 (L2): Decoy-neutralization engine
-Layer 3 (L3): Auto forensic deep-scan (triggered async on alert)
-
-§1.10 Calibration: set LOG_ONLY=true in env to forward-only mode for
-Googlebot allowlist calibration (never blocks/decoys, just logs).
-"""
+"""Reverse proxy for monitoring and owner-authorized defense."""
 
 import asyncio
 import logging
-import sys
-from pathlib import Path
+from contextlib import asynccontextmanager
+from http.cookiejar import CookieJar, DefaultCookiePolicy
 
-# FastAPI import guard
-try:
-    from fastapi import FastAPI, Request, Response
-    from fastapi.responses import HTMLResponse
-    import httpx
-    _FASTAPI_AVAILABLE = True
-except ImportError:
-    _FASTAPI_AVAILABLE = False
-    print("[app/main.py] fastapi/httpx not installed. "
-          "Install with: pip install fastapi uvicorn[standard] httpx")
-    sys.exit(1)
+import httpx
+from fastapi import FastAPI, Request, Response
+from fastapi.responses import HTMLResponse
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-
-from app.config import ORIGIN_SERVER_URL, LOG_ONLY, DEFENSE_MODE
-from app.fingerprint.capture import capture_loop, lookup_fingerprint
-from app.fingerprint.crawler_verify import verify_crawler, identify_claimed_bot
-from app.fingerprint.blocklist import get_fingerprint_status, register_cloak_match
+from app.config import CRAWLER_DNS_TIMEOUT_SECONDS, DEFENSE_MODE, LOG_ONLY, ORIGIN_SERVER_URL
+from app.decoy.decoy_store import STATIC_DECOY, get_decoy_if_armed
+from app.fingerprint.blocklist import get_fingerprint_status
+from app.fingerprint.capture import connection_metadata
+from app.fingerprint.crawler_verify import identify_claimed_bot, verify_crawler
 from app.fingerprint.rate_limiter import check_rate_limit
-from app.decoy.decoy_store import get_decoy_if_armed
-from app.pipeline_bridge.adapter import run_detection_async
+from app.pipeline_bridge.adapter import schedule_review
 
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger("defacement_defense")
+logger = logging.getLogger(__name__)
+_HOP_HEADERS = {
+    b"connection", b"keep-alive", b"proxy-authenticate", b"proxy-authorization",
+    b"proxy-connection", b"te", b"trailer", b"transfer-encoding", b"upgrade",
+}
+_DECOY_HEADERS = {
+    "Cache-Control": "private, no-store",
+    "Content-Security-Policy": "default-src 'none'; sandbox",
+    "X-Content-Type-Options": "nosniff",
+}
 
-app = FastAPI(title="Defacement Defense Middleware — Active Defense System")
-_http_client = httpx.AsyncClient(timeout=20.0)
+
+class RejectOriginCookies(DefaultCookiePolicy):
+    def set_ok(self, cookie, request):
+        return False
 
 
-@app.on_event("startup")
-async def startup():
-    # Background task: TLS ClientHello capture for JA3 fingerprinting
-    asyncio.create_task(capture_loop())
-    if LOG_ONLY:
-        logger.warning("═" * 60)
-        logger.warning("LOG_ONLY=true — calibration mode active.")
-        logger.warning("All requests forwarded; JA3s of verified crawlers are logged.")
-        logger.warning("Populate GOOGLEBOT_ALLOWLIST_JA3 in config.py before going live.")
-        logger.warning("═" * 60)
+@asynccontextmanager
+async def lifespan(app):
+    cookies = CookieJar(policy=RejectOriginCookies())
+    async with httpx.AsyncClient(timeout=20.0, trust_env=False, cookies=cookies) as client:
+        app.state.origin_client = client
+        yield
+
+
+app = FastAPI(lifespan=lifespan, docs_url=None, redoc_url=None, openapi_url=None)
 
 
 @app.api_route("/{full_path:path}", methods=["GET", "POST", "HEAD"])
-async def proxy(full_path: str, request: Request):
-    client_ip   = request.client.host
-    client_port = request.client.port
-    user_agent  = request.headers.get("user-agent", "")
-    url         = str(request.url)
+async def proxy(request: Request, full_path: str):
+    # Retain the wire path and query without allowing Host to choose the origin.
+    path = request.scope["raw_path"].decode("ascii")
+    query = request.scope["query_string"].decode("ascii")
+    url = ORIGIN_SERVER_URL.rstrip("/") + path
+    if query:
+        url += "?" + query
 
-    # ── Step 1: Crawler verification (ALWAYS runs first, see §1.6) ──
-    claimed_bot = identify_claimed_bot(user_agent)
-    if claimed_bot:
-        verify_result = verify_crawler(client_ip, user_agent)
-        if verify_result["verified"]:
-            # §1.10 calibration: log the JA3 of real verified crawlers
-            ja3_for_log = lookup_fingerprint(client_ip, client_port)
-            if ja3_for_log:
-                logger.info(f"VERIFIED_CRAWLER ja3={ja3_for_log} bot={claimed_bot} ip={client_ip}")
-            # Verified real Googlebot/Bingbot — skip ALL fingerprint logic
-            return await _forward_to_origin(request, full_path)
-        else:
-            # Claims to be Googlebot but FAILED verification — high-confidence malicious
-            impersonation_detected = True
-            logger.warning(f"IMPERSONATION_DETECTED reason={verify_result['reason']} ip={client_ip}")
-    else:
-        impersonation_detected = False
+    metadata = connection_metadata(tuple(request.client)) if request.client else None
+    fingerprint = metadata[1] if metadata else None
+    enforce = DEFENSE_MODE == "owner_authorized" and not LOG_ONLY and fingerprint
 
-    # External monitoring records evidence and does not block, rate-limit, or decoy.
-    # LOG_ONLY is the calibration switch and has the same enforcement boundary.
-    if LOG_ONLY or DEFENSE_MODE == "external_monitor":
-        logger.info(
-            "MONITOR_ONLY mode=%s claimed_bot=%s impersonation=%s ip=%s",
-            DEFENSE_MODE, claimed_bot, impersonation_detected, client_ip,
-        )
-        return await _forward_to_origin(request, full_path)
+    user_agent = request.headers.get("user-agent", "")
+    if enforce and identify_claimed_bot(user_agent):
+        try:
+            verdict = await asyncio.wait_for(
+                asyncio.to_thread(verify_crawler, metadata[0], user_agent),
+                timeout=CRAWLER_DNS_TIMEOUT_SECONDS,
+            )
+            enforce = not (verdict["verified"] or verdict["reason"] == "dns_unavailable")
+        except (asyncio.TimeoutError, OSError):
+            enforce = False
 
-    # ── Step 2: Fingerprint lookup ─────────────────────────────────
-    ja3_hash = lookup_fingerprint(client_ip, client_port)
-
-    if ja3_hash:
-        status = get_fingerprint_status(ja3_hash)
-
-        if impersonation_detected:
-            # Auto-escalate: impersonating Googlebot is high-confidence malicious
-            register_cloak_match(ja3_hash, url)
-            status = get_fingerprint_status(ja3_hash)  # re-fetch updated score
-
+    if enforce:
+        status = await asyncio.to_thread(get_fingerprint_status, fingerprint, confirmed_only=True)
         if status["action"] == "BLOCK":
-            logger.warning(f"BLOCK ja3={ja3_hash} score={status['score']} url={url[:80]}")
-            return Response(content="Forbidden", status_code=403)
-
+            return Response("Forbidden", status_code=403, headers={"Cache-Control": "no-store"})
         if status["action"] == "RATE_LIMIT":
-            allowed = await check_rate_limit(ja3_hash)
-            if not allowed:
-                logger.info(f"RATE_LIMITED ja3={ja3_hash} url={url[:80]}")
-                return Response(content="Too Many Requests", status_code=429)
+            if not await check_rate_limit(fingerprint):
+                return Response("Too Many Requests", status_code=429,
+                                headers={"Cache-Control": "no-store"})
+            if request.method in {"GET", "HEAD"} and await asyncio.to_thread(get_decoy_if_armed, url, approved_only=True):
+                # Always use static output, including when reading a legacy decoy row.
+                response = HTMLResponse(STATIC_DECOY,
+                                        headers=_DECOY_HEADERS)
+                if request.method == "HEAD":
+                    response.body = b""
+                return response
 
-            # ── Step 3: Decoy check — is this URL's cloaking already confirmed? ──
-            decoy_html = get_decoy_if_armed(url)
-            if decoy_html:
-                logger.info(f"DECOY_SERVED ja3={ja3_hash} url={url[:80]}")
-                return HTMLResponse(content=decoy_html, status_code=200)
-
-    # ── Step 4: Normal forward to origin ───────────────────────────
-    response = await _forward_to_origin(request, full_path)
-
-    # ── Step 5: Async feed into existing detection pipeline ───────
-    # Fire-and-forget — never blocks the response to the real client
-    asyncio.create_task(
-        run_detection_async(url=url, ja3_hash=ja3_hash,
-                            response_body=getattr(response, "body", b""))
-    )
-
+    response = await _forward_to_origin(request, url)
+    if (request.method == "GET" and response.status_code == 200
+            and response.headers.get("content-type", "").lower().startswith("text/html")):
+        schedule_review(url, fingerprint)
     return response
 
 
-async def _forward_to_origin(request: Request, full_path: str) -> Response:
-    target_url = f"{ORIGIN_SERVER_URL}/{full_path}"
-    body = await request.body()
+def _end_to_end(headers):
+    excluded = _HOP_HEADERS | {
+        value.strip().lower()
+        for key, values in headers if key.lower() == b"connection"
+        for value in values.split(b",")
+    }
+    return [(key, value) for key, value in headers if key.lower() not in excluded]
+
+
+async def _forward_to_origin(request, url):
+    headers = [
+        (key, value) for key, value in _end_to_end(request.headers.raw)
+        if key.lower() not in {b"host", b"forwarded", b"x-real-ip", b"x-ja3"}
+        and not key.lower().startswith((b"x-forwarded-", b"x-cloakguard-"))
+    ]
     try:
-        upstream = await _http_client.request(
-            method=request.method,
-            url=target_url,
-            headers={k: v for k, v in request.headers.items() if k.lower() != "host"},
-            params=dict(request.query_params),
-            content=body,
+        upstream = await request.app.state.origin_client.request(
+            request.method, url, headers=headers, content=await request.body(),
         )
-        return Response(
-            content=upstream.content,
-            status_code=upstream.status_code,
-            headers=dict(upstream.headers),
-        )
-    except Exception as e:
-        logger.error(f"UPSTREAM_ERROR: {e}")
-        return Response(content=f"Bad Gateway: {e}", status_code=502)
+    except httpx.HTTPError:
+        logger.warning("Origin request failed", exc_info=True)
+        return Response("Bad Gateway", status_code=502)
+
+    response = Response(upstream.content, status_code=upstream.status_code)
+    response.raw_headers = [
+        (key.lower(), value) for key, value in _end_to_end(upstream.headers.raw)
+        if request.method == "HEAD" or key.lower() not in {b"content-encoding", b"content-length"}
+    ] + ([] if request.method == "HEAD" else response.raw_headers)
+    return response

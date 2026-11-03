@@ -6,8 +6,10 @@ Uses a free/public-tier API as an example; swap in your preferred
 provider (SecurityTrails, VirusTotal, etc.) by changing the request URL.
 """
 
+from urllib.parse import quote, urlsplit
+
 import requests as _requests
-from app.config import PASSIVE_DNS_API_KEY
+from app.config import PASSIVE_DNS_API_KEY, PASSIVE_DNS_API_URL
 
 
 def passive_dns_lookup(domain: str) -> dict:
@@ -16,19 +18,22 @@ def passive_dns_lookup(domain: str) -> dict:
     ever contacting that domain. Example uses a generic passive-DNS
     REST API shape — adapt the endpoint/auth to your chosen provider.
     """
-    if not PASSIVE_DNS_API_KEY:
+    if not PASSIVE_DNS_API_KEY or urlsplit(PASSIVE_DNS_API_URL).scheme != "https":
         return {
             "domain": domain,
-            "error":  "no_api_key_configured",
+            "error":  "no_https_provider_configured",
             "records": [],
         }
 
     try:
         resp = _requests.get(
-            f"https://api.your-passive-dns-provider.com/v1/pdns/{domain}",
+            PASSIVE_DNS_API_URL.rstrip("/") + "/" + quote(domain, safe=""),
             headers={"Authorization": f"Bearer {PASSIVE_DNS_API_KEY}"},
             timeout=10,
+            allow_redirects=False,
         )
+        if resp.status_code != 200:
+            return {"domain": domain, "error": f"provider_http_{resp.status_code}"}
         data = resp.json()
         return {
             "domain":          domain,

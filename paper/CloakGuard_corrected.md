@@ -67,7 +67,11 @@ Publication labels follow `docs/ANNOTATION_RUBRIC.md`. A fusion threshold may be
 
 ### Defense
 
-The remote host that serves two different pages is not the TLS client later seen by an owner’s proxy. External monitoring detects, stores the package, and notifies. Owner-authorized mode, the default, may add 25 points to the observed JA3 hash, decay 1 point per hour, rate-limit at 25, and hard-block at 75. An empty JA3 allowlist does not create a zero false-block rate. A decoy is built from the human-view HTML, strips a narrow set of risky tags, and expires. Serving it does not remove an injected file from the origin and does not close the intrusion that put it there. Fingerprints are a supporting signal: proxies, shared libraries, and fingerprint rotation can attach the same hash to unrelated clients.
+The defense follows §8 of the historical draft. A public TCP listener captures JA3 from the inbound ClientHello and relays the original TLS bytes to a loopback-only TLS terminator. The application receives the fingerprint and peer address through process-local connection state. Request headers cannot supply either value.
+
+An alert opens a review and collects forensic evidence, including for requests without a fingerprint. A site owner can confirm an incident after independently linking it to the fingerprint recorded for the review. Each confirmed review adds 25 points once, with decay of one point per hour. Owner-authorized mode rate-limits at 25 and hard-blocks at 75. Verified crawlers and claimed crawlers with temporarily unavailable DNS pass through. Monitor and log-only modes forward while collecting review evidence.
+
+An owner can approve a static, non-cacheable decoy for an exact origin URL for 72 hours. Requests with a rate-limited fingerprint can receive it for GET or HEAD after passing the token bucket. Hard blocks take precedence. Shared TLS libraries and fingerprint rotation limit JA3’s value as an identity signal. Origin cleanup remains a separate remediation step.
 
 ## Datasets
 
@@ -104,7 +108,7 @@ The audit recomputed features on the stored HTML. It did not assign cloaking lab
 
 The small cross-view scores are a negative result for this capture method. They do not show that the sites are benign, and they do not show that the features would fail on browser-rendered or adversarially cloaked pages. Hard negatives such as consent banners, localization, rotating ads, and challenge pages were not built as a labeled set.
 
-No URL-only versus multimodal comparison on a shared held-out labeled pair is possible until those labels exist.
+Capture completeness is 204/300 (68%). In the 30-pair pilot, the first reviewer recorded 25 pairs without suspicious differences, three benign profile differences, two unusable pairs, and zero supported malicious cloaking pairs. The second review and adjudication are pending. Precision, recall, and ROC-AUC for a shared domain-held-out URL-only versus fused comparison remain unreported. Such a comparison requires both independently adjudicated classes and a threshold chosen outside the held-out domains.
 
 ### Fixture check
 
@@ -112,13 +116,13 @@ No URL-only versus multimodal comparison on a shared held-out labeled pair is po
 
 ## Defense evaluation
 
-The unit tests check score increments, decay, rate-limit and block thresholds, decoy arming and expiry, DNS rejection of documentation-range addresses that claim to be Googlebot, and generation of a nonempty forensic report. They do not measure collateral blocking of benign clients, proxy or TLS-terminating deployments, cache behavior, latency, or throughput. They do not show that a decoy removes injected content. The report text now says heuristic alert. Integrity of screenshots and execution traces cannot be claimed for the crawl sample, because those artifacts were not stored.
+A controlled local test opened a real TLS connection to the ingress and sent HTTP through to a local origin. It captured a JA3 and the original peer address, discarded spoofed forwarding metadata, and exercised origin forwarding, confirmed-score enforcement, decoy GET/HEAD responses, and hard-block precedence. The test used controlled DNS outcomes to check crawler exemption and forwarding during a DNS outage. Separate tests cover duplicate confirmations under concurrent writes, decay, decoy expiry, and a partial forensic report. These checks measure implementation behavior in fixtures. Field effectiveness, collateral blocking, latency, and throughput remain unmeasured.
 
 ## Discussion
 
 The main risk in the historical draft was circular evaluation: labels, features, and the reported detector shared the fusion score, while missing modalities were stored as zeros. Correcting the prose without a labeled paired corpus would not create a detection result. The present scope is the largest scope the files support.
 
-Deployment assumptions that remain untested include reverse proxies, shared JA3 hashes, crawler-UA spoofing from non-Google networks, fingerprint rotation, and concurrent traffic. The DNS checker is fail-closed for claimed crawlers and has a two-second socket timeout. That policy will reject a real crawler during a DNS failure. It is not advertised as a zero false-block result.
+The TLS check used a direct loopback client and a single ingress process. Deployments behind another TLS terminator, shared JA3 hashes in the field, fingerprint rotation, and production traffic loads remain untested. The claimed-crawler check shares a two-second DNS budget by default and forwards on resolver failure.
 
 ## Controlled local validation
 
