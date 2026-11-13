@@ -61,5 +61,5 @@ async def run_detection_async(url: str, ja3_hash: str | None, response_body: byt
         directory = Path(FORENSICS_OUTPUT_DIR)
         directory.mkdir(parents=True, exist_ok=True)
         review = directory / f"review_{review_id}.json"
-        review.write_text(json.dumps({"url": url, "observed_ja3": ja3_hash}), encoding="utf-8")
+        review.write_text(json.dumps({"url": url, "observed_ja3": ja3_hash, "fusion": fusion}), encoding="utf-8")
         await trigger_deep_scan(url, record, artifacts, drift, promo, fusion)

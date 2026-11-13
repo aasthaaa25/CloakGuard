@@ -6,3 +6,9 @@ venv/
 .env
 *.log
 .DS_Store
+
+# Generated datasets and local training/demo artifacts
+/final_full (1).csv
+/final_full (1).manifest.json
+/results/detection/artifacts/url_risk_runs/
+/demo_outputs/

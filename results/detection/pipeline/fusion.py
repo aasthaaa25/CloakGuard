@@ -14,7 +14,7 @@ ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(ROOT))
 
 _REVIEW_THRESHOLD        = float(os.getenv("REVIEW_THRESHOLD", "0.270"))
-_ALERT_THRESHOLD         = 0.50
+_ALERT_THRESHOLD         = float(os.getenv("ALERT_THRESHOLD", "0.45"))
 _HIGH_CONFIDENCE_THRESHOLD = 0.75
 
 try:
@@ -26,14 +26,17 @@ except Exception:
     pass
 
 
-if not 0 <= _REVIEW_THRESHOLD <= _ALERT_THRESHOLD:
-    raise ValueError("REVIEW_THRESHOLD must be between 0 and ALERT_THRESHOLD")
+if not 0 <= _REVIEW_THRESHOLD <= _ALERT_THRESHOLD <= _HIGH_CONFIDENCE_THRESHOLD <= 1:
+    raise ValueError("REVIEW_THRESHOLD must be within 0 <= REVIEW_THRESHOLD <= ALERT_THRESHOLD <= HIGH_CONFIDENCE_THRESHOLD <= 1")
 
 
 def _load_model():
     try:
         import joblib
-        model_path = ROOT / "detection" / "artifacts" / "model.joblib"
+        configured = os.getenv("URL_MODEL_PATH")
+        if configured == "disabled":
+            return None
+        model_path = Path(configured) if configured else ROOT / "detection" / "artifacts" / "model.joblib"
         if model_path.exists():
             return joblib.load(str(model_path))
     except Exception:
@@ -80,7 +83,7 @@ def fuse_risk_scores(drift: dict, promo: dict, url: str = "",
 
     The weights are fixed constants. They were not selected on a held-out
     cloaking test. final_risk_score is an uncalibrated score in [0, 1], not
-    a probability. The alert threshold is ALERT_THRESHOLD (default 0.50) on
+    a probability. The alert threshold is ALERT_THRESHOLD (default 0.45) on
     this same score. A 0.05 cutoff is not an operating threshold of this path.
     """
     drift_score  = float(drift.get("drift_score",  0.0))

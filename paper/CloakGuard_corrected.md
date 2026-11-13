@@ -8,7 +8,7 @@ CloakGuard is a defensive prototype with two separable parts. The first part fet
 
 This repository does not establish real-world cloaking-detection performance. The 160,000-URL file used for the archived URL classifier is absent, and its `drift_score` column is not a confirmed cloaking label. The paired-view table used for the archived multimodal numbers has 5,122 rows: 5,000 URL-only rows with multimodal features filled by zero, and 122 crawled rows whose labels match a fusion threshold exactly and are all negative. The crawl directory now holds 300 distinct URLs. Of those, 204 have two nonempty HTTP 200 bodies, 96 are incomplete, none has a screenshot, and none has an independent cloaking annotation. On the 204 complete pairs, the mean drift score is 0.012 and the mean corrected jargon score is approximately 0. Those are descriptive facts about UA-only `httpx` fetches, not a detection rate.
 
-The detector feature set has 61 fields: 41 URL fields, 9 drift fields, 6 promotional fields, and 5 jargon fields. Two further columns in the archived 63-feature list, `final_risk_score` and `model_probability`, are fusion outputs and are excluded from training. Visual SSIM is implemented and was not computed on this crawl. The operational score is an uncalibrated heuristic with threshold 0.50. It is not the archived multimodal ensemble, and it is not a probability. A 400-example synthetic confusion matrix is not in the repository, so it is not reported.
+The detector feature set has 61 fields: 41 URL fields, 9 drift fields, 6 promotional fields, and 5 jargon fields. Two further columns in the archived 63-feature list, `final_risk_score` and `model_probability`, are fusion outputs and are excluded from training. Visual SSIM is implemented and was not computed on this crawl. The operational score is an uncalibrated heuristic with an operational alert threshold of 0.45 and a fixed-weight review threshold of 0.270. It is not the archived multimodal ensemble, and it is not a probability. A 400-example synthetic confusion matrix is not in the repository, so it is not reported.
 
 ## Contributions
 
@@ -17,7 +17,7 @@ The supported contribution is methodological and engineering:
 - Separate URL-risk classification, paired-view description, synthetic fixtures, and owner-side controls, and refuse to treat a result on one as a result on another.
 - Publish the crawl manifest outcomes, including failures, instead of a fully observed multimodal benchmark.
 - Define the jargon score precisely, fix the mass calculation so it uses raw hit counts, and return the simpler alternatives beside the combined score.
-- State the operational scoring path, the 0.50 threshold, and the fact that the score is uncalibrated.
+- State the operational scoring path, the operational threshold, and the fact that the score is uncalibrated.
 - Separate external monitoring from owner-authorized response, and attach JA3 points to the observed client rather than to a remote operator.
 
 Prior split-view detectors and promotional-defacement detectors already exist. This paper does not claim to be the first dual-view system. It does not claim a performance improvement from jargon features, because the unlabeled crawl does not support that comparison.
@@ -59,7 +59,7 @@ The 0.5 scale and the 0.60/0.40 weights are fixed constants. They were not fit o
 - If `detection/artifacts/model.joblib` loads and its URL score is positive, the path is `url_model_assisted_heuristic` with weights 0.35, 0.25, 0.25, and 0.15 on the URL score, drift, jargon, and promotional score.
 - Otherwise the path is `fixed_weight_heuristic` with weights 0.40, 0.35, and 0.25 on drift, jargon, and promotional score.
 
-The alert threshold on that score is 0.50. A 0.05 cutoff appears in the old training script only as a plotting filter. It is not an operating point. The trained soft-voting ensemble in `train_multimodal.py` is a separate archived path and is not called by the middleware.
+The alert threshold defaults to 0.45 as an operational setting requested on 13 November 2026. Its field false-positive rate is unmeasured. A 0.05 cutoff appears in the old training script only as a plotting filter. It is not an operating point. The trained soft-voting ensemble in `train_multimodal.py` is a separate archived path and is not called by the middleware.
 
 ### Labels
 
@@ -128,11 +128,15 @@ The TLS check used a direct loopback client and a single ingress process. Deploy
 
 The files previously written under `testbed/captures/` are prewritten HTML. They do not exercise the crawler. A later run served two local template families and fetched each scenario with the project's httpx client in the order H1, B1, H2, B2. Expectations were frozen in `testbed/expectations.csv` before those scores were inspected. Every fetch succeeded. Every score used the fixed-weight heuristic, because the archived URL model was not loaded. Visual features were not used.
 
-At threshold 0.50, identical clean pages, shared lawful promotional wording, a rotating counter, a hidden link, an identical defacement, a bot challenge, and a known bot-only keyword injection all stayed below the alert line. The bot-only injection scored 0.480. The breakdown is 0.078 of drift, 0.122 of promotion, and 0.280 of jargon under the no-URL fallback. That sum is exact, so the threshold was not moved to catch this example. A later review threshold of 0.270 was chosen on two new calibration templates and checked on two reserved templates. It is a review alert for bot-directed keyword injection, not a block and not a defacement detector. Details are in `docs/CONTROLLED_VALIDATION.md`. No ROC-AUC is reported for the pilot, because that set has no supported positive class.
+At threshold 0.50, identical clean pages, shared lawful promotional wording, a rotating counter, a hidden link, an identical defacement, a bot challenge, and a known bot-only keyword injection all stayed below the alert line. The bot-only injection scored 0.480. The breakdown is 0.078 of drift, 0.122 of promotion, and 0.280 of jargon under the no-URL fallback. That historical experiment retained its preselected 0.50 threshold. A later review threshold of 0.270 was chosen on two new calibration templates and checked on two reserved templates. It is a review alert for bot-directed keyword injection, not a block and not a defacement detector. Details are in `docs/CONTROLLED_VALIDATION.md`. No ROC-AUC is reported for the pilot, because that set has no supported positive class.
 
 ## Operational follow-up
 
-The fixed-weight service path uses the rounded 0.270 threshold for review, separate from the 0.50 alert. The URL-assisted path retains the 0.50 alert for review. Neither score authorizes enforcement. The adapter supplies jargon asymmetry to fusion. A controlled fixture exercises the review path in `results/tests/test_review_threshold.py`. A separate static-artifact integrity check flags a byte mismatch against an owner-approved digest, including a replacement shared by both views. The fixture checks mechanism behavior. Legitimate content changes also trigger a mismatch, and human-only promotional injection remains outside the calibrated cross-view rule.
+The fixed-weight service path uses the rounded 0.270 threshold for review, alongside the requested 0.45 alert. The URL-assisted path uses the alert threshold for review. Neither score authorizes enforcement. The adapter supplies jargon asymmetry to fusion. A controlled fixture exercises the review path in `results/tests/test_review_threshold.py`. A separate static-artifact integrity check flags a byte mismatch against an owner-approved digest, including a replacement shared by both views. The fixture checks mechanism behavior. Legitimate content changes also trigger a mismatch, and human-only promotional injection remains outside the calibrated cross-view rule.
+
+## Portable training and presentation
+
+`generate_dataset.py` constructs reserved-domain URL-risk fixtures and records their generator seed and SHA-256. The portable training entry point reads explicit labels, saves a model card and models in a separate run directory, and retains historical artifacts. Synthetic training scores establish that the implementation runs on constructed inputs. They provide no estimate of external URL-risk or cloaking performance. `demo_live.py` serves the existing North Market controlled fixture through a local origin and TLS ingress. It shows live lexical prediction, fixed-weight cross-view inference, scripted confirmation, fingerprint scoring, and decoy response. The demo result and model card describe those choices.
 
 ## Conclusion
 

@@ -46,5 +46,13 @@
       "promo": 0.25
     },
     "scope": "Controlled bot-directed promotional injection. No new held-out benchmark run."
+  },
+  "operational_alert_policy_2026_11_13": {
+    "alert_threshold": 0.45,
+    "review_threshold": 0.27,
+    "reason": "User-requested operational choice after observing North Market development fixture",
+    "held_out_calibration": false,
+    "enforcement": "Owner-confirmed incident attribution remains required",
+    "source": "results/app/config.py"
   }
 }

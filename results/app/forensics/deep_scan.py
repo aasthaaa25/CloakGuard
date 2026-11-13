@@ -163,7 +163,7 @@ def _write_forensic_report(url, url_id, fusion, drift, promo,
 <ul>{availability}</ul>
 <span class="metric">Risk Score: {fusion.get('final_risk_score', 'N/A')}</span>
 <span class="metric">Review: {'YES' if fusion.get('review_alert', fusion.get('alert')) else 'NO'}</span>
-<span class="metric">0.50 alert: {'YES' if fusion.get('alert') else 'NO'}</span>
+<span class="metric">Alert: {'YES' if fusion.get('alert') else 'NO'}</span>
 <span class="metric">DOM Injections: {(dom_diff or {}).get('injection_node_count','N/A')}</span>
 <span class="metric">Bot-only Requests: {(js_diff or {}).get('bot_only_request_count','N/A')}</span>
 </div>

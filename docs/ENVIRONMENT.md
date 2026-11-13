@@ -7,3 +7,7 @@
 - Recompute the local fixture with `python evaluation/demo_case.py`.
 - Tests: `python -m pytest results/tests -q`.
 - `PASSIVE_DNS_API_KEY` is read from the environment when a forensic lookup is enabled. No key is stored in the repository.
+
+## November 2026 portable workflow check
+
+The portable training and local TLS demonstration were executed with Python 3.13.9 on macOS and scikit-learn 1.7.2. Generated model cards record the versions used by each run. The Windows launcher is provided for a machine with Python and the requirements installed. Native Windows execution remains unverified.

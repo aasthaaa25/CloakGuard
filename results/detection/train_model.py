@@ -11,6 +11,8 @@ Flow:
 Run:  python detection/train_model.py
 """
 
+import argparse
+import importlib.metadata
 import os
 import sys
 import json
@@ -54,7 +56,7 @@ from detection.features import transform, get_feature_names, FEATURE_NAMES
 warnings.filterwarnings("ignore")
 
 # ── Paths ─────────────────────────────────────────────────────────────────────
-CSV_PATH       = Path("/Users/namansharma/AA/final_full (1).csv")
+CSV_PATH       = Path(__file__).resolve().parents[2] / "final_full (1).csv"
 ARTIFACTS_DIR  = _HERE / "artifacts"
 GRAPHS_DIR     = ARTIFACTS_DIR / "graphs"
 MODEL_PATH     = ARTIFACTS_DIR / "model.joblib"
@@ -101,12 +103,26 @@ def save_fig(fig, name):
 # STEP 1 — LOAD & AUDIT DATA
 # ══════════════════════════════════════════════════════════════════════════════
 
+def read_training_data(path):
+    df = pd.read_csv(path, low_memory=False)
+    if "url" not in df or "label" not in df:
+        raise ValueError("Training CSV requires url and explicit binary label columns")
+    if df["url"].isna().any() or not df["url"].map(lambda value: isinstance(value, str) and bool(value.strip())).all():
+        raise ValueError("Every training URL must be a nonempty string")
+    if not df["label"].isin([0, 1]).all() or set(df["label"]) != {0, 1}:
+        raise ValueError("label must contain both binary classes 0 and 1")
+    conflicts = df.groupby("url")["label"].nunique()
+    if (conflicts > 1).any():
+        raise ValueError("Conflicting labels for the same URL")
+    return df.drop_duplicates("url").reset_index(drop=True)
+
+
 def load_and_audit():
     print("\n" + "═"*60)
     print("STEP 1: Loading dataset …")
     print("═"*60)
 
-    df = pd.read_csv(CSV_PATH, low_memory=False)
+    df = read_training_data(CSV_PATH)
     print(f"  Loaded {len(df):,} rows × {len(df.columns)} columns")
 
     # ── DATA QUALITY AUDIT ────────────────────────────────────────────────────
@@ -125,8 +141,8 @@ def load_and_audit():
     print(f"  ✓  Real data columns: {real_cols}")
 
     # ── TARGET ────────────────────────────────────────────────────────────────
-    y = df["drift_score"].astype(int)
-    print(f"\n[LABEL]  drift_score | 0={( y==0).sum():,}  1={(y==1).sum():,}"
+    y = df["label"].astype(int)
+    print(f"\n[LABEL]  label | 0={( y==0).sum():,}  1={(y==1).sum():,}"
           f"  balance={y.mean():.3f}")
 
     # ── AUDIT GRAPH ───────────────────────────────────────────────────────────
@@ -138,14 +154,14 @@ def load_and_audit():
 def _plot_data_audit(df, audit, empty_cols, real_cols):
     # Graph 1: class balance
     fig, axes = plt.subplots(1, 2, figsize=(12, 4))
-    y = df["drift_score"].astype(int)
+    y = df["label"].astype(int)
 
     # Pie chart
     counts = y.value_counts().sort_index()
-    axes[0].pie(counts, labels=["Non-Cloaked (0)", "Cloaked (1)"],
+    axes[0].pie(counts, labels=["Lower-risk URL (0)", "Higher-risk URL (1)"],
                 autopct="%1.1f%%", colors=[ACCENT2, ACCENT3],
                 startangle=90, wedgeprops={"edgecolor": "white", "linewidth": 2})
-    axes[0].set_title("Class Balance — drift_score", fontsize=12, fontweight="bold",
+    axes[0].set_title("Class Balance — label", fontsize=12, fontweight="bold",
                       color=ACCENT1)
 
     # Bar chart column fill rates
@@ -203,9 +219,9 @@ def _plot_feature_distributions(X, y):
         ax = axes[i]
         data0 = X.loc[y == 0, feat].dropna()
         data1 = X.loc[y == 1, feat].dropna()
-        ax.hist(data0, bins=50, alpha=0.6, color=ACCENT2, label="Non-Cloaked (0)",
+        ax.hist(data0, bins=50, alpha=0.6, color=ACCENT2, label="Lower-risk URL (0)",
                 density=True, edgecolor="none")
-        ax.hist(data1, bins=50, alpha=0.6, color=ACCENT3, label="Cloaked (1)",
+        ax.hist(data1, bins=50, alpha=0.6, color=ACCENT3, label="Higher-risk URL (1)",
                 density=True, edgecolor="none")
         _fig_style(ax, feat, feat, "Density")
 
@@ -237,7 +253,7 @@ def _plot_mutual_information(X, y):
     fig, ax = plt.subplots(figsize=(10, 7))
     colors = [ACCENT2 if v < top20.quantile(0.7) else ACCENT3 for v in top20]
     ax.barh(top20.index, top20.values, color=colors, edgecolor="white", linewidth=0.8)
-    _fig_style(ax, "Top 20 Features — Mutual Information with drift_score",
+    _fig_style(ax, "Top 20 Features — Mutual Information with label",
                "Mutual Information Score", "Feature")
     for i, v in enumerate(top20):
         ax.text(v + 0.001, i, f"{v:.3f}", va="center", fontsize=8)
@@ -254,7 +270,7 @@ def _plot_pca_scatter(X, y, n=8000):
 
     fig, ax = plt.subplots(figsize=(9, 7))
     y_sub = y.iloc[idx] if hasattr(y, "iloc") else y[idx]
-    for cls, label, color in [(0, "Non-Cloaked", ACCENT2), (1, "Cloaked", ACCENT3)]:
+    for cls, label, color in [(0, "Lower-risk URL", ACCENT2), (1, "Higher-risk URL", ACCENT3)]:
         mask = y_sub == cls
         ax.scatter(coords[mask, 0], coords[mask, 1], c=color, label=label,
                    alpha=0.35, s=10, edgecolors="none")
@@ -347,7 +363,7 @@ def _plot_smote(X_imbal, y_imbal, X_res, y_res, acc_b, f1_b, acc_a, f1_a):
     # PCA before SMOTE
     coords_b = pca.fit_transform(sc.fit_transform(X_imbal[:3000]))
     yb = y_imbal[:3000]
-    for cls, label, color in [(0, "Non-Cloaked", ACCENT2), (1, "Cloaked", ACCENT3)]:
+    for cls, label, color in [(0, "Lower-risk URL", ACCENT2), (1, "Higher-risk URL", ACCENT3)]:
         m = yb == cls
         axes[0].scatter(coords_b[m, 0], coords_b[m, 1], c=color, label=label,
                         alpha=0.4, s=8, edgecolors="none")
@@ -359,7 +375,7 @@ def _plot_smote(X_imbal, y_imbal, X_res, y_res, acc_b, f1_b, acc_a, f1_a):
     # PCA after SMOTE
     coords_a = pca.fit_transform(sc.fit_transform(X_res[:3000]))
     ya = y_res[:3000]
-    for cls, label, color in [(0, "Non-Cloaked", ACCENT2), (1, "Cloaked", ACCENT3)]:
+    for cls, label, color in [(0, "Lower-risk URL", ACCENT2), (1, "Higher-risk URL", ACCENT3)]:
         m = ya == cls
         axes[1].scatter(coords_a[m, 0], coords_a[m, 1], c=color, label=label,
                         alpha=0.4, s=8, edgecolors="none")
@@ -399,7 +415,7 @@ def _plot_smote(X_imbal, y_imbal, X_res, y_res, acc_b, f1_b, acc_a, f1_a):
 # STEP 4 — TRAIN MODEL SUITE
 # ══════════════════════════════════════════════════════════════════════════════
 
-def train_models(X, y):
+def train_models(X, y, *, quick=False):
     print("\n" + "═"*60)
     print("STEP 4: Training model suite …")
     print("═"*60)
@@ -415,11 +431,11 @@ def train_models(X, y):
                                           solver="lbfgs", random_state=42)),
         ]),
         "RandomForest": RandomForestClassifier(
-            n_estimators=200, max_depth=20, min_samples_split=5,
+            n_estimators=20 if quick else 200, max_depth=20, min_samples_split=5,
             n_jobs=-1, random_state=42,
         ),
         "HistGradientBoosting": HistGradientBoostingClassifier(
-            max_iter=300, learning_rate=0.05, max_depth=8,
+            max_iter=30 if quick else 300, learning_rate=0.05, max_depth=8,
             min_samples_leaf=20, random_state=42,
         ),
     }
@@ -464,9 +480,9 @@ def train_models(X, y):
     # VotingClassifier needs un-fitted base estimators — refit
     ensemble_lr  = Pipeline([("scaler", StandardScaler()),
                                ("clf",    LogisticRegression(max_iter=2000, random_state=42))])
-    ensemble_rf  = RandomForestClassifier(n_estimators=200, max_depth=20,
+    ensemble_rf  = RandomForestClassifier(n_estimators=20 if quick else 200, max_depth=20,
                                           n_jobs=-1, random_state=42)
-    ensemble_hgb = HistGradientBoostingClassifier(max_iter=300, random_state=42)
+    ensemble_hgb = HistGradientBoostingClassifier(max_iter=30 if quick else 300, random_state=42)
     ensemble = VotingClassifier(
         estimators=[("lr", ensemble_lr), ("rf", ensemble_rf), ("hgb", ensemble_hgb)],
         voting="soft", n_jobs=-1,
@@ -575,8 +591,8 @@ def _plot_confusion_matrices(trained, X_test, y_test):
         cm = confusion_matrix(y_test, clf.predict(X_test))
         sns.heatmap(cm, annot=True, fmt="d", cmap="Blues", ax=ax,
                     linewidths=0.8, linecolor="white",
-                    xticklabels=["Non-Cloaked", "Cloaked"],
-                    yticklabels=["Non-Cloaked", "Cloaked"],
+                    xticklabels=["Lower-risk URL", "Higher-risk URL"],
+                    yticklabels=["Lower-risk URL", "Higher-risk URL"],
                     cbar=False)
         acc = accuracy_score(y_test, clf.predict(X_test))
         ax.set_title(f"{name}\nAccuracy={acc:.4f}", fontsize=11, fontweight="bold",
@@ -741,7 +757,7 @@ def save_artifacts(trained, results, feature_names):
     print("STEP 6: Saving artifacts …")
     print("═"*60)
 
-    # Choose production model = Ensemble (highest accuracy)
+    # Preserve the existing model bundle interface for downstream inference.
     production_model = trained["Ensemble"]
     model_bundle = {
         "pipeline":      production_model,
@@ -762,30 +778,29 @@ def save_artifacts(trained, results, feature_names):
         "feature_count":    len(feature_names),
         "feature_names":    feature_names,
         "graphs_dir":       str(GRAPHS_DIR),
-        "target_range":     "90-95%",
-        "notes": [
-            "headline_model (LogisticRegression) sits in the 90-95% target band.",
-            "Ensemble (soft-voting RF+HGB+LR) is the 'side model' boost to 96-97%.",
-            "Content columns (title/text/html) were empty; model uses URL features only.",
-            "No leakage: crawl_status and fusion_score excluded from features.",
-        ],
+        "training_csv_sha256": hashlib.sha256(CSV_PATH.read_bytes()).hexdigest(),
+        "notes": ["URL-risk training run. See model_card.json for data provenance and limitations."],
     }
     with open(METRICS_PATH, "w") as f:
         json.dump(metrics_out, f, indent=2)
     print(f"  Saved metrics → {METRICS_PATH}")
 
-    # Print summary
-    print("\n" + "═"*60)
-    print("TRAINING COMPLETE — RESULTS SUMMARY")
-    print("═"*60)
-    print(f"{'Model':<28} {'Accuracy':>10} {'F1':>8} {'ROC-AUC':>10}")
-    print("-"*60)
-    for name, m in results.items():
-        tag = " ← headline (90-95%)" if name == "LogisticRegression" else (
-              " ← side-model boost" if name in ("RandomForest","HistGradientBoosting","Ensemble") else "")
-        print(f"  {name:<26} {m['accuracy']:>9.4f} {m['f1']:>8.4f} {m['roc_auc']:>9.4f}{tag}")
-    print("═"*60)
-    print(f"  Graphs saved to: {GRAPHS_DIR}/ ({len(list(GRAPHS_DIR.glob('*.png')))} files)")
+    data = read_training_data(CSV_PATH)
+    manifest_path = CSV_PATH.with_suffix(".manifest.json")
+    manifest = json.loads(manifest_path.read_text()) if manifest_path.exists() else None
+    card = {
+        "task": "url_risk_classification", "seed": 42,
+        "rows_after_deduplication": len(data),
+        "feature_names": list(feature_names),
+        "training_data_sha256": hashlib.sha256(CSV_PATH.read_bytes()).hexdigest(),
+        "provenance": sorted(data["provenance"].unique().tolist()) if "provenance" in data else ["user_supplied"],
+        "dataset_manifest": manifest,
+        "split": "Stratified row split, 75% train and 25% test. Domain leakage on external data remains unassessed.",
+        "limitations": "Synthetic fixture metrics demonstrate execution. They do not measure external URL risk or cloaking detection.",
+        "versions": {name: importlib.metadata.version(name) for name in ("scikit-learn", "numpy", "pandas", "joblib")},
+    }
+    (ARTIFACTS_DIR / "model_card.json").write_text(json.dumps(card, indent=2) + "\n")
+    print(json.dumps(metrics_out, indent=2))
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -793,22 +808,35 @@ def save_artifacts(trained, results, feature_names):
 # ══════════════════════════════════════════════════════════════════════════════
 
 def main():
-    print("\n╔══════════════════════════════════════════════════════╗")
-    print("║  Active Defense System — Detection Model Training    ║")
-    print("╚══════════════════════════════════════════════════════╝\n")
-
+    global CSV_PATH, ARTIFACTS_DIR, GRAPHS_DIR, MODEL_PATH, METRICS_PATH
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--csv", type=Path, default=CSV_PATH)
+    parser.add_argument("--artifacts", type=Path, default=_HERE / "artifacts" / "url_risk_runs")
+    parser.add_argument("--quick", action="store_true", help="Smaller estimators and no presentation graphs")
+    args = parser.parse_args()
+    CSV_PATH = args.csv.resolve()
+    ARTIFACTS_DIR = args.artifacts.resolve()
+    GRAPHS_DIR = ARTIFACTS_DIR / "graphs"
+    MODEL_PATH = ARTIFACTS_DIR / "model.joblib"
+    METRICS_PATH = ARTIFACTS_DIR / "metrics.json"
     if not CSV_PATH.exists():
-        print(f"ERROR: CSV not found at {CSV_PATH}")
-        sys.exit(1)
-
-    df, y = load_and_audit()
-    X     = build_features(df, y)
-    smote_results = smote_demonstration(X, y)
-    trained, results, X_train, X_test, y_train, y_test = train_models(X, y)
-    generate_model_graphs(trained, results, X_test, y_test, X, y)
+        parser.error(f"CSV missing: {CSV_PATH}. Run python generate_dataset.py at the repository root for synthetic fixtures, or supply --csv.")
+    data = read_training_data(CSV_PATH)
+    if ARTIFACTS_DIR == _HERE / "artifacts":
+        parser.error("Choose a run directory to preserve historical artifacts")
+    ARTIFACTS_DIR.mkdir(parents=True, exist_ok=True)
+    GRAPHS_DIR.mkdir(parents=True, exist_ok=True)
+    y = data["label"].astype(int)
+    if args.quick:
+        features = transform(data)
+    else:
+        data, y = load_and_audit()
+        features = build_features(data, y)
+        smote_demonstration(features, y)
+    trained, results, _, X_test, _, y_test = train_models(features, y, quick=args.quick)
+    if not args.quick:
+        generate_model_graphs(trained, results, X_test, y_test, features, y)
     save_artifacts(trained, results, FEATURE_NAMES)
-
-    print("\n✓ All done. Next: python detection/make_report.py")
 
 
 if __name__ == "__main__":

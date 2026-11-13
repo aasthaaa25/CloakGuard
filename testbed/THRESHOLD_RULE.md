@@ -31,4 +31,6 @@ Do not set the threshold to 0.47 because a previous example scored about 0.48.
 
 ## Operational review
 
-The service rounds the controlled threshold to 0.270 on the fixed-weight scoring path. Set `REVIEW_THRESHOLD` to override it. The URL-model-assisted path retains the 0.50 alert for review because the 0.270 rule was selected without the URL model. Neither alert authorizes blocking. Human-only injection is outside this rule. Owner-approved static artifacts can be checked independently with `detection.pipeline.integrity`.
+The service rounds the controlled threshold to 0.270 on the fixed-weight scoring path. Set `REVIEW_THRESHOLD` to override it. The URL-model-assisted path uses the configurable alert threshold for review because the 0.270 rule was selected without the URL model. Neither alert authorizes blocking. Human-only injection is outside this rule. Owner-approved static artifacts can be checked independently with `detection.pipeline.integrity`.
+
+On 13 November 2026 the user requested an operational alert of 0.45. This setting makes the earlier North Market score cross the alert line. It was chosen after inspecting the development example. The historical 0.50 results remain in their original artifacts. No held-out calibration or false-positive claim is attached to 0.45. Both thresholds can be set through the environment.

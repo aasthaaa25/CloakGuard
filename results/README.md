@@ -1,6 +1,39 @@
 # CloakGuard implementation
 
-CloakGuard compares two client profiles and produces an uncalibrated review score. The controlled review threshold is 0.270 on the fixed-weight path. The existing 0.50 alert remains separate from review and owner-confirmed enforcement. The review rule covers bot-directed promotional injection. Human-only injection is outside its scope.
+CloakGuard compares two client profiles and produces an uncalibrated review score. The controlled review threshold is 0.270 on the fixed-weight path. The alert defaults to 0.45 and is configurable with `ALERT_THRESHOLD`. Owner-confirmed attribution determines fingerprint enforcement. The review rule covers bot-directed promotional injection. Human-only injection is outside its scope.
+
+## Portable URL training
+
+From the repository root, install `results/requirements.txt`, then run:
+
+```bash
+python generate_dataset.py
+python results/detection/train_model.py --quick
+```
+
+The generator writes `final_full (1).csv` at the repository root with 160,000 seeded, locally constructed `.test` URLs and a SHA-256 manifest. Its labels describe generated URL-risk scenarios. It makes no network requests. These fixtures support a training and presentation check. Real-world detection performance remains unmeasured. The original historical dataset remains unavailable.
+
+The training entry point uses 41 lexical features and fits Logistic Regression, Random Forest, HistGradientBoosting, and a soft-voting ensemble. `--quick` uses smaller estimators and skips presentation graphs. Omit it for the full training and graph workflow. Artifacts go into `results/detection/artifacts/url_risk_runs/`, including metrics, model bundle, and a model card with versions, features, seed, provenance, split, and data hash. Existing archived results stay in their original files.
+
+For your own labeled data, pass `--csv PATH --artifacts RUN_DIRECTORY`. A CSV must contain `url` and explicit binary `label` columns. Detector scores are unsuitable as training labels. The current trainer uses a stratified row split. A domain-held-out external benchmark remains pending. The generator accepts even row counts of at least 80 so the full SMOTE demonstration has enough neighbors.
+
+## One-click presentation
+
+After installing the requirements, double-click `start_demo.bat` on Windows, or run from the repository root:
+
+```bash
+python demo_live.py
+```
+
+The demo trains four URL-risk models on 400 clearly marked synthetic URLs, starts its own loopback origin and TLS proxy on free ports, fetches the two profiles, and prints a live URL-risk prediction plus the fixed-weight cloaking score. It explicitly confirms its controlled incident, adds JA3 points, serves a static decoy, and demonstrates the block threshold through additional scripted incidents. The original page remains injected until the owner remediates it.
+
+Each run writes a fresh directory under `demo_outputs/` with the generated model, model card, training log, JSON result, and forensic report. Optional browser or passive DNS evidence is marked unavailable when absent. A cross-platform local certificate is generated with Cryptography. The demo owns its test origin and client and scripts the confirmation step. This demonstration does not measure detection against field traffic.
+
+To present an already trained trusted model bundle, run `python demo_live.py --url-model results/detection/artifacts/url_risk_runs/model.joblib`. The lexical prediction is displayed alongside the controlled fixed-weight verdict. The Windows launcher uses the repository `.venv` when present and preserves the exit code. Windows execution still requires validation on a Windows host.
+
+## Independent review
+
+The second reviewer sheet in `data/annotation/pilot_30_reviewer_2_blank.csv` remains awaiting human labels. Run `python evaluation/pilot_agreement.py` from the repository root after independent review. Agreement cannot be inferred from an empty sheet.
 
 ## Reproduce local checks
 

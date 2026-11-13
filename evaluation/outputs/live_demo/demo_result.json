@@ -1,0 +1,51 @@
+{
+  "scope": "Controlled loopback fixture. Confirmation and repeated incidents are scripted.",
+  "tls_ja3": "166b2ba7d17746ef6996ecbe142aa507",
+  "fusion": {
+    "final_risk_score": 0.47992974456576043,
+    "score_is_probability": false,
+    "scoring_path": "fixed_weight_heuristic",
+    "weights": {
+      "url_model": 0.0,
+      "drift": 0.4,
+      "jargon": 0.35,
+      "promo": 0.25
+    },
+    "alert_threshold": 0.45,
+    "alert": true,
+    "review_threshold": 0.27,
+    "review_alert": true,
+    "flagged_vectors": [
+      {
+        "type": "jargon_asymmetry",
+        "score": 0.8,
+        "detail": "bot_mass=3.000 human_mass=0.000 delta=3.000 dominant=gambling"
+      },
+      {
+        "type": "promotional_content",
+        "score": 0.48916666666666664,
+        "detail": "Categories: ['gambling', 'pharma']"
+      }
+    ],
+    "model_probability": 0.0,
+    "drift_contribution": 0.07763807789909384,
+    "jargon_contribution": 0.27999999999999997,
+    "promo_contribution": 0.12229166666666666,
+    "url_model_contribution": 0.0,
+    "high_confidence": false,
+    "trained_multimodal_ensemble_used": false,
+    "observed_ja3": "166b2ba7d17746ef6996ecbe142aa507"
+  },
+  "url_risk_prediction": {
+    "model_path": "Regenerate with python demo_live.py; saved under that run directory",
+    "probability": 0.041366213117113755
+  },
+  "score_before_confirmation": 0.0,
+  "score_after_confirmation": 25.0,
+  "decoy_status": 200,
+  "decoy_inert": true,
+  "blocked_status": 403,
+  "origin_still_injected": true,
+  "forensic_report_exists": true,
+  "forensic_report": "evaluation/outputs/live_demo/forensic_report.html"
+}

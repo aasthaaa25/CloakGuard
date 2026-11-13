@@ -11,7 +11,7 @@ Each row names the artifact that supports the statement in `paper/CloakGuard_cor
 | Archived Phase 1 model numbers | `results/detection/artifacts/metrics.json` |
 | Archived Phase 2 debugging numbers | `results/detection/artifacts/multimodal_metrics.json` |
 | Jargon definitions and weights | `results/detection/pipeline/jargon.py` |
-| Operational scoring path and threshold 0.50 | `results/detection/pipeline/fusion.py`, `results/app/config.py` |
+| Operational scoring path and requested 0.45 alert | `results/detection/pipeline/fusion.py`, `results/app/config.py` |
 | Reverse/forward crawler verification and outage handling | `results/app/fingerprint/crawler_verify.py`, `results/app/main.py` |
 | Client fingerprint scoring, decay, and actions | `results/app/fingerprint/blocklist.py`, `results/app/config.py` |
 | External-monitor versus owner-authorized mode | `results/app/main.py`, `DEFENSE_MODE` |
@@ -31,6 +31,16 @@ Each row names the artifact that supports the statement in `paper/CloakGuard_cor
 
 | Statement | Evidence |
 | --- | --- |
-| Fixed-weight review at 0.270 and separate legacy alert | `archive/FREEZE_MANIFEST.json`, `testbed/results/frozen_detector_v2.json`, `results/tests/test_review_threshold.py` |
+| Fixed-weight review at 0.270 and separate operational alert | `archive/FREEZE_MANIFEST.json`, `testbed/results/frozen_detector_v2.json`, `results/tests/test_review_threshold.py` |
 | Same replacement in both views can be flagged by an owner-approved digest check | `results/detection/pipeline/integrity.py`, `results/tests/test_review_threshold.py` |
 | Pilot second-review coverage and agreement status | `evaluation/pilot_agreement.py` → `evaluation/outputs/pilot_agreement.json` |
+
+## Portable training and presentation evidence
+
+| Behavior | Source and output |
+| --- | --- |
+| Reproducible synthetic URL data and portable training | `generate_dataset.py`, `results/detection/train_model.py`, `results/tests/test_portable_ml.py` → generated CSV manifest and run `model_card.json` and `evaluation/outputs/url_training_smoke.json` |
+| Real local TLS request, paired scoring, confirmed decoy and block | `demo_live.py`, `results/tests/test_live_demo.py` → `evaluation/outputs/live_demo/demo_result.json` and its forensic report; regenerate with `python demo_live.py` |
+| Requested 0.45 alert and configurable 0.270 review | `results/app/config.py`, `results/detection/pipeline/fusion.py`, `archive/FREEZE_MANIFEST.json` |
+
+Generator and demonstration artifacts describe constructed inputs. Historical study metrics remain separate from these execution checks. Reviewer 2 labels remain pending.

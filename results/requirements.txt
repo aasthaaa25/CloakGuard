@@ -33,6 +33,7 @@ slowapi>=0.1.9
 
 # ── DNS / Networking ─────────────────────────────────────────────
 dnspython>=2.4.0
+cryptography>=41.0.0       # Cross-platform local demo TLS certificates
 scapy>=2.5.0               # TLS/JA3 fingerprinting (L1)
 
 # ── Optional / Heavy deps (marked — core still runs without them) ─

@@ -6,6 +6,12 @@ The 160,000-URL file is not in this repository. The 5,122-row parquet is not a f
 
 **Author:** Aastha Tyagi
 
+## Run the local demonstration
+
+Install `results/requirements.txt`, then run `python demo_live.py` or double-click `start_demo.bat` on Windows. It prepares a synthetic URL-risk model, runs paired-view inference through a real local TLS proxy, and demonstrates confirmed JA3 scoring and an inert decoy. Setup and evidence limits are documented in [results/README.md](results/README.md).
+
+Generate the reproducible 160,000-row demonstration dataset with `python generate_dataset.py`, then train with `python results/detection/train_model.py --quick`.
+
 ## Layout
 
 | Directory | What it contains |

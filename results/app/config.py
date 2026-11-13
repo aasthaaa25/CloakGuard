@@ -43,7 +43,7 @@ DECOY_TTL_HOURS = 72   # auto-disarm after 3 days even if not manually cleared
 
 # ── Detection pipeline thresholds (imported from your Day 5 fusion config) ──
 REVIEW_THRESHOLD           = float(os.getenv("REVIEW_THRESHOLD", "0.270"))
-ALERT_THRESHOLD            = 0.50
+ALERT_THRESHOLD            = float(os.getenv("ALERT_THRESHOLD", "0.45"))
 HIGH_CONFIDENCE_THRESHOLD  = 0.75
 
 # ── Forensics (Layer 3) ───────────────────────────────────────
