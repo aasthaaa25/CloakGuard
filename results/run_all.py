@@ -10,6 +10,8 @@ ROOT = Path(__file__).resolve().parents[1]
 def main():
     for command in (
         ["evaluation/demo_case.py"],
+        ["evaluation/run_live_demo.py"],
+        ["evaluation/benchmark_url_proxy.py"],
         ["evaluation/benchmark_controlled_ml.py"],
         ["evaluation/stress_controlled_ml.py"],
         ["testbed/defense_checks.py"],

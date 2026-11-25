@@ -40,6 +40,12 @@ docker compose -f results/deploy/docker-compose.yml ps
 
 The host port is loopback-bound. The container runs as a non-root user with a read-only root and no added capabilities. The container health check validates process liveness. For the Linux systemd option, use the dedicated defaceguard account and install the project and its virtual environment at /opt/cloakguard. Install the unit from this directory and set ORIGIN_SERVER_URL in /etc/cloakguard/proxy.env.
 
+## One-command classroom demo
+
+Install the analysis dependencies from `results/requirements.txt`, then run `python evaluation/run_live_demo.py` from the repository root. It starts a controlled origin and Uvicorn on two automatically assigned loopback ports, requests clean and changed cases through the proxy, writes an evidence report, and stops both servers. Results appear in `evaluation/outputs/live_demo/`.
+
+Run `python results/run_all.py` for the live demo, URL proxy-label benchmark, paired experiments and test suite. Pass the JSON from the live demo to `python evaluation/make_class_brief.py --demo evaluation/outputs/live_demo/demo_result.json --output-dir your_output_directory` to recreate the PDF and figures.
+
 ## Research demo
 
 Install the analysis dependencies from `results/requirements.txt`. Run the following from the repository root:

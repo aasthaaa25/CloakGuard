@@ -1,0 +1,240 @@
+{
+  "scope": "Archived 5,000-URL subset; prediction of unverified historical proxy labels, not cloaking validation",
+  "input_sha256": "a0cbbe572dd1816eb7bdb86a935c6343737c8f3b985f6e0c9e5a28c17bf60687",
+  "sklearn_version": "1.7.2",
+  "rows": 5000,
+  "positive": 2500,
+  "negative": 2500,
+  "registrable_domain_groups": 4794,
+  "feature_count": 41,
+  "models": {
+    "prior": {
+      "threshold": 0.5,
+      "tn": 965,
+      "fp": 1535,
+      "fn": 997,
+      "tp": 1503,
+      "f1": 0.542795232936078,
+      "average_precision": 0.4957093752211359,
+      "roc_auc": 0.4923892,
+      "mean_fold_roc_auc": 0.5,
+      "mean_fold_average_precision": 0.5000950095089574
+    },
+    "logistic": {
+      "threshold": 0.5,
+      "tn": 2344,
+      "fp": 156,
+      "fn": 88,
+      "tp": 2412,
+      "f1": 0.9518547750591949,
+      "average_precision": 0.9778364267838568,
+      "roc_auc": 0.9815073599999999,
+      "mean_fold_roc_auc": 0.9817057159987103,
+      "mean_fold_average_precision": 0.9781781450405853
+    },
+    "hist_gradient_boosting": {
+      "threshold": 0.5,
+      "tn": 2324,
+      "fp": 176,
+      "fn": 64,
+      "tp": 2436,
+      "f1": 0.9530516431924883,
+      "average_precision": 0.9875449609152052,
+      "roc_auc": 0.98901184,
+      "mean_fold_roc_auc": 0.9892869192118081,
+      "mean_fold_average_precision": 0.9879297424717187
+    }
+  },
+  "folds": [
+    {
+      "fold": 1,
+      "rows": 980,
+      "positive": 494,
+      "groups": 949,
+      "models": {
+        "prior": {
+          "threshold": 0.5,
+          "tn": 486,
+          "fp": 0,
+          "fn": 494,
+          "tp": 0,
+          "f1": 0.0,
+          "average_precision": 0.5040816326530613,
+          "roc_auc": 0.5
+        },
+        "logistic": {
+          "threshold": 0.5,
+          "tn": 461,
+          "fp": 25,
+          "fn": 20,
+          "tp": 474,
+          "f1": 0.9546827794561934,
+          "average_precision": 0.9783744316748818,
+          "roc_auc": 0.9814773162726379
+        },
+        "hist_gradient_boosting": {
+          "threshold": 0.5,
+          "tn": 455,
+          "fp": 31,
+          "fn": 15,
+          "tp": 479,
+          "f1": 0.954183266932271,
+          "average_precision": 0.9895783672295847,
+          "roc_auc": 0.9905324802985622
+        }
+      }
+    },
+    {
+      "fold": 2,
+      "rows": 982,
+      "positive": 503,
+      "groups": 961,
+      "models": {
+        "prior": {
+          "threshold": 0.5,
+          "tn": 479,
+          "fp": 0,
+          "fn": 503,
+          "tp": 0,
+          "f1": 0.0,
+          "average_precision": 0.5122199592668024,
+          "roc_auc": 0.5
+        },
+        "logistic": {
+          "threshold": 0.5,
+          "tn": 450,
+          "fp": 29,
+          "fn": 19,
+          "tp": 484,
+          "f1": 0.952755905511811,
+          "average_precision": 0.9868609551050586,
+          "roc_auc": 0.986855485043808
+        },
+        "hist_gradient_boosting": {
+          "threshold": 0.5,
+          "tn": 447,
+          "fp": 32,
+          "fn": 11,
+          "tp": 492,
+          "f1": 0.9581304771178188,
+          "average_precision": 0.9929668895767593,
+          "roc_auc": 0.9928736557689354
+        }
+      }
+    },
+    {
+      "fold": 3,
+      "rows": 1043,
+      "positive": 516,
+      "groups": 961,
+      "models": {
+        "prior": {
+          "threshold": 0.5,
+          "tn": 0,
+          "fp": 527,
+          "fn": 0,
+          "tp": 516,
+          "f1": 0.6619627966645285,
+          "average_precision": 0.4947267497603068,
+          "roc_auc": 0.5
+        },
+        "logistic": {
+          "threshold": 0.5,
+          "tn": 500,
+          "fp": 27,
+          "fn": 18,
+          "tp": 498,
+          "f1": 0.9567723342939481,
+          "average_precision": 0.9815054475749501,
+          "roc_auc": 0.9825838812644337
+        },
+        "hist_gradient_boosting": {
+          "threshold": 0.5,
+          "tn": 489,
+          "fp": 38,
+          "fn": 14,
+          "tp": 502,
+          "f1": 0.9507575757575758,
+          "average_precision": 0.98624194585825,
+          "roc_auc": 0.9879344836209052
+        }
+      }
+    },
+    {
+      "fold": 4,
+      "rows": 990,
+      "positive": 488,
+      "groups": 962,
+      "models": {
+        "prior": {
+          "threshold": 0.5,
+          "tn": 0,
+          "fp": 502,
+          "fn": 0,
+          "tp": 488,
+          "f1": 0.6603518267929634,
+          "average_precision": 0.49292929292929294,
+          "roc_auc": 0.5
+        },
+        "logistic": {
+          "threshold": 0.5,
+          "tn": 457,
+          "fp": 45,
+          "fn": 15,
+          "tp": 473,
+          "f1": 0.9403578528827038,
+          "average_precision": 0.9686087428585815,
+          "roc_auc": 0.9767569067990334
+        },
+        "hist_gradient_boosting": {
+          "threshold": 0.5,
+          "tn": 458,
+          "fp": 44,
+          "fn": 13,
+          "tp": 475,
+          "f1": 0.9433962264150944,
+          "average_precision": 0.9873331190379045,
+          "roc_auc": 0.9886111292534778
+        }
+      }
+    },
+    {
+      "fold": 5,
+      "rows": 1005,
+      "positive": 499,
+      "groups": 961,
+      "models": {
+        "prior": {
+          "threshold": 0.5,
+          "tn": 0,
+          "fp": 506,
+          "fn": 0,
+          "tp": 499,
+          "f1": 0.663563829787234,
+          "average_precision": 0.49651741293532337,
+          "roc_auc": 0.5
+        },
+        "logistic": {
+          "threshold": 0.5,
+          "tn": 476,
+          "fp": 30,
+          "fn": 16,
+          "tp": 483,
+          "f1": 0.9545454545454546,
+          "average_precision": 0.9755411479894553,
+          "roc_auc": 0.9808549906136382
+        },
+        "hist_gradient_boosting": {
+          "threshold": 0.5,
+          "tn": 475,
+          "fp": 31,
+          "fn": 11,
+          "tp": 488,
+          "f1": 0.9587426326129665,
+          "average_precision": 0.9835283906560948,
+          "roc_auc": 0.9864828471171592
+        }
+      }
+    }
+  ]
+}

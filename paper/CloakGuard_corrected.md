@@ -88,6 +88,12 @@ The 122 training rows are a subset of the 300 current URLs, not extra observatio
 
 `metrics.json` records Logistic Regression accuracy 0.95315 and ROC-AUC 0.98578, Random Forest accuracy 0.971325 and ROC-AUC 0.99578, HistGradientBoosting accuracy 0.972675 and ROC-AUC 0.996074, and the soft-voting ensemble accuracy 0.971225 and ROC-AUC 0.995309. HistGradientBoosting is the best archived model by accuracy and ROC-AUC. The ensemble ROC-AUC is not the HistGradientBoosting ROC-AUC. These numbers were not regenerated. `model.joblib` was pickled with scikit-learn 1.7.2 and does not unpickle under scikit-learn 1.9.0 in this environment, so the earlier audit did not execute it. We separately verified single-URL inference with scikit-learn 1.7.2.
 
+### Recovered subset and domain-disjoint evaluation
+
+The supplied results ZIP contains the identical 5,122-row Parquet and semantically identical historical metrics. The notebook and historical PDF describe a balanced 160,000-URL source file. The ZIP contains no CSV and the reviewed artifacts do not identify the data providers or establish how the source labels were assigned. Its 5,000 URL-only rows have 2,500 labels of each class and 5,000 distinct URL strings.
+
+We recomputed the 41 URL features and ran five stratified, registrable-domain-disjoint folds covering 4,794 groups. Logistic regression and histogram gradient boosting achieved mean fold ROC-AUC 0.982 and 0.989, mean fold average precision 0.978 and 0.988, and pooled F1 0.952 and 0.953 at 0.50. The prior baseline achieved mean fold ROC-AUC 0.500. Domain separation controls repeated domains, and may leave shared collection sources or campaign artifacts across folds. These are results on archived proxy labels. No full-corpus reproduction or cloaking ground-truth estimate follows from them.
+
 ### Archived multimodal run
 
 On the flawed 5,122-row table, the archived ensemble accuracy is 0.9617 and ROC-AUC is 0.9924. Random Forest recall is 0.9968, which is higher than the ensemble recall of 0.9952. The archived ablation URL ROC-AUC is 0.9592 and the fused ROC-AUC is 0.9850. The absolute difference is 0.0258. Drift, promotional features, and jargon each have archived ROC-AUC near 0.51 with zero recall, which is what near-constant zero columns produce. This run is filed as a debugging experiment.
