@@ -1,23 +1,14 @@
-version: '3.8'
 services:
-  defacement-defense:
+  cloakguard:
     build:
       context: ..
       dockerfile: deploy/Dockerfile
     ports:
-      - "8443:8443"
-    volumes:
-      - ../data:/app/data
-      - ../logs:/app/logs
+      - "127.0.0.1:8080:8080"
     environment:
-      - ORIGIN_SERVER_URL=http://host.docker.internal:8000
-      - PASSIVE_DNS_API_KEY=${PASSIVE_DNS_API_KEY:-}
-      - LOG_ONLY=${LOG_ONLY:-false}
+      ORIGIN_SERVER_URL: ${ORIGIN_SERVER_URL:?Set the URL of your authorized origin}
+    read_only: true
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
-
-# Usage on the user's server:
-#   1. Set ORIGIN_SERVER_URL to wherever their real site already runs
-#      (this middleware sits IN FRONT of it — their site is untouched)
-#   2. docker compose -f deploy/docker-compose.yml up -d --build
-#   3. Point DNS/firewall so inbound traffic hits port 8443 (this proxy)
-#      instead of going directly to their origin server's port

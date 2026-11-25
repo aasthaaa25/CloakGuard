@@ -1,3 +1,14 @@
+# CloakGuard research and service code
+
+See the [deployment and demo guide](deploy/README.md) for the forward-only proxy, container configuration, and controlled research workflow. The [corrected paper](../paper/CloakGuard_corrected.md) links to the evidence audit and separates the historical models, the paired-view heuristic, and the owner-policy harness.
+
+The historical training entry points are `detection/train_model.py` and `detection/train_multimodal.py`. Phase 1 requires the original `final_full (1).csv` and Phase 2 requires independently labeled paired captures to support a real-world claim. Use the controlled benchmark under `../evaluation/` for the reproducible classroom comparison.
+
+<details>
+<summary>Historical project notes and commands</summary>
+
+The notes below describe the earlier implementation. Use the current guide above for the proxy and cite the corrected paper for results.
+
 # Active Defense System
 
 ### Cloaking-Aware Promotional Defacement Detection · Full Multimodal Pipeline · Three-Layer Active Defense
@@ -627,3 +638,5 @@ All tuning constants are in `app/config.py`:
 ---
 
 **Stack:** Python 3.11+ · scikit-learn · imbalanced-learn · FastAPI · SQLite · matplotlib · seaborn · httpx · BeautifulSoup · pyarrow
+
+</details>

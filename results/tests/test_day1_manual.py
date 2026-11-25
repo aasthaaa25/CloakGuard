@@ -154,10 +154,11 @@ class TestDecoyEngine:
     def test_build_decoy_page(self):
         from app.decoy.decoy_generator import build_decoy_page
         human_html = """<html><head></head>
-        <body><h1>Hello</h1><marquee>SPAM</marquee></body></html>"""
+        <body><h1>Hello</h1><script src="/tracking.js"></script><marquee>SPAM</marquee></body></html>"""
         result = build_decoy_page(human_html, [], {})
         # marquee should be removed
         assert "marquee" not in result.lower() or "SPAM" not in result
+        assert "<script" not in result.lower()
         # marker meta should be present
         assert "x-internal-decoy-served" in result
 

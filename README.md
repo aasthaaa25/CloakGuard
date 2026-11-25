@@ -1,37 +1,11 @@
 # CloakGuard
 
-CloakGuard is a defensive research prototype: paired User-Agent fetches, heuristic drift and jargon scores, and owner-side middleware. The corrected write-up is [`paper/CloakGuard_corrected.md`](paper/CloakGuard_corrected.md). The earlier PDF in `paper/` is a historical draft. Read [`docs/CLAIM_AUDIT.md`](docs/CLAIM_AUDIT.md) before citing any accuracy number.
+CloakGuard is Aastha Tyagi’s defensive research prototype for identifying bot-directed promotional changes on owner-controlled websites. It compares paired HTTP captures, records review evidence, and provides a separate forward-only reverse proxy.
 
-The 160,000-URL file is not in this repository. The 5,122-row parquet is not a fully observed multimodal cloaking benchmark. The crawl sample has 300 URLs and no independent cloaking labels.
+- [Corrected paper](paper/CloakGuard_corrected.md) and [claim audit](docs/CLAIM_AUDIT.md)
+- [Controlled validation protocol](docs/CONTROLLED_VALIDATION.md) and [ML benchmark](evaluation/benchmark_controlled_ml.py)
+- [Deployment and live demo](results/deploy/README.md)
 
-**Author:** Aastha Tyagi
+The historical PDF and archived model metrics are retained for traceability. The 160,000-URL source dataset is missing. The historical paired-view training table contains zero-filled modalities and labels derived from the detector’s score. The new controlled benchmark uses scenario labels and separates fit and reserved examples by template family.
 
-## Layout
-
-| Directory | What it contains |
-| --- | --- |
-| [`paper/`](paper/) | `CloakGuard_Paper.pdf` — the paper |
-| [`results/`](results/) | Implementation, tests, trained artifacts, crawl sample, and the generated report |
-
-## Paper
-
-`paper/CloakGuard_Paper.pdf` describes a two-phase detector and an active defense layer:
-
-- Archived URL-model numbers live in `results/detection/artifacts/metrics.json`. They were not rerun here. HistGradientBoosting is the best archived model by accuracy and ROC-AUC.
-- The paired-view audit is `evaluation/outputs/claim_audit.json`.
-- The defense code scores the observed client JA3. `DEFENSE_MODE=external_monitor` logs and forwards. The default owner-authorized mode may rate-limit, block, or serve an inert decoy.
-
-## Results
-
-`results/` is the active defense system that produced those numbers. Start with [`results/README.md`](results/README.md) for setup and how to rerun the pipeline.
-
-Main pieces inside `results/`:
-
-- `app/` — FastAPI defense service (fingerprint, rate limit, decoy, forensics)
-- `detection/` — feature extraction, training, and report generation
-- `data/` — feature table and dual-view crawl sample
-- `report/` — generated HTML report
-- `tests/` — detection and integration tests
-- `deploy/` — Dockerfile and compose file
-
-`PASSIVE_DNS_API_KEY` is optional and read from the environment. It is not stored in this repository.
+The research software lives in `results/detection/` and `testbed/`. Evidence processing and owner-side policy components live in `results/app/`. The default web service forwards traffic to one configured origin. The offline lab exercises fingerprint policy, rate-limit decisions, decoy rollback, and forensic packaging.

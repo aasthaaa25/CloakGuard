@@ -39,13 +39,13 @@ def attacker_verification_crawl():
 
 class TestFullIntegration:
 
-    def test_step1_detection_pipeline_runs(self):
+    def test_step1_detection_pipeline_runs(self, offline_http_capture):
         """Step 1: running detection pipeline on a URL produces a fusion verdict."""
         from detection.detection_pipeline import (
             dual_view_crawl, extract_dual_artifacts,
             compute_cross_view_drift, compute_promotional_score, fuse_risk_scores,
         )
-        url = "https://free-casino-slots.tk/redirect?goto=spam"
+        url = "https://example.test/fixture"
         record = dual_view_crawl(url)
         arts   = extract_dual_artifacts(record)
         drift  = compute_cross_view_drift(arts, record)
@@ -116,7 +116,7 @@ class TestFullIntegration:
             from app.forensics.dom_diff import compute_dom_diff
             from app.forensics.js_trace_diff import diff_js_traces
 
-            url    = "http://victim-site.example.com/forensic-test"
+            url = "https://example.test/<captured-markup>"
             url_id = "testid001"
 
             fusion = {
@@ -148,6 +148,8 @@ class TestFullIntegration:
         content = Path(report_path).read_text(encoding="utf-8")
         assert "HEURISTIC ALERT" in content
         assert "0.87" in content
+        assert "&lt;captured-markup&gt;" in content
+        assert "<captured-markup>" not in content
         print(f"\n  Step 3 ✓ — forensic report: {report_path}")
 
     def test_impersonation_detection_deterministic(self):

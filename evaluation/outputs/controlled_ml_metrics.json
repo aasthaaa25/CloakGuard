@@ -1,0 +1,70 @@
+{
+  "scope": "Retrospective controlled benchmark on scripted HTTP pairs, one H1/B1 pair per scenario per template",
+  "sklearn_version": "1.7.2",
+  "input_sha256": "2d1cd137bf1a4dba14bfc389ab7bafc778147a57893a1a2945d779663d0d1a7f",
+  "threshold_manifest_sha256": "a1b53b97a2d39d2ffad4ca41a497af5e861f342edec891f8844d51669b730dec",
+  "fit_families": [
+    "cedar_clinic",
+    "maple_archive"
+  ],
+  "reserved_families": [
+    "linen_press",
+    "quartz_supply"
+  ],
+  "fit_counts": {
+    "negative": 26,
+    "positive": 6
+  },
+  "reserved_counts": {
+    "negative": 26,
+    "positive": 6
+  },
+  "paired_features": [
+    "drift_score",
+    "promo_score",
+    "jargon_score",
+    "signed_jargon_gap"
+  ],
+  "models": {
+    "fixed_heuristic": {
+      "threshold": 0.26962955835598135,
+      "tn": 26,
+      "fp": 0,
+      "fn": 0,
+      "tp": 6,
+      "f1": 1.0,
+      "average_precision": 1.0,
+      "roc_auc": 1.0
+    },
+    "always_negative": {
+      "threshold": 0.5,
+      "tn": 26,
+      "fp": 0,
+      "fn": 6,
+      "tp": 0,
+      "f1": 0.0,
+      "average_precision": 0.1875,
+      "roc_auc": 0.5
+    },
+    "drift_only_logistic": {
+      "threshold": 0.5,
+      "tn": 25,
+      "fp": 1,
+      "fn": 6,
+      "tp": 0,
+      "f1": 0.0,
+      "average_precision": 0.31410256410256415,
+      "roc_auc": 0.7307692307692308
+    },
+    "paired_feature_logistic": {
+      "threshold": 0.5,
+      "tn": 26,
+      "fp": 0,
+      "fn": 0,
+      "tp": 6,
+      "f1": 1.0,
+      "average_precision": 1.0,
+      "roc_auc": 1.0
+    }
+  }
+}

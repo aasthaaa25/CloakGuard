@@ -95,7 +95,7 @@ def test_feature_engineering():
     assert f2["num_hyphens"] > 3
 
 
-def test_detection_pipeline_contract():
+def test_detection_pipeline_contract(offline_http_capture):
     """Tests that detection_pipeline.py exports the exact API the adapter imports."""
     from detection.detection_pipeline import (
         VIEW_PROFILES,
@@ -114,7 +114,7 @@ def test_detection_pipeline_contract():
         assert "extra_http_headers" in VIEW_PROFILES[view]
 
     # Pipeline on a test URL — just checks it runs without error
-    url = "https://example.com/"
+    url = "https://example.test/"
     record  = dual_view_crawl(url)
     arts    = extract_dual_artifacts(record)
     drift   = compute_cross_view_drift(arts, record)

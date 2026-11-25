@@ -13,11 +13,8 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO / "results"))
 
-from detection.pipeline.artifacts import extract_dual_artifacts
-from detection.pipeline.drift import compute_cross_view_drift
-from detection.pipeline.fusion import fuse_risk_scores
-from detection.pipeline.jargon import compute_jargon_asymmetry
-from detection.pipeline.promotion import compute_promotional_score
+from app.pipeline_bridge.adapter import score_capture
+
 
 HUMAN = """
 <html><head><title>North Market</title></head>
@@ -38,15 +35,11 @@ def _run(html_h: str, html_b: str, url: str) -> dict:
     record = {
         "url": url,
         "url_id": "demo-local",
-        "human": {"html": html_h, "screenshot_path": None},
-        "bot": {"html": html_b, "screenshot_path": None},
+        "human": {"status": 200, "html": html_h, "screenshot_path": None},
+        "bot": {"status": 200, "html": html_b, "screenshot_path": None},
         "profile": "local fixture, not a network capture",
     }
-    arts = extract_dual_artifacts(record)
-    drift = compute_cross_view_drift(arts, record)
-    promo = compute_promotional_score(arts, record)
-    jargon = compute_jargon_asymmetry(arts, record)
-    fusion = fuse_risk_scores(drift, promo, url=url, jargon=jargon)
+    drift, promo, jargon, fusion = score_capture(record)
     return {
         "drift_score": drift["drift_score"],
         "visual_used": drift.get("have_visual", False),
@@ -60,10 +53,7 @@ def _run(html_h: str, html_b: str, url: str) -> dict:
         "scoring_path": fusion["scoring_path"],
         "alert_threshold": fusion["alert_threshold"],
         "alert": fusion["alert"],
-        "response": (
-            "owner_authorized mode may rate-limit the observed client, serve an inert decoy, "
-            "or block. This fixture does not arm a live control. external_monitor would log only."
-        ),
+        "response": "Evidence only. Owner-side controls run separately in the policy harness.",
     }
 
 

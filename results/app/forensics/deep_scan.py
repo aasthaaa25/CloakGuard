@@ -9,6 +9,7 @@ import json
 import base64
 from pathlib import Path
 from datetime import datetime
+from html import escape
 
 from app.config import FORENSICS_OUTPUT_DIR
 from app.forensics.screenshot_diff import generate_diff_heatmap
@@ -80,21 +81,22 @@ async def trigger_deep_scan(url, crawl_record, artifacts, drift, promo, fusion):
 def _write_forensic_report(url, url_id, fusion, drift, promo,
                              screenshot_diff, dom_diff, js_diff, dns_results):
     timestamp = datetime.now().isoformat()
+    safe_url = escape(str(url))
 
     dom_injection_rows = "".join(
-        f"<tr><td>{n['path']}</td><td>{n['tag']}</td><td>{n['text'][:60]}</td></tr>"
+        f"<tr><td>{escape(str(n['path']))}</td><td>{escape(str(n['tag']))}</td><td>{escape(str(n['text'][:60]))}</td></tr>"
         for n in ((dom_diff or {}).get("nodes_only_in_bot_view", [])[:25])
     )
 
     js_only_rows = "".join(
-        f"<tr><td>{r['url'][:80]}</td><td>{r['resource_type']}</td></tr>"
+        f"<tr><td>{escape(str(r['url'][:80]))}</td><td>{escape(str(r['resource_type']))}</td></tr>"
         for r in (js_diff or {}).get("bot_only_requests", [])[:25]
     )
 
     dns_rows = "".join(
-        f"<tr><td>{d['domain']}</td><td>{d.get('first_seen','N/A')}</td>"
-        f"<td>{d.get('last_seen','N/A')}</td>"
-        f"<td>{', '.join(d.get('resolved_ips',[])[:3])}</td></tr>"
+        f"<tr><td>{escape(str(d['domain']))}</td><td>{escape(str(d.get('first_seen','N/A')))}</td>"
+        f"<td>{escape(str(d.get('last_seen','N/A')))}</td>"
+        f"<td>{escape(str(', '.join(d.get('resolved_ips',[])[:3])))}</td></tr>"
         for d in (dns_results or [])
     )
 
@@ -110,7 +112,8 @@ def _write_forensic_report(url, url_id, fusion, drift, promo,
 
     html = f"""<!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8">
-<title>Forensic Deep-Scan — {url}</title>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src data:; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
+<title>Forensic Deep-Scan — {safe_url}</title>
 <style>
   body {{ font-family: Arial, sans-serif; max-width: 1200px; margin: 30px auto;
           background: #f4f6fa; color: #222; }}
@@ -131,23 +134,23 @@ def _write_forensic_report(url, url_id, fusion, drift, promo,
 <body>
 
 <h1>🔍 Automated Forensic Deep-Scan Report</h1>
-<p><b>URL:</b> {url} &nbsp;|&nbsp; <b>Generated:</b> {timestamp}</p>
+<p><b>URL:</b> {safe_url} &nbsp;|&nbsp; <b>Generated:</b> {timestamp}</p>
 
-<div class="banner">HEURISTIC ALERT — uncalibrated score {fusion.get('final_risk_score', 'N/A')} on path {fusion.get('scoring_path', 'unspecified')}. This package does not by itself confirm cloaking or identify an attacker.</div>
+<div class="banner">HEURISTIC ALERT — uncalibrated score {escape(str(fusion.get('final_risk_score', 'N/A')))} on path {escape(str(fusion.get('scoring_path', 'unspecified')))}. This package does not by itself confirm cloaking or identify an attacker.</div>
 
 <div class="section">
 <h2>Executive Summary</h2>
-<span class="metric">Risk Score: {fusion.get('final_risk_score', 'N/A')}</span>
+<span class="metric">Risk Score: {escape(str(fusion.get('final_risk_score', 'N/A')))}</span>
 <span class="metric">Alert: {'YES' if fusion.get('alert') else 'NO'}</span>
-<span class="metric">DOM Injections: {(dom_diff or {}).get('injection_node_count','N/A')}</span>
-<span class="metric">Bot-only Requests: {(js_diff or {}).get('bot_only_request_count','N/A')}</span>
+<span class="metric">DOM Injections: {escape(str((dom_diff or {}).get('injection_node_count','N/A')))}</span>
+<span class="metric">Bot-only Requests: {escape(str((js_diff or {}).get('bot_only_request_count','N/A')))}</span>
 </div>
 
 <div class="section">
 <h2>1. Visual Diff (Human | Bot | Highlighted Differences)</h2>
 {diff_img_tag if diff_img_tag else '<p><em>Screenshots not available (playwright not installed or no screenshot path).</em></p>'}
-<p>{(screenshot_diff or {}).get('flagged_region_count', 0)} differing regions found,
-{(screenshot_diff or {}).get('diff_percentage', 0)}% of pixels differ.</p>
+<p>{escape(str((screenshot_diff or {}).get('flagged_region_count', 0)))} differing regions found,
+{escape(str((screenshot_diff or {}).get('diff_percentage', 0)))}% of pixels differ.</p>
 </div>
 
 <div class="section">
@@ -155,7 +158,7 @@ def _write_forensic_report(url, url_id, fusion, drift, promo,
 <table><tr><th>DOM Path</th><th>Tag</th><th>Text Content</th></tr>
 {dom_injection_rows if dom_injection_rows else '<tr><td colspan="3">None detected or HTML not available</td></tr>'}
 </table>
-<p>Total injected nodes: {(dom_diff or {}).get('injection_node_count', 'N/A')}</p>
+<p>Total injected nodes: {escape(str((dom_diff or {}).get('injection_node_count', 'N/A')))}</p>
 </div>
 
 <div class="section">
@@ -179,8 +182,7 @@ def _write_forensic_report(url, url_id, fusion, drift, promo,
 <li>Inspect the DOM-injection nodes above to locate the exact injected snippet in your CMS/file system.</li>
 <li>Search your codebase/database for the domains listed in Section 4 to find the injection point.</li>
 <li>Check file modification times around when bot-only domains first appeared (per passive DNS first_seen).</li>
-<li>The decoy layer is already serving inert content to confirmed-malicious fingerprints —
-you have time to clean the source without continued live exposure to search engines.</li>
+<li>Review the evidence and verify any suspected modification at the origin before applying a response.</li>
 </ol>
 </div>
 
@@ -188,9 +190,9 @@ you have time to clean the source without continued live exposure to search engi
 <h2>6. Detection Pipeline Data</h2>
 <table>
 <tr><th>Signal</th><th>Value</th></tr>
-<tr><td>Drift Score</td><td>{drift.get('drift_score','N/A')}</td></tr>
-<tr><td>Promo Score</td><td>{promo.get('promo_score','N/A')}</td></tr>
-<tr><td>Model Probability</td><td>{fusion.get('model_probability','N/A')}</td></tr>
+<tr><td>Drift Score</td><td>{escape(str(drift.get('drift_score','N/A')))}</td></tr>
+<tr><td>Promo Score</td><td>{escape(str(promo.get('promo_score','N/A')))}</td></tr>
+<tr><td>Model Probability</td><td>{escape(str(fusion.get('model_probability','N/A')))}</td></tr>
 <tr><td>Flagged Vectors</td><td>{len(fusion.get('flagged_vectors',[]))}</td></tr>
 </table>
 </div>

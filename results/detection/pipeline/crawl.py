@@ -99,7 +99,6 @@ def _fetch_httpx(url: str, profile: dict) -> dict:
             follow_redirects=True,
             timeout=_TIMEOUT,
             headers=headers,
-            verify=False,
         ) as client:
             r = client.get(url)
             return {

@@ -124,6 +124,20 @@ def audit_parquet() -> dict:
     }
 
 
+def read_capture_body(path: Path, profile: str, reasons: list[str]) -> str:
+    try:
+        html = path.read_text(encoding="utf-8", errors="replace")
+    except FileNotFoundError:
+        reasons.append(f"missing_{profile}_html")
+        return ""
+    except OSError:
+        reasons.append(f"unreadable_{profile}_html")
+        return ""
+    if not html.strip():
+        reasons.append(f"empty_{profile}_html")
+    return html
+
+
 def audit_crawl_and_features() -> tuple[dict, list]:
     from detection.features import FEATURE_NAMES
     from detection.pipeline.artifacts import extract_dual_artifacts
@@ -144,22 +158,14 @@ def audit_crawl_and_features() -> tuple[dict, list]:
         url = meta.get("url") or ""
         h_path = sample / f"{uid}_human.html"
         b_path = sample / f"{uid}_bot.html"
-        h_html = h_path.read_text(encoding="utf-8", errors="replace") if h_path.exists() else ""
-        b_html = b_path.read_text(encoding="utf-8", errors="replace") if b_path.exists() else ""
+        reasons = []
+        h_html = read_capture_body(h_path, "human", reasons)
+        b_html = read_capture_body(b_path, "bot", reasons)
         h_status = meta.get("human_status")
         b_status = meta.get("bot_status")
         methods[str(meta.get("human_method"))] += 1
         statuses[f"human:{h_status}"] += 1
         statuses[f"bot:{b_status}"] += 1
-        reasons = []
-        if not h_path.exists():
-            reasons.append("missing_human_html")
-        elif len(h_html.strip()) == 0:
-            reasons.append("empty_human_html")
-        if not b_path.exists():
-            reasons.append("missing_bot_html")
-        elif len(b_html.strip()) == 0:
-            reasons.append("empty_bot_html")
         if h_status not in (200, "200"):
             reasons.append(f"human_status_{h_status}")
         if b_status not in (200, "200"):
