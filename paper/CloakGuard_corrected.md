@@ -24,7 +24,7 @@ Prior split-view detectors and promotional-defacement detectors already exist. T
 
 ## Related work
 
-Invernizzi et al. (IEEE S&P 2016) study cloaking that depends on browser, network, and contextual signals, and they detect split views across browsing profiles. Cloaker Catcher compares a client view with a crawler view. [Yang et al. (USENIX Security 2021)](https://www.usenix.org/conference/usenixsecurity21/presentation/yang-ronghai) detect promotional defacements at scale with jargon normalization and tag-aware features; their deployment evidence is their own, and it is not reused here. CloakGuard borrows the paired-fetch idea and the promotional-keyword idea. It does not reproduce either study’s dataset or metrics.
+Wu and Davison compared browser and crawler copies in their study of semantic cloaking. Invernizzi et al. studied split views across browser, network, and contextual signals. Yang et al. studied promotional defacement using jargon normalization and tag-aware features. Borgolte et al. used screenshots to recognize defacement in Meerkat. CloakGuard contributes an auditable comparison of paired promotional signals under a restricted HTTP capture protocol. [Wu and Davison, WWW 2006](https://archives.iw3c2.org/www2006/programme/files/xhtml/6014/fp6041-wu/fp6014-wu-xhtml.html) [Invernizzi et al., IEEE S&P 2016](https://research.google.com/pubs/pub45365.html) [Yang et al., USENIX Security 2021](https://www.usenix.org/conference/usenixsecurity21/presentation/yang-ronghai) [Borgolte et al., USENIX Security 2015](https://www.usenix.org/conference/usenixsecurity15/technical-sessions/presentation/borgolte)
 
 Changing the User-Agent string to Googlebot does not reproduce the network position of Google’s crawlers. Google’s published check is reverse DNS, a hostname suffix, and a forward lookup back to the same address. The crawler verification component implements that check and fails closed when DNS fails. The forward-only service leaves crawler verification to the owner’s ingress policy. The paired fetcher does not perform it, because the fetcher is the client, not a verifier of its own source address.
 
@@ -40,7 +40,7 @@ Profiles actually tested in the stored sample are a Chrome 120 User-Agent and a 
 
 URL features are the 41 fields exported by `detection/features.py`. Two of them duplicate others: `path_depth` repeats `num_path_slashes`, and `num_query_params` repeats `query_param_count`.
 
-Drift uses HTML size, tag-distribution Jensen–Shannon divergence, link Jaccard distance, text difference, title difference, and a capped bot-only link count. `visual_ssim` and `visual_pixel_delta` are computed only when both screenshot paths exist. Otherwise SSIM stays at its default of 1, pixel delta stays at 0, and the aggregate drops the visual term. No stored capture took that branch.
+Drift uses HTML size, tag-distribution Jensen–Shannon divergence, link Jaccard distance, text difference, title difference, and a capped bot-only link count. `visual_ssim` and `visual_pixel_delta` are computed only when both screenshot paths exist. Otherwise SSIM stays at its default of 1, pixel delta stays at 0, and the aggregate drops the visual term. No stored capture took that branch. Text drift is one minus the SequenceMatcher ratio on the first 3,000 characters of parsed body text. Title drift applies the same distance to normalized titles. Both-empty inputs yield zero distance, and exactly one empty input yields one. The parser extracts text without computing CSS visibility.
 
 Promotional features count case-insensitive keyword matches in six overlapping categories: gambling, pharma, adult, replica luxury, finance scam, and generic spam. Quantity and category count are separate from the composition used for divergence.
 
@@ -68,6 +68,8 @@ Publication labels follow `docs/ANNOTATION_RUBRIC.md`. A fusion threshold may be
 ### Defense
 
 Traffic is forwarded to one configured origin. An operator runs paired capture and scores the evidence outside the request path. The owner-policy harness supplies a synthetic client identifier and exercises a 25-point score increment, rate limiting at 25, and blocking at 75. The decoy is a static page with no resources or active content. Reports escape captured evidence and apply a restrictive content policy. The current HTTP proxy does not collect ClientHello fingerprints. Shared fingerprints and TLS termination remain limitations for any future online enforcement.
+
+The site operator controls the origin, capture configuration, and access to evidence. A suspected compromised origin can return different content to the two profiles, while benign personalization can produce the same kind of observable difference. A probing client is a separate actor. The HTTP proxy leaves online identity decisions to the ingress, and the harness uses synthetic subjects. A JA3 hash depends on ClientHello details and can vary with extension ordering or be shared by different clients. The study evaluates no JA4 implementation, crawler impersonation rate, or SEO effect.
 
 ## Datasets
 
@@ -140,6 +142,21 @@ We retrospectively compared a drift-only logistic regression and a four-feature 
 The learned classifier matched the heuristic at their respective operating points. This experiment does not establish superiority for either model. Repeated scenarios and two reserved template families limit inference. The study target is review of bot-directed promotional modification. Shared defacement and scripted access behavior are separate concerns. A prospective evaluation needs independently adjudicated positives and realistic hard negatives, with domain and campaign grouping and a frozen operating threshold.
 
 The benchmark script, input hashes, metrics, and case-level predictions are available under evaluation. The archived URL model loaded and produced a single inference under scikit-learn 1.7.2. That check does not reproduce the historical training metrics.
+
+### Template and scenario holdout stress test
+
+This retrospective stress test used all four fixture families. Each test group withheld all training examples sharing either its template family or its scenario mechanism. Visible short and substantial promotional insertions were grouped together. Each scenario contributed one H1/B1 pair. TF-IDF vocabularies and scalers were fit inside each training partition. The same-profile control was the larger cosine distance of H1/H2 and B1/B2. Every binary operating point used the preset 0.50 cutoff.
+
+| Method | TP | FP | FN | Average precision |
+| --- | ---: | ---: | ---: | ---: |
+| Fixed heuristic | 2 | 0 | 10 | 1.000 |
+| Drift-only logistic | 0 | 2 | 12 | 0.124 |
+| TF-IDF-only logistic | 0 | 0 | 12 | 0.108 |
+| TF-IDF with same-profile control | 0 | 0 | 12 | 0.108 |
+| Paired features without jargon | 6 | 6 | 6 | 0.717 |
+| All four paired features | 12 | 0 | 0 | 1.000 |
+
+The heuristic and the full paired model both ordered all positives above all negatives. Their alert counts differ at the stated cutoff. Removing the two jargon inputs reduced detection on this fixture, whose positive examples still use a common promotional vocabulary. Raw TF-IDF distance achieved 0.439 pooled average precision. Pooled out-of-fold scores from different fitted models can reflect shifts in training class balance. The related fixture cases do not support independent-sample confidence intervals or probability calibration. The resulting precision-recall points, per-template F1, and per-case predictions are provided with the benchmark.
 
 ## Conclusion
 

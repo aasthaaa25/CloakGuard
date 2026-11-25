@@ -48,6 +48,7 @@ Install the analysis dependencies from `results/requirements.txt`. Run the follo
 python evaluation/audit_repository.py
 python evaluation/demo_case.py
 python evaluation/benchmark_controlled_ml.py
+python evaluation/stress_controlled_ml.py
 python testbed/defense_checks.py
 python -m pytest results/tests -q
 ```

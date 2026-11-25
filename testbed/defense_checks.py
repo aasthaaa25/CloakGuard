@@ -108,7 +108,7 @@ def injected_verdict_checks() -> list[dict]:
     rows.append(check(
         "missing_screenshot_is_recorded",
         "Screenshots not available" in text and "HEURISTIC ALERT" in text,
-        report,
+        Path(report).name,
         "injected_verdict",
     ))
     return rows
@@ -189,6 +189,8 @@ def main() -> None:
     for row in rows:
         if not row["passed"]:
             print("FAIL", row["name"], row["detail"])
+    if any(not row["passed"] for row in rows):
+        raise SystemExit(1)
 
 
 if __name__ == "__main__":

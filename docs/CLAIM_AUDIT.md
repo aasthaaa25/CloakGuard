@@ -47,3 +47,11 @@ The original PDF remains at `paper/CloakGuard_Paper.pdf`. It is a historical dra
 - Owner-authorized mode may rate-limit, block, or serve an inert decoy. `DEFENSE_MODE=external_monitor` only forwards and logs.
 - JA3 points attach to the observed client hash, not to a remote operator.
 - Forensic packages say `HEURISTIC ALERT` rather than `CLOAKING CONFIRMED`.
+
+## Follow-up checks on the historical PDF
+
+Figures 3 and 4 have exchanged captions. The historical ROC panel and the 400-sample results have no recoverable predictions in this repository. Category averages cannot determine the maximum individual score. The corrected paper uses newly generated predictions and precision-recall data instead.
+
+The archival label majority is 2,622 of 5,122 rows, about 51.19%. The reported 51.21% is close to that baseline. The saved audit establishes that all 5,000 backbone rows have all-zero paired features and all 122 paired rows have at least one nonzero feature. On this table, an all-zero indicator recovers row provenance exactly. The 122 paired rows are all class 0, leaving live-only supervised discrimination and ROC-AUC undefined for that table.
+
+An absolute gain of 3.2 percentage points over approximately 1,280 rows corresponds to about 41 changed net decisions. That count can exceed the number of paired rows because a newly fitted classifier may change predictions on any row. The stronger evidence of leakage comes from the actual inputs and labels.

@@ -40,7 +40,7 @@
     {
       "name": "missing_screenshot_is_recorded",
       "passed": true,
-      "detail": "C:\\Users\\vt903\\AppData\\Local\\Temp\\cloakguard-defense-gbo1xb_f\\forensics/forensic_report_evidence1.html",
+      "detail": "forensic_report_evidence1.html",
       "category": "injected_verdict"
     },
     {

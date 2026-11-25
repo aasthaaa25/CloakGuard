@@ -2,7 +2,7 @@
 
 See the [deployment and demo guide](deploy/README.md) for the forward-only proxy, container configuration, and controlled research workflow. The [corrected paper](../paper/CloakGuard_corrected.md) links to the evidence audit and separates the historical models, the paired-view heuristic, and the owner-policy harness.
 
-The historical training entry points are `detection/train_model.py` and `detection/train_multimodal.py`. Phase 1 requires the original `final_full (1).csv` and Phase 2 requires independently labeled paired captures to support a real-world claim. Use the controlled benchmark under `../evaluation/` for the reproducible classroom comparison.
+Run `python results/run_all.py` from the repository root for the local evaluation and tests. The historical multimodal training command is retired. Phase 1 requires the original `final_full (1).csv` and Phase 2 requires independently labeled paired captures to support a real-world claim. Use the controlled benchmark under `../evaluation/` for the reproducible classroom comparison.
 
 <details>
 <summary>Historical project notes and commands</summary>

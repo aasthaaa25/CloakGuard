@@ -1,0 +1,107 @@
+{
+  "protocol": "Retrospective controlled stress test. Training excludes all rows sharing either the test template or the test scenario group.",
+  "scenario_grouping": "The two visible promotional-text scenarios share a group. Each other scenario forms its own group.",
+  "operating_point": "Fixed 0.5 for all methods. Logistic output is uncalibrated. PR curves summarize pooled out-of-fold scores.",
+  "rows": 64,
+  "positive": 12,
+  "negative": 52,
+  "raw_tfidf_average_precision": 0.43882717469279453,
+  "models": {
+    "raw_score": {
+      "threshold": 0.5,
+      "tn": 52,
+      "fp": 0,
+      "fn": 10,
+      "tp": 2,
+      "f1": 0.2857142857142857,
+      "average_precision": 1.0,
+      "roc_auc": 1.0,
+      "template_f1": {
+        "cedar_clinic": 0.5,
+        "linen_press": 0.0,
+        "maple_archive": 0.0,
+        "quartz_supply": 0.5
+      }
+    },
+    "drift_only": {
+      "threshold": 0.5,
+      "tn": 50,
+      "fp": 2,
+      "fn": 12,
+      "tp": 0,
+      "f1": 0.0,
+      "average_precision": 0.12383970204805803,
+      "roc_auc": 0.1842948717948718,
+      "template_f1": {
+        "cedar_clinic": 0.0,
+        "linen_press": 0.0,
+        "maple_archive": 0.0,
+        "quartz_supply": 0.0
+      }
+    },
+    "tfidf_only": {
+      "threshold": 0.5,
+      "tn": 52,
+      "fp": 0,
+      "fn": 12,
+      "tp": 0,
+      "f1": 0.0,
+      "average_precision": 0.10799653696394738,
+      "roc_auc": 0.0,
+      "template_f1": {
+        "cedar_clinic": 0.0,
+        "linen_press": 0.0,
+        "maple_archive": 0.0,
+        "quartz_supply": 0.0
+      }
+    },
+    "tfidf_with_control": {
+      "threshold": 0.5,
+      "tn": 52,
+      "fp": 0,
+      "fn": 12,
+      "tp": 0,
+      "f1": 0.0,
+      "average_precision": 0.10799653696394738,
+      "roc_auc": 0.0,
+      "template_f1": {
+        "cedar_clinic": 0.0,
+        "linen_press": 0.0,
+        "maple_archive": 0.0,
+        "quartz_supply": 0.0
+      }
+    },
+    "paired_features": {
+      "threshold": 0.5,
+      "tn": 52,
+      "fp": 0,
+      "fn": 0,
+      "tp": 12,
+      "f1": 1.0,
+      "average_precision": 1.0,
+      "roc_auc": 1.0,
+      "template_f1": {
+        "cedar_clinic": 1.0,
+        "linen_press": 1.0,
+        "maple_archive": 1.0,
+        "quartz_supply": 1.0
+      }
+    },
+    "paired_without_jargon": {
+      "threshold": 0.5,
+      "tn": 46,
+      "fp": 6,
+      "fn": 6,
+      "tp": 6,
+      "f1": 0.5,
+      "average_precision": 0.7169300878859703,
+      "roc_auc": 0.923076923076923,
+      "template_f1": {
+        "cedar_clinic": 0.6666666666666666,
+        "linen_press": 0.3333333333333333,
+        "maple_archive": 0.3333333333333333,
+        "quartz_supply": 0.6666666666666666
+      }
+    }
+  }
+}

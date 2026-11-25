@@ -1,20 +1,15 @@
-"""
-Multimodal Detection Model Training
-Trains the full multimodal ensemble on URL-lexical + drift + promotion +
-jargon features, with per-modality ablation study.
+"""Historical mixed-table experiment retained for traceability."""
 
-Run: python detection/train_multimodal.py
-Output:
-  detection/artifacts/multimodal_model.joblib
-  detection/artifacts/multimodal_metrics.json
-  detection/artifacts/graphs/15_modality_ablation.png
-  detection/artifacts/graphs/16_jargon_asymmetry_dist.png
-  detection/artifacts/graphs/17_drift_feature_dists.png
-  detection/artifacts/graphs/18_screenshot_diff_examples.png (if visual data)
-  detection/artifacts/graphs/19_dom_diff_example.png
-  detection/artifacts/graphs/20_fusion_contribution.png
-  detection/artifacts/graphs/21_crawl_funnel.png
-"""
+
+def main():
+    raise SystemExit(
+        "Historical multimodal training is disabled: the bundled table has zero-filled "
+        "modalities and circular labels. Run python results/run_all.py from the repository root."
+    )
+
+
+if __name__ == "__main__":
+    main()
 
 import sys
 import json
@@ -578,27 +573,3 @@ def save_artifacts(ens_results, ablation_results, feat_names):
 
 
 # ════════════════════════════════════════════════════════════════════════════════
-def main():
-    print("\n╔══════════════════════════════════════════════════════╗")
-    print("║  Multimodal Detection Model Training                 ║")
-    print("╚══════════════════════════════════════════════════════╝\n")
-
-    df, y        = step1_load_data()
-    matrices     = step2_build_feature_matrices(df, y)
-    abl, y       = step3_ablation_study(matrices, y)
-    ens_r, X_tr, X_te, y_tr, y_te, feat_names = step4_full_multimodal_ensemble(matrices, y)
-    step5_graphs(abl, ens_r, df, matrices, X_te, y_te, y_full=y)
-    save_artifacts(ens_r, abl, feat_names)
-
-    print("\n" + "=" * 60)
-    print("MULTIMODAL TRAINING COMPLETE")
-    print("=" * 60)
-    best = max(ens_r, key=lambda r: r["accuracy"])
-    print(f"  Best model: {best['name']}  acc={best['accuracy']:.4f}  "
-          f"f1={best['f1']:.4f}  auc={best['roc_auc']:.4f}")
-    print(f"  Graphs saved to: {GRAPHS_DIR}")
-    print(f"\n✓ Next: python detection/make_report.py")
-
-
-if __name__ == "__main__":
-    main()

@@ -84,3 +84,27 @@ def test_origin_timeout_returns_generic_502(origin, monkeypatch):
         response = client.get("/origin-unavailable")
         assert response.status_code == 502
         assert response.text == "Bad Gateway"
+
+
+def test_proxy_to_paired_review_on_local_fixture(monkeypatch):
+    from app.pipeline_bridge.adapter import score_capture
+    from detection.pipeline.crawl import VIEW_PROFILES
+    from testbed.calibrate_v2 import Handler
+
+    with ThreadingHTTPServer(("127.0.0.1", 0), Handler) as server:
+        monkeypatch.setattr(main, "ORIGIN_SERVER_URL", f"http://127.0.0.1:{server.server_port}")
+        worker = Thread(target=server.serve_forever, daemon=True)
+        worker.start()
+        try:
+            with TestClient(main.app) as client:
+                route = "/quartz_supply/bot_substantial"
+                record = {"url": f"http://example.test{route}"}
+                for profile in ("human", "bot"):
+                    response = client.get(route, headers={"User-Agent": VIEW_PROFILES[profile]["user_agent"]})
+                    record[profile] = {"status": response.status_code, "html": response.text}
+                _, _, _, fusion = score_capture(record)
+                assert fusion["alert"] is True
+                assert fusion["score_is_probability"] is False
+        finally:
+            server.shutdown()
+            worker.join()
