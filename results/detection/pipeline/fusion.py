@@ -80,7 +80,7 @@ def fuse_risk_scores(drift: dict, promo: dict, url: str = "",
     promo_score  = float(promo.get("promo_score",  0.0))
     jargon_score = float((jargon or {}).get("jargon_asymmetry_score", 0.0))
 
-    model_bundle = _load_model()
+    model_bundle = _load_model() if url else None
     model_prob   = _url_probability(url, model_bundle) if model_bundle and url else 0.0
     assisted = bool(model_bundle and model_prob > 0)
 

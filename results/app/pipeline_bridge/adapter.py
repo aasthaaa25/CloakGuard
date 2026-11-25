@@ -7,7 +7,7 @@ from detection.pipeline.jargon import compute_jargon_asymmetry
 from detection.pipeline.promotion import compute_promotional_score
 
 
-def score_capture(capture):
+def score_capture(capture, *, use_url_model=True):
     for profile in ("human", "bot"):
         view = capture[profile]
         if view.get("status") != 200 or not view.get("html", "").strip():
@@ -17,5 +17,5 @@ def score_capture(capture):
     drift = compute_cross_view_drift(artifacts, capture)
     promo = compute_promotional_score(artifacts, capture)
     jargon = compute_jargon_asymmetry(artifacts, capture)
-    fusion = fuse_risk_scores(drift, promo, url=capture["url"], jargon=jargon)
+    fusion = fuse_risk_scores(drift, promo, url=capture["url"] if use_url_model else "", jargon=jargon)
     return drift, promo, jargon, fusion

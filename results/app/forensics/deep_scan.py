@@ -79,9 +79,24 @@ async def trigger_deep_scan(url, crawl_record, artifacts, drift, promo, fusion):
 
 
 def _write_forensic_report(url, url_id, fusion, drift, promo,
-                             screenshot_diff, dom_diff, js_diff, dns_results):
+                             screenshot_diff, dom_diff, js_diff, dns_results, *, repeat_decision=None):
     timestamp = datetime.now().isoformat()
     safe_url = escape(str(url))
+    repeat_section = ""
+    if repeat_decision:
+        cross = ", ".join(f"{value:.3f}" for value in repeat_decision["cross_profile_scores"])
+        controls = ", ".join(f"{key} {value:.3f}"
+                             for key, value in repeat_decision["same_profile_scores"].items())
+        hashes = "".join(
+            f"<tr><td>{escape(view)}</td><td><code>{escape(item['sha256_utf8_html'])}</code></td></tr>"
+            for view, item in repeat_decision["captures"].items()
+        )
+        repeat_section = f"""<div class="section">
+<h2>Repeat capture evidence</h2>
+<p>Cross-profile scores: {cross}. Same-profile controls: {escape(controls)}.</p>
+<p>Both cross-profile scores met cutoff {repeat_decision["threshold"]:.2f} and exceeded the controls.</p>
+<table><tr><th>Capture</th><th>SHA-256 of decoded HTML encoded as UTF-8</th></tr>{hashes}</table>
+</div>"""
 
     dom_injection_rows = "".join(
         f"<tr><td>{escape(str(n['path']))}</td><td>{escape(str(n['tag']))}</td><td>{escape(str(n['text'][:60]))}</td></tr>"
@@ -137,6 +152,8 @@ def _write_forensic_report(url, url_id, fusion, drift, promo,
 <p><b>URL:</b> {safe_url} &nbsp;|&nbsp; <b>Generated:</b> {timestamp}</p>
 
 <div class="banner">HEURISTIC ALERT — uncalibrated score {escape(str(fusion.get('final_risk_score', 'N/A')))} on path {escape(str(fusion.get('scoring_path', 'unspecified')))}. This package does not by itself confirm cloaking or identify an attacker.</div>
+
+{repeat_section}
 
 <div class="section">
 <h2>Executive Summary</h2>

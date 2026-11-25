@@ -14,6 +14,7 @@ def main():
         ["evaluation/benchmark_url_proxy.py"],
         ["evaluation/benchmark_controlled_ml.py"],
         ["evaluation/stress_controlled_ml.py"],
+        ["evaluation/benchmark_repeat_review.py"],
         ["testbed/defense_checks.py"],
         ["-m", "pytest", "results/tests", "-q"],
     ):

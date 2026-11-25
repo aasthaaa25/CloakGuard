@@ -2,7 +2,9 @@
 
 import argparse
 from contextlib import ExitStack
+from hashlib import sha256
 from http.server import ThreadingHTTPServer
+from itertools import count
 import json
 import os
 from pathlib import Path
@@ -35,12 +37,22 @@ def main():
     from testbed.calibrate_v2 import Handler
     from detection.pipeline.crawl import VIEW_PROFILES
     from app import main as proxy
-    from app.pipeline_bridge.adapter import score_capture
+    from app.pipeline_bridge.repeat_review import VIEW_IDS, review_repeats
     from app.forensics.deep_scan import _write_forensic_report
     from app.forensics.dom_diff import compute_dom_diff
 
+    class DemoHandler(Handler):
+        bot_observations = count()
+
+        def do_GET(self):
+            if self.path == "/quartz_supply/transient_change":
+                first_bot = ("Googlebot" in self.headers.get("User-Agent", "")
+                             and next(self.bot_observations) == 0)
+                self.path = "/quartz_supply/bot_substantial" if first_bot else "/quartz_supply/clean"
+            super().do_GET()
+
     with ExitStack() as cleanup:
-        origin = cleanup.enter_context(ThreadingHTTPServer(("127.0.0.1", 0), Handler))
+        origin = cleanup.enter_context(ThreadingHTTPServer(("127.0.0.1", 0), DemoHandler))
         worker = Thread(target=origin.serve_forever, daemon=True)
         worker.start()
         cleanup.callback(worker.join, 10)
@@ -66,25 +78,40 @@ def main():
             if health.json().get("mode") != "forward_only":
                 raise RuntimeError("Unexpected proxy mode")
             results = {}
-            for scenario, expected_alert in (("clean", False), ("bot_substantial", True)):
+            scenarios = {
+                "clean": "below_threshold", "counter": "below_threshold",
+                "transient_change": "inconsistent_cross_profile",
+                "bot_substantial": "repeated_profile_difference",
+            }
+            for scenario, expected_verdict in scenarios.items():
                 route = f"/quartz_supply/{scenario}"
-                record = {"url": str(client.base_url).rstrip("/") + route}
-                for profile, parameters in VIEW_PROFILES.items():
+                url = str(client.base_url).rstrip("/") + route
+                views = {}
+                for view_id in VIEW_IDS:
+                    profile = "human" if view_id.startswith("H") else "bot"
+                    parameters = VIEW_PROFILES[profile]
+                    client.cookies.clear()
                     response = client.get(route, headers={"User-Agent": parameters["user_agent"]})
-                    response.raise_for_status()
-                    record[profile] = {"status": response.status_code, "html": response.text}
-                drift, promo, _, fusion = score_capture(record)
-                if fusion["alert"] != expected_alert:
+                    views[view_id] = {
+                        "status": response.status_code, "html": response.text,
+                        "content_type": response.headers.get("content-type", ""),
+                        "final_url": str(response.url),
+                    }
+                decision = review_repeats(url, views)
+                if decision["verdict"] != expected_verdict:
                     raise RuntimeError(f"Unexpected review verdict for {scenario}")
+                drift, promo, _, fusion = decision.pop("first_pair")
                 evidence = None
-                if fusion["alert"]:
-                    dom = compute_dom_diff(record["human"]["html"], record["bot"]["html"])
+                report_digest = None
+                if decision["alert"]:
+                    dom = compute_dom_diff(views["H1"]["html"], views["B1"]["html"])
                     report = _write_forensic_report(
-                        record["url"], scenario, fusion, drift, promo, None, dom, None, []
+                        url, scenario, fusion, drift, promo, None, dom, None, [], repeat_decision=decision
                     )
                     evidence = (Path("evidence") / Path(report).name).as_posix()
-                results[scenario] = {"alert": fusion["alert"], "score": fusion["final_risk_score"],
-                                     "threshold": fusion["alert_threshold"], "evidence": evidence}
+                    report_digest = sha256(Path(report).read_bytes()).hexdigest()
+                results[scenario] = {**decision, "score": fusion["final_risk_score"],
+                                     "evidence": evidence, "evidence_sha256": report_digest}
     output = {"transport": "real HTTP over loopback", "proxy_mode": "forward_only", "cases": results}
     (args.output_dir / "demo_result.json").write_text(json.dumps(output, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(output, indent=2))

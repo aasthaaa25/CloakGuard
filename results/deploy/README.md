@@ -53,7 +53,9 @@ The host port is loopback-bound. The container runs as a non-root user with a re
 
 ## One-command classroom demo
 
-Install the analysis dependencies from `results/requirements.txt`, then run `python evaluation/run_live_demo.py` from the repository root. It starts a controlled origin and Uvicorn on two automatically assigned loopback ports, requests clean and changed cases through the proxy, writes an evidence report, and stops both servers. Results appear in `evaluation/outputs/live_demo/`.
+Install the analysis dependencies from `results/requirements.txt`, then run `python evaluation/run_live_demo.py` from the repository root. It starts a controlled origin and Uvicorn on two automatically assigned loopback ports. The demo compares clean, rotating, one-off, and persistent cases with two requests per profile. It writes the review decisions and a forensic report before stopping both servers. Results appear in `evaluation/outputs/live_demo/`.
+
+A repeat-review alert requires successful HTML responses from the same URL, two cross-profile scores at or above 0.50, and both scores above observed same-profile variation. Incomplete or inconsistent captures do not raise a repeat-review alert. The JSON includes SHA-256 hashes of the decoded HTML encoded as UTF-8 and the generated report digest. These support reproduction with the corresponding material and are not signatures or trusted timestamps.
 
 Run `python results/run_all.py` for the live demo, URL proxy-label benchmark, paired experiments and test suite. Pass the JSON from the live demo to `python evaluation/make_class_brief.py --demo evaluation/outputs/live_demo/demo_result.json --output-dir your_output_directory` to recreate the PDF and figures.
 
