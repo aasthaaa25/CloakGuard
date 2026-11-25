@@ -4,6 +4,7 @@ from contextlib import asynccontextmanager
 from http.cookiejar import CookieJar, DefaultCookiePolicy
 import logging
 
+import anyio
 import httpx
 from fastapi import FastAPI, Request, Response
 from fastapi.responses import StreamingResponse
@@ -25,6 +26,16 @@ def end_to_end_headers(headers, extra_exclusions=()):
         if name.lower() == b"connection":
             excluded.update(token.strip().lower() for token in value.split(b","))
     return [(name, value) for name, value in headers if name.lower() not in excluded]
+
+
+async def stream_origin(upstream):
+    """Release the upstream response when streaming ends or is cancelled."""
+    try:
+        async for chunk in upstream.aiter_raw():
+            yield chunk
+    finally:
+        with anyio.CancelScope(shield=True):
+            await upstream.aclose()
 
 
 @asynccontextmanager
@@ -76,7 +87,7 @@ async def proxy(request: Request):
         return Response("Bad Gateway", status_code=502)
 
     response = StreamingResponse(
-        upstream.aiter_raw(),
+        stream_origin(upstream),
         status_code=upstream.status_code,
         background=BackgroundTask(upstream.aclose),
     )

@@ -1,3 +1,4 @@
+import asyncio
 import gzip
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from threading import Thread
@@ -6,6 +7,26 @@ import pytest
 from fastapi.testclient import TestClient
 
 from app import main
+
+
+def test_closing_stream_releases_upstream():
+    class Upstream:
+        closed = False
+
+        async def aiter_raw(self):
+            yield b"partial response"
+
+        async def aclose(self):
+            self.closed = True
+
+    async def check():
+        upstream = Upstream()
+        stream = main.stream_origin(upstream)
+        assert await anext(stream) == b"partial response"
+        await stream.aclose()
+        assert upstream.closed
+
+    asyncio.run(check())
 
 
 @pytest.fixture

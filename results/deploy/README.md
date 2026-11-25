@@ -31,6 +31,17 @@ The mock origin listens on port 8000. Request `http://127.0.0.1:8080/_cloakguard
 
 ## Container deployment
 
+For a local container smoke test, start the bundled fixture from the repository root:
+
+```sh
+docker compose -f results/deploy/docker-compose.yml --env-file results/deploy/demo.env --profile demo up -d --build
+curl --fail http://127.0.0.1:8080/_cloakguard/health
+curl --fail http://127.0.0.1:8080/
+docker compose -f results/deploy/docker-compose.yml --env-file results/deploy/demo.env --profile demo down
+```
+
+The origin stays on the Compose network and the proxy port is published on loopback. Use the native classroom demo for paired detection and report generation.
+
 Set `ORIGIN_SERVER_URL` to an authorized origin reachable from the container, then run from the repository root:
 
 ```sh

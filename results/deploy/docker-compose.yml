@@ -12,3 +12,15 @@ services:
     security_opt:
       - no-new-privileges:true
     restart: unless-stopped
+
+  demo-origin:
+    profiles: ["demo"]
+    image: python:3.11-slim
+    command: ["python", "-m", "http.server", "8000", "--bind", "0.0.0.0", "--directory", "/demo"]
+    volumes:
+      - ./smoke-origin:/demo:ro
+    user: "65532:65532"
+    read_only: true
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true

@@ -1,0 +1,8 @@
+**
+!app/
+!app/__init__.py
+!app/config.py
+!app/main.py
+!deploy/
+!deploy/Dockerfile
+!deploy/requirements.txt

@@ -2,6 +2,10 @@
 
 CloakGuard is Aastha Tyagi’s defensive research prototype for identifying bot-directed promotional changes on owner-controlled websites. It compares paired HTTP captures, records review evidence, and provides a separate forward-only reverse proxy.
 
+Download the [balanced 160,000-URL dataset](data/CloakGuard_160k_dataset.zip) and read the [dataset guide](docs/URL_DATASET_160K.md) for attribution, the fixed domain split, and the source-bias analysis.
+
+Run `python evaluation/run_live_demo.py` for the local HTTP-to-evidence demonstration or `python results/run_all.py` for the full verification suite.
+
 - [Corrected paper](paper/CloakGuard_corrected.md) and [claim audit](docs/CLAIM_AUDIT.md)
 - [Controlled validation protocol](docs/CONTROLLED_VALIDATION.md) and [ML benchmark](evaluation/benchmark_controlled_ml.py)
 - [Deployment and live demo](results/deploy/README.md)

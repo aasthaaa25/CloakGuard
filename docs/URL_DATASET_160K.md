@@ -9,7 +9,7 @@ The CSV is a balanced, deduplicated adaptation of **PhiUSIIL Phishing URL (Websi
 | `domain_group` | Registrable domain using the bundled Public Suffix List, or hostname fallback |
 | `split` | Fixed train or test partition. Domain groups occur in one partition only |
 
-Read the file as data. Some strings point to phishing infrastructure. Neither the builder nor the benchmark visits the URLs. The builder filters malformed and conflicting records and collapses exact or normalized URL duplicates before sampling. The manifest records the selection seed, counts, and checksums.
+Read the file as data. Some strings point to phishing infrastructure. Neither the builder nor the benchmark visits the URLs. The builder filters malformed records, explicit URL credentials, common credential-like query fields, and conflicting records and collapses exact or normalized URL duplicates before sampling. The manifest records the selection seed, counts, and checksums.
 
 This source labels phishing and legitimate URLs. It provides no paired-view cloaking adjudication, and class balance does not reflect prevalence in deployment. Every legitimate sample uses HTTPS with a www. hostname and an empty path and query. The benchmark includes a rule using only that shape and reports a matched-shape test slice. This exposes a source-specific shortcut that domain grouping alone cannot remove. Grouping domains leaves possible sharing of campaign or collection characteristics across partitions.
 
@@ -26,4 +26,4 @@ You can also pass the extracted `CloakGuard_160k.csv` as the first argument to e
 
 ## Evaluation findings
 
-On 41,051 held-out rows, the URL-shape rule reached 99.70% accuracy, compared with 99.59% for histogram gradient boosting. All 19,998 legitimate test URLs and only 122 phishing test URLs shared the matched URL shape. On that slice, boosting detected 31 of 122 phishing URLs at 0.50, and logistic regression detected 12 of 122. Boosting's ROC-AUC fell from 0.998 on all held-out rows to 0.758 on the matched slice. These numbers quantify the collection shortcut. Use them as a dataset-bias analysis in the paper.
+On 41,152 held-out rows, the URL-shape rule reached 99.69% accuracy, compared with 99.59% for histogram gradient boosting. All 19,969 legitimate test URLs and only 127 phishing test URLs shared the matched URL shape. On that slice, boosting detected 38 of 127 phishing URLs at 0.50, and logistic regression detected 10 of 127. Boosting's ROC-AUC fell from 0.999 on all held-out rows to 0.776 on the matched slice. These numbers quantify the collection shortcut. Use them as a dataset-bias analysis in the paper.

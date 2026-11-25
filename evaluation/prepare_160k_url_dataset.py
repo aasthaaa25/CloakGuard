@@ -6,7 +6,7 @@ import hashlib
 import json
 from pathlib import Path
 import sys
-from urllib.parse import urlsplit
+from urllib.parse import parse_qsl, urlsplit
 from zipfile import ZipFile
 
 import pandas as pd
@@ -28,6 +28,10 @@ SOURCE = "https://archive.ics.uci.edu/dataset/967/phiusiil+phishing+url+website+
 CSV_MEMBER = "PhiUSIIL_Phishing_URL_Dataset.csv"
 SEED = 42
 PER_CLASS = 80_000
+SENSITIVE_QUERY_KEYS = {
+    "access_token", "api_key", "apikey", "auth_token", "client_secret",
+    "id_token", "password", "passwd", "refresh_token", "session_token",
+}
 
 
 def parse_url(url):
@@ -37,12 +41,15 @@ def parse_url(url):
         parts = urlsplit(url)
         if parts.scheme not in {"http", "https"} or not parts.hostname:
             return None
+        if parts.username is not None or parts.password is not None:
+            return None
+        if any(key.lower() in SENSITIVE_QUERY_KEYS for key, _ in parse_qsl(parts.query)):
+            return None
         host = parts.hostname.rstrip(".").encode("idna").decode("ascii").lower()
         port = parts.port
         default = 80 if parts.scheme == "http" else 443
         normalized_port = "" if port in (None, default) else str(port)
-        key = (parts.scheme, host, normalized_port, parts.username, parts.password,
-               parts.path or "/", parts.query)
+        key = (parts.scheme, host, normalized_port, parts.path or "/", parts.query)
         return key, host
     except (ValueError, UnicodeError):
         return None
@@ -97,7 +104,7 @@ def prepare(path):
         "license": "CC BY 4.0",
         "label_mapping": {"0": "legitimate", "1": "phishing"},
         "source_counts": {"phishing": int(original_counts[0]), "legitimate": int(original_counts[1])},
-        "invalid_rows_removed": len(source) - len(rows),
+        "invalid_or_credential_like_rows_removed": len(source) - len(rows),
         "conflicting_rows_removed": int(conflict.sum()),
         "duplicates_removed": len(rows) - int(conflict.sum()) - len(unique),
         "seed": SEED, "rows": len(result), "domain_groups": result["domain_group"].nunique(),
