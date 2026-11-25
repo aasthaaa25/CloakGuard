@@ -94,6 +94,10 @@ The supplied results ZIP contains the identical 5,122-row Parquet and semantical
 
 We recomputed the 41 URL features and ran five stratified, registrable-domain-disjoint folds covering 4,794 groups. Logistic regression and histogram gradient boosting achieved mean fold ROC-AUC 0.982 and 0.989, mean fold average precision 0.978 and 0.988, and pooled F1 0.952 and 0.953 at 0.50. The prior baseline achieved mean fold ROC-AUC 0.500. Domain separation controls repeated domains, and may leave shared collection sources or campaign artifacts across folds. These are results on archived proxy labels. No full-corpus reproduction or cloaking ground-truth estimate follows from them.
 
+### Independent 160,000-URL replacement dataset
+
+A separately constructed 80,000-legitimate/80,000-phishing benchmark from UCI PhiUSIIL preserves the historical class balance. The original collection sources could not be identified from the historical draft or the supplied archive. The replacement uses a 41,051-row domain-disjoint test set. A rule based only on HTTPS, a www. hostname, and absence of a path and query scored 99.70% accuracy, versus 99.59% for histogram gradient boosting. On the subset sharing that URL shape, boosting found 31 of 122 phishing URLs at 0.50. This sensitivity analysis shows how much apparent accuracy a collection shortcut can produce. The task is phishing-URL classification with source labels. [UCI dataset 967](https://archive.ics.uci.edu/dataset/967/phiusiil+phishing+url+website+dataset)
+
 ### Archived multimodal run
 
 On the flawed 5,122-row table, the archived ensemble accuracy is 0.9617 and ROC-AUC is 0.9924. Random Forest recall is 0.9968, which is higher than the ensemble recall of 0.9952. The archived ablation URL ROC-AUC is 0.9592 and the fused ROC-AUC is 0.9850. The absolute difference is 0.0258. Drift, promotional features, and jargon each have archived ROC-AUC near 0.51 with zero recall, which is what near-constant zero columns produce. This run is filed as a debugging experiment.

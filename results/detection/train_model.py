@@ -1,15 +1,17 @@
-"""
-Detection Model Training Pipeline
-===================================
-Flow:
-  1. Load CSV  →  2. Audit data  →  3. Feature engineering (augmentation)
-  →  4. SMOTE demonstration (imbalanced variant → SMOTE → before/after compare)
-  →  5. Train model suite (LR baseline + RF + HistGB side-models + ensemble)
-  →  6. Full metric suite (accuracy, F1, ROC-AUC, PR-AUC, confusion matrix…)
-  →  7. Generate all engineered graphs  →  8. Save artifacts
+"""URL benchmark entry point and historical training implementation.
 
-Run:  python detection/train_model.py
+The command-line entry point now delegates to the documented, domain-held-out
+benchmark. Historical functions are preserved for reading old artifacts.
 """
+
+if __name__ == "__main__":
+    from pathlib import Path
+    from subprocess import call
+    import sys
+
+    benchmark = Path(__file__).resolve().parents[2] / "evaluation" / "prepare_160k_url_dataset.py"
+    raise SystemExit(call([sys.executable, str(benchmark), *sys.argv[1:]]))
+
 
 import os
 import sys
@@ -54,7 +56,7 @@ from detection.features import transform, get_feature_names, FEATURE_NAMES
 warnings.filterwarnings("ignore")
 
 # ── Paths ─────────────────────────────────────────────────────────────────────
-CSV_PATH       = Path("/Users/namansharma/AA/final_full (1).csv")
+CSV_PATH       = Path(__file__).resolve().parents[1] / "final_full (1).csv"
 ARTIFACTS_DIR  = _HERE / "artifacts"
 GRAPHS_DIR     = ARTIFACTS_DIR / "graphs"
 MODEL_PATH     = ARTIFACTS_DIR / "model.joblib"
@@ -809,7 +811,3 @@ def main():
     save_artifacts(trained, results, FEATURE_NAMES)
 
     print("\n✓ All done. Next: python detection/make_report.py")
-
-
-if __name__ == "__main__":
-    main()

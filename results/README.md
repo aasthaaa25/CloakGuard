@@ -2,7 +2,7 @@
 
 See the [deployment and demo guide](deploy/README.md) for the forward-only proxy, container configuration, and controlled research workflow. The [corrected paper](../paper/CloakGuard_corrected.md) links to the evidence audit and separates the historical models, the paired-view heuristic, and the owner-policy harness.
 
-Run `python results/run_all.py` from the repository root for the local evaluation and tests. The historical multimodal training command is retired. Phase 1 requires the original `final_full (1).csv` and Phase 2 requires independently labeled paired captures to support a real-world claim. Use the controlled benchmark under `../evaluation/` for the reproducible classroom comparison.
+Run `python results/run_all.py` from the repository root for the local evaluation and tests. The historical multimodal training command is retired. The historical Phase 1 metrics require the original source CSV for reproduction. The replacement phishing-URL benchmark has its own dataset and results. See the [dataset guide](../docs/URL_DATASET_160K.md). Field cloaking claims require independently labeled paired captures. Use the controlled benchmark under `../evaluation/` for the reproducible classroom comparison.
 
 <details>
 <summary>Historical project notes and commands</summary>
