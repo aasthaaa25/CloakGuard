@@ -6,6 +6,7 @@
   "positive": 12,
   "negative": 52,
   "raw_tfidf_average_precision": 0.43882717469279453,
+  "raw_simhash_average_precision": 0.2532368587531631,
   "models": {
     "raw_score": {
       "threshold": 0.5,
@@ -63,6 +64,22 @@
       "tp": 0,
       "f1": 0.0,
       "average_precision": 0.10799653696394738,
+      "roc_auc": 0.0,
+      "template_f1": {
+        "cedar_clinic": 0.0,
+        "linen_press": 0.0,
+        "maple_archive": 0.0,
+        "quartz_supply": 0.0
+      }
+    },
+    "simhash_only": {
+      "threshold": 0.5,
+      "tn": 48,
+      "fp": 4,
+      "fn": 12,
+      "tp": 0,
+      "f1": 0.0,
+      "average_precision": 0.10914231521178802,
       "roc_auc": 0.0,
       "template_f1": {
         "cedar_clinic": 0.0,

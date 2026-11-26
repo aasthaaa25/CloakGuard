@@ -69,7 +69,7 @@ Publication labels follow `docs/ANNOTATION_RUBRIC.md`. A fusion threshold may be
 
 Traffic is forwarded to one configured origin. An operator runs paired capture and scores the evidence outside the request path. The owner-policy harness supplies a synthetic client identifier and exercises a 25-point score increment, rate limiting at 25, and blocking at 75. The decoy is a static page with no resources or active content. Reports escape captured evidence and apply a restrictive content policy. The current HTTP proxy does not collect ClientHello fingerprints. Shared fingerprints and TLS termination remain limitations for any future online enforcement.
 
-The site operator controls the origin, capture configuration, and access to evidence. A suspected compromised origin can return different content to the two profiles, while benign personalization can produce the same kind of observable difference. A probing client is a separate actor. The HTTP proxy leaves online identity decisions to the ingress, and the harness uses synthetic subjects. A JA3 hash depends on ClientHello details and can vary with extension ordering or be shared by different clients. The study evaluates no JA4 implementation, crawler impersonation rate, or SEO effect.
+The site operator controls the origin, capture configuration, and access to evidence. A suspected compromised origin can return different content to the two profiles, while benign personalization can produce the same kind of observable difference. A probing client is a separate actor. The HTTP proxy leaves online identity decisions to the ingress, and the harness uses synthetic subjects. A JA3 hash depends on ClientHello details and can vary with extension ordering or be shared by different clients. The live HTTP proxy does not obtain JA3 from TLS or client headers. The repository retains a standalone ClientHello parser and a separate policy harness. Stripping forwarding headers reduces trust in one source of client identity claims. It does not establish IP or TLS fingerprint authenticity. The study evaluates no JA4 implementation, crawler impersonation rate, or SEO effect.
 
 ## Datasets
 
@@ -96,11 +96,11 @@ We recomputed the 41 URL features and ran five stratified, registrable-domain-di
 
 ### Independent 160,000-URL replacement dataset
 
-A separately constructed 80,000-legitimate/80,000-phishing benchmark from UCI PhiUSIIL preserves the historical class balance. The original collection sources could not be identified from the historical draft or the supplied archive. The release filters URL user information and common credential-like query fields before sampling. The replacement uses a 41,152-row domain-disjoint test set. A rule based only on HTTPS, a www. hostname, and absence of a path and query scored 99.69% accuracy, versus 99.59% for histogram gradient boosting. On the subset sharing that URL shape, boosting found 38 of 127 phishing URLs at 0.50. This sensitivity analysis shows how much apparent accuracy a collection shortcut can produce. The task is phishing-URL classification with source labels. [UCI dataset 967](https://archive.ics.uci.edu/dataset/967/phiusiil+phishing+url+website+dataset)
+A separately constructed 80,000-legitimate/80,000-phishing benchmark from UCI PhiUSIIL preserves the historical class balance. The original collection sources could not be identified from the historical draft or the supplied archive. The release filters URL user information and common credential-like query fields before sampling. The replacement uses a 41,152-row domain-disjoint test set. A rule based only on HTTPS, a www. hostname, and absence of a path and query scored 99.69% accuracy, versus 99.59% for histogram gradient boosting. On the subset sharing that URL shape, boosting found 38 of 127 phishing URLs at 0.50 (29.9%, nominal 95% Wilson interval 22.6% to 38.4%). This interval treats rows as independent and does not account for domain or campaign clustering. This sensitivity analysis shows how much apparent accuracy a collection shortcut can produce. The task is phishing-URL classification with source labels. [UCI dataset 967](https://archive.ics.uci.edu/dataset/967/phiusiil+phishing+url+website+dataset)
 
-### Archived multimodal run
+### Why the historical multimodal evaluation was retired
 
-On the flawed 5,122-row table, the archived ensemble accuracy is 0.9617 and ROC-AUC is 0.9924. Random Forest recall is 0.9968, which is higher than the ensemble recall of 0.9952. The archived ablation URL ROC-AUC is 0.9592 and the fused ROC-AUC is 0.9850. The absolute difference is 0.0258. Drift, promotional features, and jargon each have archived ROC-AUC near 0.51 with zero recall, which is what near-constant zero columns produce. This run is filed as a debugging experiment.
+The historical table used zero-filled paired features and detector-derived labels. Its performance estimates and ablations are excluded from this manuscript. The archival claim audit records the source of the discrepancy.
 
 ### Current paired-view description
 
@@ -155,7 +155,7 @@ The benchmark script, input hashes, metrics, and case-level predictions are avai
 
 ### Template and scenario holdout stress test
 
-This retrospective stress test used all four fixture families. Each test group withheld all training examples sharing either its template family or its scenario mechanism. Visible short and substantial promotional insertions were grouped together. Each scenario contributed one H1/B1 pair. TF-IDF vocabularies and scalers were fit inside each training partition. The same-profile control was the larger cosine distance of H1/H2 and B1/B2. Every binary operating point used the preset 0.50 cutoff.
+This retrospective stress test used all four author-controlled fixture families. Each test group withheld all training examples sharing either its template family or its scenario mechanism. Visible short and substantial promotional insertions were grouped together. Each scenario contributed one H1/B1 pair. TF-IDF vocabularies and scalers were fit inside each training partition. The same-profile control was the larger cosine distance of H1/H2 and B1/B2. Every binary operating point used the preset 0.50 cutoff. The fixed-weight heuristic serves as a baseline, and the evaluated textual baselines use TF-IDF cosine distance with and without same-profile controls. The SimHash baseline uses term-frequency-weighted word fingerprints and 64-bit Hamming distance. Its one-feature logistic classifier uses the same held-out partitions and preset cutoff.
 
 | Method | TP | FP | FN | Average precision |
 | --- | ---: | ---: | ---: | ---: |
@@ -163,10 +163,11 @@ This retrospective stress test used all four fixture families. Each test group w
 | Drift-only logistic | 0 | 2 | 12 | 0.124 |
 | TF-IDF-only logistic | 0 | 0 | 12 | 0.108 |
 | TF-IDF with same-profile control | 0 | 0 | 12 | 0.108 |
+| SimHash-only logistic | 0 | 4 | 12 | 0.109 |
 | Paired features without jargon | 6 | 6 | 6 | 0.717 |
 | All four paired features | 12 | 0 | 0 | 1.000 |
 
-The heuristic and the full paired model both ordered all positives above all negatives. Their alert counts differ at the stated cutoff. Removing the two jargon inputs reduced detection on this fixture, whose positive examples still use a common promotional vocabulary. Raw TF-IDF distance achieved 0.439 pooled average precision. Pooled out-of-fold scores from different fitted models can reflect shifts in training class balance. The related fixture cases do not support independent-sample confidence intervals or probability calibration. The resulting precision-recall points, per-template F1, and per-case predictions are provided with the benchmark.
+The heuristic and the full paired model both ordered all positives above all negatives. Their alert counts differ at the stated cutoff. Removing the two jargon inputs reduced detection on this fixture, whose positive examples still use a common promotional vocabulary. Raw TF-IDF cosine distance achieved 0.439 pooled average precision, and raw SimHash distance achieved 0.253. Pooled out-of-fold scores from different fitted models can reflect shifts in training class balance. The related fixture cases do not support independent-sample confidence intervals or probability calibration. For orientation only, nominal 95% Wilson intervals under an independent-case assumption are 75.8% to 100% for 12 of 12 positives detected and 0% to 6.9% for 0 of 52 negatives alerted. The scripted cases share templates, mechanisms, and fitted models, so these intervals do not quantify field uncertainty. The resulting precision-recall points, per-template F1, and per-case predictions are provided with the benchmark.
 
 ### Repeat-controlled evidence review
 

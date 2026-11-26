@@ -1,9 +1,11 @@
 """Stress-test the local review models with both template and scenario exclusions."""
 
 import argparse
+from collections import Counter
 import hashlib
 import json
 from pathlib import Path
+import re
 import sys
 
 import numpy as np
@@ -22,6 +24,17 @@ from detection.pipeline.artifacts import extract_view_artifacts
 
 KEYS = ["template_family", "scenario_family"]
 PROMOTIONAL_TEXT = {"bot_few", "bot_substantial"}
+
+
+def simhash64(text):
+    """Term-frequency-weighted word SimHash with a stable 64-bit digest."""
+    totals = [0] * 64
+    for token, weight in Counter(re.findall(r"\w+", text.casefold())).items():
+        digest = hashlib.blake2b(token.encode("utf-8"), digest_size=8).digest()
+        bits = int.from_bytes(digest, "big")
+        for bit in range(64):
+            totals[bit] += weight if bits & (1 << bit) else -weight
+    return sum(1 << bit for bit, total in enumerate(totals) if total > 0)
 
 
 def read_pairs():
@@ -63,6 +76,11 @@ def text_distances(train, test):
 
 
 def stress_predictions(pairs):
+    pairs = pairs.copy()
+    pairs["simhash_distance"] = [
+        (simhash64(human) ^ simhash64(bot)).bit_count() / 64
+        for human, bot in zip(pairs["H1"], pairs["B1"])
+    ]
     predictions = []
     for (template, scenario), test in pairs.groupby(["template_family", "scenario_group"]):
         train = pairs.loc[pairs["template_family"].ne(template) & pairs["scenario_group"].ne(scenario)]
@@ -74,6 +92,7 @@ def stress_predictions(pairs):
             "drift_only": ["drift_score"],
             "tfidf_only": ["tfidf_distance"],
             "tfidf_with_control": ["tfidf_distance", "tfidf_excess_over_control"],
+            "simhash_only": ["simhash_distance"],
             "paired_features": FEATURES,
             "paired_without_jargon": ["drift_score", "promo_score"],
         }
@@ -92,7 +111,7 @@ def main():
     args = parser.parse_args()
     predictions = stress_predictions(read_pairs())
     labels = predictions["label"]
-    methods = ("raw_score", "drift_only", "tfidf_only", "tfidf_with_control",
+    methods = ("raw_score", "drift_only", "tfidf_only", "tfidf_with_control", "simhash_only",
                "paired_features", "paired_without_jargon")
     curves = []
     report = {}
@@ -114,6 +133,7 @@ def main():
         "positive": int(labels.sum()),
         "negative": int(labels.eq(0).sum()),
         "raw_tfidf_average_precision": float(average_precision_score(labels, predictions["tfidf_distance"])),
+        "raw_simhash_average_precision": float(average_precision_score(labels, predictions["simhash_distance"])),
         "models": report,
     }
     args.output_dir.mkdir(parents=True, exist_ok=True)

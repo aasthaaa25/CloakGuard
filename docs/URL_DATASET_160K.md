@@ -26,4 +26,6 @@ You can also pass the extracted `CloakGuard_160k.csv` as the first argument to e
 
 ## Evaluation findings
 
+A rerun from the packaged CSV reproduced all 41,152 threshold decisions. Logistic scores varied by up to 8.1×10⁻⁹ with a different thread setting. Compare floating-point scores with a tolerance, and verify split assignments, labels, and binary outcomes exactly.
+
 On 41,152 held-out rows, the URL-shape rule reached 99.69% accuracy, compared with 99.59% for histogram gradient boosting. All 19,969 legitimate test URLs and only 127 phishing test URLs shared the matched URL shape. On that slice, boosting detected 38 of 127 phishing URLs at 0.50, and logistic regression detected 10 of 127. Boosting's ROC-AUC fell from 0.999 on all held-out rows to 0.776 on the matched slice. These numbers quantify the collection shortcut. Use them as a dataset-bias analysis in the paper.
